@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>緩坡療癒電台 | Space Between Studio</title>
-    <meta name="description" content="緩坡療癒電台 — 一個讓你暫時不用變好、也不被責怪的空間。15 分鐘一集，陪你慢慢走。">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎧</text></svg>">
 </head>
 <body>
     <!-- Navigation -->
@@ -15,189 +15,76 @@
             <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
-                <li><a href="podcast.html" class="active">緩坡電台</a></li>
-                <li><a href="course.html">金繼課程</a></li>
-                <li><a href="selection.html">隙光選物</a></li>
-                <li><a href="https://spacebetweenhealing.com" target="_blank">療癒顧問</a></li>
+                <li><a href="podcast.html" class="active">電台</a></li>
+                <li><a href="course.html">課程</a></li>
+                <li><a href="selection.html">選物</a></li>
             </ul>
             <button class="nav-toggle" onclick="toggleNav()">☰</button>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="course-hero">
-        <p class="section-tag">🎙️ Gentle Slope Healing Radio</p>
-        <h1 class="section-title" style="font-size: clamp(2rem, 5vw, 3rem);">緩坡療癒電台</h1>
-        <p class="section-desc" style="max-width: 600px; margin: 20px auto;">
-            療癒是一條緩坡——<em style="color: var(--gold);">不一定每天都向上，但不再原地</em>。<br>
-            一個讓你暫時不用變好、也不被責怪的空間。
-        </p>
-        <div class="platform-links">
-            <a href="#" class="platform-btn"><span>🎧</span> Apple Podcasts</a>
-            <a href="#" class="platform-btn"><span>🎵</span> Spotify</a>
-            <a href="#" class="platform-btn"><span>📺</span> YouTube</a>
+    <!-- Main Content -->
+    <section class="hero" style="min-height: 70vh;">
+        <div class="hero-content" style="max-width: 600px;">
+            <h1 class="hero-title" style="font-size: clamp(1.6rem, 4vw, 2.2rem);">
+                🎧《緩坡療癒電台》
+            </h1>
+            <p style="color: var(--gold); margin-top: 30px; font-size: 1rem;">
+                電台仍然喺製作中。
+            </p>
+            <p class="hero-subtitle" style="margin-top: 20px; line-height: 2;">
+                呢個頁面，暫時只用嚟存放<br>
+                關於呢個聲音空間嘅說明。
+            </p>
         </div>
     </section>
 
-    <!-- Host Section - 蘇牧 -->
-    <section class="section section-dark">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-tag">主持人</p>
-                <h2 class="section-title">認識蘇牧</h2>
-            </div>
-            
-            <div class="host-section">
-                <div class="host-avatar">
-                    <!-- TODO: 替換為蘇牧真實圖片 -->
-                    <!-- <img src="images/sumu-avatar.jpg" alt="蘇牧" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"> -->
-                    <div class="host-avatar-placeholder">
-                        <span class="host-avatar-icon">🧘</span>
-                        <span class="host-avatar-text">蘇牧</span>
-                    </div>
-                </div>
-                <div class="host-info">
-                    <h3>蘇牧</h3>
-                    <p class="host-title">品牌療癒顧問 · 電台主持</p>
-                    <p>
-                        你有沒有試過，明明生活看起來還好，但心裡面有個地方，好像一直不太舒服？
-                    </p>
-                    <p>
-                        你說不出那是什麼，但它就是在。
-                    </p>
-                    <p>
-                        在這個電台，我不會教你怎麼解決它。我只是想陪你，承認它的存在。
-                    </p>
-                    <p class="host-quote">
-                        「你不需要做任何事。你只需要⋯⋯在這裡。」
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 光光 Section -->
+    <!-- 說明區 -->
     <section class="section section-warm">
-        <div class="container">
-            <div class="host-section" style="border-color: rgba(201, 169, 98, 0.3);">
-                <div class="host-avatar" style="border-color: var(--gold-light);">
-                    <!-- TODO: 替換為光光真實圖片 -->
-                    <!-- <img src="images/guangguang-avatar.jpg" alt="光光" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"> -->
-                    <div class="host-avatar-placeholder">
-                        <span class="host-avatar-icon">✨</span>
-                        <span class="host-avatar-text">光光</span>
-                    </div>
-                </div>
-                <div class="host-info">
-                    <h3>光光</h3>
-                    <p class="host-title">AI 品牌診斷助理</p>
-                    <p>
-                        如果你還沒準備好和蘇牧對話，可以先找光光聊聊。
-                    </p>
-                    <p>
-                        光光是我們的 AI 智能分析助理，24 小時隨時待命，透過對話幫你找出品牌的「症狀」，並提供初步的療癒建議。
-                    </p>
-                    <p style="margin-top: 20px;">
-                        <a href="https://spacebetweenhealing.com/ai-assistant.html" class="btn btn-secondary" target="_blank">
-                            ✨ 與光光對話
-                        </a>
-                    </p>
-                    <p style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(201, 169, 98, 0.2);">
-                        <strong style="color: var(--gold);">📖 品牌療癒錦囊</strong><br>
-                        <span style="color: var(--text-muted);">搭配電台收聽的 10 個療癒提醒，免費下載。</span><br>
-                        <a href="tips.html" style="font-size: 0.9rem;">下載錦囊 PDF →</a>
-                    </p>
-                </div>
-            </div>
+        <div class="container" style="max-width: 600px; text-align: center;">
+            <p style="color: var(--text-light); line-height: 2.2; font-size: 1.05rem;">
+                緩坡療癒電台，<br>
+                係一個唔急住解答嘅地方。
+            </p>
+            <p style="color: var(--text-muted); margin-top: 25px; line-height: 2;">
+                你唔需要做任何事。<br>
+                你只需要⋯⋯在這裡。
+            </p>
+            <p style="color: var(--text-muted); margin-top: 30px; line-height: 2; font-size: 0.9rem;">
+                當聲音準備好，<br>
+                我哋會靜靜通知你。
+            </p>
         </div>
     </section>
 
-    <!-- Episodes Section -->
+    <!-- 伴讀手冊連結 -->
     <section class="section section-dark">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-tag">收聽</p>
-                <h2 class="section-title">最新集數</h2>
-                <p class="section-desc">每集 15 分鐘，陪你慢慢走</p>
-            </div>
-            
-            <div class="episodes-grid">
-                <div class="episode-card">
-                    <p class="episode-number">EP.01</p>
-                    <h4 class="episode-title">你的心，長什麼樣子？</h4>
-                    <p class="episode-subtitle">心靈空間的初次探索</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">EP.02</p>
-                    <h4 class="episode-title">那些你說不出口的不安</h4>
-                    <p class="episode-subtitle">關於依附與安全感</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">EP.03</p>
-                    <h4 class="episode-title">那些你深信不疑的話</h4>
-                    <p class="episode-subtitle">關於信念與聲音</p>
-                </div>
-                <div class="episode-card" style="opacity: 0.6;">
-                    <p class="episode-number">EP.04</p>
-                    <h4 class="episode-title">即將推出</h4>
-                    <p class="episode-subtitle">敬請期待</p>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 40px; color: var(--text-muted);">
-                更多集數陸續更新中⋯⋯
+        <div class="container" style="max-width: 500px; text-align: center;">
+            <h3 style="color: var(--cream); font-family: var(--font-serif); font-size: 1.2rem;">
+                📄 電台伴讀手冊
+            </h3>
+            <p style="color: var(--text-muted); margin-top: 20px; line-height: 2; font-size: 0.95rem;">
+                喺電台正式開播之前，<br>
+                你可以先下載呢份手冊。
             </p>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="section section-warm" style="text-align: center;">
-        <div class="container">
-            <p class="section-tag">免費資源</p>
-            <h2 class="section-title">品牌療癒錦囊</h2>
-            <p class="section-desc" style="margin-bottom: 30px;">
-                搭配電台收聽的 10 個療癒提醒。<br>
-                留下 Email，免費下載 PDF。
-            </p>
-            <a href="tips.html" class="btn btn-primary">免費下載錦囊</a>
+            <a href="tips.html" class="btn btn-secondary" style="margin-top: 25px;">
+                免費下載
+            </a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>Space Between Studio</h3>
-                <p>療癒自己，療癒品牌。<br>光從裂縫中透出。</p>
-            </div>
-            <div class="footer-links">
-                <h4>內容</h4>
-                <ul>
-                    <li><a href="podcast.html">緩坡療癒電台</a></li>
-                    <li><a href="course.html">品牌金繼課</a></li>
-                    <li><a href="selection.html">隙光選物</a></li>
-                    <li><a href="tips.html">療癒錦囊</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>連結</h4>
-                <ul>
-                    <li><a href="https://spacebetweenhealing.com" target="_blank">療癒顧問服務</a></li>
-                    <li><a href="https://wa.me/85294568231" target="_blank">WhatsApp 聯繫</a></li>
-                    <li><a href="mailto:hello@spacebetweenstudio.site">Email</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>收聽平台</h4>
-                <ul>
-                    <li><a href="#" target="_blank">Apple Podcasts</a></li>
-                    <li><a href="#" target="_blank">Spotify</a></li>
-                    <li><a href="#" target="_blank">YouTube</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Space Between Studio. All rights reserved.</p>
+        <div class="container" style="text-align: center; max-width: 500px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
+                呢個網站暫未對外公開。<br>
+                它存在，<br>
+                只係為咗讓一些語言，<br>
+                有地方可以慢慢站穩。
+            </p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
+                © 2026 Space Between Studio
+            </p>
         </div>
     </footer>
 

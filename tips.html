@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>品牌療癒錦囊 免費下載 | Space Between Studio</title>
-    <meta name="description" content="品牌療癒錦囊 — 10 個讓你停下來的提醒。不教方法，只陪伴你承認感受。免費下載 PDF。">
+    <meta name="robots" content="noindex, nofollow">
+    <title>電台伴讀手冊 | Space Between Studio</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
 </head>
 <body>
     <!-- Navigation -->
@@ -15,151 +15,73 @@
             <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
             <ul class="nav-links">
                 <li><a href="index.html">首頁</a></li>
-                <li><a href="podcast.html">緩坡電台</a></li>
-                <li><a href="course.html">金繼課程</a></li>
-                <li><a href="selection.html">隙光選物</a></li>
-                <li><a href="https://spacebetweenhealing.com" target="_blank">療癒顧問</a></li>
+                <li><a href="podcast.html">電台</a></li>
+                <li><a href="course.html">課程</a></li>
+                <li><a href="selection.html">選物</a></li>
             </ul>
             <button class="nav-toggle" onclick="toggleNav()">☰</button>
         </div>
     </nav>
 
-    <!-- Tips Landing Hero -->
-    <section class="tips-hero">
-        <div class="tips-content">
-            <span class="tips-badge">📖 免費下載</span>
-            <h1 class="tips-title">品牌療癒錦囊</h1>
-            <p class="tips-subtitle">第一季：認識裂痕</p>
-            <p class="tips-desc">
-                這不是一本教你「怎麼做」的手冊。<br>
-                這是一個讓你停下來的空間。<br><br>
-                每一個錦囊，都只是在說：<br>
-                <em style="color: var(--gold-light);">「你的感覺是真實的。」</em>
+    <!-- Main Content -->
+    <section class="hero" style="min-height: auto; padding: 150px 20px 60px;">
+        <div class="hero-content" style="max-width: 550px;">
+            <h1 class="hero-title" style="font-size: clamp(1.5rem, 4vw, 2rem);">
+                📄 電台伴讀手冊
+            </h1>
+            <p style="color: var(--gold); margin-top: 20px; font-size: 1rem;">
+                免費下載
             </p>
-            
-            <!-- Form -->
-            <form id="tipsForm" onsubmit="handleSubmit(event)">
+        </div>
+    </section>
+
+    <!-- 說明 -->
+    <section class="section section-warm" style="padding: 60px 20px;">
+        <div class="container" style="max-width: 500px; text-align: center;">
+            <p style="color: var(--text-light); line-height: 2.2; font-size: 1.05rem;">
+                呢份手冊唔係功課，<br>
+                亦唔需要完成。
+            </p>
+            <p style="color: var(--text-muted); margin-top: 20px; line-height: 2;">
+                只係一個，<br>
+                當你想停一停時可以翻開嘅地方。
+            </p>
+        </div>
+    </section>
+
+    <!-- 表單區 -->
+    <section class="section section-dark" style="padding: 60px 20px 80px;">
+        <div class="container" style="max-width: 400px; text-align: center;">
+            <form id="downloadForm" onsubmit="handleSubmit(event)">
                 <div class="form-group">
-                    <input type="text" class="form-input" id="name" placeholder="你的名字（可選）">
+                    <input type="email" class="form-input" id="email" placeholder="你的 Email" required>
                 </div>
-                <div class="form-group">
-                    <input type="email" class="form-input" id="email" placeholder="你的 Email *" required>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    免費下載錦囊 PDF
+                <button type="submit" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">
+                    留低聯絡方式，慢慢等
                 </button>
             </form>
             
-            <p class="form-note">
-                提交後，錦囊 PDF 會發送到你的信箱。<br>
-                我們尊重你的隱私，不會發送垃圾郵件。
+            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.9;">
+                下載之後，<br>
+                如果電台有更新，<br>
+                你會第一時間知道。<br>
+                我哋唔會打擾你。
             </p>
-        </div>
-    </section>
-
-    <!-- What's Inside Section -->
-    <section class="section section-warm">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-tag">錦囊內容</p>
-                <h2 class="section-title">10 個讓你停下來的提醒</h2>
-            </div>
-            
-            <div class="episodes-grid" style="max-width: 900px; margin: 0 auto;">
-                <div class="episode-card">
-                    <p class="episode-number">01</p>
-                    <h4 class="episode-title">金繕效應</h4>
-                    <p class="episode-subtitle">裂痕是值得用金修補的印記</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">02</p>
-                    <h4 class="episode-title">那種「唔穩」的感覺</h4>
-                    <p class="episode-subtitle">那只是一個想被看見的訊號</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">03</p>
-                    <h4 class="episode-title">品牌的不安全感</h4>
-                    <p class="episode-subtitle">可能不是策略問題</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">04</p>
-                    <h4 class="episode-title">那把聲音</h4>
-                    <p class="episode-subtitle">它在保護你，但不是真相</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">05</p>
-                    <h4 class="episode-title">唔知點拒絕</h4>
-                    <p class="episode-subtitle">你不是軟弱</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">06</p>
-                    <h4 class="episode-title">你不想俾人睇到嘅部分</h4>
-                    <p class="episode-subtitle">還沒有被好好對待過</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">07</p>
-                    <h4 class="episode-title">好難形容的品牌</h4>
-                    <p class="episode-subtitle">還在尋找自己的語言</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">08</p>
-                    <h4 class="episode-title">緩坡原則</h4>
-                    <p class="episode-subtitle">慢慢嚟，唔使急</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">09</p>
-                    <h4 class="episode-title">那種「好攰」的感覺</h4>
-                    <p class="episode-subtitle">你需要停一停</p>
-                </div>
-                <div class="episode-card">
-                    <p class="episode-number">10</p>
-                    <h4 class="episode-title">你唔係一個人</h4>
-                    <p class="episode-subtitle">好多人都係咁</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Podcast CTA -->
-    <section class="section section-dark" style="text-align: center;">
-        <div class="container">
-            <p class="section-tag">搭配收聽</p>
-            <h2 class="section-title">緩坡療癒電台</h2>
-            <p class="section-desc" style="margin-bottom: 30px;">
-                錦囊配合電台收聽，療癒效果更佳。<br>
-                每集 15 分鐘，陪你慢慢走。
-            </p>
-            <a href="podcast.html" class="btn btn-secondary">🎙️ 開始收聽</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h3>Space Between Studio</h3>
-                <p>療癒自己，療癒品牌。<br>光從裂縫中透出。</p>
-            </div>
-            <div class="footer-links">
-                <h4>內容</h4>
-                <ul>
-                    <li><a href="podcast.html">緩坡療癒電台</a></li>
-                    <li><a href="course.html">品牌金繼課</a></li>
-                    <li><a href="selection.html">隙光選物</a></li>
-                    <li><a href="tips.html">療癒錦囊</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>連結</h4>
-                <ul>
-                    <li><a href="https://spacebetweenhealing.com" target="_blank">療癒顧問服務</a></li>
-                    <li><a href="https://wa.me/85294568231" target="_blank">WhatsApp 聯繫</a></li>
-                    <li><a href="mailto:hello@spacebetweenstudio.site">Email</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Space Between Studio. All rights reserved.</p>
+        <div class="container" style="text-align: center; max-width: 500px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
+                呢個網站暫未對外公開。<br>
+                它存在，<br>
+                只係為咗讓一些語言，<br>
+                有地方可以慢慢站穩。
+            </p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
+                © 2026 Space Between Studio
+            </p>
         </div>
     </footer>
 
@@ -170,19 +92,13 @@
         
         function handleSubmit(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             
             // TODO: 連接 HubSpot 或 n8n webhook
-            // 暫時顯示成功訊息
-            alert('感謝你！錦囊 PDF 會發送到 ' + email + '\n\n（正式上線後會自動發送）');
+            alert('感謝你。\n當有更新時，我哋會靜靜通知你。');
             
-            // 可以在這裡加入 HubSpot form API 或 n8n webhook
-            // fetch('YOUR_WEBHOOK_URL', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ name, email })
-            // });
+            // 可以在這裡觸發 PDF 下載
+            // window.open('品牌療癒錦囊.pdf', '_blank');
         }
     </script>
 </body>
