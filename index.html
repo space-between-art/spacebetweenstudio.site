@@ -3,720 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>隙光・選物店 | Space Between Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cream: #FAF6F0;
-            --cream-dark: #F2EDE4;
-            --gold: #C9A962;
-            --gold-dark: #A68B3D;
-            --brown: #5C4A2A;
-            --brown-light: #7A6840;
-            --teal: #2D4A5E;
-            --text: #3D3D3D;
-            --text-light: #6B6B6B;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Noto Serif TC', serif;
-            background: var(--cream);
-            color: var(--text);
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* === HEADER === */
-        header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(250,246,240,0.95), rgba(250,246,240,0));
-            transition: all 0.3s ease;
-        }
-
-        .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            letter-spacing: 0.3em;
-            color: var(--brown);
-            text-transform: uppercase;
-        }
-
-        nav a {
-            font-size: 13px;
-            color: var(--brown-light);
-            text-decoration: none;
-            margin-left: 30px;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-        }
-
-        nav a:hover { color: var(--gold); }
-
-        /* === HERO === */
-        .hero {
-            height: 100vh;
-            min-height: 700px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('hero-bg.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            padding: 0 20px;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
-            letter-spacing: 0.4em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero-title {
-            font-size: clamp(36px, 8vw, 72px);
-            font-weight: 400;
-            color: var(--brown);
-            margin-bottom: 15px;
-            letter-spacing: 0.15em;
-        }
-
-        .hero-title-en {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(16px, 3vw, 24px);
-            font-weight: 400;
-            font-style: italic;
-            color: var(--brown-light);
-            letter-spacing: 0.2em;
-            margin-bottom: 40px;
-        }
-
-        .hero-description {
-            max-width: 500px;
-            margin: 0 auto 50px;
-            font-size: 15px;
-            color: var(--text-light);
-            line-height: 2;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--gold);
-            font-size: 12px;
-            letter-spacing: 0.2em;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-hint::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: var(--gold);
-            margin-top: 10px;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        /* === PHILOSOPHY === */
-        .philosophy {
-            padding: 120px 40px;
-            text-align: center;
-            background: var(--cream);
-        }
-
-        .section-label {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 12px;
-            letter-spacing: 0.4em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 30px;
-        }
-
-        .philosophy-text {
-            max-width: 700px;
-            margin: 0 auto;
-            font-size: 18px;
-            line-height: 2.2;
-            color: var(--text);
-        }
-
-        .philosophy-text .highlight {
-            color: var(--gold-dark);
-            font-weight: 500;
-        }
-
-        .kintsugi-divider {
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 60px auto;
-        }
-
-        /* === PRODUCTS === */
-        .products {
-            padding: 80px 40px 120px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
-        }
-
-        .products-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .products-title {
-            font-size: 32px;
-            font-weight: 400;
-            color: var(--brown);
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-        }
-
-        .products-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            font-style: italic;
-            color: var(--brown-light);
-            letter-spacing: 0.15em;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: var(--cream);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(92, 74, 42, 0.08);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(92, 74, 42, 0.15);
-        }
-
-        .product-image {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 5/8;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--gold);
-            color: white;
-            font-size: 11px;
-            padding: 6px 14px;
-            letter-spacing: 0.15em;
-            border-radius: 2px;
-        }
-
-        .product-info { padding: 35px; }
-
-        .product-category {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 11px;
-            letter-spacing: 0.3em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .product-title {
-            font-size: 22px;
-            font-weight: 500;
-            color: var(--brown);
-            margin-bottom: 8px;
-            letter-spacing: 0.05em;
-        }
-
-        .product-title-en {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 13px;
-            font-style: italic;
-            color: var(--brown-light);
-            margin-bottom: 20px;
-            letter-spacing: 0.1em;
-        }
-
-        .product-description {
-            font-size: 14px;
-            color: var(--text-light);
-            line-height: 1.9;
-            margin-bottom: 25px;
-        }
-
-        .product-details {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .product-tag {
-            font-size: 11px;
-            padding: 5px 12px;
-            background: var(--cream-dark);
-            color: var(--brown-light);
-            border-radius: 20px;
-            letter-spacing: 0.05em;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid var(--cream-dark);
-        }
-
-        .product-price {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 28px;
-            font-weight: 500;
-            color: var(--brown);
-        }
-
-        .product-price small {
-            font-size: 14px;
-            font-weight: 400;
-            color: var(--text-light);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            font-family: 'Noto Serif TC', serif;
-            font-size: 13px;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--brown);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--gold-dark);
-            transform: translateY(-2px);
-        }
-
-        /* === BUNDLE === */
-        .bundle {
-            padding: 100px 40px;
-            background: var(--teal);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bundle::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('bundle-bg.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-        }
-
-        .bundle-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .bundle .section-label { color: var(--gold); }
-
-        .bundle-title {
-            font-size: 36px;
-            font-weight: 400;
-            color: white;
-            margin-bottom: 20px;
-            letter-spacing: 0.1em;
-        }
-
-        .bundle-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 18px;
-            font-style: italic;
-            color: rgba(255,255,255,0.7);
-            margin-bottom: 40px;
-        }
-
-        .bundle-price { margin-bottom: 40px; }
-
-        .bundle-price .original {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 24px;
-            color: rgba(255,255,255,0.5);
-            text-decoration: line-through;
-            margin-right: 15px;
-        }
-
-        .bundle-price .current {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 48px;
-            font-weight: 500;
-            color: var(--gold);
-        }
-
-        .bundle-price small {
-            font-size: 16px;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .bundle-features {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-bottom: 50px;
-        }
-
-        .bundle-feature {
-            color: rgba(255,255,255,0.8);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .bundle-feature::before {
-            content: '✦';
-            color: var(--gold);
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: var(--brown);
-            font-weight: 500;
-        }
-
-        .btn-gold:hover {
-            background: #D4BC7D;
-            transform: translateY(-2px);
-        }
-
-        /* === FOOTER === */
-        footer {
-            padding: 80px 40px;
-            background: var(--cream-dark);
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 16px;
-            letter-spacing: 0.3em;
-            color: var(--brown);
-            margin-bottom: 20px;
-        }
-
-        .footer-tagline {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-bottom: 40px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-links a {
-            font-size: 13px;
-            color: var(--brown-light);
-            text-decoration: none;
-            letter-spacing: 0.1em;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--gold); }
-
-        .footer-contact {
-            font-size: 13px;
-            color: var(--text-light);
-        }
-
-        .footer-contact a {
-            color: var(--gold);
-            text-decoration: none;
-        }
-
-        .copyright {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(92, 74, 42, 0.1);
-            font-size: 12px;
-            color: var(--text-light);
-            letter-spacing: 0.1em;
-        }
-
-        /* === ANIMATIONS === */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* === RESPONSIVE === */
-        @media (max-width: 768px) {
-            header { padding: 15px 20px; }
-            nav a { margin-left: 15px; font-size: 12px; }
-            .hero { min-height: 600px; }
-            .philosophy { padding: 80px 20px; }
-            .products { padding: 60px 20px 80px; }
-            .products-grid { gap: 30px; }
-            .product-info { padding: 25px; }
-            .bundle { padding: 60px 20px; }
-            .bundle-features { gap: 20px; }
-            footer { padding: 60px 20px; }
-            .footer-links { flex-direction: column; gap: 15px; }
-        }
-    </style>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Space Between Studio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
 </head>
 <body>
-    <header>
-        <div class="logo">Space Between Studio</div>
-        <nav>
-            <a href="#products">選物</a>
-            <a href="#bundle">組合優惠</a>
-            <a href="https://spacebetweenhealing.com" target="_blank">品牌療癒</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首頁</a></li>
+                <li><a href="podcast.html">電台</a></li>
+                <li><a href="course.html">課程</a></li>
+                <li><a href="selection.html">選物</a></li>
+            </ul>
+            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+        </div>
+    </nav>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 80vh;">
         <div class="hero-content">
-            <p class="hero-subtitle">Brand Therapy Collection</p>
-            <h1 class="hero-title">隙光・選物店</h1>
-            <p class="hero-title-en">Space Between Selection</p>
-            <p class="hero-description">
-                在裂縫中找到光，在破碎中看見金。<br>
-                每一個品牌故事，都值得被溫柔療癒。
+            <h1 class="hero-title" style="font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.6;">
+                光，<br>
+                有時候係從裂縫入面透出嚟嘅。
+            </h1>
+            <p class="hero-subtitle" style="margin-top: 30px; line-height: 2;">
+                呢度係一個正在建造中的空間。<br>
+                關於陪伴、停一停，<br>
+                同唔需要即刻變好。
+            </p>
+            <p style="margin-top: 40px; font-size: 0.9rem; color: var(--text-muted);">
+                Space Between Studio 正在慢慢整理語言與聲音。
             </p>
         </div>
-        <div class="scroll-hint">探索</div>
     </section>
 
-    <section class="philosophy">
-        <p class="section-label">Our Philosophy</p>
-        <p class="philosophy-text">
-            源自日本金繼（Kintsugi）的修復美學——<br>
-            以<span class="highlight">金漆修補裂痕</span>，讓破碎之處比完整更美。<br><br>
-            我們相信，每一個品牌的傷痕與轉折，<br>
-            都是<span class="highlight">等待被看見的金色光芒</span>。
-        </p>
-        <div class="kintsugi-divider"></div>
-    </section>
-
-    <section class="products" id="products">
-        <div class="products-header">
-            <h2 class="products-title">療癒選物</h2>
-            <p class="products-subtitle">Curated for Your Brand Journey</p>
-        </div>
-
-        <div class="products-grid">
-            <div class="product-card fade-in">
-                <div class="product-image">
-                    <img src="rain-seller-cover.jpg" alt="The Rain Seller">
-                    <span class="product-badge">電子書</span>
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Brand Therapy Novel</p>
-                    <h3 class="product-title">賣雨的人</h3>
-                    <p class="product-title-en">The Rain Seller</p>
-                    <p class="product-description">
-                        一個關於品牌療癒的都市寓言。在雨夜的城市裡，一位神秘的賣雨人，用金繼的智慧療癒每一個受傷的品牌靈魂。
-                    </p>
-                    <div class="product-details">
-                        <span class="product-tag">品牌寓言</span>
-                        <span class="product-tag">金繼哲學</span>
-                        <span class="product-tag">療癒故事</span>
-                    </div>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <small>HKD</small> 68
-                        </div>
-                        <a href="#" class="btn btn-primary" data-product="rain-seller">立即購買</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card fade-in">
-                <div class="product-image">
-                    <img src="manman-cover.jpg" alt="Slowly Becoming Your Brand">
-                    <span class="product-badge">工作手冊</span>
-                </div>
-                <div class="product-info">
-                    <p class="product-category">Brand Workbook</p>
-                    <h3 class="product-title">慢慢成為自己的品牌</h3>
-                    <p class="product-title-en">Slowly Becoming Your Brand</p>
-                    <p class="product-description">
-                        品牌療癒工作手冊。透過 9 個章節的引導式練習，陪伴你慢慢找回品牌的核心價值，修復那些曾經的裂痕。
-                    </p>
-                    <div class="product-details">
-                        <span class="product-tag">互動式 PDF</span>
-                        <span class="product-tag">Notion 模板</span>
-                        <span class="product-tag">9 章練習</span>
-                    </div>
-                    <div class="product-footer">
-                        <div class="product-price">
-                            <small>HKD</small> 168
-                        </div>
-                        <a href="#" class="btn btn-primary" data-product="manman-workbook">立即購買</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Podcast 專案狀態區 -->
+    <section class="section section-warm">
+        <div class="container" style="max-width: 700px; text-align: center;">
+            <h2 class="section-title" style="font-size: 1.5rem;">🎧《緩坡療癒電台》</h2>
+            <p style="color: var(--text-light); margin-top: 25px; line-height: 2;">
+                電台正在製作中。<br>
+                呢個係一個唔急住解答、<br>
+                只係陪你慢慢行嘅聲音空間。
+            </p>
+            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-muted);">
+                當聲音準備好，<br>
+                我哋會靜靜通知你。
+            </p>
         </div>
     </section>
 
-    <section class="bundle" id="bundle">
-        <div class="bundle-content">
-            <p class="section-label">Special Offer</p>
-            <h2 class="bundle-title">療癒雙書組合</h2>
-            <p class="bundle-subtitle">The Complete Brand Healing Journey</p>
-            
-            <div class="bundle-price">
-                <span class="original">HKD 236</span>
-                <span class="current">HKD 198</span>
-                <small> / 組合價</small>
-            </div>
-
-            <div class="bundle-features">
-                <span class="bundle-feature">《賣雨的人》電子書</span>
-                <span class="bundle-feature">《慢慢》工作手冊</span>
-                <span class="bundle-feature">Notion 模板</span>
-                <span class="bundle-feature">節省 HKD 38</span>
-            </div>
-
-            <a href="#" class="btn btn-gold" data-product="bundle">購買組合 — 開始療癒旅程</a>
+    <!-- 伴讀手冊（唯一 CTA）-->
+    <section class="section section-dark">
+        <div class="container" style="max-width: 600px; text-align: center;">
+            <h2 class="section-title" style="font-size: 1.4rem;">📄 電台伴讀手冊（免費）</h2>
+            <p style="color: var(--text-light); margin-top: 25px; line-height: 2;">
+                呢份手冊唔係功課，<br>
+                亦唔需要完成。
+            </p>
+            <p style="color: var(--text-muted); margin-top: 15px; line-height: 2;">
+                只係一個，<br>
+                當你想停一停時可以翻開嘅地方。
+            </p>
+            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-muted);">
+                下載之後，<br>
+                如果電台有更新，<br>
+                你會第一時間知道。<br>
+                我哋唔會打擾你。
+            </p>
+            <a href="tips.html" class="btn btn-secondary" style="margin-top: 30px;">
+                免費下載
+            </a>
         </div>
     </section>
 
-    <footer>
-        <p class="footer-logo">SPACE BETWEEN STUDIO</p>
-        <p class="footer-tagline">在裂縫之間，找到光</p>
-        
-        <div class="footer-links">
-            <a href="https://spacebetweenhealing.com" target="_blank">品牌療癒 AI</a>
-            <a href="https://spacebetweenstudio.site" target="_blank">官方網站</a>
-            <a href="#" target="_blank">Instagram</a>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" style="text-align: center; max-width: 500px;">
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
+                呢個網站暫未對外公開。<br>
+                它存在，<br>
+                只係為咗讓一些語言，<br>
+                有地方可以慢慢站穩。
+            </p>
+            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
+                © 2026 Space Between Studio
+            </p>
         </div>
-
-        <p class="footer-contact">查詢：<a href="https://wa.me/85295825247">WhatsApp</a></p>
-        <p class="copyright">© 2026 Space Between Studio. All rights reserved.</p>
     </footer>
 
     <script>
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        fadeElements.forEach(el => observer.observe(el));
-
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(250,246,240,0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(92,74,42,0.08)';
-            } else {
-                header.style.background = 'linear-gradient(to bottom, rgba(250,246,240,0.95), rgba(250,246,240,0))';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        document.querySelectorAll('[data-product]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const product = btn.dataset.product;
-                const whatsappMessages = {
-                    'rain-seller': '你好，我想購買《賣雨的人》電子書 (HKD 68)',
-                    'manman-workbook': '你好，我想購買《慢慢成為自己的品牌》工作手冊 (HKD 168)',
-                    'bundle': '你好，我想購買療癒雙書組合 (HKD 198)'
-                };
-                const message = encodeURIComponent(whatsappMessages[product]);
-                window.open(`https://wa.me/85295825247?text=${message}`, '_blank');
-            });
-        });
+        function toggleNav() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
     </script>
 </body>
 </html>
