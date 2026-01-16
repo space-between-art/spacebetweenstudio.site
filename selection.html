@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
     <style>
+        /* === 重置外部 CSS 的影響 === */
+        .selection-page .product-image,
+        .selection-page .product-image * {
+            max-height: none !important;
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+        }
+        
         /* === 選物店專用樣式 === */
         .selection-hero {
             min-height: 60vh;
@@ -38,7 +46,7 @@
             margin: 0 auto;
         }
 
-        /* 產品卡片 */
+        /* 產品卡片 - 強制完整顯示圖片 */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -48,31 +56,35 @@
             padding: 0 20px;
         }
 
-        .product-card {
+        .products-grid .product-card {
             background: var(--bg-warm);
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .product-card:hover {
+        .products-grid .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
-        .product-image {
+        .products-grid .product-image {
             position: relative;
+            width: 100%;
+            height: auto;
+            line-height: 0;
             overflow: hidden;
         }
 
-        .product-image img {
+        .products-grid .product-image img {
             width: 100%;
-            height: auto;
+            height: auto !important;
+            max-height: none !important;
             display: block;
             transition: transform 0.5s ease;
         }
 
-        .product-card:hover .product-image img {
+        .products-grid .product-card:hover .product-image img {
             transform: scale(1.03);
         }
 
@@ -241,7 +253,7 @@
         }
     </style>
 </head>
-<body>
+<body class="selection-page">
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
@@ -289,7 +301,7 @@
                 <!-- 賣雨的人 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/rain-seller-cover.jpg" alt="賣雨的人">
+                        <img src="images/rain-seller-cover.jpg" alt="賣雨的人" style="width:100%; height:auto; display:block; max-height:none;">
                         <span class="product-badge">電子書</span>
                     </div>
                     <div class="product-info">
@@ -316,7 +328,7 @@
                 <!-- 慢慢成為自己的品牌 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌">
+                        <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌" style="width:100%; height:auto; display:block; max-height:none;">
                         <span class="product-badge">工作手冊</span>
                     </div>
                     <div class="product-info">
