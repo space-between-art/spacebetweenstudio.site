@@ -92,8 +92,8 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--accent);
-            color: var(--bg);
+            background: var(--gold);
+            color: var(--bg-dark);
             font-size: 0.7rem;
             padding: 5px 12px;
             border-radius: 3px;
@@ -106,7 +106,7 @@
 
         .product-category {
             font-size: 0.7rem;
-            color: var(--accent);
+            color: var(--gold);
             letter-spacing: 0.2em;
             text-transform: uppercase;
             margin-bottom: 10px;
@@ -115,7 +115,7 @@
         .product-title {
             font-size: 1.3rem;
             margin-bottom: 5px;
-            color: var(--text);
+            color: var(--text-light);
         }
 
         .product-title-en {
@@ -157,7 +157,7 @@
 
         .product-price {
             font-size: 1.4rem;
-            color: var(--text);
+            color: var(--text-light);
         }
 
         .product-price small {
@@ -197,7 +197,7 @@
 
         .bundle-price .current {
             font-size: 2.2rem;
-            color: var(--accent);
+            color: var(--gold);
         }
 
         .bundle-price small {
@@ -223,7 +223,7 @@
 
         .bundle-feature::before {
             content: '✦ ';
-            color: var(--accent);
+            color: var(--gold);
         }
 
         /* 哲學區塊 */
@@ -241,15 +241,63 @@
         }
 
         .philosophy-section .highlight {
-            color: var(--accent);
+            color: var(--gold);
         }
 
         .divider {
             width: 60px;
             height: 1px;
-            background: var(--accent);
+            background: var(--gold);
             margin: 40px auto;
             opacity: 0.5;
+        }
+
+        /* 學費即訂金區塊 */
+        .deposit-note {
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .deposit-note h3 {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .deposit-note p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* 付款方式說明 */
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .payment-method {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .payment-method::before {
+            content: '✓';
+            color: var(--gold);
+            font-size: 0.65rem;
         }
     </style>
 </head>
@@ -320,7 +368,7 @@
                             <div class="product-price">
                                 <small>HKD</small> 68
                             </div>
-                            <a href="#" class="btn btn-secondary" data-product="rain-seller">立即購買</a>
+                            <a href="https://pay.airwallex.com/hkhexbb35cle" class="btn btn-secondary" target="_blank">立即購買</a>
                         </div>
                     </div>
                 </div>
@@ -347,10 +395,20 @@
                             <div class="product-price">
                                 <small>HKD</small> 168
                             </div>
-                            <a href="#" class="btn btn-secondary" data-product="manman-workbook">立即購買</a>
+                            <a href="https://pay.airwallex.com/hkhexbdv6fvp" class="btn btn-secondary" target="_blank">立即購買</a>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- 學費即訂金說明 -->
+            <div class="deposit-note" style="margin-top: 60px;">
+                <h3>💡 學費即訂金</h3>
+                <p>
+                    購買《慢慢成為自己的品牌》或療癒雙書組合，<br>
+                    即可獲得等值專屬抵扣碼。<br>
+                    日後委託 Space Between Studio 設計服務時可全額折抵。
+                </p>
             </div>
         </div>
     </section>
@@ -358,7 +416,7 @@
     <!-- Bundle -->
     <section class="bundle-section" id="bundle">
         <div class="container" style="max-width: 700px;">
-            <p style="font-size: 0.75rem; color: var(--accent); letter-spacing: 0.3em; margin-bottom: 15px;">SPECIAL OFFER</p>
+            <p style="font-size: 0.75rem; color: var(--gold); letter-spacing: 0.3em; margin-bottom: 15px;">SPECIAL OFFER</p>
             <h2>療癒雙書組合</h2>
             <p class="subtitle">The Complete Brand Healing Journey</p>
             
@@ -372,10 +430,22 @@
                 <span class="bundle-feature">《賣雨的人》電子書</span>
                 <span class="bundle-feature">《慢慢》工作手冊</span>
                 <span class="bundle-feature">Notion 模板</span>
+                <span class="bundle-feature">專屬抵扣碼 (HKD 198)</span>
                 <span class="bundle-feature">節省 HKD 38</span>
             </div>
 
-            <a href="#" class="btn btn-primary" data-product="bundle">購買組合 — 開始療癒旅程</a>
+            <a href="https://pay.airwallex.com/hkhexbevtwaa" class="btn btn-primary" target="_blank">購買組合 — 開始療癒旅程</a>
+
+            <!-- 付款方式 -->
+            <div class="payment-methods">
+                <span class="payment-method">信用卡</span>
+                <span class="payment-method">Apple Pay</span>
+                <span class="payment-method">Google Pay</span>
+                <span class="payment-method">PayMe</span>
+                <span class="payment-method">FPS 轉數快</span>
+                <span class="payment-method">支付寶</span>
+                <span class="payment-method">微信支付</span>
+            </div>
         </div>
     </section>
 
@@ -394,7 +464,7 @@
             </div>
 
             <p style="color: var(--text-muted); font-size: 0.85rem;">
-                查詢：<a href="https://wa.me/85294568231" style="color: var(--accent); text-decoration: none;">WhatsApp</a>
+                查詢：<a href="https://wa.me/85294568231" style="color: var(--gold); text-decoration: none;">WhatsApp</a>
             </p>
             
             <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
@@ -407,21 +477,6 @@
         function toggleNav() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
-
-        // 購買按鈕
-        document.querySelectorAll('[data-product]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const product = btn.dataset.product;
-                const whatsappMessages = {
-                    'rain-seller': '你好，我想購買《賣雨的人》電子書 (HKD 68)',
-                    'manman-workbook': '你好，我想購買《慢慢成為自己的品牌》工作手冊 (HKD 168)',
-                    'bundle': '你好，我想購買療癒雙書組合 (HKD 198)'
-                };
-                const message = encodeURIComponent(whatsappMessages[product]);
-                window.open(`https://wa.me/85294568231?text=${message}`, '_blank');
-            });
-        });
     </script>
 </body>
 </html>
