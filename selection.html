@@ -8,35 +8,57 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
     <style>
-        /* === 重置外部 CSS 的影響 === */
-        .selection-page .product-image,
-        .selection-page .product-image * {
-            max-height: none !important;
-            aspect-ratio: unset !important;
-            object-fit: unset !important;
-        }
-        
         /* === 選物店專用樣式 === */
+        .selection-page {
+            --gold: #C9A962;
+            --gold-light: #E8D5A3;
+            --gold-dark: #8B7355;
+            --bg-dark: #2C2825;
+            --bg-warm: #3D3632;
+            --cream: #F5F0E8;
+            --text-light: #E8E4DC;
+            --text-muted: #A09A90;
+        }
+
+        /* Hero 區塊 - 使用真實背景圖 */
         .selection-hero {
-            min-height: 60vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 120px 20px 80px;
+            position: relative;
+            background: 
+                linear-gradient(180deg, rgba(44,40,37,0.85) 0%, rgba(44,40,37,0.75) 50%, rgba(44,40,37,0.9) 100%),
+                url('images/hero-bg.jpg') center/cover no-repeat;
+        }
+
+        .selection-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, var(--bg-dark), transparent);
+            pointer-events: none;
         }
 
         .selection-hero h1 {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-size: clamp(2rem, 6vw, 3rem);
             margin-bottom: 15px;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
+            color: var(--cream);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
         }
 
         .selection-hero .subtitle {
             font-size: 0.95rem;
-            color: var(--text-muted);
+            color: var(--gold);
             font-style: italic;
             margin-bottom: 30px;
+            letter-spacing: 0.2em;
         }
 
         .selection-hero p {
@@ -44,28 +66,31 @@
             line-height: 2;
             max-width: 500px;
             margin: 0 auto;
+            font-size: 1.05rem;
         }
 
-        /* 產品卡片 - 強制完整顯示圖片 */
+        /* 產品卡片 */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         .products-grid .product-card {
             background: var(--bg-warm);
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(201, 169, 98, 0.1);
         }
 
         .products-grid .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            border-color: rgba(201, 169, 98, 0.3);
         }
 
         .products-grid .product-image {
@@ -74,18 +99,19 @@
             height: auto;
             line-height: 0;
             overflow: hidden;
+            aspect-ratio: 4/3;
         }
 
         .products-grid .product-image img {
             width: 100%;
-            height: auto !important;
-            max-height: none !important;
+            height: 100%;
+            object-fit: cover;
             display: block;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s ease;
         }
 
         .products-grid .product-card:hover .product-image img {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
 
         .product-badge {
@@ -95,113 +121,195 @@
             background: var(--gold);
             color: var(--bg-dark);
             font-size: 0.7rem;
-            padding: 5px 12px;
-            border-radius: 3px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 4px;
             letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         .product-info {
-            padding: 25px;
+            padding: 28px;
         }
 
         .product-category {
             font-size: 0.7rem;
             color: var(--gold);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .product-title {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: var(--text-light);
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            color: var(--cream);
+            font-weight: 600;
         }
 
         .product-title-en {
             font-size: 0.8rem;
             color: var(--text-muted);
             font-style: italic;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .product-description {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 20px;
+            line-height: 1.9;
+            margin-bottom: 22px;
         }
 
         .product-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .product-tag {
             font-size: 0.7rem;
-            padding: 4px 10px;
-            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            background: rgba(201, 169, 98, 0.15);
             border-radius: 20px;
-            color: var(--text-muted);
+            color: var(--gold-light);
+            border: 1px solid rgba(201, 169, 98, 0.2);
         }
 
         .product-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 18px;
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .product-price {
-            font-size: 1.4rem;
-            color: var(--text-light);
+            font-size: 1.5rem;
+            color: var(--cream);
+            font-weight: 600;
         }
 
         .product-price small {
             font-size: 0.8rem;
             color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* 按鈕樣式 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 169, 98, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            border: 1.5px solid var(--gold);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(201, 169, 98, 0.15);
+            color: var(--gold-light);
         }
 
         /* 組合優惠區 */
         .bundle-section {
             background: var(--bg-dark);
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bundle-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(201, 169, 98, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(201, 169, 98, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .bundle-content {
+            position: relative;
+            z-index: 1;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .bundle-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .bundle-image img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
         .bundle-section h2 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
+            color: var(--cream);
         }
 
         .bundle-section .subtitle {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
             font-style: italic;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .bundle-price {
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .bundle-price .original {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-muted);
             text-decoration: line-through;
-            margin-right: 10px;
+            margin-right: 12px;
         }
 
         .bundle-price .current {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             color: var(--gold);
+            font-weight: 700;
         }
 
         .bundle-price small {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: var(--text-muted);
         }
 
@@ -209,15 +317,12 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 15px 25px;
+            margin-bottom: 45px;
         }
 
         .bundle-feature {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-light);
         }
 
@@ -229,60 +334,103 @@
         /* 哲學區塊 */
         .philosophy-section {
             text-align: center;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
         .philosophy-section p {
-            font-size: 1rem;
-            line-height: 2.2;
+            font-size: 1.1rem;
+            line-height: 2.4;
             color: var(--text-light);
         }
 
         .philosophy-section .highlight {
             color: var(--gold);
+            font-weight: 500;
         }
 
         .divider {
-            width: 60px;
+            width: 80px;
             height: 1px;
-            background: var(--gold);
-            margin: 40px auto;
-            opacity: 0.5;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 50px auto;
+        }
+
+        /* 金繼形象區 */
+        .kintsugi-section {
+            padding: 80px 20px;
+            background: var(--bg-warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .kintsugi-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .kintsugi-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .kintsugi-text {
+            max-width: 400px;
+            text-align: left;
+        }
+
+        .kintsugi-text h3 {
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 15px;
+        }
+
+        .kintsugi-text p {
+            color: var(--text-light);
+            line-height: 2;
+            font-size: 0.95rem;
         }
 
         /* 學費即訂金區塊 */
         .deposit-note {
             background: rgba(201, 169, 98, 0.1);
             border: 1px solid rgba(201, 169, 98, 0.3);
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 700px;
-            margin: 0 auto 60px;
+            border-radius: 16px;
+            padding: 35px;
+            max-width: 750px;
+            margin: 0 auto 70px;
             text-align: center;
         }
 
         .deposit-note h3 {
             color: var(--gold);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            margin-bottom: 18px;
         }
 
         .deposit-note p {
             color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            line-height: 2;
         }
 
-        /* 付款方式說明 */
+        /* 付款方式 */
         .payment-methods {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 25px;
+            padding-top: 25px;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -292,12 +440,144 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
         }
 
         .payment-method::before {
             content: '✓';
             color: var(--gold);
             font-size: 0.65rem;
+        }
+
+        /* Section 樣式 */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .section-warm {
+            background: var(--bg-warm);
+        }
+
+        .section-dark {
+            background: var(--bg-dark);
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            color: var(--cream);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(44, 40, 37, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.2rem;
+            color: var(--cream);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(201, 169, 98, 0.2);
+            padding: 60px 20px 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(201, 169, 98, 0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .kintsugi-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .kintsugi-text {
+                text-align: center;
+            }
+
+            .kintsugi-image {
+                width: 200px;
+                height: 200px;
+            }
         }
     </style>
 </head>
@@ -329,7 +609,7 @@
     </section>
 
     <!-- Philosophy -->
-    <section class="section">
+    <section class="section section-dark">
         <div class="philosophy-section">
             <p>
                 源自日本金繼（Kintsugi）的修復美學——<br>
@@ -340,16 +620,31 @@
         </div>
     </section>
 
+    <!-- Kintsugi Image Section -->
+    <section class="kintsugi-section">
+        <div class="kintsugi-image">
+            <img src="images/kintsugi-bowl.jpg" alt="金繼碗">
+        </div>
+        <div class="kintsugi-text">
+            <h3>每一道裂痕，<br>都是光進來的地方</h3>
+            <p>
+                品牌的成長過程中，難免會遇到挫折與迷失。<br>
+                金繼教會我們：不要隱藏那些裂痕，<br>
+                而是用金色的智慧，讓它們成為你最美的印記。
+            </p>
+        </div>
+    </section>
+
     <!-- Products -->
     <section class="section section-warm" id="products">
         <div class="container">
-            <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">療癒選物</h2>
+            <h2 class="section-title">療癒選物</h2>
             
             <div class="products-grid">
                 <!-- 賣雨的人 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/rain-seller-cover.jpg" alt="賣雨的人" style="width:100%; height:auto; display:block; max-height:none;">
+                        <img src="images/rain-seller-cover.jpg" alt="賣雨的人">
                         <span class="product-badge">電子書</span>
                     </div>
                     <div class="product-info">
@@ -376,7 +671,7 @@
                 <!-- 慢慢成為自己的品牌 -->
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌" style="width:100%; height:auto; display:block; max-height:none;">
+                        <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌">
                         <span class="product-badge">工作手冊</span>
                     </div>
                     <div class="product-info">
@@ -402,7 +697,7 @@
             </div>
 
             <!-- 學費即訂金說明 -->
-            <div class="deposit-note" style="margin-top: 60px;">
+            <div class="deposit-note" style="margin-top: 70px;">
                 <h3>💡 學費即訂金</h3>
                 <p>
                     購買《慢慢成為自己的品牌》或療癒雙書組合，<br>
@@ -415,8 +710,13 @@
 
     <!-- Bundle -->
     <section class="bundle-section" id="bundle">
-        <div class="container" style="max-width: 700px;">
+        <div class="bundle-content">
             <p style="font-size: 0.75rem; color: var(--gold); letter-spacing: 0.3em; margin-bottom: 15px;">SPECIAL OFFER</p>
+            
+            <div class="bundle-image">
+                <img src="images/bundle-cover.jpg" alt="療癒雙書組合">
+            </div>
+            
             <h2>療癒雙書組合</h2>
             <p class="subtitle">The Complete Brand Healing Journey</p>
             
@@ -452,8 +752,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container" style="text-align: center; max-width: 500px;">
-            <p style="font-size: 1rem; margin-bottom: 20px;">SPACE BETWEEN STUDIO</p>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 30px;">
+            <p style="font-size: 1.1rem; margin-bottom: 20px; color: var(--cream);">SPACE BETWEEN STUDIO</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
                 在裂縫之間，找到光
             </p>
             
