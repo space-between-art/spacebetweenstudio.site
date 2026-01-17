@@ -3,16 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>隙光・選物店 | Space Between Studio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    <title>隙光・選物店 | Space Between Selection</title>
+    <meta name="description" content="Space Between Studio 數位選物店 - 品牌療癒系列數位產品">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="隙光・選物店 | Space Between Selection">
+    <meta property="og:description" content="品牌療癒系列數位產品 - 《賣雨的人》《慢慢成為自己的品牌》">
+    <meta property="og:image" content="images/rain-seller-cover-new.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
-        /* === 選物店專用樣式 === */
+        :root {
+            --ink-black: #08090c;
+            --deep-charcoal: #181c24;
+            --gold: #C9A962;
+            --light-gold: #d4b896;
+            --cream: #f5f2eb;
+            --soft-gray: #6b6b6b;
+            --teal: #1a3a3a;
+        }
         
-        /* Hero 區 - 水墨金繼背景 */
-        .selection-hero {
-            min-height: 80vh;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: var(--ink-black);
+            color: var(--cream);
+            line-height: 1.8;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--deep-charcoal); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        
+        /* ============================================
+           Navigation
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(8, 9, 12, 0.95), transparent);
+            transition: background 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(8, 9, 12, 0.98);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--light-gold);
+        }
+        
+        .nav-logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        /* ============================================
+           Hero Section
+           ============================================ */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -21,1021 +115,729 @@
             position: relative;
             overflow: hidden;
         }
-
-        .selection-hero::before {
-            content: '';
+        
+        .hero-bg {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('images/inkwash-kintsugi.png') center/cover no-repeat;
-            opacity: 0.2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(to bottom, rgba(8, 9, 12, 0.4), rgba(8, 9, 12, 0.9)),
+                url('images/hero-kintsugi.jpg') center/cover no-repeat;
+            z-index: 0;
         }
-
-        .selection-hero::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(44, 40, 37, 0.7) 0%, 
-                rgba(44, 40, 37, 0.5) 50%,
-                rgba(44, 40, 37, 0.9) 100%);
-        }
-
-        .selection-hero .hero-content {
+        
+        .hero-content {
             position: relative;
             z-index: 1;
+            max-width: 700px;
         }
-
-        .selection-hero h1 {
-            font-family: var(--font-serif);
-            font-size: clamp(2.2rem, 6vw, 3.5rem);
-            margin-bottom: 15px;
-            letter-spacing: 0.15em;
-            color: var(--cream);
-        }
-
-        .selection-hero .subtitle {
-            font-size: 0.9rem;
-            color: var(--gold);
-            font-style: italic;
-            margin-bottom: 30px;
-            letter-spacing: 0.25em;
-        }
-
-        .selection-hero .tagline {
-            color: var(--text-light);
-            line-height: 2.2;
-            max-width: 450px;
-            margin: 0 auto;
-            font-size: 1rem;
-        }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-            color: var(--gold);
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            opacity: 0.7;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(8px); }
-        }
-
-        /* 哲學區塊 */
-        .philosophy-section {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .philosophy-section p {
-            font-family: var(--font-serif);
-            font-size: 1.15rem;
-            line-height: 2.4;
-            color: var(--text-light);
-        }
-
-        .philosophy-section .highlight {
-            color: var(--gold);
-        }
-
-        .divider {
-            width: 60px;
-            height: 1px;
-            background: var(--gold);
-            margin: 40px auto;
-            opacity: 0.5;
-        }
-
-        /* 金繼理念區 */
-        .kintsugi-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .kintsugi-image {
-            width: 100%;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-
-        .kintsugi-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .kintsugi-text h2 {
-            font-family: var(--font-serif);
-            font-size: 1.6rem;
-            color: var(--cream);
-            margin-bottom: 25px;
-            line-height: 1.7;
-        }
-
-        .kintsugi-text p {
-            color: var(--text-muted);
-            line-height: 2;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        /* ===== 賣雨的人故事區 ===== */
-        .story-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .story-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .story-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .story-text .section-tag {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .story-text h2 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--cream);
-            margin-bottom: 10px;
-        }
-
-        .story-text .subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 25px;
-        }
-
-        .story-text p {
-            color: var(--text-light);
-            line-height: 2;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .story-text .quote {
-            font-family: var(--font-serif);
-            font-size: 1.05rem;
-            color: var(--gold-light);
-            font-style: italic;
-            margin: 25px 0;
-            padding-left: 20px;
-            border-left: 2px solid var(--gold);
-        }
-
-        /* ===== 工作手冊區 ===== */
-        .workbook-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .workbook-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .workbook-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .workbook-text .section-tag {
-            font-size: 0.75rem;
-            color: var(--gold);
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .workbook-text h2 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--cream);
-            margin-bottom: 10px;
-        }
-
-        .workbook-text .subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 25px;
-        }
-
-        .workbook-text p {
-            color: var(--text-light);
-            line-height: 2;
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-
-        .chapter-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 20px;
-            margin: 25px 0;
-        }
-
-        .chapter-item {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            padding: 5px 0;
-        }
-
-        .chapter-item::before {
-            content: '○ ';
-            color: var(--gold);
-        }
-
-        /* ===== 品牌療癒流程區 ===== */
-        .process-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .process-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .process-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .process-image {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .process-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .process-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .process-step {
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(201, 169, 98, 0.15);
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
             border: 1px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-serif);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 4px;
             color: var(--gold);
-            flex-shrink: 0;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
-
-        .step-content h4 {
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            color: var(--cream);
-            margin-bottom: 8px;
+        
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 48px);
+            font-weight: 400;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--cream), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .step-content p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+        
+        .hero-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--light-gold);
+            letter-spacing: 4px;
+            margin-bottom: 30px;
         }
-
-        /* 產品卡片 */
-        .selection-page .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-            max-width: 900px;
+        
+        .hero p {
+            font-size: 15px;
+            color: var(--soft-gray);
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+        
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 3px;
+            transition: all 0.4s ease;
+        }
+        
+        .hero-cta:hover {
+            background: var(--gold);
+            color: var(--ink-black);
+        }
+        
+        /* ============================================
+           Products Section
+           ============================================ */
+        .products {
+            padding: 100px 20px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
-
-        .selection-page .product-card {
-            background: var(--bg-warm);
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 14px;
+            color: var(--soft-gray);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        /* Product Card */
+        .product-card {
+            background: var(--deep-charcoal);
             border-radius: 12px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-
-        .selection-page .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(201, 169, 98, 0.15);
         }
-
-        .selection-page .product-image {
-            width: 100%;
-            height: auto;
-            overflow: hidden;
+        
+        .product-image {
             position: relative;
+            aspect-ratio: 4/5;
+            overflow: hidden;
         }
-
-        .selection-page .product-image img {
+        
+        .product-image img {
             width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
-
-        .selection-page .product-card:hover .product-image img {
-            transform: scale(1.02);
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
-
+        
         .product-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 20px;
+            left: 20px;
+            padding: 6px 14px;
             background: var(--gold);
-            color: var(--bg-dark);
-            font-size: 0.7rem;
-            padding: 5px 12px;
-            border-radius: 3px;
-            letter-spacing: 0.1em;
+            color: var(--ink-black);
+            font-size: 11px;
             font-weight: 500;
+            letter-spacing: 1px;
+            border-radius: 4px;
         }
-
-        .product-info { padding: 25px; }
-
+        
+        .product-info {
+            padding: 30px;
+        }
+        
         .product-category {
-            font-size: 0.7rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 3px;
             color: var(--gold);
-            letter-spacing: 0.2em;
             text-transform: uppercase;
             margin-bottom: 10px;
         }
-
+        
         .product-title {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-            color: var(--cream);
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
         }
-
-        .product-title-en {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        
+        .product-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
             font-style: italic;
+            color: var(--soft-gray);
             margin-bottom: 15px;
         }
-
-        .product-description {
-            font-size: 0.85rem;
-            color: var(--text-light);
+        
+        .product-desc {
+            font-size: 14px;
+            color: var(--soft-gray);
             line-height: 1.8;
             margin-bottom: 20px;
         }
-
-        .product-tags {
+        
+        .product-formats {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 20px;
         }
-
-        .product-tag {
-            font-size: 0.7rem;
-            padding: 4px 10px;
-            background: rgba(201, 169, 98, 0.15);
-            border-radius: 20px;
-            color: var(--text-muted);
+        
+        .format-tag {
+            padding: 4px 12px;
+            background: rgba(201, 169, 98, 0.1);
+            border: 1px solid rgba(201, 169, 98, 0.3);
+            font-size: 11px;
+            color: var(--light-gold);
+            border-radius: 4px;
         }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
+        
         .product-price {
-            font-size: 1.4rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .price-current {
+            font-size: 28px;
+            font-weight: 500;
             color: var(--cream);
         }
-
-        .product-price small {
-            font-size: 0.8rem;
-            color: var(--text-muted);
+        
+        .price-currency {
+            font-size: 14px;
+            color: var(--soft-gray);
         }
-
-        /* 學費即訂金區塊 */
-        .deposit-section {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px;
-            background: var(--bg-card);
-            border-radius: 16px;
+        
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--gold);
+            color: var(--ink-black);
+            text-align: center;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .product-btn:hover {
+            background: var(--light-gold);
+            transform: translateY(-2px);
+        }
+        
+        /* Bundle Card - Special */
+        .product-card.bundle {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: linear-gradient(135deg, var(--deep-charcoal), var(--teal));
             border: 1px solid rgba(201, 169, 98, 0.2);
+        }
+        
+        .bundle .product-image {
+            aspect-ratio: auto;
+        }
+        
+        .bundle .product-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 50px;
+        }
+        
+        .bundle-bonus {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(201, 169, 98, 0.1);
+            border-radius: 8px;
+        }
+        
+        .bundle-bonus h4 {
+            font-size: 13px;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .bundle-bonus p {
+            font-size: 13px;
+            color: var(--soft-gray);
+            line-height: 1.6;
+        }
+        
+        /* ============================================
+           Features Section
+           ============================================ */
+        .features {
+            padding: 80px 20px;
+            background: var(--deep-charcoal);
+        }
+        
+        .features-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             text-align: center;
         }
-
-        .deposit-section h3 {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
+        
+        .feature-item {
+            padding: 30px;
+        }
+        
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-item h3 {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--cream);
+        }
+        
+        .feature-item p {
+            font-size: 13px;
+            color: var(--soft-gray);
+            line-height: 1.8;
+        }
+        
+        /* ============================================
+           Quote Section
+           ============================================ */
+        .quote-section {
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quote-section::before {
+            content: '"';
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 120px;
+            color: rgba(201, 169, 98, 0.1);
+        }
+        
+        .quote-text {
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 2;
+            color: var(--light-gold);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .quote-author {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--soft-gray);
+        }
+        
+        /* ============================================
+           Preview Section
+           ============================================ */
+        .preview-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--ink-black), var(--teal));
+        }
+        
+        .preview-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .preview-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .preview-images img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.4s ease;
+        }
+        
+        .preview-images img:hover {
+            transform: scale(1.03);
+        }
+        
+        .preview-text h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .preview-text p {
+            font-size: 14px;
+            color: var(--soft-gray);
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+        
+        .preview-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .preview-list li {
+            padding: 10px 0;
+            font-size: 14px;
+            color: var(--cream);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .preview-list li::before {
+            content: '✦';
+            color: var(--gold);
+        }
+        
+        /* ============================================
+           Footer
+           ============================================ */
+        footer {
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 4px;
             color: var(--gold);
             margin-bottom: 20px;
         }
-
-        .deposit-section p {
-            color: var(--text-light);
-            line-height: 1.9;
-            margin-bottom: 10px;
-        }
-
-        /* Bundle 組合區 */
-        .bundle-section {
-            position: relative;
-            text-align: center;
-            padding: 80px 20px;
-            overflow: hidden;
-        }
-
-        .bundle-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(45, 74, 94, 0.3) 50%, var(--bg-dark) 100%);
-        }
-
-        .bundle-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .bundle-image {
-            max-width: 500px;
-            margin: 0 auto 30px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .bundle-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .bundle-section h2 {
-            font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--cream);
-            margin-bottom: 10px;
-        }
-
-        .bundle-section .bundle-subtitle {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        .bundle-price {
-            margin-bottom: 30px;
-        }
-
-        .bundle-price .original {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-            margin-right: 10px;
-        }
-
-        .bundle-price .current {
-            font-size: 2.5rem;
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        .bundle-price small {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .bundle-features {
+        
+        .footer-links {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px 25px;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            gap: 30px;
+            margin-bottom: 30px;
         }
-
-        .bundle-feature {
-            font-size: 0.85rem;
-            color: var(--text-light);
+        
+        .footer-links a {
+            color: var(--soft-gray);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
         }
-
-        .bundle-feature::before {
-            content: '✦ ';
+        
+        .footer-links a:hover {
             color: var(--gold);
         }
-
-        /* 付款方式 */
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 30px;
+        
+        .footer-copyright {
+            font-size: 12px;
+            color: var(--soft-gray);
         }
-
-        .payment-badge {
-            font-size: 0.75rem;
-            padding: 5px 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            color: var(--text-muted);
-        }
-
-        .payment-badge::before {
-            content: '✓ ';
-            color: var(--gold);
-        }
-
-        /* Responsive */
+        
+        /* ============================================
+           Responsive
+           ============================================ */
         @media (max-width: 768px) {
-            .kintsugi-section,
-            .story-section,
-            .workbook-section,
-            .process-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
+            nav {
+                padding: 15px 20px;
             }
-
-            .story-section .story-image { order: -1; }
             
-            .kintsugi-image,
-            .story-image,
-            .workbook-image,
-            .process-image {
-                max-width: 350px;
-                margin: 0 auto;
+            .nav-links {
+                display: none;
             }
-
-            .kintsugi-image { max-width: 250px; }
-
-            .selection-page .products-grid {
+            
+            .products-grid {
                 grid-template-columns: 1fr;
             }
-
-            .bundle-features {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .chapter-list {
+            
+            .product-card.bundle {
                 grid-template-columns: 1fr;
             }
-
-            .story-text .quote {
-                text-align: left;
+            
+            .bundle .product-info {
+                padding: 30px;
             }
-
-            .process-step {
-                text-align: left;
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .preview-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .preview-images {
+                order: -1;
             }
         }
     </style>
 </head>
-<body class="selection-page">
+<body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="podcast.html">電台</a></li>
-                <li><a href="course.html">課程</a></li>
-                <li><a href="selection.html" class="active">選物</a></li>
-            </ul>
-            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <nav>
+        <a href="/" class="nav-logo">
+            <span class="nav-logo-text">SPACE BETWEEN STUDIO</span>
+        </a>
+        <div class="nav-links">
+            <a href="/">首頁</a>
+            <a href="#products">選物</a>
+            <a href="/podcast.html">電台</a>
+            <a href="/course.html">課程</a>
         </div>
     </nav>
-
-    <!-- Hero Section - 水墨金繼背景 -->
-    <section class="selection-hero">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
         <div class="hero-content">
-            <p class="subtitle">BRAND THERAPY COLLECTION</p>
+            <span class="hero-badge">品牌療癒生態系</span>
             <h1>隙光・選物店</h1>
-            <p class="tagline">
-                在裂縫中找到光，在破碎中看見金。<br>
-                每一個品牌故事，都值得被溫柔療癒。
-            </p>
-        </div>
-        <div class="scroll-hint">↓ 探索療癒選物</div>
-    </section>
-
-    <!-- Philosophy -->
-    <section class="section section-dark">
-        <div class="philosophy-section">
+            <p class="hero-en">Space Between Selection</p>
             <p>
-                源自日本金繼（Kintsugi）的修復美學——<br>
-                以<span class="highlight">金漆修補裂痕</span>，<br>
-                讓破碎之處比完整更美。
+                在破碎處，看見金色的光。<br>
+                我們相信，每一道裂痕都值得被溫柔以待。<br>
+                這裡收藏的，是陪伴你慢慢成為自己的療癒之物。
             </p>
-            <div class="divider"></div>
+            <a href="#products" class="hero-cta">
+                探索選物
+                <span>↓</span>
+            </a>
         </div>
     </section>
-
-    <!-- Kintsugi Section - 金繼理念 -->
-    <section class="section section-warm">
-        <div class="kintsugi-section">
-            <div class="kintsugi-image">
-                <img src="images/kintsugi-hands.png" alt="金繼修復">
-            </div>
-            <div class="kintsugi-text">
-                <h2>每一道裂痕，<br>都是光進來的地方</h2>
-                <p>品牌的成長過程中，難免會遇到挫折與迷失。</p>
-                <p>金繼教會我們：不要隱藏那些裂痕，<br>而是用金色的智慧，讓它們成為你最美的印記。</p>
-            </div>
+    
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header">
+            <h2>療癒選物</h2>
+            <p>每一件選物，都是故事的載體</p>
         </div>
-    </section>
-
-    <!-- 賣雨的人故事區 -->
-    <section class="section section-dark">
-        <div class="story-section">
-            <div class="story-text">
-                <p class="section-tag">Brand Therapy Novel</p>
-                <h2>賣雨的人</h2>
-                <p class="subtitle">The Rain Seller</p>
-                <p>
-                    在這座總是下雨的城市裡，有一個神秘的賣雨人。
-                </p>
-                <p>
-                    他不賣傘，卻專門收集那些被雨淋濕的品牌故事——那些曾經閃耀、如今黯淡的創業夢想。
-                </p>
-                <p class="quote">
-                    「雨後的土地，總會散發出最溫柔的氣息。<br>
-                    那叫 Petrichor，是療癒的味道。」
-                </p>
-                <p>
-                    一本關於品牌療癒的都市寓言，<br>陪你在雨夜中找到屬於自己的光。
-                </p>
-            </div>
-            <div class="story-image">
-                <img src="images/desk-flatlay.png" alt="賣雨的人意境圖">
-            </div>
-        </div>
-    </section>
-
-    <!-- 慢慢工作手冊區 -->
-    <section class="section section-warm">
-        <div class="workbook-section">
-            <div class="workbook-image">
-                <img src="images/workbook-mockup.png" alt="慢慢成為自己的品牌工作手冊">
-            </div>
-            <div class="workbook-text">
-                <p class="section-tag">Brand Workbook</p>
-                <h2>慢慢成為自己的品牌</h2>
-                <p class="subtitle">Slowly Becoming Your Brand</p>
-                <p>
-                    這不是一本教你快速打造品牌的書。<br>
-                    而是陪伴你慢慢找回自己的療癒手冊。
-                </p>
-                <p>
-                    透過 9 個章節的引導式練習，<br>
-                    重新認識你的品牌核心、修復那些曾經的裂痕。
-                </p>
-                <div class="chapter-list">
-                    <span class="chapter-item">品牌的起點</span>
-                    <span class="chapter-item">核心價值探索</span>
-                    <span class="chapter-item">受眾理解</span>
-                    <span class="chapter-item">品牌故事</span>
-                    <span class="chapter-item">視覺語言</span>
-                    <span class="chapter-item">溝通策略</span>
-                    <span class="chapter-item">療癒裂痕</span>
-                    <span class="chapter-item">金繼重生</span>
-                    <span class="chapter-item">持續成長</span>
+        
+        <div class="products-grid">
+            <!-- Product 1: 賣雨的人 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/rain-seller-cover-new.jpg" alt="賣雨的人">
+                    <span class="product-badge">互動式電子書</span>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 品牌療癒流程區 -->
-    <section class="section section-dark">
-        <div class="process-section">
-            <div class="process-header">
-                <p class="section-tag">Healing Process</p>
-                <h2 class="section-title">品牌療癒旅程</h2>
-            </div>
-            <div class="process-content">
-                <div class="process-image">
-                    <img src="images/workshop-flatlay.png" alt="品牌療癒工作坊">
+                <div class="product-info">
+                    <p class="product-category">Digital Novel</p>
+                    <h3 class="product-title">賣雨的人</h3>
+                    <p class="product-subtitle">The Rain Seller</p>
+                    <p class="product-desc">
+                        一個關於品牌療癒的都市寓言。跟隨調香師林予安的旅程，探索真實與完美之間的抉擇。
+                    </p>
+                    <div class="product-formats">
+                        <span class="format-tag">互動式網頁版</span>
+                        <span class="format-tag">PDF</span>
+                        <span class="format-tag">ePub</span>
+                        <span class="format-tag">有聲書</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price-currency">HKD</span>
+                        <span class="price-current">68</span>
+                    </div>
+                    <a href="https://pay.airwallex.com/hkhexbb35cle" class="product-btn">
+                        立即購買
+                    </a>
                 </div>
-                <div class="process-steps">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>閱讀《賣雨的人》</h4>
-                            <p>透過故事療癒，重新理解品牌的本質與意義</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>完成《慢慢》練習</h4>
-                            <p>9 章引導式工作手冊，探索並修復品牌裂痕</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>獲得專屬抵扣碼</h4>
-                            <p>學費即訂金，日後設計服務可全額折抵</p>
-                        </div>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h4>金繼重生</h4>
-                            <p>讓裂痕成為品牌最美的印記</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="section section-warm" id="products">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-tag">Curated Selection</p>
-                <h2 class="section-title">療癒選物</h2>
             </div>
             
-            <div class="products-grid">
-                <!-- 賣雨的人 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/rain-seller-cover.jpg" alt="賣雨的人">
-                        <span class="product-badge">電子書</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="product-category">Brand Therapy Novel</p>
-                        <h3 class="product-title">賣雨的人</h3>
-                        <p class="product-title-en">The Rain Seller</p>
-                        <p class="product-description">
-                            一個關於品牌療癒的都市寓言。在雨夜的城市裡，一位神秘的賣雨人，用金繼的智慧療癒每一個受傷的品牌靈魂。
-                        </p>
-                        <div class="product-tags">
-                            <span class="product-tag">品牌寓言</span>
-                            <span class="product-tag">金繼哲學</span>
-                            <span class="product-tag">療癒故事</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <small>HKD</small> 68
-                            </div>
-                            <a href="#" class="btn btn-secondary" data-product="rain-seller">立即購買</a>
-                        </div>
-                    </div>
+            <!-- Product 2: 慢慢成為自己的品牌 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌">
+                    <span class="product-badge">可填寫工作手冊</span>
                 </div>
-
-                <!-- 慢慢成為自己的品牌 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌">
-                        <span class="product-badge">工作手冊</span>
+                <div class="product-info">
+                    <p class="product-category">Brand Workbook</p>
+                    <h3 class="product-title">慢慢成為自己的品牌</h3>
+                    <p class="product-subtitle">Slowly Becoming Your Own Brand</p>
+                    <p class="product-desc">
+                        品牌療癒工具書，包含 5 大工具、56 道練習題，帶你從內在探索到品牌建構。
+                    </p>
+                    <div class="product-formats">
+                        <span class="format-tag">互動式 PDF</span>
+                        <span class="format-tag">Notion 模版</span>
                     </div>
-                    <div class="product-info">
-                        <p class="product-category">Brand Workbook</p>
-                        <h3 class="product-title">慢慢成為自己的品牌</h3>
-                        <p class="product-title-en">Slowly Becoming Your Brand</p>
-                        <p class="product-description">
-                            品牌療癒工作手冊。透過 9 個章節的引導式練習，陪伴你慢慢找回品牌的核心價值，修復那些曾經的裂痕。
-                        </p>
-                        <div class="product-tags">
-                            <span class="product-tag">互動式 PDF</span>
-                            <span class="product-tag">Notion 模板</span>
-                            <span class="product-tag">9 章練習</span>
-                        </div>
-                        <div class="product-footer">
-                            <div class="product-price">
-                                <small>HKD</small> 168
-                            </div>
-                            <a href="#" class="btn btn-secondary" data-product="manman-workbook">立即購買</a>
-                        </div>
+                    <div class="product-price">
+                        <span class="price-currency">HKD</span>
+                        <span class="price-current">168</span>
                     </div>
+                    <a href="https://pay.airwallex.com/hkhexbdv6fvp" class="product-btn">
+                        立即購買
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- 學費即訂金 -->
-    <section class="section section-dark">
-        <div class="deposit-section">
-            <h3>💡 學費即訂金</h3>
-            <p>購買《慢慢成為自己的品牌》或療癒雙書組合，</p>
-            <p>即可獲得等值<span style="color: var(--gold);">專屬抵扣碼</span>。</p>
-            <p style="color: var(--text-muted); margin-top: 15px;">日後委託 Space Between Studio 設計服務時可全額折抵。</p>
-        </div>
-    </section>
-
-    <!-- Bundle -->
-    <section class="bundle-section" id="bundle">
-        <div class="bundle-content">
-            <p class="section-tag">SPECIAL OFFER</p>
             
-            <div class="bundle-image">
-                <img src="images/books-shelf.png" alt="療癒雙書組合">
-            </div>
-
-            <h2>療癒雙書組合</h2>
-            <p class="bundle-subtitle">The Complete Brand Healing Journey</p>
-            
-            <div class="bundle-price">
-                <span class="original">HKD 236</span>
-                <span class="current">HKD 198</span>
-                <small> / 組合價</small>
-            </div>
-
-            <div class="bundle-features">
-                <span class="bundle-feature">《賣雨的人》電子書</span>
-                <span class="bundle-feature">《慢慢》工作手冊</span>
-                <span class="bundle-feature">Notion 模板</span>
-                <span class="bundle-feature">專屬抵扣碼 (HKD 198)</span>
-                <span class="bundle-feature">節省 HKD 38</span>
-            </div>
-
-            <a href="#" class="btn btn-primary" data-product="bundle">購買組合 — 開始療癒旅程</a>
-
-            <div class="payment-methods">
-                <span class="payment-badge">信用卡</span>
-                <span class="payment-badge">Apple Pay</span>
-                <span class="payment-badge">Google Pay</span>
-                <span class="payment-badge">PayMe</span>
-                <span class="payment-badge">FPS 轉數快</span>
-                <span class="payment-badge">支付寶</span>
-                <span class="payment-badge">微信支付</span>
+            <!-- Bundle -->
+            <div class="product-card bundle">
+                <div class="product-image">
+                    <img src="images/bundle-mockup.jpg" alt="療癒雙書組合">
+                </div>
+                <div class="product-info">
+                    <p class="product-category">Special Bundle</p>
+                    <h3 class="product-title">療癒雙書組合</h3>
+                    <p class="product-subtitle">The Healing Bundle</p>
+                    <p class="product-desc">
+                        《賣雨的人》+《慢慢成為自己的品牌》完整療癒套組，從故事啟發到實踐行動。
+                    </p>
+                    <div class="product-formats">
+                        <span class="format-tag">全部格式</span>
+                        <span class="format-tag">互動式網頁版</span>
+                        <span class="format-tag">Notion 模版</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="price-currency">HKD</span>
+                        <span class="price-current">198</span>
+                        <span style="font-size: 14px; color: var(--soft-gray); text-decoration: line-through;">原價 HKD 236</span>
+                    </div>
+                    
+                    <div class="bundle-bonus">
+                        <h4>🎁 組合專屬</h4>
+                        <p>購買組合即獲得「學費即訂金」代碼，未來可全額折抵 HKD 198 設計諮詢費用。</p>
+                    </div>
+                    
+                    <a href="https://pay.airwallex.com/hkhexbevtwaa" class="product-btn" style="margin-top: 20px;">
+                        購買組合 — 省 HKD 38
+                    </a>
+                </div>
             </div>
         </div>
     </section>
-
+    
+    <!-- Features -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">📱</div>
+                <h3>即時交付</h3>
+                <p>付款完成後，自動發送下載連結至你的信箱，隨時隨地開始閱讀。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔐</div>
+                <h3>安全支付</h3>
+                <p>支援 PayMe、FPS、Alipay、WeChat Pay、Visa/Master 信用卡。</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💬</div>
+                <h3>持續支援</h3>
+                <p>購買後可加入讀者社群，與蘇牧 AI 教練對話，持續你的品牌療癒之旅。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quote Section -->
+    <section class="quote-section">
+        <p class="quote-text">
+            「品牌是創辦人內在的投射。<br>
+            如果你是分裂的，品牌就是分裂的。」
+        </p>
+        <p class="quote-author">—— 程慢山《賣雨的人》</p>
+    </section>
+    
+    <!-- Preview Section -->
+    <section class="preview-section">
+        <div class="preview-content">
+            <div class="preview-images">
+                <img src="images/ch1-laboratory.jpg" alt="玻璃大樓實驗室">
+                <img src="images/ch2-workshop.jpg" alt="老唐樓工作室">
+                <img src="images/ch3-shadow.jpg" alt="陰影工作坊">
+                <img src="images/ch9-rainseller.jpg" alt="賣雨的人">
+            </div>
+            <div class="preview-text">
+                <h2>沉浸式閱讀體驗</h2>
+                <p>
+                    《賣雨的人》互動式網頁版，帶來前所未有的閱讀體驗。
+                    金繼動畫、章節轉場、情境配圖，讓你完全沉浸在林予安的療癒旅程中。
+                </p>
+                <ul class="preview-list">
+                    <li>金繼裂痕開場動畫</li>
+                    <li>10 個章節情境配圖</li>
+                    <li>流暢的章節導航</li>
+                    <li>閱讀進度追蹤</li>
+                    <li>Notion 模版一鍵複製</li>
+                </ul>
+                <a href="#products" class="hero-cta">
+                    開始你的療癒旅程
+                </a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container" style="text-align: center; max-width: 500px;">
-            <p style="font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 15px; color: var(--cream);">SPACE BETWEEN STUDIO</p>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
-                在裂縫之間，找到光
-            </p>
-            
-            <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap; margin-bottom: 30px;">
-                <a href="https://spacebetweenhealing.com" target="_blank" style="color: var(--text-light); text-decoration: none; font-size: 0.85rem;">品牌療癒 AI</a>
-                <a href="https://instagram.com/spacebetweenhealing" target="_blank" style="color: var(--text-light); text-decoration: none; font-size: 0.85rem;">Instagram</a>
-                <a href="https://facebook.com/SpaceBetweenHealingBySpaceBetweenStudio" target="_blank" style="color: var(--text-light); text-decoration: none; font-size: 0.85rem;">Facebook</a>
-            </div>
-
-            <p style="color: var(--text-muted); font-size: 0.85rem;">
-                查詢：<a href="https://wa.me/85294568231" style="color: var(--gold); text-decoration: none;">WhatsApp</a>
-            </p>
-            
-            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
-                © 2025 Space Between Studio
-            </p>
+    <footer>
+        <p class="footer-logo">SPACE BETWEEN STUDIO</p>
+        <div class="footer-links">
+            <a href="/">首頁</a>
+            <a href="/podcast.html">緩坡電台</a>
+            <a href="/course.html">課程</a>
+            <a href="https://spacebetweenhealing.com">光光 AI</a>
         </div>
+        <p class="footer-copyright">© 2026 Space Between Studio. All rights reserved.</p>
     </footer>
-
-   <script>
-        // 1. 導航欄切換功能
-        function toggleNav() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-
-        // 2. 簡單數據追蹤系統 (Local Analytics)
-        const Analytics = {
-            // 初始化：從 localStorage 讀取數據，如果沒有則建立空物件
-            getData: () => {
-                return JSON.parse(localStorage.getItem('shop_analytics')) || {};
-            },
-
-            // 記錄點擊
-            trackClick: (productId) => {
-                const data = Analytics.getData();
-                
-                // 如果該產品還沒被點擊過，初始化為 0
-                if (!data[productId]) {
-                    data[productId] = 0;
-                }
-
-                // 計數 +1
-                data[productId]++;
-                
-                // 存回 localStorage
-                localStorage.setItem('shop_analytics', JSON.stringify(data));
-                
-                // 在控制台顯示即時報告 (給開發者看)
-                console.log(`✨ 記錄成功：${productId} (目前累積點擊: ${data[productId]})`);
-            },
-
-            // 產生報表 (您可以在瀏覽器 Console 輸入 Analytics.report() 查看)
-            report: () => {
-                const data = Analytics.getData();
-                console.group("📊 隙光選物店 - 點擊熱度報表");
-                if (Object.keys(data).length === 0) {
-                    console.log("尚無點擊數據");
-                } else {
-                    console.table(data);
-                }
-                console.log("提示：數據儲存於您的瀏覽器 LocalStorage");
-                console.groupEnd();
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
             }
-        };
-
-        // 3. 綁定購買按鈕事件 & 整合 Airwallex
-        document.addEventListener('DOMContentLoaded', () => {
-            const buttons = document.querySelectorAll('[data-product]');
-            
-            buttons.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    
-                    const product = btn.dataset.product;
-                    
-                    // A. 執行數據追蹤
-                    Analytics.trackClick(product);
-
-                    // B. 定義付款連結
-                    const paymentLinks = {
-                        'rain-seller': 'https://pay.airwallex.com/hkhexbb35cle',
-                        'manman-workbook': 'https://pay.airwallex.com/hkhexbdv6fvp',
-                        'bundle': 'https://pay.airwallex.com/hkhexbevtwaa'
-                    };
-
-                    // C. 開啟付款頁面 (延遲 100ms 確保數據寫入)
-                    setTimeout(() => {
-                        if (paymentLinks[product]) {
-                            window.open(paymentLinks[product], '_blank');
-                        } else {
-                            console.error('未找到對應的付款連結');
-                        }
-                    }, 100);
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
             });
-
-            // 初始化時印出一次報表
-            console.log("系統就緒。輸入 Analytics.report() 查看點擊數據。");
         });
     </script>
 </body>
