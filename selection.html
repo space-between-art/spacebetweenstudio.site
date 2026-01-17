@@ -957,23 +957,85 @@
         </div>
     </footer>
 
-    <script>
+   <script>
+        // 1. 導航欄切換功能
         function toggleNav() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
 
-        // 購買按鈕 - Airwallex 付款連結
-        document.querySelectorAll('[data-product]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const product = btn.dataset.product;
-                const paymentLinks = {
-                    'rain-seller': 'https://pay.airwallex.com/hkhexbb35cle',
-                    'manman-workbook': 'https://pay.airwallex.com/hkhexbdv6fvp',
-                    'bundle': 'https://pay.airwallex.com/hkhexbevtwaa'
-                };
-                window.open(paymentLinks[product], '_blank');
+        // 2. 簡單數據追蹤系統 (Local Analytics)
+        const Analytics = {
+            // 初始化：從 localStorage 讀取數據，如果沒有則建立空物件
+            getData: () => {
+                return JSON.parse(localStorage.getItem('shop_analytics')) || {};
+            },
+
+            // 記錄點擊
+            trackClick: (productId) => {
+                const data = Analytics.getData();
+                
+                // 如果該產品還沒被點擊過，初始化為 0
+                if (!data[productId]) {
+                    data[productId] = 0;
+                }
+
+                // 計數 +1
+                data[productId]++;
+                
+                // 存回 localStorage
+                localStorage.setItem('shop_analytics', JSON.stringify(data));
+                
+                // 在控制台顯示即時報告 (給開發者看)
+                console.log(`✨ 記錄成功：${productId} (目前累積點擊: ${data[productId]})`);
+            },
+
+            // 產生報表 (您可以在瀏覽器 Console 輸入 Analytics.report() 查看)
+            report: () => {
+                const data = Analytics.getData();
+                console.group("📊 隙光選物店 - 點擊熱度報表");
+                if (Object.keys(data).length === 0) {
+                    console.log("尚無點擊數據");
+                } else {
+                    console.table(data);
+                }
+                console.log("提示：數據儲存於您的瀏覽器 LocalStorage");
+                console.groupEnd();
+            }
+        };
+
+        // 3. 綁定購買按鈕事件 & 整合 Airwallex
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('[data-product]');
+            
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const product = btn.dataset.product;
+                    
+                    // A. 執行數據追蹤
+                    Analytics.trackClick(product);
+
+                    // B. 定義付款連結
+                    const paymentLinks = {
+                        'rain-seller': 'https://pay.airwallex.com/hkhexbb35cle',
+                        'manman-workbook': 'https://pay.airwallex.com/hkhexbdv6fvp',
+                        'bundle': 'https://pay.airwallex.com/hkhexbevtwaa'
+                    };
+
+                    // C. 開啟付款頁面 (延遲 100ms 確保數據寫入)
+                    setTimeout(() => {
+                        if (paymentLinks[product]) {
+                            window.open(paymentLinks[product], '_blank');
+                        } else {
+                            console.error('未找到對應的付款連結');
+                        }
+                    }, 100);
+                });
             });
+
+            // 初始化時印出一次報表
+            console.log("系統就緒。輸入 Analytics.report() 查看點擊數據。");
         });
     </script>
 </body>
