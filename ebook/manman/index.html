@@ -280,6 +280,232 @@
             border-radius: 30px;
             font-size: 0.9rem;
             box-shadow: 0 5px 20px rgba(201, 169, 98, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .highlight-indicator.show { opacity: 1; visibility: visible; }
+        
+        /* TOC Sidebar */
+        .toc-sidebar {
+            position: fixed;
+            top: 0; left: -350px;
+            width: 350px;
+            height: 100vh;
+            background: var(--warm-white);
+            box-shadow: 5px 0 30px rgba(0,0,0,0.1);
+            z-index: 200;
+            padding: 60px 40px;
+            transition: left 0.4s ease;
+            overflow-y: auto;
+        }
+        .toc-sidebar.open { left: 0; }
+        .toc-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: var(--tea-brown); }
+        .toc-title { font-family: 'ZCOOL XiaoWei', serif; font-size: 1.5rem; margin-bottom: 10px; color: var(--charcoal); }
+        .toc-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--muted-text); font-style: italic; margin-bottom: 40px; }
+        .toc-list { list-style: none; }
+        .toc-item { padding: 15px 0; border-bottom: 1px solid var(--sand); }
+        .toc-item a { text-decoration: none; color: var(--charcoal); display: flex; align-items: baseline; gap: 15px; transition: all 0.3s ease; }
+        .toc-item a:hover { color: var(--gold); padding-left: 10px; }
+        .toc-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: var(--gold); min-width: 60px; }
+        .toc-name { font-size: 1rem; }
+        .toc-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 150; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .toc-overlay.open { opacity: 1; visibility: visible; }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
+            position: relative;
+        }
+        .hero-image {
+            width: min(300px, 60vw);
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+            margin-bottom: 50px;
+        }
+        .hero-studio { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.4em; color: var(--tea-brown); margin-bottom: 20px; }
+        .hero h1 { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; color: var(--charcoal); letter-spacing: 0.1em; margin-bottom: 15px; }
+        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--muted-text); margin-bottom: 40px; }
+        .hero-quote { max-width: 500px; font-size: 1.1rem; color: var(--tea-brown); line-height: 2; position: relative; padding: 0 30px; }
+        .hero-quote::before { content: '"'; position: absolute; top: -20px; left: 0; font-size: 4rem; color: var(--gold); opacity: 0.3; font-family: 'Cormorant Garamond', serif; }
+        .hero-author { display: block; margin-top: 15px; font-style: normal; color: var(--gold); font-size: 0.95rem; }
+        .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--muted-text); font-size: 0.8rem; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+        
+        /* Chapter Section */
+        .chapter { min-height: 100vh; position: relative; }
+        .chapter-cover { min-height: 70vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .chapter-cover-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+        .chapter-cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(250, 247, 242, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(250, 247, 242, 0.9) 100%); }
+        .chapter-cover-content { position: relative; z-index: 1; text-align: center; color: white; padding: 40px; }
+        .chapter-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.3em; opacity: 0.9; margin-bottom: 15px; }
+        .chapter-title { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; margin-bottom: 10px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .chapter-title-en { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; opacity: 0.8; }
+        
+        .chapter-content { max-width: 700px; margin: 0 auto; padding: 80px 30px; }
+        .chapter-epigraph { margin-bottom: 50px; padding: 30px; border-left: 3px solid var(--gold); background: rgba(201, 169, 98, 0.05); }
+        .chapter-epigraph p { font-style: italic; color: var(--tea-brown); font-size: 1.05rem; line-height: 2; }
+        .chapter-epigraph cite { display: block; margin-top: 15px; font-style: normal; color: var(--gold); font-size: 0.9rem; }
+        
+        .chapter-text { font-size: 1.1rem; line-height: 2.2; color: var(--charcoal); }
+        .chapter-text p { margin-bottom: 1.8em; text-align: justify; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .chapter-text p.visible { opacity: 1; transform: translateY(0); }
+        .chapter-text .highlight { background: linear-gradient(transparent 60%, rgba(201, 169, 98, 0.25) 60%); padding: 0 3px; }
+        .chapter-text .dialogue { margin: 25px 0; padding: 20px 25px; background: var(--warm-white); border-radius: 8px; font-style: italic; color: var(--tea-brown); }
+        .chapter-text blockquote { margin: 30px 0; padding: 25px 30px; border-left: 3px solid var(--gold); background: rgba(201, 169, 98, 0.08); font-style: italic; color: var(--tea-brown); }
+        .chapter-text blockquote cite { display: block; margin-top: 12px; font-style: normal; color: var(--gold); font-size: 0.9rem; }
+        
+        .section-break { text-align: center; padding: 40px 0; color: var(--gold); font-size: 1.2rem; }
+        
+        /* Quote Section */
+        .quote-section { min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 20px; background: linear-gradient(135deg, var(--deep-brown), var(--tea-brown)); color: white; }
+        .quote-content { max-width: 600px; }
+        .big-quote { font-size: clamp(1.3rem, 3vw, 1.8rem); line-height: 2; font-weight: 300; }
+        .big-quote-author { margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--light-gold); }
+        
+        /* CTA Section */
+        .cta-section { padding: 100px 20px; text-align: center; background: var(--warm-white); }
+        .cta-icon { font-size: 3rem; margin-bottom: 25px; }
+        .cta-title { font-size: 1.5rem; color: var(--charcoal); margin-bottom: 15px; }
+        .cta-text { font-size: 1rem; color: var(--muted-text); max-width: 400px; margin: 0 auto 30px; line-height: 1.8; }
+        .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: var(--gold); color: white; text-decoration: none; border-radius: 30px; font-size: 1rem; transition: all 0.3s ease; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201, 169, 98, 0.4); }
+        
+        /* Footer */
+        .footer { padding: 80px 20px; text-align: center; background: var(--charcoal); color: white; }
+        .footer-quote { font-size: 1.2rem; line-height: 2.2; max-width: 400px; margin: 0 auto 40px; color: var(--light-gold); }
+        .footer-contact { margin-bottom: 30px; }
+        .footer-contact p { font-size: 0.9rem; color: var(--sand); margin: 8px 0; }
+        .footer-contact a { color: var(--gold); text-decoration: none; }
+        .footer-copyright { font-size: 0.8rem; color: var(--muted-text); }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav { top: 15px; right: 15px; gap: 8px; }
+            .nav-btn { padding: 10px 14px; font-size: 0.8rem; }
+            .chapter-content { padding: 60px 20px; }
+            .chapter-text { font-size: 1rem; }
+            .toc-sidebar { width: 100%; left: -100%; }
+            .settings-panel { right: 10px; width: calc(100% - 20px); max-width: 300px; }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--sand); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-bowl">
+            <svg viewBox="0 0 100 100">
+                <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" stroke="#C9A962" stroke-width="2"/>
+                <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" stroke="#C9A962" stroke-width="2"/>
+                <path class="crack-line" d="M35 45 Q50 55, 45 70 Q55 60, 65 50" fill="none" stroke="#C9A962" stroke-width="2"/>
+            </svg>
+        </div>
+        <p class="loading-text">SPACE BETWEEN STUDIO</p>
+        <p class="loading-quote">「慢慢來，不用急。」</p>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <!-- Offline Banner -->
+    <div class="offline-banner" id="offline-banner">📴 離線模式 - 您正在閱讀已緩存的內容</div>
+    
+    <!-- Install Prompt -->
+    <div class="install-prompt" id="install-prompt">
+        <div class="install-prompt-text">
+            <h4>📱 安裝到主畫面</h4>
+            <p>離線也能隨時閱讀</p>
+        </div>
+        <button class="install-btn" id="install-btn">安裝</button>
+        <button class="install-close" id="install-close">×</button>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <button class="nav-btn" onclick="toggleTOC()">☰ 目錄</button>
+        <button class="nav-btn" onclick="toggleSettings()">Aa</button>
+        <button class="nav-btn audio-control paused" id="audio-control" onclick="toggleAudio()">
+            <div class="audio-bars">
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+                <div class="audio-bar"></div>
+            </div>
+        </button>
+    </nav>
+    
+    <!-- Settings Panel -->
+    <div class="settings-panel" id="settings-panel">
+        <div class="settings-header">
+            <h3>閱讀設定</h3>
+            <button class="settings-close" onclick="toggleSettings()">×</button>
+        </div>
+        <div class="settings-section">
+            <label>文字大小</label>
+            <div class="font-size-controls">
+                <button class="font-btn" onclick="changeFontSize(-1)">A-</button>
+                <span class="font-size-display" id="font-size-display">100%</span>
+                <button class="font-btn" onclick="changeFontSize(1)">A+</button>
+            </div>
+        </div>
+        <div class="settings-section">
+            <label>行距</label>
+            <div class="line-height-controls">
+                <button class="line-btn" onclick="changeLineHeight(-0.1)">緊</button>
+                <span class="line-height-display" id="line-height-display">2.2</span>
+                <button class="line-btn" onclick="changeLineHeight(0.1)">鬆</button>
+            </div>
+        </div>
+        <div class="settings-section">
+            <label>螢光筆模式</label>
+            <div class="highlight-controls">
+                <button class="highlight-btn" id="highlight-toggle" onclick="toggleHighlightMode()">
+                    <span class="highlight-icon">🖍️</span>
+                    <span class="highlight-text">關閉</span>
+                </button>
+                <div class="highlight-colors" id="highlight-colors">
+                    <button class="color-btn active" data-color="gold" onclick="setHighlightColor('gold')" style="background: rgba(201, 169, 98, 0.4);"></button>
+                    <button class="color-btn" data-color="green" onclick="setHighlightColor('green')" style="background: rgba(144, 190, 109, 0.4);"></button>
+                    <button class="color-btn" data-color="blue" onclick="setHighlightColor('blue')" style="background: rgba(131, 168, 194, 0.4);"></button>
+                    <button class="color-btn" data-color="pink" onclick="setHighlightColor('pink')" style="background: rgba(219, 160, 169, 0.4);"></button>
+                </div>
+            </div>
+        </div>
+        <div class="settings-section">
+            <button class="clear-btn" onclick="clearAllHighlights()">清除所有標記</button>
+        </div>
+        <div class="settings-section highlight-count">
+            <span>已標記 <strong id="highlight-count">0</strong> 處</span>
+        </div>
+    </div>
+    
+    <!-- Audio -->
+    <audio id="bgm" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- TOC Overlay -->
+    <div class="toc-overlay" id="toc-overlay" onclick="toggleTOC()"></div>
+    
+    <!-- TOC Sidebar -->
+    <aside class="toc-sidebar" id="toc-sidebar">
+        <button class="toc-close" onclick="toggleTOC()">×</button>
+        <h2 class="toc-title">目錄</h2>
+        <p class="toc-subtitle">Table of Contents</p>
+        <ul class="toc-list">
 <li class="toc-item"><a href="#prologue"><span class="toc-num">序章</span><span class="toc-name">蘇牧的自述</span></a></li>
 <li class="toc-item"><a href="#ch1"><span class="toc-num">第一章</span><span class="toc-name">霧中</span></a></li>
 <li class="toc-item"><a href="#ch2"><span class="toc-num">第二章</span><span class="toc-name">為什麼</span></a></li>
@@ -2135,23 +2361,24 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registered for offline reading'))
-                    .catch(err => console.log('SW registration failed:', err));
+                    .then(reg => console.log('SW registered'))
+                    .catch(err => console.log('SW failed:', err));
             });
         }
         
         // Offline detection
         function updateOnlineStatus() {
             const banner = document.getElementById('offline-banner');
-            if (!navigator.onLine) {
-                banner.classList.add('show');
-            } else {
-                banner.classList.remove('show');
+            if (banner) {
+                if (!navigator.onLine) {
+                    banner.classList.add('show');
+                } else {
+                    banner.classList.remove('show');
+                }
             }
         }
         window.addEventListener('online', updateOnlineStatus);
         window.addEventListener('offline', updateOnlineStatus);
-        updateOnlineStatus();
         
         // Install prompt
         let deferredPrompt;
@@ -2159,22 +2386,29 @@
             e.preventDefault();
             deferredPrompt = e;
             setTimeout(() => {
-                document.getElementById('install-prompt').classList.add('show');
+                const prompt = document.getElementById('install-prompt');
+                if (prompt) prompt.classList.add('show');
             }, 5000);
         });
         
-        document.getElementById('install-btn').addEventListener('click', async () => {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                const { outcome } = await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                document.getElementById('install-prompt').classList.remove('show');
-            }
-        });
+        const installBtn = document.getElementById('install-btn');
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    await deferredPrompt.userChoice;
+                    deferredPrompt = null;
+                    document.getElementById('install-prompt').classList.remove('show');
+                }
+            });
+        }
         
-        document.getElementById('install-close').addEventListener('click', () => {
-            document.getElementById('install-prompt').classList.remove('show');
-        });
+        const installClose = document.getElementById('install-close');
+        if (installClose) {
+            installClose.addEventListener('click', () => {
+                document.getElementById('install-prompt').classList.remove('show');
+            });
+        }
         
         // ============================================
         // Variables
@@ -2184,7 +2418,6 @@
         let highlightMode = false;
         let currentHighlightColor = 'gold';
         
-        // Load saved settings from localStorage
         function loadSettings() {
             const savedFontSize = localStorage.getItem('manman-fontSize');
             const savedLineHeight = localStorage.getItem('manman-lineHeight');
@@ -2197,23 +2430,26 @@
         // ============================================
         window.addEventListener('load', () => {
             loadSettings();
+            updateOnlineStatus();
             setTimeout(() => {
-                document.getElementById('loading-screen').classList.add('hidden');
+                const loading = document.getElementById('loading-screen');
+                if (loading) loading.classList.add('hidden');
             }, 2000);
         });
         
         // ============================================
-        // Progress Bar (閱讀進度)
+        // Progress Bar
         // ============================================
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (scrollTop / docHeight) * 100;
-            document.getElementById('progress-bar').style.width = progress + '%';
+            const bar = document.getElementById('progress-bar');
+            if (bar) bar.style.width = progress + '%';
         });
         
         // ============================================
-        // TOC Toggle (目錄)
+        // TOC Toggle
         // ============================================
         function toggleTOC() {
             document.getElementById('toc-sidebar').classList.toggle('open');
@@ -2225,7 +2461,7 @@
         });
         
         // ============================================
-        // Settings Panel (設定面板)
+        // Settings Panel
         // ============================================
         function toggleSettings() {
             document.getElementById('settings-panel').classList.toggle('open');
@@ -2234,13 +2470,13 @@
         document.addEventListener('click', (e) => {
             const panel = document.getElementById('settings-panel');
             const btn = document.querySelector('.nav-btn:nth-child(2)');
-            if (panel.classList.contains('open') && !panel.contains(e.target) && !btn.contains(e.target)) {
+            if (panel && panel.classList.contains('open') && !panel.contains(e.target) && btn && !btn.contains(e.target)) {
                 panel.classList.remove('open');
             }
         });
         
         // ============================================
-        // Font Size (文字大小)
+        // Font Size
         // ============================================
         function changeFontSize(delta) {
             fontSize = Math.max(80, Math.min(150, fontSize + delta * 10));
@@ -2252,14 +2488,12 @@
             document.querySelectorAll('.chapter-text').forEach(el => {
                 el.style.fontSize = (1.1 * fontSize / 100) + 'rem';
             });
-            document.querySelectorAll('.chapter-epigraph p').forEach(el => {
-                el.style.fontSize = (1.05 * fontSize / 100) + 'rem';
-            });
-            document.getElementById('font-size-display').textContent = fontSize + '%';
+            const display = document.getElementById('font-size-display');
+            if (display) display.textContent = fontSize + '%';
         }
         
         // ============================================
-        // Line Height (行距)
+        // Line Height
         // ============================================
         function changeLineHeight(delta) {
             lineHeight = Math.max(1.5, Math.min(3, lineHeight + delta));
@@ -2272,11 +2506,12 @@
             document.querySelectorAll('.chapter-text').forEach(el => {
                 el.style.lineHeight = lineHeight;
             });
-            document.getElementById('line-height-display').textContent = lineHeight.toFixed(1);
+            const display = document.getElementById('line-height-display');
+            if (display) display.textContent = lineHeight.toFixed(1);
         }
         
         // ============================================
-        // Highlight Mode (螢光筆)
+        // Highlight Mode
         // ============================================
         function toggleHighlightMode() {
             highlightMode = !highlightMode;
@@ -2285,25 +2520,24 @@
             const indicator = document.getElementById('highlight-indicator');
             
             if (highlightMode) {
-                btn.classList.add('active');
-                btn.querySelector('.highlight-text').textContent = '開啟';
-                colors.classList.add('active');
+                if (btn) { btn.classList.add('active'); btn.querySelector('.highlight-text').textContent = '開啟'; }
+                if (colors) colors.classList.add('active');
                 document.body.classList.add('highlight-mode');
-                indicator.classList.add('show');
+                if (indicator) indicator.classList.add('show');
                 updateSelectionColor();
             } else {
-                btn.classList.remove('active');
-                btn.querySelector('.highlight-text').textContent = '關閉';
-                colors.classList.remove('active');
+                if (btn) { btn.classList.remove('active'); btn.querySelector('.highlight-text').textContent = '關閉'; }
+                if (colors) colors.classList.remove('active');
                 document.body.classList.remove('highlight-mode');
-                indicator.classList.remove('show');
+                if (indicator) indicator.classList.remove('show');
             }
         }
         
         function setHighlightColor(color) {
             currentHighlightColor = color;
             document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-color="${color}"]`).classList.add('active');
+            const colorBtn = document.querySelector('[data-color="' + color + '"]');
+            if (colorBtn) colorBtn.classList.add('active');
             updateSelectionColor();
         }
         
@@ -2317,7 +2551,6 @@
             document.documentElement.style.setProperty('--current-highlight-color', colors[currentHighlightColor]);
         }
         
-        // Text Selection & Highlighting
         document.addEventListener('mouseup', (e) => {
             if (!highlightMode) return;
             const selection = window.getSelection();
@@ -2328,23 +2561,21 @@
                 const chapterText = container.nodeType === 3 
                     ? container.parentElement.closest('.chapter-text')
                     : container.closest('.chapter-text');
-                if (chapterText) highlightSelection(range, selectedText);
+                if (chapterText) highlightSelection(range);
                 selection.removeAllRanges();
             }
         });
         
-        function highlightSelection(range, text) {
+        function highlightSelection(range) {
             const span = document.createElement('span');
-            span.className = `user-highlight ${currentHighlightColor}`;
+            span.className = 'user-highlight ' + currentHighlightColor;
             span.onclick = function() {
                 if (confirm('要移除這個標記嗎？')) removeHighlight(this);
             };
             try {
                 range.surroundContents(span);
                 updateHighlightCount();
-            } catch (e) {
-                console.log('無法標記此選取範圍');
-            }
+            } catch (e) {}
         }
         
         function removeHighlight(span) {
@@ -2365,26 +2596,29 @@
         }
         
         function updateHighlightCount() {
-            document.getElementById('highlight-count').textContent = document.querySelectorAll('.user-highlight').length;
+            const count = document.getElementById('highlight-count');
+            if (count) count.textContent = document.querySelectorAll('.user-highlight').length;
         }
         
         // ============================================
-        // Audio Toggle (背景音樂)
+        // Audio Toggle
         // ============================================
         function toggleAudio() {
             const audio = document.getElementById('bgm');
             const control = document.getElementById('audio-control');
-            if (audio.paused) {
-                audio.play();
-                control.classList.remove('paused');
-            } else {
-                audio.pause();
-                control.classList.add('paused');
+            if (audio && control) {
+                if (audio.paused) {
+                    audio.play();
+                    control.classList.remove('paused');
+                } else {
+                    audio.pause();
+                    control.classList.add('paused');
+                }
             }
         }
         
         // ============================================
-        // Scroll Animation (滾動動畫)
+        // Scroll Animation
         // ============================================
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
         const observer = new IntersectionObserver((entries) => {
@@ -2398,16 +2632,19 @@
         });
         
         // ============================================
-        // Keyboard Shortcuts (快捷鍵)
+        // Keyboard Shortcuts
         // ============================================
         document.addEventListener('keydown', (e) => {
             if (e.key === '+' || e.key === '=') changeFontSize(1);
             else if (e.key === '-') changeFontSize(-1);
             else if (e.key === 'h' || e.key === 'H') toggleHighlightMode();
             else if (e.key === 'Escape') {
-                document.getElementById('settings-panel').classList.remove('open');
-                document.getElementById('toc-sidebar').classList.remove('open');
-                document.getElementById('toc-overlay').classList.remove('open');
+                const settings = document.getElementById('settings-panel');
+                const toc = document.getElementById('toc-sidebar');
+                const overlay = document.getElementById('toc-overlay');
+                if (settings) settings.classList.remove('open');
+                if (toc) toc.classList.remove('open');
+                if (overlay) overlay.classList.remove('open');
                 if (highlightMode) toggleHighlightMode();
             }
         });
