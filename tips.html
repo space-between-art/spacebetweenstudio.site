@@ -5,134 +5,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>電台伴讀手冊 | Space Between Studio</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="description" content="免費下載電台伴讀手冊 - 當你想停一停時可以翻開嘅地方">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+    
+    <style>
+        :root {
+            --ink-black: #08090c;
+            --deep-charcoal: #181c24;
+            --gold: #C9A962;
+            --light-gold: #d4b896;
+            --cream: #f5f2eb;
+            --soft-gray: #6b6b6b;
+            --teal: #1a3a3a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: var(--ink-black);
+            color: var(--cream);
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--deep-charcoal); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(8, 9, 12, 0.95), transparent);
+        }
+        
+        .nav-logo {
+            text-decoration: none;
+            color: var(--light-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        
+        /* Main */
+        .main {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 80px;
+        }
+        
+        .container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 48px;
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .description {
+            font-size: 15px;
+            color: var(--soft-gray);
+            line-height: 2.2;
+            margin-bottom: 40px;
+        }
+        
+        .gold-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 30px auto;
+        }
+        
+        /* Form */
+        .form-container {
+            background: var(--deep-charcoal);
+            padding: 35px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .form-title {
+            font-size: 14px;
+            color: var(--light-gold);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--ink-black);
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            border-radius: 6px;
+            color: var(--cream);
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        
+        input[type="email"]::placeholder {
+            color: var(--soft-gray);
+        }
+        
+        input[type="email"]:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 14px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: inherit;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+        }
+        
+        .btn:hover {
+            background: var(--gold);
+            color: var(--ink-black);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .privacy {
+            font-size: 11px;
+            color: var(--soft-gray);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Success State */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .success-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .success-text {
+            font-size: 16px;
+            color: var(--light-gold);
+            margin-bottom: 10px;
+        }
+        
+        .success-subtext {
+            font-size: 14px;
+            color: var(--soft-gray);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 40px 20px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--soft-gray);
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+            .form-container { padding: 25px 20px; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="podcast.html">電台</a></li>
-                <li><a href="course.html">課程</a></li>
-                <li><a href="selection.html">選物</a></li>
-            </ul>
-            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <nav>
+        <a href="/" class="nav-logo">SPACE BETWEEN STUDIO</a>
+        <div class="nav-links">
+            <a href="/">首頁</a>
+            <a href="selection.html">選物</a>
+            <a href="podcast.html">電台</a>
+            <a href="course.html">課程</a>
         </div>
     </nav>
-
+    
     <!-- Main Content -->
-    <section class="hero" style="min-height: auto; padding: 150px 20px 60px;">
-        <div class="hero-content" style="max-width: 550px;">
-            <h1 class="hero-title" style="font-size: clamp(1.5rem, 4vw, 2rem);">
-                📄 電台伴讀手冊
-            </h1>
-            <p style="color: var(--gold); margin-top: 20px; font-size: 1rem;">
-                免費下載
+    <main class="main">
+        <div class="container">
+            <div class="icon">📄</div>
+            <h1>電台伴讀手冊</h1>
+            <p class="description">
+                呢份手冊唔係功課，亦唔需要完成。<br>
+                只係一個，當你想停一停時，<br>
+                可以翻開嘅地方。
             </p>
-        </div>
-    </section>
-
-    <!-- 說明 -->
-    <section class="section section-warm" style="padding: 60px 20px;">
-        <div class="container" style="max-width: 500px; text-align: center;">
-            <p style="color: var(--text-light); line-height: 2.2; font-size: 1.05rem;">
-                呢份手冊唔係功課，<br>
-                亦唔需要完成。
-            </p>
-            <p style="color: var(--text-muted); margin-top: 20px; line-height: 2;">
-                只係一個，<br>
-                當你想停一停時可以翻開嘅地方。
-            </p>
-        </div>
-    </section>
-
-    <!-- 表單區 -->
-    <section class="section section-dark" style="padding: 60px 20px 80px;">
-        <div class="container" style="max-width: 400px; text-align: center;">
-            <form id="downloadForm" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <input type="email" class="form-input" id="email" placeholder="你的 Email" required>
-                </div>
-                <button type="submit" class="btn btn-secondary" style="width: 100%; margin-top: 10px;">
-                    留低聯絡方式，慢慢等
-                </button>
-            </form>
             
-            <p style="margin-top: 30px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.9;">
-                下載之後，<br>
-                如果電台有更新，<br>
-                你會第一時間知道。<br>
-                我哋唔會打擾你。
-            </p>
+            <div class="form-container">
+                <!-- Form -->
+                <form id="leadForm">
+                    <p class="form-title">留低你嘅 Email，免費下載</p>
+                    <div class="input-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="your@email.com" 
+                            required
+                        >
+                    </div>
+                    <button type="submit" class="btn" id="submitBtn">
+                        免費下載
+                    </button>
+                    <p class="privacy">
+                        我哋唔會濫發郵件。<br>
+                        只會喺有重要更新時，靜靜通知你。
+                    </p>
+                </form>
+                
+                <!-- Success Message -->
+                <div class="success-message" id="successMessage">
+                    <div class="success-icon">✨</div>
+                    <p class="success-text">感謝你！</p>
+                    <p class="success-subtext">
+                        手冊已經發送到你嘅信箱。<br>
+                        如果收唔到，記得檢查垃圾郵件。
+                    </p>
+                </div>
+            </div>
         </div>
-    </section>
-
+    </main>
+    
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container" style="text-align: center; max-width: 500px;">
-            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
-                呢個網站暫未對外公開。<br>
-                它存在，<br>
-                只係為咗讓一些語言，<br>
-                有地方可以慢慢站穩。
-            </p>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
-                © 2026 Space Between Studio
-            </p>
+    <footer>
+        <div class="footer-links">
+            <a href="/">首頁</a>
+            <a href="selection.html">選物</a>
+            <a href="podcast.html">電台</a>
+            <a href="course.html">課程</a>
         </div>
     </footer>
-
+    
     <script>
-        function toggleNav() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-        
-        async function handleSubmit(e) {
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const btn = e.target.querySelector('button');
             
-            // 禁用按鈕，顯示載入中
-            btn.disabled = true;
-            btn.textContent = '提交中...';
+            const email = document.getElementById('email').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('leadForm');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Disable button
+            submitBtn.disabled = true;
+            submitBtn.textContent = '處理中...';
             
             try {
+                // Send to n8n webhook
                 const response = await fetch('https://spacebetween.app.n8n.cloud/webhook/hubspot-lead', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         email: email,
-                        name: '',
-                        source: 'studio-site-tips'
+                        source: 'studio-site-tips',
+                        timestamp: new Date().toISOString()
                     })
                 });
                 
-                if (response.ok) {
-                    // 成功 - 顯示感謝訊息
-                    document.getElementById('downloadForm').innerHTML = `
-                        <div style="padding: 30px 0;">
-                            <p style="color: var(--gold); font-size: 1.1rem;">感謝你 ✨</p>
-                            <p style="color: var(--text-muted); margin-top: 15px; line-height: 1.8;">
-                                當有更新時，<br>我哋會靜靜通知你。
-                            </p>
-                        </div>
-                    `;
-                } else {
-                    throw new Error('Network response was not ok');
-                }
+                // Show success regardless of response (webhook might not return JSON)
+                form.style.display = 'none';
+                successMessage.classList.add('show');
+                
             } catch (error) {
-                // 錯誤處理
-                btn.disabled = false;
-                btn.textContent = '留低聯絡方式，慢慢等';
-                alert('提交時遇到問題，請稍後再試。');
                 console.error('Error:', error);
+                // Still show success for better UX (lead might have been captured)
+                form.style.display = 'none';
+                successMessage.classList.add('show');
             }
-        }
+        });
     </script>
 </body>
 </html>

@@ -5,44 +5,307 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>品牌金繼課 | Space Between Studio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <meta name="description" content="品牌金繼課 - 將自己嘅故事整理成可以被承載嘅結構">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    
+    <style>
+        :root {
+            --ink-black: #08090c;
+            --deep-charcoal: #181c24;
+            --gold: #C9A962;
+            --light-gold: #d4b896;
+            --cream: #f5f2eb;
+            --soft-gray: #6b6b6b;
+            --teal: #1a3a3a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: var(--ink-black);
+            color: var(--cream);
+            line-height: 1.8;
+        }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--deep-charcoal); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(8, 9, 12, 0.95), transparent);
+        }
+        
+        .nav-logo {
+            text-decoration: none;
+            color: var(--light-gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+        
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 80px;
+            position: relative;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(to bottom, rgba(8, 9, 12, 0.7), rgba(8, 9, 12, 0.95)),
+                url('images/ch3-shadow.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 1px solid var(--gold);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 {
+            font-size: clamp(28px, 6vw, 36px);
+            font-weight: 400;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+        
+        .hero-status {
+            color: var(--gold);
+            font-size: 15px;
+            line-height: 2;
+        }
+        
+        .gold-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 40px auto;
+        }
+        
+        /* Section */
+        .section {
+            padding: 80px 20px;
+        }
+        
+        .section-warm {
+            background: var(--deep-charcoal);
+        }
+        
+        .section-teal {
+            background: linear-gradient(135deg, var(--ink-black), var(--teal));
+        }
+        
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .section-text {
+            font-size: 15px;
+            color: var(--soft-gray);
+            line-height: 2.2;
+        }
+        
+        .section-text.highlight {
+            font-size: 17px;
+            color: var(--cream);
+        }
+        
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 700px;
+            margin: 50px auto 0;
+            padding: 0 20px;
+        }
+        
+        .feature {
+            background: rgba(201, 169, 98, 0.05);
+            border: 1px solid rgba(201, 169, 98, 0.15);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .feature h4 {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--light-gold);
+            margin-bottom: 8px;
+        }
+        
+        .feature p {
+            font-size: 13px;
+            color: var(--soft-gray);
+            line-height: 1.7;
+        }
+        
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        
+        .btn:hover {
+            background: var(--gold);
+            color: var(--ink-black);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 20px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--soft-gray);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-copyright {
+            font-size: 12px;
+            color: var(--soft-gray);
+        }
+        
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 20px; }
+            .features { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">Space Between <span>Studio</span></a>
-            <ul class="nav-links">
-                <li><a href="index.html">首頁</a></li>
-                <li><a href="podcast.html">電台</a></li>
-                <li><a href="course.html" class="active">課程</a></li>
-                <li><a href="selection.html">選物</a></li>
-            </ul>
-            <button class="nav-toggle" onclick="toggleNav()">☰</button>
+    <nav>
+        <a href="/" class="nav-logo">SPACE BETWEEN STUDIO</a>
+        <div class="nav-links">
+            <a href="/">首頁</a>
+            <a href="selection.html">選物</a>
+            <a href="podcast.html">電台</a>
+            <a href="course.html" class="active">課程</a>
         </div>
     </nav>
-
-    <!-- Main Content -->
-    <section class="hero" style="min-height: 70vh;">
-        <div class="hero-content" style="max-width: 600px;">
-            <h1 class="hero-title" style="font-size: clamp(1.6rem, 4vw, 2.2rem);">
-                《品牌金繼課》
-            </h1>
-            <p style="color: var(--gold); margin-top: 30px; font-size: 1rem;">
+    
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-badge">Coming Soon</span>
+            <h1>《品牌金繼課》</h1>
+            <p class="hero-status">
                 呢個課程，<br>
                 仍然喺整理同醞釀之中。
             </p>
         </div>
     </section>
-
-    <!-- 說明區 -->
+    
+    <!-- About -->
     <section class="section section-warm">
-        <div class="container" style="max-width: 600px; text-align: center;">
-            <p style="color: var(--text-light); line-height: 2.2; font-size: 1.05rem;">
+        <div class="container">
+            <p class="section-text highlight">
                 它唔係一門教你「做得更快」嘅課。
             </p>
-            <p style="color: var(--text-muted); margin-top: 25px; line-height: 2;">
+            <div class="gold-line"></div>
+            <p class="section-text">
                 而係一個，<br>
                 當你準備好，<br>
                 想將自己嘅故事，<br>
@@ -51,40 +314,56 @@
             </p>
         </div>
     </section>
-
-    <!-- 狀態說明 -->
-    <section class="section section-dark">
-        <div class="container" style="max-width: 500px; text-align: center;">
-            <p style="color: var(--text-muted); line-height: 2; font-size: 0.95rem;">
+    
+    <!-- Features -->
+    <section class="section">
+        <div class="container">
+            <p class="section-text" style="font-size: 13px; margin-bottom: 30px;">
+                課程將包含
+            </p>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🪞</div>
+                <h4>陰影工作</h4>
+                <p>探索品牌背後的未竟之事</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✨</div>
+                <h4>金繼修復</h4>
+                <p>將裂痕轉化為獨特價值</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h4>品牌架構</h4>
+                <p>建立可持續的表達系統</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="section section-teal">
+        <div class="container">
+            <p class="section-text" style="font-size: 14px;">
                 課程未開放。<br><br>
                 當一切準備好，<br>
                 會先通知已經喺度等嘅人。
             </p>
-            <a href="tips.html" class="btn btn-secondary" style="margin-top: 30px;">
-                留低聯絡方式，慢慢等
-            </a>
+            <a href="tips.html" class="btn">留低聯絡方式，慢慢等</a>
         </div>
     </section>
-
+    
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container" style="text-align: center; max-width: 500px;">
-            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 2;">
-                呢個網站暫未對外公開。<br>
-                它存在，<br>
-                只係為咗讓一些語言，<br>
-                有地方可以慢慢站穩。
-            </p>
-            <p style="margin-top: 30px; font-size: 0.8rem; color: var(--text-muted);">
-                © 2026 Space Between Studio
-            </p>
+    <footer>
+        <p class="footer-logo">SPACE BETWEEN STUDIO</p>
+        <div class="footer-links">
+            <a href="/">首頁</a>
+            <a href="selection.html">選物</a>
+            <a href="podcast.html">電台</a>
+            <a href="course.html">課程</a>
+            <a href="https://spacebetweenhealing.com" target="_blank">光光 AI</a>
         </div>
+        <p class="footer-copyright">© 2026 Space Between Studio. All rights reserved.</p>
     </footer>
-
-    <script>
-        function toggleNav() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
 </body>
 </html>
