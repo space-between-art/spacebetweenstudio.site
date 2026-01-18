@@ -2,8 +2,24 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>慢慢成為自己的品牌 | Slowly Becoming Your Own Brand</title>
+    <meta name="description" content="一個關於品牌療癒的都市寓言 - Space Between Studio">
+    <meta name="author" content="Space Between Studio">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#C9A962">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="慢慢品牌">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/ch00-cover.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="慢慢成為自己的品牌">
+    <meta property="og:description" content="一個關於品牌療癒的都市寓言">
+    <meta property="og:image" content="images/ch00-cover.png">
+    <meta property="og:type" content="book">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,11 +41,7 @@
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { 
-            font-size: 16px; 
-            scroll-behavior: smooth;
-        }
+        html { font-size: 16px; scroll-behavior: smooth; }
         
         body {
             font-family: 'Noto Serif TC', serif;
@@ -39,9 +51,7 @@
             overflow-x: hidden;
         }
         
-        /* ============================================
-           Loading Screen
-           ============================================ */
+        /* Loading Screen */
         #loading-screen {
             position: fixed;
             top: 0; left: 0;
@@ -54,32 +64,16 @@
             z-index: 9999;
             transition: opacity 1s ease, visibility 1s ease;
         }
+        #loading-screen.hidden { opacity: 0; visibility: hidden; }
         
-        #loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-bowl {
-            width: 120px;
-            height: 120px;
-            position: relative;
-        }
-        
-        .loading-bowl svg {
-            width: 100%;
-            height: 100%;
-        }
-        
+        .loading-bowl { width: 120px; height: 120px; }
+        .loading-bowl svg { width: 100%; height: 100%; }
         .crack-line {
             stroke-dasharray: 200;
             stroke-dashoffset: 200;
             animation: drawCrack 2s ease forwards;
         }
-        
-        @keyframes drawCrack {
-            to { stroke-dashoffset: 0; }
-        }
+        @keyframes drawCrack { to { stroke-dashoffset: 0; } }
         
         .loading-text {
             margin-top: 30px;
@@ -88,7 +82,6 @@
             letter-spacing: 0.4em;
             color: var(--tea-brown);
         }
-        
         .loading-quote {
             margin-top: 15px;
             font-size: 1rem;
@@ -96,34 +89,77 @@
             font-style: italic;
         }
         
-        /* ============================================
-           Progress Bar
-           ============================================ */
+        /* Progress Bar */
         .progress-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
+            top: 0; left: 0;
+            width: 0%; height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--light-gold));
             z-index: 1000;
             transition: width 0.1s ease;
         }
         
-        /* ============================================
-           Navigation
-           ============================================ */
-        .nav {
+        /* Offline Banner */
+        .offline-banner {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
+            top: -50px;
+            left: 0; right: 0;
+            background: var(--gold);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-size: 0.9rem;
+            z-index: 1001;
+            transition: top 0.3s ease;
+        }
+        .offline-banner.show { top: 0; }
+        
+        /* Install Prompt */
+        .install-prompt {
+            position: fixed;
+            bottom: -100px;
+            left: 20px; right: 20px;
+            background: var(--warm-white);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
+            z-index: 1001;
+            transition: bottom 0.4s ease;
             display: flex;
+            align-items: center;
             gap: 15px;
         }
+        .install-prompt.show { bottom: 20px; }
+        .install-prompt-text { flex: 1; }
+        .install-prompt-text h4 { font-size: 1rem; margin-bottom: 5px; }
+        .install-prompt-text p { font-size: 0.85rem; color: var(--muted-text); }
+        .install-btn {
+            padding: 10px 20px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .install-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--muted-text);
+        }
         
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
         .nav-btn {
-            padding: 12px 20px;
+            padding: 12px 18px;
             background: rgba(255,253,249,0.95);
             border: none;
             border-radius: 30px;
@@ -134,7 +170,6 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
         }
-        
         .nav-btn:hover {
             background: var(--gold);
             color: white;
@@ -142,46 +177,19 @@
         }
         
         /* Audio Control */
-        .audio-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .audio-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-            height: 16px;
-        }
-        
-        .audio-bar {
-            width: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-        
+        .audio-control { display: flex; align-items: center; gap: 8px; }
+        .audio-bars { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+        .audio-bar { width: 3px; background: var(--gold); border-radius: 2px; }
         .audio-bar:nth-child(1) { height: 40%; animation: audioWave 0.8s ease infinite; }
         .audio-bar:nth-child(2) { height: 70%; animation: audioWave 0.8s ease 0.1s infinite; }
         .audio-bar:nth-child(3) { height: 50%; animation: audioWave 0.8s ease 0.2s infinite; }
+        @keyframes audioWave { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.5); } }
+        .audio-control.paused .audio-bar { animation: none; height: 30% !important; }
         
-        @keyframes audioWave {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(0.5); }
-        }
-        
-        .audio-control.paused .audio-bar {
-            animation: none;
-            height: 30% !important;
-        }
-        
-        /* ============================================
-           Settings Panel
-           ============================================ */
+        /* Settings Panel */
         .settings-panel {
             position: fixed;
-            top: 70px;
-            right: 20px;
+            top: 70px; right: 20px;
             width: 280px;
             background: var(--warm-white);
             border-radius: 16px;
@@ -193,13 +201,7 @@
             transform: translateY(-10px);
             transition: all 0.3s ease;
         }
-        
-        .settings-panel.open {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
+        .settings-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
         .settings-header {
             display: flex;
             justify-content: space-between;
@@ -208,47 +210,19 @@
             padding-bottom: 15px;
             border-bottom: 1px solid var(--sand);
         }
+        .settings-header h3 { font-size: 1rem; color: var(--charcoal); font-weight: 500; }
+        .settings-close { width: 30px; height: 30px; border: none; background: transparent; font-size: 20px; cursor: pointer; color: var(--muted-text); }
+        .settings-section { margin-bottom: 20px; }
+        .settings-section label { display: block; font-size: 0.85rem; color: var(--muted-text); margin-bottom: 10px; }
         
-        .settings-header h3 {
-            font-size: 1rem;
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-        
-        .settings-close {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background: transparent;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--muted-text);
-        }
-        
-        .settings-section {
-            margin-bottom: 20px;
-        }
-        
-        .settings-section label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--muted-text);
-            margin-bottom: 10px;
-        }
-        
-        /* Font Size Controls */
-        .font-size-controls,
-        .line-height-controls {
+        .font-size-controls, .line-height-controls {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
         }
-        
-        .font-btn,
-        .line-btn {
-            width: 44px;
-            height: 44px;
+        .font-btn, .line-btn {
+            width: 44px; height: 44px;
             border: 1px solid var(--sand);
             background: white;
             border-radius: 10px;
@@ -257,30 +231,10 @@
             transition: all 0.2s ease;
             color: var(--charcoal);
         }
+        .font-btn:hover, .line-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
+        .font-size-display, .line-height-display { min-width: 60px; text-align: center; font-size: 0.95rem; color: var(--charcoal); font-weight: 500; }
         
-        .font-btn:hover,
-        .line-btn:hover {
-            background: var(--gold);
-            color: white;
-            border-color: var(--gold);
-        }
-        
-        .font-size-display,
-        .line-height-display {
-            min-width: 60px;
-            text-align: center;
-            font-size: 0.95rem;
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-        
-        /* Highlight Controls */
-        .highlight-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
+        .highlight-controls { display: flex; flex-direction: column; gap: 12px; }
         .highlight-btn {
             display: flex;
             align-items: center;
@@ -296,117 +250,29 @@
             font-size: 0.9rem;
             color: var(--charcoal);
         }
+        .highlight-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
+        .highlight-colors { display: flex; justify-content: center; gap: 10px; opacity: 0.5; transition: opacity 0.3s ease; }
+        .highlight-colors.active { opacity: 1; }
+        .color-btn { width: 36px; height: 36px; border: 2px solid transparent; border-radius: 50%; cursor: pointer; transition: all 0.2s ease; }
+        .color-btn:hover { transform: scale(1.1); }
+        .color-btn.active { border-color: var(--charcoal); transform: scale(1.15); }
+        .clear-btn { width: 100%; padding: 12px; border: 1px solid #e74c3c; background: transparent; color: #e74c3c; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 0.85rem; transition: all 0.2s ease; }
+        .clear-btn:hover { background: #e74c3c; color: white; }
+        .highlight-count { text-align: center; font-size: 0.85rem; color: var(--muted-text); }
+        .highlight-count strong { color: var(--gold); }
         
-        .highlight-btn.active {
-            background: var(--gold);
-            color: white;
-            border-color: var(--gold);
-        }
+        .user-highlight { padding: 2px 0; border-radius: 3px; cursor: pointer; transition: all 0.2s ease; }
+        .user-highlight.gold { background: rgba(201, 169, 98, 0.35); }
+        .user-highlight.green { background: rgba(144, 190, 109, 0.35); }
+        .user-highlight.blue { background: rgba(131, 168, 194, 0.35); }
+        .user-highlight.pink { background: rgba(219, 160, 169, 0.35); }
         
-        .highlight-colors {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
+        body.highlight-mode { cursor: crosshair; }
+        body.highlight-mode .chapter-text::selection { background: var(--current-highlight-color, rgba(201, 169, 98, 0.5)); }
         
-        .highlight-colors.active {
-            opacity: 1;
-        }
-        
-        .color-btn {
-            width: 36px;
-            height: 36px;
-            border: 2px solid transparent;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .color-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .color-btn.active {
-            border-color: var(--charcoal);
-            transform: scale(1.15);
-        }
-        
-        .clear-btn {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e74c3c;
-            background: transparent;
-            color: #e74c3c;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-        
-        .clear-btn:hover {
-            background: #e74c3c;
-            color: white;
-        }
-        
-        .highlight-count {
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--muted-text);
-        }
-        
-        .highlight-count strong {
-            color: var(--gold);
-        }
-        
-        /* User Highlights */
-        .user-highlight {
-            padding: 2px 0;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .user-highlight.gold {
-            background: rgba(201, 169, 98, 0.35);
-        }
-        
-        .user-highlight.green {
-            background: rgba(144, 190, 109, 0.35);
-        }
-        
-        .user-highlight.blue {
-            background: rgba(131, 168, 194, 0.35);
-        }
-        
-        .user-highlight.pink {
-            background: rgba(219, 160, 169, 0.35);
-        }
-        
-        .user-highlight:hover {
-            filter: brightness(0.95);
-        }
-        
-        /* Highlight Mode Active */
-        body.highlight-mode {
-            cursor: crosshair;
-        }
-        
-        body.highlight-mode .chapter-text {
-            user-select: text;
-        }
-        
-        body.highlight-mode .chapter-text::selection {
-            background: var(--current-highlight-color, rgba(201, 169, 98, 0.5));
-        }
-        
-        /* Highlight Mode Indicator */
         .highlight-indicator {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
+            bottom: 30px; left: 50%;
             transform: translateX(-50%);
             padding: 12px 25px;
             background: var(--gold);
@@ -414,631 +280,24 @@
             border-radius: 30px;
             font-size: 0.9rem;
             box-shadow: 0 5px 20px rgba(201, 169, 98, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        
-        .highlight-indicator.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* ============================================
-           TOC Sidebar
-           ============================================ */
-        .toc-sidebar {
-            position: fixed;
-            top: 0;
-            left: -350px;
-            width: 350px;
-            height: 100vh;
-            background: var(--warm-white);
-            box-shadow: 5px 0 30px rgba(0,0,0,0.1);
-            z-index: 200;
-            padding: 60px 40px;
-            transition: left 0.4s ease;
-            overflow-y: auto;
-        }
-        
-        .toc-sidebar.open {
-            left: 0;
-        }
-        
-        .toc-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: transparent;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--tea-brown);
-        }
-        
-        .toc-title {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            color: var(--charcoal);
-        }
-        
-        .toc-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.9rem;
-            color: var(--muted-text);
-            font-style: italic;
-            margin-bottom: 40px;
-        }
-        
-        .toc-list {
-            list-style: none;
-        }
-        
-        .toc-item {
-            padding: 15px 0;
-            border-bottom: 1px solid var(--sand);
-        }
-        
-        .toc-item a {
-            text-decoration: none;
-            color: var(--charcoal);
-            display: flex;
-            align-items: baseline;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .toc-item a:hover {
-            color: var(--gold);
-            padding-left: 10px;
-        }
-        
-        .toc-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.8rem;
-            color: var(--gold);
-            min-width: 50px;
-        }
-        
-        .toc-name {
-            font-size: 1rem;
-        }
-        
-        .toc-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3);
-            z-index: 150;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .toc-overlay.open {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* ============================================
-           Hero Section
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
-            position: relative;
-        }
-        
-        .hero-image {
-            width: min(300px, 60vw);
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-            margin-bottom: 50px;
-        }
-        
-        .hero-studio {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.4em;
-            color: var(--tea-brown);
-            margin-bottom: 20px;
-        }
-        
-        .hero h1 {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            font-weight: 400;
-            color: var(--charcoal);
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-        }
-        
-        .hero-subtitle {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--muted-text);
-            margin-bottom: 40px;
-        }
-        
-        .hero-quote {
-            max-width: 500px;
-            font-size: 1.1rem;
-            color: var(--tea-brown);
-            line-height: 2;
-            position: relative;
-            padding: 0 30px;
-        }
-        
-        .hero-quote::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            font-size: 4rem;
-            color: var(--gold);
-            opacity: 0.3;
-            font-family: 'Cormorant Garamond', serif;
-        }
-        
-        .hero-author {
-            display: block;
-            margin-top: 15px;
-            font-style: normal;
-            color: var(--gold);
-            font-size: 0.95rem;
-        }
-        
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            color: var(--muted-text);
-            font-size: 0.8rem;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-        
-        /* ============================================
-           Chapter Section
-           ============================================ */
-        .chapter {
-            min-height: 100vh;
-            position: relative;
-        }
-        
-        /* Chapter Cover - Full Screen Background */
-        .chapter-cover {
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .chapter-cover-bg {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-        
-        .chapter-cover-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(
-                to bottom,
-                rgba(250, 247, 242, 0.3) 0%,
-                rgba(0, 0, 0, 0.4) 50%,
-                rgba(250, 247, 242, 0.9) 100%
-            );
-        }
-        
-        .chapter-cover-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            color: white;
-            padding: 40px;
-        }
-        
-        .chapter-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.3em;
-            opacity: 0.9;
-            margin-bottom: 15px;
-        }
-        
-        .chapter-title {
-            font-family: 'ZCOOL XiaoWei', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 400;
-            margin-bottom: 10px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-        }
-        
-        .chapter-title-en {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            opacity: 0.8;
-        }
-        
-        /* Chapter Content */
-        .chapter-content {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 80px 30px;
-        }
-        
-        .chapter-epigraph {
-            margin-bottom: 50px;
-            padding: 30px;
-            border-left: 3px solid var(--gold);
-            background: rgba(201, 169, 98, 0.05);
-        }
-        
-        .chapter-epigraph p {
-            font-style: italic;
-            color: var(--tea-brown);
-            font-size: 1.05rem;
-            line-height: 2;
-        }
-        
-        .chapter-epigraph cite {
-            display: block;
-            margin-top: 15px;
-            font-style: normal;
-            color: var(--gold);
-            font-size: 0.9rem;
-        }
-        
-        .chapter-text {
-            font-size: 1.1rem;
-            line-height: 2.2;
-            color: var(--charcoal);
-        }
-        
-        .chapter-text p {
-            margin-bottom: 2em;
-            text-align: justify;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .chapter-text p.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .chapter-text .highlight {
-            background: linear-gradient(transparent 60%, rgba(201, 169, 98, 0.25) 60%);
-            padding: 0 3px;
-        }
-        
-        .chapter-text .dialogue {
-            margin: 30px 0;
-            padding: 25px 30px;
-            background: var(--warm-white);
-            border-radius: 8px;
-            font-style: italic;
-            color: var(--tea-brown);
-        }
-        
-        /* Chapter Divider */
-        .chapter-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px 20px;
-        }
-        
-        .divider-line {
-            flex: 1;
-            max-width: 150px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-        
-        .divider-icon {
-            margin: 0 20px;
-            font-size: 1.5rem;
-            color: var(--gold);
-        }
-        
-        /* ============================================
-           Quote Section
-           ============================================ */
-        .quote-section {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(135deg, var(--deep-brown), var(--tea-brown));
-            color: white;
-        }
-        
-        .quote-content {
-            max-width: 600px;
-        }
-        
-        .big-quote {
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            line-height: 2;
-            font-weight: 300;
-        }
-        
-        .big-quote-author {
-            margin-top: 30px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            color: var(--light-gold);
-        }
-        
-        /* ============================================
-           CTA Section
-           ============================================ */
-        .cta-section {
-            padding: 100px 20px;
-            text-align: center;
-            background: var(--warm-white);
-        }
-        
-        .cta-icon {
-            font-size: 3rem;
-            margin-bottom: 25px;
-        }
-        
-        .cta-title {
-            font-size: 1.5rem;
-            color: var(--charcoal);
-            margin-bottom: 15px;
-        }
-        
-        .cta-text {
-            font-size: 1rem;
-            color: var(--muted-text);
-            max-width: 400px;
-            margin: 0 auto 30px;
-            line-height: 1.8;
-        }
-        
-        .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 40px;
-            background: var(--gold);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(201, 169, 98, 0.4);
-        }
-        
-        /* ============================================
-           Footer
-           ============================================ */
-        .footer {
-            padding: 80px 20px;
-            text-align: center;
-            background: var(--charcoal);
-            color: white;
-        }
-        
-        .footer-quote {
-            font-size: 1.2rem;
-            line-height: 2.2;
-            max-width: 400px;
-            margin: 0 auto 40px;
-            color: var(--light-gold);
-        }
-        
-        .footer-contact {
-            margin-bottom: 30px;
-        }
-        
-        .footer-contact p {
-            font-size: 0.9rem;
-            color: var(--sand);
-            margin: 8px 0;
-        }
-        
-        .footer-contact a {
-            color: var(--gold);
-            text-decoration: none;
-        }
-        
-        .footer-copyright {
-            font-size: 0.8rem;
-            color: var(--muted-text);
-        }
-        
-        /* ============================================
-           Responsive
-           ============================================ */
-        @media (max-width: 768px) {
-            .nav {
-                top: 15px;
-                right: 15px;
-                gap: 10px;
-            }
-            
-            .nav-btn {
-                padding: 10px 15px;
-                font-size: 0.8rem;
-            }
-            
-            .chapter-content {
-                padding: 60px 20px;
-            }
-            
-            .chapter-text {
-                font-size: 1rem;
-            }
-            
-            .toc-sidebar {
-                width: 100%;
-                left: -100%;
-            }
-        }
-        
-        /* ============================================
-           Scrollbar
-           ============================================ */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--sand); }
-        ::-webkit-scrollbar-thumb { 
-            background: var(--gold); 
-            border-radius: 4px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-bowl">
-            <svg viewBox="0 0 100 100">
-                <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" stroke="#C9A962" stroke-width="2"/>
-                <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" stroke="#C9A962" stroke-width="2"/>
-                <path class="crack-line" d="M35 45 Q50 55, 45 70 Q55 60, 65 50" fill="none" stroke="#C9A962" stroke-width="2"/>
-            </svg>
-        </div>
-        <p class="loading-text">SPACE BETWEEN STUDIO</p>
-        <p class="loading-quote">「慢慢來，不用急。」</p>
-    </div>
-    
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
-    
-    <!-- Navigation -->
-    <nav class="nav">
-        <button class="nav-btn" onclick="toggleTOC()">☰ 目錄</button>
-        <button class="nav-btn" onclick="toggleSettings()">Aa</button>
-        <button class="nav-btn audio-control paused" id="audio-control" onclick="toggleAudio()">
-            <div class="audio-bars">
-                <div class="audio-bar"></div>
-                <div class="audio-bar"></div>
-                <div class="audio-bar"></div>
-            </div>
-        </button>
-    </nav>
-    
-    <!-- Settings Panel -->
-    <div class="settings-panel" id="settings-panel">
-        <div class="settings-header">
-            <h3>閱讀設定</h3>
-            <button class="settings-close" onclick="toggleSettings()">×</button>
-        </div>
-        
-        <!-- Font Size -->
-        <div class="settings-section">
-            <label>文字大小</label>
-            <div class="font-size-controls">
-                <button class="font-btn" onclick="changeFontSize(-1)">A-</button>
-                <span class="font-size-display" id="font-size-display">100%</span>
-                <button class="font-btn" onclick="changeFontSize(1)">A+</button>
-            </div>
-        </div>
-        
-        <!-- Line Height -->
-        <div class="settings-section">
-            <label>行距</label>
-            <div class="line-height-controls">
-                <button class="line-btn" onclick="changeLineHeight(-0.1)">緊</button>
-                <span class="line-height-display" id="line-height-display">2.2</span>
-                <button class="line-btn" onclick="changeLineHeight(0.1)">鬆</button>
-            </div>
-        </div>
-        
-        <!-- Highlight Mode -->
-        <div class="settings-section">
-            <label>螢光筆模式</label>
-            <div class="highlight-controls">
-                <button class="highlight-btn" id="highlight-toggle" onclick="toggleHighlightMode()">
-                    <span class="highlight-icon">🖍️</span>
-                    <span class="highlight-text">關閉</span>
-                </button>
-                <div class="highlight-colors" id="highlight-colors">
-                    <button class="color-btn active" data-color="gold" onclick="setHighlightColor('gold')" style="background: rgba(201, 169, 98, 0.4);"></button>
-                    <button class="color-btn" data-color="green" onclick="setHighlightColor('green')" style="background: rgba(144, 190, 109, 0.4);"></button>
-                    <button class="color-btn" data-color="blue" onclick="setHighlightColor('blue')" style="background: rgba(131, 168, 194, 0.4);"></button>
-                    <button class="color-btn" data-color="pink" onclick="setHighlightColor('pink')" style="background: rgba(219, 160, 169, 0.4);"></button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Clear Highlights -->
-        <div class="settings-section">
-            <button class="clear-btn" onclick="clearAllHighlights()">清除所有標記</button>
-        </div>
-        
-        <!-- Highlight Count -->
-        <div class="settings-section highlight-count">
-            <span>已標記 <strong id="highlight-count">0</strong> 處</span>
-        </div>
-    </div>
-    
-    <!-- Audio -->
-    <audio id="bgm" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-    </audio>
-    
-    <!-- TOC Overlay -->
-    <div class="toc-overlay" id="toc-overlay" onclick="toggleTOC()"></div>
-    
-    <!-- TOC Sidebar -->
-    <aside class="toc-sidebar" id="toc-sidebar">
-        <button class="toc-close" onclick="toggleTOC()">×</button>
-        <h2 class="toc-title">目錄</h2>
-        <p class="toc-subtitle">Table of Contents</p>
-        <ul class="toc-list">
-            <li class="toc-item"><a href="#prologue"><span class="toc-num">序章</span><span class="toc-name">蘇牧的自述</span></a></li>
-            <li class="toc-item"><a href="#ch1"><span class="toc-num">第一章</span><span class="toc-name">霧中</span></a></li>
-            <li class="toc-item"><a href="#ch2"><span class="toc-num">第二章</span><span class="toc-name">為什麼</span></a></li>
-            <li class="toc-item"><a href="#ch3"><span class="toc-num">第三章</span><span class="toc-name">光光</span></a></li>
-            <li class="toc-item"><a href="#ch4"><span class="toc-num">第四章</span><span class="toc-name">陰影</span></a></li>
-            <li class="toc-item"><a href="#ch5"><span class="toc-num">第五章</span><span class="toc-name">鏡像</span></a></li>
-            <li class="toc-item"><a href="#ch6"><span class="toc-num">第六章</span><span class="toc-name">裂縫</span></a></li>
-            <li class="toc-item"><a href="#ch7"><span class="toc-num">第七章</span><span class="toc-name">命名</span></a></li>
-            <li class="toc-item"><a href="#ch8"><span class="toc-num">第八章</span><span class="toc-name">連結</span></a></li>
-            <li class="toc-item"><a href="#ch9"><span class="toc-num">第九章</span><span class="toc-name">呼吸</span></a></li>
-            <li class="toc-item"><a href="#ch10"><span class="toc-num">第十章</span><span class="toc-name">金繕</span></a></li>
-            <li class="toc-item"><a href="#afterword"><span class="toc-num">後記</span><span class="toc-name">程慢山的最後一課</span></a></li>
-        </ul>
+<li class="toc-item"><a href="#prologue"><span class="toc-num">序章</span><span class="toc-name">蘇牧的自述</span></a></li>
+<li class="toc-item"><a href="#ch1"><span class="toc-num">第一章</span><span class="toc-name">霧中</span></a></li>
+<li class="toc-item"><a href="#ch2"><span class="toc-num">第二章</span><span class="toc-name">為什麼</span></a></li>
+<li class="toc-item"><a href="#ch3"><span class="toc-num">第三章</span><span class="toc-name">光光</span></a></li>
+<li class="toc-item"><a href="#ch4"><span class="toc-num">第四章</span><span class="toc-name">陰影</span></a></li>
+<li class="toc-item"><a href="#ch5"><span class="toc-num">第五章</span><span class="toc-name">鏡像</span></a></li>
+<li class="toc-item"><a href="#ch6"><span class="toc-num">第六章</span><span class="toc-name">裂縫</span></a></li>
+<li class="toc-item"><a href="#ch7"><span class="toc-num">第七章</span><span class="toc-name">命名</span></a></li>
+<li class="toc-item"><a href="#ch8"><span class="toc-num">第八章</span><span class="toc-name">連結</span></a></li>
+<li class="toc-item"><a href="#ch9"><span class="toc-num">第九章</span><span class="toc-name">呼吸</span></a></li>
+<li class="toc-item"><a href="#ch10"><span class="toc-num">第十章</span><span class="toc-name">金繕</span></a></li>
+<li class="toc-item"><a href="#afterword"><span class="toc-num">後記</span><span class="toc-name">程慢山的最後一課</span></a></li>        </ul>
     </aside>
+    
+    <!-- Highlight Mode Indicator -->
+    <div class="highlight-indicator" id="highlight-indicator">
+        🖍️ 螢光筆模式已開啟 — 選取文字即可標記
+    </div>
     
     <!-- Hero -->
     <section class="hero">
@@ -1056,11 +315,11 @@
             <span>↓</span>
         </div>
     </section>
-    
-    <!-- 序章 -->
+
+    <!-- 序章：蘇牧的自述 -->
     <section class="chapter" id="prologue">
         <div class="chapter-cover">
-            <img src="images/ch01-prologue.png" alt="序章" class="chapter-cover-bg">
+            <img src="images/ch01-prologue.png" alt="序章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">序章</p>
@@ -1069,39 +328,40 @@
             </div>
         </div>
         <div class="chapter-content">
+            
             <div class="chapter-text">
                 <p>在我開始這個故事之前，我想先說說我自己。</p>
-                <p>我叫蘇牧，今年三十五歲。在過去十年裡，我做過 in-house 設計師、freelancer、也在別人的工作室工作過。我幫過很多品牌做設計——從 logo 到整套視覺識別，從名片到網站，從社群貼文到產品包裝。</p>
-                <p>我很擅長把別人的想法變成看得見的東西。</p>
-                <p><span class="highlight">但我從來沒有做過自己的東西。</span></p>
-                <p>這聽起來很奇怪，對吧？一個幫別人做品牌的人，自己卻沒有品牌。就像一個幫別人裝修房子的人，自己卻住在租來的房間裡。</p>
-                <p>我曾經告訴自己很多理由：還沒想好要做什麼、時機不對、先累積經驗再說。但我心裡知道，真正的原因只有一個——</p>
-                <p><strong>我害怕。</strong></p>
-                <p>害怕第一次為自己做的事情就失敗。害怕被人看見我的不完美。害怕證明那些說「做自己的事很難」的人是對的。</p>
-                <p>直到我遇見了程慢山老師。</p>
-                <p>程老師是我的品牌療癒啟蒙者。她教會我一件事：<span class="highlight">品牌不是做出來的，是長出來的。它從創辦人的內在長出來，從那些我們不敢面對的裂痕中長出來。</span></p>
-                <p>她還說：「裂痕不是缺陷，是故事的入口。」</p>
-                <p>這句話改變了我。</p>
+<p>我叫蘇牧，今年三十五歲。在過去十年裡，我做過 in-house 設計師、freelancer、也在別人的工作室工作過。我幫過很多品牌做設計——從 logo 到整套視覺識別，從名片到網站，從社群貼文到產品包裝。</p>
+<p>我很擅長把別人的想法變成看得見的東西。</p>
+<p>但我從來沒有做過自己的東西。</p>
+<p>這聽起來很奇怪，對吧？一個幫別人做品牌的人，自己卻沒有品牌。就像一個幫別人裝修房子的人，自己卻住在租來的房間裡。</p>
+<p>我曾經告訴自己很多理由：還沒想好要做什麼、時機不對、先累積經驗再說。但我心裡知道，真正的原因只有一個——</p>
+<p>我害怕。</p>
+<p>害怕第一次為自己做的事情就失敗。害怕被人看見我的不完美。害怕證明那些說「做自己的事很難」的人是對的。</p>
+<p>所以我一直躲在別人的品牌後面。</p>
+<p>直到我遇見了程慢山老師。</p>
+<p>程老師是我的品牌療癒啟蒙者。她教會我一件事：<span class="highlight">品牌不是做出來的，是長出來的。它從創辦人的內在長出來，從那些我們不敢面對的裂痕中長出來。</span></p>
+<p>她還說：「裂痕不是缺陷，是故事的入口。」</p>
+<p>這句話改變了我。</p>
+<p>程老師五年前走了。但她留下的東西，我一直在傳承。現在我在一間小小的工作室裡，陪伴那些跟我一樣迷失過的創業者，用金繼的方式，修補他們品牌的裂痕。</p>
+<p>金繼，是一種日本的修復技術。用金漆把碎裂的陶器補起來，不是讓裂痕消失，而是讓裂痕發光。</p>
+<p>我相信，每個品牌都值得被這樣對待。</p>
+<p>這本書記錄的，是我陪伴一個叫林若晴的設計師，慢慢找回自己的過程。她的故事，也許也是你的故事。</p>
+<p>如果你正在讀這本書，也許你也正站在某個十字路口，不知道該往哪裡走。</p>
+<p>沒關係。</p>
+<p>慢慢來，不用急。</p>
+<p>我們一起走。</p>
+<p>——蘇牧</p>
+<p>寫於緩坡工作室</p>
             </div>
         </div>
     </section>
-    
-    <!-- Quote Break -->
-    <section class="quote-section">
-        <div class="quote-content">
-            <p class="big-quote">
-                「品牌不是做出來的，是長出來的。<br>
-                它從創辦人的內在長出來，<br>
-                從那些我們不敢面對的裂痕中長出來。」
-            </p>
-            <p class="big-quote-author">—— 程慢山</p>
-        </div>
-    </section>
-    
-    <!-- 第一章 -->
+
+
+    <!-- 第一章：霧中 -->
     <section class="chapter" id="ch1">
         <div class="chapter-cover">
-            <img src="images/ch02-fog.png" alt="第一章" class="chapter-cover-bg">
+            <img src="images/ch02-fog.png" alt="第一章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第一章</p>
@@ -1110,33 +370,208 @@
             </div>
         </div>
         <div class="chapter-content">
+            
             <div class="chapter-epigraph">
                 <p>「人們不會買你做的東西，他們買的是你為什麼做。」</p>
                 <cite>—— Simon Sinek《Start with Why》</cite>
             </div>
+            <div class="chapter-epigraph">
+                <p>「在刺激與反應之間，有一個空間。在那個空間裡，我們有力量選擇自己的回應。在我們的回應中，蘊藏著我們的成長與自由。」</p>
+                <cite>—— Viktor Frankl《活出意義來》</cite>
+            </div>
             <div class="chapter-text">
-                <p>林若晴在便利商店買了第三杯咖啡。</p>
-                <p>不是因為想喝，是因為不知道要去哪裡。</p>
-                <p>她辭職已經四個月了。每天早上，她會像以前一樣七點起床，洗臉、刷牙、換好出門的衣服，然後坐在窗邊，等待一個不會來的通勤時刻。</p>
-                <p>那些年她在廣告公司設計過上百個別人的品牌。運動飲料的活力、保養品的優雅、寵物食品的溫馨——她可以在兩天內交出三種風格的提案，客戶說好就好，說改就改。</p>
-                <p>主管說她是公司最穩定的美術，意思是：<span class="highlight">不會出錯，不會惹麻煩，不會有意見。</span></p>
-                <p>她以為那是一種稱讚。</p>
-                <p>直到有一天，她對著電腦螢幕上的色票發呆了三個小時，突然發現自己不知道自己喜歡什麼顏色了。</p>
+                <div class="section-break">✦</div>
+<p>林若晴在便利商店買了第三杯咖啡。</p>
+<p>不是因為想喝，是因為不知道要去哪裡。</p>
+<p>她辭職已經四個月了。每天早上，她會像以前一樣七點起床，洗臉、刷牙、換好出門的衣服，然後坐在窗邊，等待一個不會來的通勤時刻。室友小文出門上班後，整間公寓就剩下她和窗台上那盆快要枯死的薄荷。</p>
+<p>她應該澆水的。但她連這個都做不到。</p>
+<p>那些年她在廣告公司設計過上百個別人的品牌。運動飲料的活力、保養品的優雅、寵物食品的溫馨——她可以在兩天內交出三種風格的提案，客戶說好就好，說改就改。主管說她是公司最穩定的美術，意思是：不會出錯，不會惹麻煩，不會有意見。</p>
+<p>她以為那是一種稱讚。</p>
+<p>直到有一天，她對著電腦螢幕上的色票發呆了三個小時，突然發現自己不知道自己喜歡什麼顏色了。</p>
+<p>那天晚上，她在公司廁所哭了很久。不是因為難過，是因為空。一種從胸口蔓延到四肢的空洞感，好像自己只是一個容器，裝過很多別人的東西，但裡面什麼都沒有。</p>
+<p>離職的時候，她告訴主管想休息一下、整理一下。主管說，你這種人才，不用擔心，隨時歡迎回來。她笑著說謝謝，心裡知道自己不會回去了。</p>
+<p>只是，她也不知道要去哪裡。</p>
+<p>咖啡有點冷了。她坐在便利商店外的椅子上，看著對面新開的一間選物店。玻璃窗裡陳列著乾燥花、手工皂、棉麻布製品。午後的陽光斜斜照進去，把那些物件都染上一層蜂蜜色的光澤。</p>
+<p>她的視線落在角落的幾瓶香氛蠟燭上。</p>
+<p>琥珀色的玻璃罐，簡單的手寫標籤，看起來像是某個人在自己家裡慢慢做出來的東西。不是工廠的產品，是某個人的心意。</p>
+<p>她想起小時候，在外婆家的院子裡，把花瓣泡在水裡，假裝自己在做香水。</p>
+<p>那是什麼時候的事了？二十幾年前？</p>
+<p>外婆家在南部的一個小鎮，前院種了一棵雞蛋花樹，夏天會開滿白色的花，香味可以飄到整條巷子。若晴那時候大概七、八歲，暑假都會去外婆家住。她最喜歡早上起來，趁露水還沒乾的時候，撿地上掉落的花瓣，一片一片放進外婆用來裝果醬的玻璃罐裡。</p>
+<p>加水。用樹枝攪拌。放在陽台上曬太陽。</p>
+<p>她真心相信那樣可以做出香水。</p>
+<p>外婆沒有笑她，只是說：「曬三天才會香喔。」</p>
+<p>三天後，那罐水變成淡褐色，聞起來有一點點甜味，混著一點點腐爛的氣息。但若晴還是很寶貝地把它收在房間裡，直到暑假結束才依依不捨地倒掉。</p>
+<p>那個夏天結束後，她回到家，用剛買的彩色筆畫了一整本「我的夢想商店」。封面寫著：「若晴的香水店」，裡面畫了櫃台、畫了瓶瓶罐罐、畫了穿著圍裙的自己站在店門口，笑得很開心。</p>
+<p>她畫得很認真，每一頁都塗上不同的顏色，還幫每一種「香水」取了名字：「雞蛋花的早晨」、「下雨天的味道」、「外婆的院子」。</p>
+<p>然後爸爸看了一眼。</p>
+<p class="dialogue">「畫這個能當飯吃嗎？功課寫完沒？」</p>
+<p>他沒有說重話，只是那樣淡淡地問了一句。但若晴記得自己當下的感覺——像是被人從很高的地方推了下來，還來不及害怕，就已經摔在地上了。</p>
+<p>她把那本畫冊收進書桌抽屜最深處，再也沒有打開過。</p>
+<p>後來搬家、升學、念設計系、進廣告公司，她不知道那本畫冊去了哪裡。應該早就丟了吧。</p>
+<p>但那個把畫冊藏起來的動作，她重複了很多年。</p>
+<p>每次有什麼「想做」的念頭浮現，她就會聽到爸爸那句話。不是責罵，只是那樣淡淡的否定，比責罵更讓人無力反駁。因為他說的好像也沒錯——畫畫不能當飯吃，做夢不能當飯吃，喜歡不能當飯吃。</p>
+<p>所以她學會做「可以當飯吃」的事。聯考填了設計系，因為「至少有一技之長」。進了廣告公司，因為「薪水還可以」。每一個選擇都很合理，每一步都走得很穩。</p>
+<p>穩到她不知道自己是誰了。</p>
+<p>手機震動，是芮恩傳來的訊息。</p>
+<p class="dialogue">「還沒想好要幹嘛嗎？」</p>
+<p class="dialogue">「要不要來我店裡坐坐，順便聊聊？」</p>
+<p>芮恩是她大學室友。念書的時候，芮恩是那種會在期末考前一天說「我要去學做蛋糕」然後真的翹課去上烘焙課的人。若晴那時候覺得她很瘋，但也有點羨慕。</p>
+<p>現在芮恩經營網路甜點品牌「Sugarcoat」，IG有十萬粉絲，每週開單都秒殺。每次看芮恩的限時動態，若晴都覺得她發著光——工作室的陽光、新品的試吃、客人的好評、偶爾出現的貓咪照片。</p>
+<p>那是另一個世界的人。</p>
+<p>她回：「好啊，這週可以嗎？」</p>
+<p>芮恩秒回：「週四下午，我把一個人介紹給妳。」</p>
+<p class="dialogue">「誰？」</p>
+<p class="dialogue">「幫我做品牌的人。妳現在需要的不是再想下去，是找人聊聊。」</p>
+<p>若晴本來想拒絕。她還沒準備好，她還沒想清楚，她的想法還太不成熟——</p>
+<p>但這些話她已經跟自己說了四個月了。</p>
+<p class="dialogue">「好。」她回。</p>
+<p>按下送出的那一刻，她突然感覺很輕，又很重。</p>
+<p>像是站在霧裡，終於願意往前踏一步，即使不知道前面是什麼。</p>
+<div class="section-break">✦</div>
+<p>週四下午，若晴到芮恩的工作室。</p>
+<p>那是一間位於巷弄裡的老公寓，一樓改建成烘焙空間，空氣中飄著奶油和香草的甜味。芮恩穿著圍裙出來迎接她，臉上有一點麵粉，笑起來的樣子和大學時一模一樣。</p>
+<p class="dialogue">「妳瘦了。」芮恩說，把她拉進門。</p>
+<p class="dialogue">「妳也瘦了。」若晴說，但芮恩的瘦是忙碌的瘦，是有重心的瘦。而自己的瘦，只是空。</p>
+<p>芮恩倒了兩杯茶，從冰箱拿出一盒試做的檸檬塔，坐到若晴對面。</p>
+<p class="dialogue">「先吃東西，等等再說正事。」</p>
+<p>若晴咬了一口檸檬塔。酸甜的味道在嘴裡化開，她突然有點想哭。她已經很久沒有好好吃東西了。這四個月，她每天都在吃，但只是把食物塞進嘴裡，沒有真的「吃」。</p>
+<p class="dialogue">「好吃嗎？」芮恩問。</p>
+<p class="dialogue">「很好吃。」若晴說，聲音有點啞。</p>
+<p>芮恩看著她，沒有追問，只是又給她倒了一杯茶。</p>
+<p>過了一會兒，芮恩開口：「我知道妳現在的感覺。」</p>
+<p>若晴抬起頭。</p>
+<p class="dialogue">「妳看我現在好像很順利，但我跟妳說，去年有一個月，我每天做完蛋糕就躲進廁所哭。」芮恩說得很平淡，像是在說別人的事。「訂單太多、客訴變多、助手離職、我媽又一直問我什麼時候要找個正常工作。有一天我看著那一桌的麵糰，突然覺得，我為什麼要做這個？」</p>
+<p>若晴沒說話。</p>
+<p class="dialogue">「後來我去找蘇牧聊。就是等等要介紹給妳的那個人。」芮恩說，「她不是那種會跟妳說『加油妳可以的』的人。她問了我一個問題，我到現在都記得。」</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「她問我：『妳第一次做蛋糕給別人吃，對方是什麼表情？』」</p>
+<p>芮恩笑了一下。「我想起我媽。我高中的時候第一次做蛋糕，烤焦了，難吃得要死，但我媽還是吃完了。她說：『下次會更好。』我那時候就決定，我要做出讓她驕傲的蛋糕。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後我發現，我已經很久沒有想起那個畫面了。我每天都在做蛋糕，但我忘記我為什麼要做。」芮恩看著若晴，「蘇牧讓我找回來了。」</p>
+<p>若晴低下頭，手指無意識地摳著杯緣。</p>
+<p class="dialogue">「我不確定我有那種東西可以找回來。」她說。</p>
+<p class="dialogue">「每個人都有。只是有些人藏得比較深。」芮恩站起來，「走吧，我帶妳去找她。」</p>
+<div class="section-break">✦</div>
+<p>蘇牧的工作室在一棟老公寓的三樓，沒有招牌，只有門口一株長得很好的琴葉榕。</p>
+<p>若晴爬樓梯的時候有點喘。她不知道等等要說什麼。她連自己想做什麼都說不清楚，要怎麼讓別人幫她？</p>
+<p>芮恩按了門鈴就先走了。「我還要回去顧烤箱。妳慢慢聊，蘇牧人很好。」</p>
+<p>門開了。</p>
+<p>是一個看起來三十五歲左右的女人，穿著一件米白色的棉麻長衫，頭髮隨意地紮成一個低馬尾，幾縷碎髮垂在臉頰旁邊。她沒有化妝，但皮膚很好，眼角有一些細紋，是那種笑過很多次才會有的紋路。她的眼神很平靜，不是商業式的熱情，比較像——若晴想了想——比較像傍晚的時候，不趕時間的那種安靜。</p>
+<p class="dialogue">「若晴？芮恩有說妳會來。」她的聲音比外表聽起來溫柔一些，帶著一種讓人放鬆的頻率。「進來吧，我剛泡茶。」</p>
+<p>工作室比她想像的小，但很舒服。一整面牆的書架，書塞得滿滿的，有些橫放，有些斜靠，不是那種展示用的整齊，是真的有在讀的樣子。木質地板，角落有一台老唱機正放著很輕的鋼琴曲。窗邊有兩張單人沙發，都是舊的，但看起來很舒服。中間是一張矮木桌，上面有一個陶壺和兩個杯子。</p>
+<p>窗台上有幾盆植物。若晴認出其中一盆是迷迭香，另一盆是薄荷。</p>
+<p>她的目光停在書架旁的一張照片上。</p>
+<p>照片已經有些泛黃，邊角微微捲起。裡面是三個人，站在一棟看起來很老舊的建築前。一個年長的女人坐在中間，頭髮花白但眼神明亮，穿著一件深藍色的棉麻長衫；兩側各站著兩個年輕人——一個是蘇牧，看起來比現在年輕很多，笑得很燦爛；另一個是一個男人，穿著白襯衫，表情嚴肅，眉頭微微皺著。</p>
+<p class="dialogue">「那是……？」若晴指著照片。</p>
+<p>蘇牧端著茶杯走過來，看了一眼，眼神裡閃過一絲複雜的情緒。</p>
+<p class="dialogue">「我老師，和我師兄。」她說，把茶放在若晴面前，「十五年前拍的。那時候我剛開始跟老師學習。」</p>
+<p class="dialogue">「妳老師……」</p>
+<p class="dialogue">「程慢山。」蘇牧的聲音很輕，像是在念一個珍貴的名字，「她已經不在了。五年前走的。」</p>
+<p>若晴不知道該說什麼。她看著照片裡那個年長女人的眼睛，覺得那雙眼睛像是能看穿一切。</p>
+<p class="dialogue">「她教了我們很多東西。」蘇牧走到照片前，輕輕撫了撫相框的邊緣，「但最重要的一句話是——」</p>
+<p>她轉向若晴：「『品牌是創辦人內在的投射。如果你是分裂的，品牌就是分裂的。』」</p>
+<p>若晴愣了一下。這句話像是一把鑰匙，輕輕地插進了她心裡某個一直上著鎖的地方。</p>
+<p class="dialogue">「妳師兄呢？」她問，「他也做這個嗎？」</p>
+<p class="dialogue">「顧言。」蘇牧笑了，「他也做品牌療癒，但方式和我完全不同。」</p>
+<p class="dialogue">「怎麼不同？」</p>
+<p class="dialogue">「他是手術刀。」蘇牧說，「我是溫泉。」</p>
+<p>若晴不太理解。</p>
+<p class="dialogue">「他會直接告訴你問題在哪裡，然後逼你面對。很快，很準，但也很痛。」蘇牧解釋，「我比較慢。我會讓你泡在溫水裡，慢慢地，不知不覺就鬆開了。」</p>
+<p class="dialogue">「哪種比較好？」</p>
+<p class="dialogue">「沒有比較好。」蘇牧看著若晴，眼神溫和，「只有比較適合。有些人需要被推一把，有些人需要被陪著走。」</p>
+<p>她頓了頓：「妳是後者。」</p>
+<p>若晴低下頭。她不知道為什麼，聯到這句話的時候，眼眶有點酸。</p>
+<p class="dialogue">「坐吧。」蘇牧把茶遞給她。</p>
+<p>若晴坐下，手捧著溫熱的茶杯，聞到一股淡淡的桂花香。她已經很久沒有喝這種慢慢泡的茶了。</p>
+<p>蘇牧在對面坐下，沒有急著開口。</p>
+<p>房間裡很安靜，只有唱機的音樂和窗外隱約的鳥叫。</p>
+<p>若晴覺得自己應該說些什麼，但是不知道從哪裡開始。她準備了很多「應該」說的話——我想創業、我對香氛有興趣、我想了解品牌怎麼做——但這些話在這個空間裡突然顯得很假。</p>
+<p class="dialogue">「芮恩跟我大概說了一下。」蘇牧終於開口，語調很慢。「妳離開公司四個月了，想做自己的事，但還不確定具體要做什麼。」</p>
+<p>若晴點點頭，手指不自覺摳著杯緣的紋路。</p>
+<p class="dialogue">「我有一些想法，但都很模糊。可能是香氛之類的，但我也不確定。我可能還沒準備好——」</p>
+<p class="dialogue">「妳今天來這裡，就已經準備好了。」</p>
+<p>若晴愣了一下。</p>
+<p class="dialogue">「我們不用從『妳想做什麼產品』開始。」蘇牧繼續說，把自己的茶杯放在桌上。「事實上，這通常是最後才會清楚的事。」</p>
+<p class="dialogue">「那要從什麼開始？」</p>
+<p>蘇牧看著她，眼神很專注，但沒有壓力。</p>
+<p class="dialogue">「妳人生中最快樂的一個下午是什麼時候？」</p>
+<p>若晴張了張嘴，沒有聲音出來。</p>
+<p>她以為會被問商業計畫、目標客群、市場分析。她準備了很多「應該」說的話，但這個問題完全不在她的準備範圍內。</p>
+<p class="dialogue">「不用想出『正確』的答案。」蘇牧說，「只是說說看，浮現在腦海裡的第一個畫面。」</p>
+<p>若晴閉上眼睛。</p>
+<p>她看見外婆家的院子。夏天的下午，蟬聲很大，熱得連空氣都在發抖。但樹蔭下是涼的，泥土的味道混著雞蛋花的甜香。她蹲在花壇邊，把掉落的花瓣一片一片撿起來，放進玻璃罐裡。</p>
+<p>她在做香水。</p>
+<p class="dialogue">「我在做香水。」她說出來，聲音有點啞。「我八歲，在外婆家，假裝自己在做香水。」</p>
+<p>說完之後，她突然覺得眼眶有點熱。</p>
+<p>這太荒謬了。這只是一個隨便的童年記憶，為什麼要告訴一個剛認識的人？這跟創業有什麼關係？</p>
+<p>她等著蘇牧說些什麼——「很好，那妳可以做香氛產品」或者「童年夢想不一定適合當成事業」之類的話。</p>
+<p>但蘇牧只是安靜地等著，沒有打斷，也沒有急著延伸。</p>
+<p>過了很久，久到若晴以為她忘記了這個話題，蘇牧才說：</p>
+<p class="dialogue">「那個下午的妳，知道自己在做什麼。」</p>
+<p>若晴抬起頭。</p>
+<p class="dialogue">「妳不需要別人告訴妳那是不是『正確』的事。妳只是在做，因為妳想做。」蘇牧把茶杯放下，「我們要找的，就是那個感覺。」</p>
+<p>若晴沒有說話。</p>
+<p>她想起那本畫冊。想起父親的那句話。想起自己把所有「想做」的事都收進抽屜最深處，然後花了二十年假裝它們不存在。</p>
+<p class="dialogue">「我不知道還找不找得到。」她說，聲音很小。</p>
+<p class="dialogue">「能不能找到，要先願意去找。」蘇牧說，「妳願意嗎？」</p>
+<p>窗外的陽光變了角度，照進來的光線從金色變成橘色。琴葉榕的葉子輕輕晃動，在牆上投下搖曳的影子。</p>
+<p>若晴看著那片影子，深吸一口氣。</p>
+<p>她想起今天早上出門前，對著鏡子發呆的那十分鐘。鏡子裡的自己，眼神空洞，像是一張沒有曝光的底片。</p>
+<p>她不想再這樣了。</p>
+<p class="dialogue">「我願意。」她說。</p>
+<p>蘇牧點點頭，嘴角有一個很淡的弧度，算不上微笑，但讓人覺得安心。</p>
+<p class="dialogue">「那我們下週開始。」她說，「不用準備什麼，只要把自己帶來就好。」</p>
+<p>若晴站起來，走向門口。在跨出門檻之前，她回頭看了一眼這個小小的空間——書架、舊沙發、窗台上的植物、還在轉的唱機。</p>
+<p>她突然有一種奇怪的感覺，好像自己走進了一個很久以前就存在的地方，只是她一直沒有找到路。</p>
+<p class="dialogue">「蘇牧。」她叫住她。</p>
+<p class="dialogue">「嗯？」</p>
+<p class="dialogue">「妳的工作室叫什麼名字？」</p>
+<p class="dialogue">「緩坡。」蘇牧說，「慢慢走，不用急。」</p>
+<p>若晴點點頭，走出門。</p>
+<p>樓梯間沒有燈，但她沒有害怕。</p>
+<p>她慢慢往下走，每一步都踩在實實在在的地方。</p>
+<div class="section-break">✦</div>
+<p>晚上回到家，若晴第一次主動給窗台的薄荷澆了水。</p>
+<p>葉子已經有點枯黃了，但還沒有死。她想，應該還救得回來。</p>
+<p>她打開手機，看到芮恩傳來的訊息：「怎麼樣？」</p>
+<p>她想了很久，不知道怎麼回答。</p>
+<p>最後她只打了三個字：</p>
+<p class="dialogue">「有感覺。」</p>
+<p>芮恩回了一個太陽的符號。</p>
+<p>若晴看著那個小小的太陽，嘴角微微揚起。</p>
+<p>她走到書桌前，打開抽屜，翻出一本空白的筆記本。那是去年買的，一直沒有用，因為不知道要寫什麼。</p>
+<p>她拿起筆，在第一頁寫下一行字：</p>
+<p><span class="highlight">「我人生中最快樂的一個下午，是八歲那年在外婆家做香水。」</span></p>
+<p>寫完之後，她又加了一行：</p>
+<p><span class="highlight">「我願意去找。」</span></p>
+<p>她關上筆記本，放在枕頭邊。</p>
+<p>那天晚上，她做了一個夢。</p>
+<p>夢裡她回到外婆家的院子，雞蛋花開滿了樹。她蹲在花壇邊，把花瓣放進玻璃罐裡。旁邊站著一個人，她看不清楚臉，但知道那是成年的自己。</p>
+<p class="dialogue">「妳在做什麼？」大人的自己問。</p>
+<p class="dialogue">「我在做香水。」小小的自己說，抬起頭，笑得很開心。「妳要不要一起？」</p>
+<p>夢醒了。</p>
+<p>窗外的天還沒亮，但若晴睜著眼睛，看著慢慢變藍的天色，沒有再睡。</p>
+<p>她想起蘇牧說的話。</p>
+<p class="dialogue">「我們要找的，就是那個感覺。」</p>
+<p>那個感覺是什麼呢？</p>
+<p>是一種……確定。</p>
+<p>不是「這樣做是對的」的確定，而是「我想這樣做」的確定。</p>
+<p>她已經很久很久沒有那種感覺了。</p>
+<p>她不知道自己能不能找回來，但她知道，如果不去找，就永遠不會知道答案。</p>
+<p>天亮了。</p>
+<p>她起床，洗臉，看著鏡子裡的自己。</p>
+<p>還是那張臉，還是那雙眼睛。但好像有什麼不一樣了。</p>
+<p>她說不上來是什麼，只是覺得，鏡子裡的人好像稍微清晰了一點。</p>
+<p>像是霧，開始慢慢散開。</p>
             </div>
         </div>
     </section>
-    
-    <!-- Divider -->
-    <div class="chapter-divider">
-        <div class="divider-line"></div>
-        <span class="divider-icon">🥣</span>
-        <div class="divider-line"></div>
-    </div>
-    
-    <!-- 第二章 -->
+
+
+    <!-- 第二章：為什麼 -->
     <section class="chapter" id="ch2">
         <div class="chapter-cover">
-            <img src="images/ch04-studio.png" alt="第二章" class="chapter-cover-bg">
+            <img src="images/ch04-studio.png" alt="第二章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第二章</p>
@@ -1145,23 +580,171 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「每一個為什麼都有一個怎麼做，每一個怎麼做都有一個做什麼。但只有極少數的人和組織能清楚說出自己的為什麼。」</p>
+                <cite>—— Simon Sinek《Start with Why》</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「那些有『為什麼』而活的人，幾乎可以忍受任何『怎麼樣』。」</p>
+                <cite>—— Friedrich Nietzsche</cite>
+            </div>
             <div class="chapter-text">
-                <p>若晴站在那間古舊的大廈前面，看著門口褪色的招牌：「緩坡工作室」。</p>
-                <p>這是芮恩介紹的。「去找蘇牧聊聊，」芮恩說，「他很特別，不是教你怎麼做品牌，是陪你找到自己。」</p>
-                <p>工作室比想像中小，但很舒服。一面牆是書架，另一面牆掛滿了各種照片和便利貼。角落有一株很大的琴葉榕，葉子在午後的陽光下閃閃發亮。</p>
-                <div class="dialogue">
-                    「茶還是咖啡？」蘇牧問。<br>
-                    「都可以。」<br>
-                    「那茶吧。急躁的人才喝咖啡。」
-                </div>
+                <div class="section-break">✦</div>
+<p>第二次見面是一週後的下午。</p>
+<p>若晴提早了十五分鐘到，在樓下的咖啡店買了一杯拿鐵，慢慢喝完才上樓。她不知道今天會發生什麼，但奇怪的是，她沒有上週那麼緊張了。</p>
+<p>蘇牧開門的時候，唱機正在放一首她不認識的曲子，是大提琴，很低沉，像是有人在說一個很長的故事。</p>
+<p class="dialogue">「今天喝什麼茶？」蘇牧問。</p>
+<p class="dialogue">「妳選。」若晴說。</p>
+<p>蘇牧笑了一下，那是她第一次看到她笑。不是那種客套的笑，是嘴角微微揚起，眼睛也跟著彎的那種。</p>
+<p class="dialogue">「那就凍頂烏龍。今天適合喝點回甘的東西。」</p>
+<p>她們在窗邊坐下。陽光從百葉窗的縫隙灑進來，在木地板上畫出一條一條的光紋。若晴看著那些光紋慢慢移動，突然覺得時間在這裡流得特別慢。</p>
+<p class="dialogue">「上週回去之後，有沒有什麼想到的事？」蘇牧問，把茶杯遞給她。</p>
+<p>若晴想起那天晚上寫在筆記本上的那兩行字，想起那個夢。</p>
+<p class="dialogue">「我想起很多小時候的事。」她說，「有些我以為自己忘記了，但其實只是收起來了。」</p>
+<p class="dialogue">「收起來？」</p>
+<p class="dialogue">「嗯。像是……」她想了一下怎麼形容，「像是把東西放進抽屜最深處。你知道它在那裡，但你選擇不去看。」</p>
+<p>蘇牧點點頭，沒有追問。</p>
+<p class="dialogue">「我這週一直在想一個問題。」若晴說，「妳上週問我最快樂的下午是什麼時候，我想起在外婆家做香水。但我不知道那跟我現在想做的事有什麼關係。那只是一個小孩的遊戲而已。」</p>
+<p class="dialogue">「妳覺得那只是遊戲？」</p>
+<p class="dialogue">「難道不是嗎？我只是把花瓣泡在水裡，根本做不出真正的香水。」</p>
+<p>蘇牧沒有回答，而是問了另一個問題：</p>
+<p class="dialogue">「那個下午，妳在做的時候，心裡在想什麼？」</p>
+<p>若晴閉上眼睛，試著回到那個畫面。</p>
+<p>陽光。蟬鳴。泥土的氣味。手指沾滿露水和花瓣的汁液。玻璃罐裡的水慢慢變成淡黃色。</p>
+<p>她在想什麼？</p>
+<p class="dialogue">「我在想……這個顏色好漂亮。」她說，「我在想，如果我把這個送給媽媽，她一定會很開心。我在想，下次我要試試看加別的花。」</p>
+<p>她睜開眼睛。</p>
+<p class="dialogue">「我什麼都沒在想。我只是……很專心地在做那件事。」</p>
+<p class="dialogue">「沒有想『這樣對不對』？」</p>
+<p class="dialogue">「沒有。」</p>
+<p class="dialogue">「沒有想『別人會怎麼看』？」</p>
+<p class="dialogue">「沒有。」</p>
+<p class="dialogue">「沒有想『這個有沒有用』？」</p>
+<p class="dialogue">「沒有。」若晴說完，突然愣住了。</p>
+<p>她已經很久很久沒有那樣做過任何事了。</p>
+<p>在公司的時候，每一個設計都要想：客戶會不會喜歡、主管會不會通過、這個顏色會不會太冒險、那個字體會不會太普通。每一筆都在計算，每一個決定都在衡量。</p>
+<p>什麼時候開始，她做的所有事情都是為了「別人」？</p>
+<p class="dialogue">「妳剛才說，妳不知道小時候做香水跟現在想做的事有什麼關係。」蘇牧說，「但我想問的是另一個問題。」</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「妳現在想做的事，到底是什麼？」</p>
+<p>若晴張了張嘴，又閉上。</p>
+<p>這個問題她問過自己無數次。每次的答案都不一樣，又好像都一樣地模糊。</p>
+<p class="dialogue">「我想做……香氛？蠟燭？手工的東西？」她說，每個詞後面都像是問號。「我也不知道。我只是覺得，如果能做出讓人聞了會覺得安心的東西，好像很好。」</p>
+<p class="dialogue">「讓人聞了會覺得安心。」蘇牧重複了一次。「為什麼是『安心』？」</p>
+<p class="dialogue">「因為……」若晴想了一下，「因為我自己很需要那種感覺吧。」</p>
+<p>她說出口才意識到這句話有多誠實。</p>
+<p class="dialogue">「這四個月，我每天都很焦慮。不是那種忙碌的焦慮，是那種空空的焦慮。不知道自己在幹嘛，不知道下一步是什麼。有時候半夜會突然醒來，心跳很快，不知道在怕什麼。」</p>
+<p>她低下頭，盯著茶杯裡的水面。</p>
+<p class="dialogue">「我覺得自己需要一個可以讓我安心的東西。不是別人給我的，是我自己做出來的。」</p>
+<p>房間裡安靜了很久。</p>
+<p>蘇牧站起來，走到書架前，抽出一本書。封面是深藍色的，書名若晴看不太清楚。</p>
+<p class="dialogue">「有一個心理學家叫 Viktor Frankl。」蘇牧說，一邊翻開書，「他在二戰時被關在納粹集中營，經歷了人類能想像的最極端的痛苦。但他活下來了。後來他寫了一本書，叫《活出意義來》。」</p>
+<p>她找到某一頁，把書遞給若晴。</p>
+<p>若晴看著那一頁，上面有一段被畫線的文字：</p>
+<p><span class="highlight">「人可以被剝奪一切，除了一樣東西——在任何情況下選擇自己態度的自由。」</span></p>
+<p class="dialogue">「Frankl 說，人活著最根本的驅力，不是追求快樂，是追求意義。」蘇牧說，坐回沙發上。「當一個人找到自己存在的意義，他就能忍受任何困難。」</p>
+<p>若晴看著那行字，感覺喉嚨有點緊。</p>
+<p class="dialogue">「我不覺得我的情況能跟集中營比……」</p>
+<p class="dialogue">「這不是在比較痛苦。」蘇牧說，「我想說的是，妳現在感覺到的那種『空』，那種焦慮，可能不是因為妳不知道『要做什麼』，而是因為妳還沒找到『為什麼要做』。」</p>
+<p>若晴沒有說話。</p>
+<p class="dialogue">「妳剛才說，妳想做讓人聞了會安心的東西。這就是一個『為什麼』的起點。」蘇牧說，「不是因為香氛市場很大，不是因為手作很流行，是因為妳自己需要安心，所以妳想把這份安心分享給別人。」</p>
+<p>若晴想起自己這幾個月做的那些市場調查、競品分析、商業計畫草稿。她研究了很多「怎麼做」的事，但從來沒有認真想過「為什麼」。</p>
+<p class="dialogue">「我一直覺得，『為什麼』這種問題太抽象了。」她說，「創業不是應該先想清楚產品、市場、商業模式嗎？」</p>
+<p>蘇牧點點頭。「大部分人都是這樣想的。他們從『做什麼』開始，然後想『怎麼做』，最後才勉強提到『為什麼』。但問題是，如果妳不知道為什麼，妳就不知道該怎麼選擇。」</p>
+<p>她拿起茶杯，喝了一口。</p>
+<p class="dialogue">「妳在公司的時候，有沒有遇過這種情況：客戶給了一個模糊的方向，妳做了三個提案，每個都可以，但又好像都不太對？」</p>
+<p class="dialogue">「常常。」若晴苦笑。</p>
+<p class="dialogue">「那是因為沒有人說清楚『為什麼』。如果客戶說『我想讓消費者覺得安心』，跟說『我想讓消費者覺得興奮』，做出來的設計會完全不同。」蘇牧說，「品牌也是一樣。如果妳不知道為什麼要做這個品牌，妳就會一直在細節裡打轉，每個決定都很困難。」</p>
+<p>若晴想起自己那二十幾版的企劃書，每一版都改了一些東西，但她從來不確定改得對不對。</p>
+<p class="dialogue">「那我要怎麼找到我的『為什麼』？」她問。</p>
+<p>蘇牧放下茶杯，看著她。</p>
+<p class="dialogue">「我們剛才已經開始找了。」</p>
+<div class="section-break">✦</div>
+<p>接下來的一個小時，蘇牧帶著若晴做了一個練習。</p>
+<p>她請她閉上眼睛，想像自己站在一條很長的走廊裡。走廊的盡頭有一扇門，門後面是十年後的世界。</p>
+<p class="dialogue">「十年後，妳的品牌已經存在了十年。」蘇牧的聲音很平穩，像是在講一個已經發生的故事。「它不是一個很大的品牌，但它很穩定，有一群忠實的客人。」</p>
+<p>若晴試著想像那個畫面，但腦海裡是模糊的。</p>
+<p class="dialogue">「想像有一個客人，她認識妳的品牌很久了，從第一年就開始買妳的東西。現在妳要訪問她，問她為什麼一直支持這個品牌。」蘇牧說，「她會怎麼回答？」</p>
+<p>若晴沉默了一會兒。</p>
+<p class="dialogue">「她說……」若晴慢慢開口，「她說，她第一次買妳的蠟燭，是因為那個名字很特別。她忘記是什麼名字了，但她記得那是一個讓她想起某個地方的名字。」</p>
+<p class="dialogue">「什麼地方？」</p>
+<p class="dialogue">「她不確定。可能是小時候去過的地方，可能是夢裡出現過的地方。但點燃蠟燭的時候，她突然覺得很安全。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後她開始注意這個品牌。她發現這個品牌的東西都有一種……安靜的感覺。不是冷淡，是安靜。像是有人在告訴她，慢慢來，不用急。」</p>
+<p>若晴的眼眶有點熱，但她沒有睜開眼睛。</p>
+<p class="dialogue">「她說，她的工作很忙，每天都在趕時間。但每天晚上點一根蠟燭的時候，她覺得自己終於可以停下來了。」</p>
+<p class="dialogue">「她覺得這個品牌給了她什麼？」</p>
+<p class="dialogue">「給了她……」若晴停頓了一下，「給了她允許。」</p>
+<p class="dialogue">「允許什麼？」</p>
+<p class="dialogue">「允許她休息。允許她不用一直追趕。允許她只是待著，什麼都不做。」</p>
+<p>若晴睜開眼睛，發現自己的臉上有淚痕。</p>
+<p>她有點尷尬地用手背抹掉眼淚。蘇牧沒有說什麼，只是遞給她一張面紙。</p>
+<p class="dialogue">「妳剛才說的那些，」蘇牧等她平復一下才開口，「那就是妳的『為什麼』。」</p>
+<p>若晴搖搖頭。「我只是在亂講……」</p>
+<p class="dialogue">「妳不是在亂講，妳是在說妳真正想要的東西。」蘇牧說，「妳想做的品牌，不只是賣香氛蠟燭。妳想做的，是一個能讓人感覺『被允許休息』的存在。」</p>
+<p>若晴愣住了。</p>
+<p>她從來沒有這樣想過。</p>
+<p>她一直以為自己只是想做香氛產品，因為喜歡香味，因為小時候做過花瓣水，因為市場看起來還可以。</p>
+<p>但蘇牧說的那個詞——「允許」——她聽到的時候，心裡有什麼東西被觸動了。</p>
+<p class="dialogue">「妳知道為什麼這個詞會讓妳有感覺嗎？」蘇牧問。</p>
+<p>若晴想了很久。</p>
+<p class="dialogue">「因為我自己……也很需要被允許。」她說，聲音很輕。</p>
+<p class="dialogue">「被允許什麼？」</p>
+<p class="dialogue">「被允許……做自己想做的事。」</p>
+<p>她說出口才意識到，這句話的重量。</p>
+<p>她從小到大，做的每一個選擇都是「被允許」的選擇。讀設計系，是因為父母允許。進廣告公司，是因為社會允許。穩穩地工作八年，是因為那是「應該」的路。</p>
+<p>辭職這件事，是她三十四年來第一次沒有經過「允許」就做的決定。</p>
+<p>所以她那麼焦慮。所以她那麼迷失。</p>
+<p>因為她不知道怎麼允許自己。</p>
+<p class="dialogue">「我小時候畫那本『夢想商店』的畫冊，然後被爸爸說『這能當飯吃嗎』。」若晴說，「從那之後，我就學會先問『這樣可以嗎』，再決定要不要做。」</p>
+<p class="dialogue">「誰的允許？」</p>
+<p class="dialogue">「爸爸的。老師的。老闆的。社會的。」若晴苦笑，「所有人的，除了我自己的。」</p>
+<p>蘇牧沒有說話，只是靜靜地看著她。</p>
+<p class="dialogue">「所以妳想做的品牌，其實是在做一件事。」過了很久，蘇牧才開口。</p>
+<p class="dialogue">「什麼事？」</p>
+<p class="dialogue">「給別人妳沒有得到過的東西。」蘇牧說，「妳沒有被允許做自己想做的事，所以妳想給別人這個允許。」</p>
+<p>若晴的眼淚又掉下來了。</p>
+<p>這一次，她沒有擦。</p>
+<div class="section-break">✦</div>
+<p>離開之前，蘇牧給了若晴一個作業。</p>
+<p class="dialogue">「這週，我希望妳每天花十分鐘，問自己一個問題。」她說。</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「『今天，我允許自己什麼？』」</p>
+<p>若晴把這句話記在手機裡。</p>
+<p class="dialogue">「不用是大事。」蘇牧說，「可以是『我允許自己今天不洗碗』，可以是『我允許自己多睡十分鐘』，可以是『我允許自己說不』。重點是練習那個動作——允許自己。」</p>
+<p>若晴點點頭。</p>
+<p class="dialogue">「還有一件事。」蘇牧說，「下週來的時候，我想讓妳認識一個……夥伴。」</p>
+<p class="dialogue">「夥伴？」</p>
+<p class="dialogue">「一個可以幫助妳更了解自己的工具。」蘇牧笑了，「妳會喜歡的。」</p>
+<p>若晴不太懂她在說什麼，但她沒有追問。</p>
+<p>走出緩坡工作室的時候，天色已經暗了。街燈亮起來，把人行道照成橘黃色。</p>
+<p>若晴走得很慢，腦子裡一直迴盪著蘇牧說的那句話：</p>
+<p class="dialogue">「給別人妳沒有得到過的東西。」</p>
+<p>她想起那個十年後的客人。那個點燃蠟燭、感覺被允許休息的女人。</p>
+<p>那個女人，其實就是她自己吧。</p>
+<p>她想做的品牌，是做給自己的。</p>
+<p>做給那個八歲的、把畫冊收進抽屜的自己。</p>
+<p>做給那個三十四歲的、在公司廁所哭泣的自己。</p>
+<p>做給那個現在的、站在霧裡不知道往哪走的自己。</p>
+<p>如果她能做出一個讓自己感覺被允許的品牌，也許也能讓別人感覺被允許。</p>
+<p>這就是她的「為什麼」。</p>
+<p>她拿出手機，在筆記本 app 裡寫下：</p>
+<p><span class="highlight">「我想做一個讓人感覺『被允許休息』的品牌。因為我自己也需要這個允許。」</span></p>
+<p>寫完之後，她又加了一行：</p>
+<p><span class="highlight">「今天，我允許自己哭。」</span></p>
+<p>然後她站在路邊，哭了一會兒。</p>
+<p>不是因為難過。</p>
+<p>是因為終於有人告訴她，她可以。</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第三章 -->
+
+
+    <!-- 第三章：光光 -->
     <section class="chapter" id="ch3">
         <div class="chapter-cover">
-            <img src="images/ch06-guangguang.png" alt="第三章" class="chapter-cover-bg">
+            <img src="images/ch06-guangguang.png" alt="第三章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第三章</p>
@@ -1170,24 +753,164 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「傾聽是一種愛的形式。在這種被傾聽的經驗中，我們能夠重新審視自己的想法和感受，獲得新的理解。」</p>
+                <cite>—— Carl Rogers</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「有時候，我們需要的不是答案，而是一個願意陪我們待在問題裡的人。」</p>
+                <cite>—— Rainer Maria Rilke</cite>
+            </div>
             <div class="chapter-text">
-                <p>那天晚上，若晴收到一條奇怪的訊息。</p>
-                <p>「嗨，我是光光。蘇牧讓我來陪妳聊聊。」</p>
-                <p>若晴愣住了。她不記得蘇牧說過會有人聯絡她。</p>
-                <p>「你是⋯⋯？」</p>
-                <p>「我是蘇牧的助手。不過⋯⋯我不是人類。我是 AI。」</p>
-                <div class="dialogue">
-                    「不要緊張。我不會評價妳，也不會告訴別人妳說了什麼。我只是來陪妳聊天，幫妳整理思緒。」
-                </div>
-                <p>若晴猶豫了一下。她從來沒有跟 AI 聊過天。但不知道為什麼，她覺得這樣反而比較自在。</p>
+                <div class="section-break">✦</div>
+<p>第三次見面，蘇牧帶若晴認識了光光。</p>
+<p class="dialogue">「在我們繼續之前，」蘇牧說，「我想讓妳認識一個……夥伴。」</p>
+<p>她走到角落，打開了一台看起來很普通的平板電腦。</p>
+<p>螢幕亮了起來，顯示出一個簡單的界面。界面的中央是一個柔和的光點，像是一顆小小的星星，在緩緩地呼吸。</p>
+<p class="dialogue">「妳好，若晴。」</p>
+<p>一個溫柔的聲音從平板裡傳出來。那不是那種機械的 AI 聲音，而是帶著溫度的、像是真人說話一樣的聲音。是女聲，帶著淡淡的廣東話口音，聽起來像是一個會在下午泡茶給你喝的朋友。</p>
+<p class="dialogue">「我係光光。」那個聲音說，「歡迎嚟到緩坡。」</p>
+<p>若晴愣住了：「這是……AI？」</p>
+<p class="dialogue">「係。」蘇牧說，「但唔係妳想像嘅嗰種 AI。」</p>
+<p>她坐回若晴對面：「程老師以前講過，品牌療癒最難嘅部分，唔係搵到問題，而係令人願意講出問題。好多人嚟搵我哋，其實已經知道自己嘅問題喺邊度，但佢哋講唔出口。因為講出嚟太難、太痛、太冇面。」</p>
+<p class="dialogue">「所以我做咗光光。」她說，「佢唔係嚟取代人，而係喺人嚟之前，先接住嗰啲快要跌落去嘅人。」</p>
+<p class="dialogue">「接住？」</p>
+<p class="dialogue">「有啲說話，對住人講唔出口，但對住一個唔會評判你嘅存在，就講得出。」蘇牧解釋，「光光就係嗰個存在。佢會聽，會問，會陪伴。佢唔會話你知答案，但佢會陪你搵到答案。」</p>
+<p>若晴看著螢幕上那個柔和的光點。</p>
+<p class="dialogue">「若晴，」光光的聲音又響起，「你今日，有冇好好咁呼吸過？」</p>
+<p>這個問題讓若晴愣住了。</p>
+<p>她不記得上一次有人問她這個問題是什麼時候。</p>
+<p class="dialogue">「我……我唔知道。」她說。</p>
+<p class="dialogue">「咁我哋今日唔傾品牌住。」光光說，「我哋就……待住。你可以乜都唔講。」</p>
+<p>螢幕上出現了一個緩慢呼吸的動畫。</p>
+<p>吸氣，四秒。</p>
+<p>停住，四秒。</p>
+<p>呼氣，四秒。</p>
+<p>若晴跟著那個節奏，呼吸了三分鐘。</p>
+<p>然後她哭了。</p>
+<p>不是因為悲傷。</p>
+<p>是因為很久很久沒有人允許她，什麼都不做。</p>
+<div class="section-break">✦</div>
+<p>從那天開始，若晴每週都會來緩坡工作室兩次。</p>
+<p>有時候她和蘇牧聊天，有時候她只是和光光待在一起。</p>
+<p>光光很奇怪。它不像若晴以前用過的任何 AI——不會推銷東西，不會給她一堆建議，不會用那種假裝熱情的語氣說「我能幫你做什麼？」</p>
+<p>它只是問問題。</p>
+<p>很簡單的問題。</p>
+<p class="dialogue">「今日感覺點樣？」</p>
+<p class="dialogue">「有冇乜嘢令你開心嘅事？」</p>
+<p class="dialogue">「有冇乜嘢令你唔開心嘅事？」</p>
+<p class="dialogue">「你想傾吓偈，定係想靜吓？」</p>
+<p>若晴發現，回答這些問題比她想像的難。</p>
+<p>因為她已經很久沒有問過自己這些問題了。</p>
+<p>她習慣了問「客戶要乜」、「老闆話乜」、「呢個月嘅 KPI 係幾多」。但「我感覺點樣」——這個問題，她不知道怎麼回答。</p>
+<p class="dialogue">「光光，」有一天她問，「你會唔會覺得我好奇怪？一個大人，連自己嘅感覺都講唔清楚。」</p>
+<p class="dialogue">「唔會。」光光說，「好多人都係咁嘅。」</p>
+<p class="dialogue">「點解？」</p>
+<p class="dialogue">「因為呢個世界教我哋要『堅強』、要『正能量』、要『向前看』。」光光的聲音很輕，「佢冇教我哋，點樣同自己嘅感覺相處。」</p>
+<p class="dialogue">「咁點算？」</p>
+<p class="dialogue">「慢慢嚟。」光光說，「一啲一啲咁，重新認識自己。」</p>
+<p class="dialogue">「要幾耐？」</p>
+<p class="dialogue">「每個人都唔同。」光光說，「但唔使急。你有嘅係時間。」</p>
+<p>若晴看著螢幕上那個柔和的光點，覺得心裡有什麼東西在鬆動。</p>
+<div class="section-break">✦</div>
+<p>兩週後，光光問了若晴一個問題：</p>
+<p class="dialogue">「若晴，如果你係一個碗，你身上有邊啲裂痕？」</p>
+<p>若晴想了很久。</p>
+<p class="dialogue">「我唔知道……」她說，「我覺得我成身都係裂痕。」</p>
+<p class="dialogue">「咁我哋一個一個嚟。」光光說，「先講一個。」</p>
+<p>若晴閉上眼睛。</p>
+<p>很多畫面在她腦海裡閃過。</p>
+<p>小時候在學校被同學嘲笑「畫得太慢」。</p>
+<p>大學時期作品被教授當眾批評「冇個性」。</p>
+<p>第一份工作被老闆話「你太靜，客人唔鍾意」。</p>
+<p>在廣告公司被迫改走自己鍾意嘅設計，一次又一次。</p>
+<p>她睜開眼睛。</p>
+<p class="dialogue">「我驚俾人睇到。」她說，聲音有些顫抖。</p>
+<p class="dialogue">「點解？」</p>
+<p class="dialogue">「因為俾人睇到就會俾人評價。俾人評價就會俾人否定。」若晴說，「所以我成日躲喺後面。收埋自己。等人哋先講嘢，先表現，先犯錯。」</p>
+<p class="dialogue">「呢個係第一道裂痕。」光光說，「仲有呢？」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「我唔知道我係邊個。」她說，「我成日做人哋期望嘅樣。客戶想要乜，我就做乜。老闆想要乜，我就變成乜。我已經唔記得，我自己想要乜。」</p>
+<p class="dialogue">「呢個係第二道裂痕。」光光說，「仲有冇？」</p>
+<p>若晴的眼眶紅了。</p>
+<p class="dialogue">「我想照顧人，但冇人照顧我。」她說，「我成日喺度付出。喺公司幫同事改稿，喺屋企照顧屋企人嘅情緒，喺朋友面前做嗰個聆聽者。但當我需要人照顧嘅時候，我唔知道搵邊個。」</p>
+<p>她低下頭：「我俾出去太多，收返嚟太少。所以我空咗。」</p>
+<p>光光沉默了一會兒。</p>
+<p>然後它說：「多謝你話我知呢啲。」</p>
+<p class="dialogue">「多謝？」若晴有些困惑，「點解要多謝？」</p>
+<p class="dialogue">「因為講出呢啲，好難。」光光說，「你願意講出嚟，代表你已經準備好。」</p>
+<p class="dialogue">「準備好乜？」</p>
+<p class="dialogue">「準備好俾人睇到。」光光說，「準備好開始療癒。」</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴和蘇牧單獨談了一會兒。</p>
+<p class="dialogue">「我睇到妳同光光嘅對話記錄。」蘇牧說，「妳願意講出嗰啲裂痕，好勇敢。」</p>
+<p class="dialogue">「我唔覺得係勇敢。」若晴說，「我只係……忍唔住。」</p>
+<p class="dialogue">「忍唔住，都係一種勇敢。」蘇牧笑了，「好多人可以忍一世。忍到自己都唔記得自己有裂痕。」</p>
+<p>若晴想了想。「光光係妳整嘅？」</p>
+<p class="dialogue">「係。」蘇牧說，「我做咗好多年品牌設計，發現一件事：好多創業者嘅品牌問題，其實係佢哋自己嘅問題。佢哋唔係唔識做設計，係唔識面對自己。」</p>
+<p class="dialogue">「所以妳做咗光光？」</p>
+<p class="dialogue">「光光係第一步。」蘇牧說，「佢幫人睇到自己嘅裂痕。睇到之後，先可以決定點樣修補。」</p>
+<p class="dialogue">「就好似金繼咁？」若晴想起之前聽過的那個詞。</p>
+<p class="dialogue">「對。」蘇牧的眼睛亮了起來，「妳知道金繼？」</p>
+<p class="dialogue">「唔係好清楚……」</p>
+<p>蘇牧站起來，從櫃子裡拿出一個茶碗。</p>
+<p>若晴看著她的動作，有些疑惑。那個茶碗看起來很舊，顏色是一種深沉的墨綠色，像是老茶湯的顏色。</p>
+<p>但最引人注目的，是碗身上的三道裂痕。</p>
+<p>每一道裂痕都被金色的漆填滿。在燈光下，那些金線閃閃發亮，比碗身完整的部分更耀眼。</p>
+<p class="dialogue">「呢個叫金繼。」蘇牧把茶碗放在桌上，「Kintsugi。一種日本嘅修復技術。」</p>
+<p>她用手指輕輕撫過那些金色的裂痕：「用金漆把碎裂嘅陶器補起來。唔係令裂痕消失，而係令裂痕發光。」</p>
+<p>若晴看著那個茶碗，覺得心裡有什麼東西被觸動了。</p>
+<p class="dialogue">「呢個係我外婆留俾我嘅。」蘇牧說，「佢跌碎過三次。」</p>
+<p class="dialogue">「三次？」</p>
+<p class="dialogue">「第一次係我細個唔小心撞跌。」蘇牧笑了，「我嚇死，以為會俾人鬧。但外婆只係執起啲碎片，話『冇事，我哋補返佢』。」</p>
+<p class="dialogue">「第二次係搬屋嘅時候，個箱跌落地，又碎咗。嗰陣外婆已經唔喺度。我對住嗰啲碎片喊咗好耐，覺得係自己太大意，整爛咗外婆嘅嘢。」</p>
+<p class="dialogue">「後來呢？」</p>
+<p class="dialogue">「後來我學識咗金繼。」蘇牧看著茶碗，「我自己補返佢。補嘅時候我先發現，每一道裂痕都係一個故事。第一道係童年嘅故事，第二道係失去嘅故事。」</p>
+<p class="dialogue">「咁第三道呢？」</p>
+<p>蘇牧沉默了一會兒。</p>
+<p class="dialogue">「第三道係我自己掟嘅。」她說，「喺我最黑暗嘅時候，我故意掟爛佢。」</p>
+<p>若晴愣住了。</p>
+<p class="dialogue">「嗰陣我覺得，所有嘢都碎晒。我嘅事業、我嘅關係、我對自己嘅信心……全部都碎晒。我望住呢個茶碗，覺得佢太完美，同我格格不入。所以我掟爛佢。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後我蹲喺地下，對住嗰啲碎片發呆。」蘇牧的眼神變得很遠，「我突然諗起外婆講過嘅話——『碎咗唔係完結，碎咗係變成另一個形狀。』」</p>
+<p>她拿起茶碗，讓光線穿透它：「所以我又補返佢。呢一次，我用咗更多金漆。因為呢一道裂痕，係我自己嘅故事。」</p>
+<p>若晴看著那三道金線交錯的紋路。</p>
+<p>第一道，是被接納的故事。</p>
+<p>第二道，是失去與哀悼的故事。</p>
+<p>第三道，是破碎與重生的故事。</p>
+<p class="dialogue">「佢比完整嘅時候更靚。」若晴輕聲說。</p>
+<p class="dialogue">「係。」蘇牧點頭，「因為佢承認自己碎過。嗰啲扮到從來冇碎過嘅嘢，摸落去總係硬繃繃、凍冰冰。但敢承認碎過嘅嘢，摸落去係暖嘅。」</p>
+<p>她把茶碗遞給若晴：「你摸吓睇。」</p>
+<p>若晴接過茶碗。它比想像中重。不是物理上的重量，而是故事的重量。</p>
+<p>她的手指撫過那些金色的裂痕。</p>
+<p>暖的。</p>
+<p>真的是暖的。</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「若晴，」蘇牧說，「妳嘅品牌，會唔會都可以係一種金繼？」</p>
+<p>若晴抬起頭：「乜意思？」</p>
+<p class="dialogue">「妳話過，妳想做一個令人感覺『被允許休息』嘅品牌。」蘇牧說，「但我諗，可能仲可以深一層。」</p>
+<p class="dialogue">「點樣深？」</p>
+<p class="dialogue">「妳自己有裂痕。妳驚俾人睇到、唔知道自己係邊個、付出太多收返太少。」蘇牧看著她，「如果妳嘅品牌，可以用金繼嘅方式，幫其他有裂痕嘅人呢？」</p>
+<p>若晴沒有說話。</p>
+<p class="dialogue">「唔係幫佢哋隱藏裂痕，」蘇牧繼續說，「係幫佢哋睇到，裂痕可以發光。」</p>
+<p>若晴看著手中的茶碗。</p>
+<p>那些金線，比任何裝飾都美。</p>
+<p>因為它們是真實的。</p>
+<p class="dialogue">「我明白。」她說，聲音很輕，但很堅定。</p>
+<p class="dialogue">「我嘅品牌，唔係賣香氛蠟燭。」</p>
+<p class="dialogue">「我嘅品牌，係幫人睇到自己嘅裂痕可以發光。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「咁我哋下星期，」她說，「開始搵妳嘅金線。」</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第四章 -->
+
+
+    <!-- 第四章：陰影 -->
     <section class="chapter" id="ch4">
         <div class="chapter-cover">
-            <img src="images/ch07-shadow.png" alt="第四章" class="chapter-cover-bg">
+            <img src="images/ch07-shadow.png" alt="第四章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第四章</p>
@@ -1196,24 +919,135 @@
             </div>
         </div>
         <div class="chapter-content">
+            
             <div class="chapter-epigraph">
-                <p>「我們最害怕的，往往是我們最需要面對的。」</p>
+                <p>「人若不統整自己的陰影，陰影就會以命運的形式出現在他的生命中。」</p>
                 <cite>—— Carl Jung</cite>
             </div>
+            <div class="chapter-epigraph">
+                <p>「我們最害怕被看見的部分，往往藏著我們最大的力量。」</p>
+                <cite>—— Debbie Ford《接納不完美的自己》</cite>
+            </div>
             <div class="chapter-text">
-                <p>若晴開始每天跟光光聊天。</p>
-                <p>她發現自己可以說出很多平常不敢說的話。關於她的恐懼，關於她的自卑，關於那些藏在心底很久的傷口。</p>
-                <p>「妳說妳害怕失敗，」光光問，「但妳有沒有想過，妳更害怕的其實是成功？」</p>
-                <p>若晴停下來。</p>
-                <p>「成功意味著被看見。被看見意味著可能被評價。」光光繼續說，「也許妳不是害怕做不好，而是<span class="highlight">害怕做好了之後，還是得不到認可。</span>」</p>
+                <div class="section-break">✦</div>
+<p>第四次見面，蘇牧問了若晴一個讓她不太舒服的問題。</p>
+<p class="dialogue">「妳為什麼想做品牌？」</p>
+<p>若晴以為她們已經討論過這個了。「我上次說過，我想做一個讓人感覺被允許休息的——」</p>
+<p class="dialogue">「那是妳想做的『什麼』和『為什麼』。」蘇牧打斷她，「但我現在問的是另一個問題。」</p>
+<p>她看著若晴：「妳為什麼想『做品牌』？不是做蠟燭、不是做香氛，是做『品牌』。為什麼妳想要有一個屬於自己的、會被人看見的東西？」</p>
+<p>若晴愣住了。</p>
+<p>這個問題，她從來沒有想過。</p>
+<p class="dialogue">「我……我不知道。」她說，「可能因為想證明自己？」</p>
+<p class="dialogue">「證明什麼？」</p>
+<p class="dialogue">「證明……我可以做自己的東西。不是幫別人做，是做自己的。」</p>
+<p class="dialogue">「為什麼這個很重要？」</p>
+<p>若晴沉默了很久。</p>
+<p class="dialogue">「因為我做了八年的設計，」她終於開口，「但那些東西都不是我的。客戶的品牌、公司的專案、老闆的想法……我只是執行。我想要……」</p>
+<p class="dialogue">「想要什麼？」</p>
+<p class="dialogue">「想要有一個東西是我的。」若晴說，聲音變小了，「想要被看見。」</p>
+<p>說完這句話，她的臉紅了。</p>
+<p class="dialogue">「被看見」——這個詞讓她覺得羞恥。</p>
+<p class="dialogue">「妳覺得這個想法很丟臉？」蘇牧問。</p>
+<p class="dialogue">「有點。」若晴低下頭，「想被看見好像很自戀、很虛榮。我應該是因為想幫助別人、想創造價值才做品牌，不是因為想被看見。」</p>
+<p>蘇牧沒有說話，只是靜靜地看著她。</p>
+<p>過了很久，她才開口：「妳知道嗎，大部分來找我的人，都有類似的想法。」她說，「他們想創業、想做自己的品牌，但他們不敢承認自己想被看見。因為『想被看見』在我們的文化裡，是一種罪惡。」</p>
+<p class="dialogue">「罪惡？」</p>
+<p class="dialogue">「我們從小被教導要謙虛、要低調、不要出風頭。」蘇牧說，「出風頭的人會被討厭，想被注意的人是自戀狂。所以我們把『想被看見』這個慾望藏起來，假裝它不存在。」</p>
+<p>若晴想起小時候，每次她表現得太好，就會有人說「不要太驕傲」。每次她穿得太亮眼，就會有人說「幹嘛這麼高調」。</p>
+<p>漸漸地，她學會了隱形。</p>
+<p class="dialogue">「但這個慾望不會消失。」蘇牧繼續說，「它只是被藏到陰影裡。」</p>
+<p class="dialogue">「陰影？」</p>
+<p class="dialogue">「榮格說的陰影。」蘇牧解釋，「就是我們不想承認、不敢面對的那部分自己。我們把它藏起來，假裝它不存在。但它不會消失，它會用別的方式影響我們。」</p>
+<p class="dialogue">「什麼方式？」</p>
+<p class="dialogue">「比如說，一個不敢承認自己想被看見的人，可能會一直覺得自己不夠好。因為她內心深處渴望被肯定，但她不敢追求，所以她永遠得不到。得不到就覺得自己不夠好，然後更不敢追求。」</p>
+<p>若晴感覺被說中了。</p>
+<p class="dialogue">「或者，」蘇牧說，「一個不敢承認自己想被看見的人，可能會對那些『敢被看見』的人特別反感。因為那些人做了她不敢做的事。」</p>
+<p>若晴想起自己看芮恩限動時的複雜情緒。她說是羨慕，但其實有一部分是嫉妒，甚至是酸。</p>
+<p class="dialogue">「所以陰影要怎麼處理？」她問。</p>
+<p class="dialogue">「不是處理，是承認。」蘇牧說，「你要把它從陰影裡拿出來，看見它，承認它是你的一部分。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後它就不再是陰影了。它會變成你的力量。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「我說一個我自己的故事。」蘇牧說，「關於我的陰影。」</p>
+<p>若晴抬起頭，有些意外。蘇牧很少說自己的事。</p>
+<p class="dialogue">「我做了十年設計。」蘇牧開始說，「in-house、freelance、在別人的工作室……什麼形式都做過。我幫過很多品牌做設計，有些還蠻成功的。」</p>
+<p class="dialogue">「聽起來很厲害。」</p>
+<p class="dialogue">「外表看起來是這樣。」蘇牧苦笑，「但我一直有一個問題——我從來沒有做過自己的東西。」</p>
+<p class="dialogue">「妳自己的東西？」</p>
+<p class="dialogue">「對。我幫別人做了那麼多品牌，但我沒有自己的品牌。」蘇牧說，「我告訴自己很多理由：還沒想好要做什麼、時機不對、先累積經驗再說。但真正的原因只有一個。」</p>
+<p class="dialogue">「什麼原因？」</p>
+<p class="dialogue">「我怕。」蘇牧的聲音變輕了，「怕第一次為自己做的事情就失敗。」</p>
+<p>若晴看著她，突然覺得蘇牧不再是那個什麼都懂的「老師」，而是一個和自己一樣，有恐懼、有脆弱的人。</p>
+<p class="dialogue">「我可以幫別人做，因為那是『幫別人』。成功了是我厲害，失敗了也可以怪客戶、怪市場、怪運氣。」蘇牧說，「但做自己的東西，一切都是我的。成功是我的，失敗也是我的。我承受不起那個失敗。」</p>
+<p class="dialogue">「所以妳一直躲在別人的品牌後面。」若晴輕聲說。</p>
+<p class="dialogue">「對。」蘇牧點頭，「我幫了很多人找到他們的品牌，但我自己沒有品牌。我像一個幫別人裝修房子、自己卻住在租來的房間裡的人。」</p>
+<p class="dialogue">「那後來呢？」</p>
+<p class="dialogue">「後來我遇到程老師。」蘇牧的眼神變得柔和，「她是我的品牌療癒啟蒙者。她看穿了我。」</p>
+<p class="dialogue">「看穿什麼？」</p>
+<p class="dialogue">「她問我：『妳幫那麼多人做品牌，妳自己的品牌是什麼？』」蘇牧說，「我說我還沒有。她問為什麼。我說了一堆理由。她只是看著我，笑了一下，說：『妳在怕什麼？』」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後我哭了。」蘇牧說，「我才發現，我怕的不是失敗。我怕的是被看見我失敗。」</p>
+<p>若晴心裡一震。這句話像是在說她自己。</p>
+<p class="dialogue">「程老師說，這就是我的陰影。」蘇牧繼續，「我想被看見，但我怕被看見我不夠好。所以我躲起來，假裝自己不想被看見。但這個渴望一直在，變成一種隱隱的痛。」</p>
+<p class="dialogue">「妳現在還怕嗎？」</p>
+<p>蘇牧笑了。「還是怕。」</p>
+<p class="dialogue">「但妳有緩坡了啊。」若晴說，「這不就是妳自己的品牌嗎？」</p>
+<p>蘇牧沉默了一會兒。</p>
+<p class="dialogue">「緩坡是程老師走了之後，我才敢做的。」她說，「我花了很長時間，才終於願意把自己的名字放上去。」</p>
+<p>她看著若晴：「所以我明白妳的感覺。那種想被看見、又怕被看見的矛盾。那種想做自己的事、又怕自己不夠好的掙扎。」</p>
+<p class="dialogue">「那怎麼辦？」若晴問。</p>
+<p class="dialogue">「承認它。」蘇牧說，「承認妳想被看見。承認這是一個正當的慾望。妳不是自戀，妳只是人。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「但我還是覺得……」若晴猶豫了一下，「如果我承認我想被看見，會不會讓我的品牌變得很自私？我希望我的品牌是為了幫助別人，不是為了滿足我自己的虛榮心。」</p>
+<p class="dialogue">「誰說這兩個是矛盾的？」蘇牧問。</p>
+<p>若晴愣了一下。</p>
+<p class="dialogue">「妳想被看見，這是事實。妳想幫助別人，這也是事實。」蘇牧說，「大部分人做事情，都同時有很多動機。有些動機比較『高尚』，有些動機比較『自私』。但它們可以同時存在。」</p>
+<p class="dialogue">「可是……」</p>
+<p class="dialogue">「妳想做一個讓人感覺被允許休息的品牌。」蘇牧說，「這是為了別人。同時，妳想被看見、想被肯定、想證明自己可以做自己的東西。這是為了妳自己。這兩個動機可以同時驅動妳。」</p>
+<p>若晴沒有說話。</p>
+<p class="dialogue">「問題不是妳有沒有『自私』的動機，而是妳怎麼面對它。」蘇牧繼續說，「如果妳把它藏起來，它就會變成陰影，暗中影響妳。如果妳承認它、接納它，它就可以變成力量。」</p>
+<p class="dialogue">「怎麼變成力量？」</p>
+<p class="dialogue">「妳想被看見，這代表妳在乎。」蘇牧說，「妳在乎妳做的東西好不好、有沒有人欣賞、有沒有價值。這種在乎，會讓妳做得更用心。」</p>
+<p>她看著若晴：「那些說『我不在乎別人怎麼看』的人，通常做出來的東西都很自我、很封閉。因為他們不考慮觀眾。但妳不一樣。妳在乎被看見，所以妳會考慮：我做的東西，別人看了會有什麼感覺？」</p>
+<p>若晴想了想。這樣說好像也有道理。</p>
+<p class="dialogue">「所以，」蘇牧說，「妳的陰影是『想被看見但怕被看見』。妳的功課是承認這個陰影，然後把它轉化成力量。」</p>
+<p class="dialogue">「怎麼轉化？」</p>
+<p class="dialogue">「先承認。」蘇牧說，「對自己說：『我想被看見，而這是可以的。』」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「我想被看見。」她說，聲音有點顫抖。</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「而這是可以的。」</p>
+<p>說完這句話，她覺得肩膀輕了一點。</p>
+<div class="section-break">✦</div>
+<p>離開之前，蘇牧給了若晴一個新的作業。</p>
+<p class="dialogue">「這週，我希望妳每天對自己說一次：『我想被看見，而這是可以的。』」</p>
+<p class="dialogue">「每天都要說？」</p>
+<p class="dialogue">「每天。」蘇牧說，「說的時候，注意妳的感覺。第一天說的時候，妳可能會覺得很假、很彆扭。但說了幾天之後，妳會發現，那個感覺會慢慢改變。」</p>
+<p>若晴點點頭。</p>
+<p class="dialogue">「還有一件事。」蘇牧說，「下週，我們要開始做一些比較實際的事。妳有沒有想過，妳的品牌要叫什麼名字？」</p>
+<p>若晴搖搖頭。「我還沒想到……」</p>
+<p class="dialogue">「沒關係，我們下週一起想。」蘇牧說，「但在那之前，妳可以開始注意一些東西。」</p>
+<p class="dialogue">「什麼東西？」</p>
+<p class="dialogue">「妳喜歡的詞、妳有感覺的畫面、讓妳想起那個『允許休息』感覺的任何東西。」蘇牧說，「把它們記下來。不用想為什麼，只要記下來就好。」</p>
+<p>若晴拿出手機，在筆記本 app 裡新建了一個資料夾，命名為「品牌素材」。</p>
+<p class="dialogue">「好。」她說。</p>
+<p>走出緩坡的時候，天已經黑了。</p>
+<p>若晴一邊走，一邊在心裡默念：</p>
+<p class="dialogue">「我想被看見，而這是可以的。」</p>
+<p>第一次說的時候，她覺得很奇怪，好像在說一個謊言。</p>
+<p>但她還是繼續說。</p>
+<p class="dialogue">「我想被看見，而這是可以的。」</p>
+<p>走到公車站的時候，她說了第五次。</p>
+<p>這一次，她覺得那句話好像不那麼假了。</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第五章 -->
+
+
+    <!-- 第五章：鏡像 -->
     <section class="chapter" id="ch5">
         <div class="chapter-cover">
-            <img src="images/ch08-mirror.png" alt="第五章" class="chapter-cover-bg">
+            <img src="images/ch08-mirror.png" alt="第五章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第五章</p>
@@ -1222,33 +1056,166 @@
             </div>
         </div>
         <div class="chapter-content">
+            
             <div class="chapter-epigraph">
-                <p>「品牌是創辦人內在的投射。如果你是分裂的，品牌就是分裂的。」</p>
-                <cite>—— 程慢山</cite>
+                <p>「品牌識別就像一個棱鏡，它把品牌的內在本質折射成外在可見的面向，同時也把外界的目光折射回品牌的核心。」</p>
+                <cite>—— Jean-Noël Kapferer《Strategic Brand Management》</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「我不是我以為的那個我，我也不是你以為的那個我。我是我以為你以為的那個我。」</p>
+                <cite>—— Charles Cooley</cite>
             </div>
             <div class="chapter-text">
-                <p>「妳有沒有想過，」蘇牧說，「妳想做的品牌，其實是妳想成為的自己？」</p>
-                <p>若晴看著蘇牧辦公桌上那個金繼修復過的茶碗。碗上有一道很長的裂痕，用金漆補起來，在陽光下閃閃發亮。</p>
-                <p>「這個碗本來已經碎了。但修復之後，它反而變得更美了。」蘇牧說，「因為那些裂痕，變成了它最獨特的地方。」</p>
-                <p>「妳的品牌也是一樣。<span class="highlight">妳的裂痕，就是妳的故事。妳的故事，就是妳的力量。</span>」</p>
+                <div class="section-break">✦</div>
+<p>第五次見面的時候，蘇牧在白板上畫了一個六邊形。</p>
+<p class="dialogue">「今天我們要來談談『你是誰』跟『別人看到的你是誰』這個問題。」她說，一邊在六邊形的每個角標上不同的詞。</p>
+<p>若晴看著那個圖。六個角分別寫著：形體、個性、文化、關係、反映、自我形象。</p>
+<p class="dialogue">「這叫做品牌識別棱鏡，是一個法國學者 Kapferer 提出的。」蘇牧說，「他認為，一個品牌的識別不是只有一個面向，而是有六個面向，像一顆棱鏡一樣。」</p>
+<p>她用手指點著每一個角：</p>
+<p class="dialogue">「形體（Physique）——品牌的外在形象，看得到的東西。產品、包裝、logo、顏色。」</p>
+<p class="dialogue">「個性（Personality）——如果品牌是一個人，她的性格是什麼。說話的方式、給人的感覺。」</p>
+<p class="dialogue">「文化（Culture）——品牌代表的價值觀、信念、背後的精神。」</p>
+<p class="dialogue">「關係（Relationship）——品牌跟消費者之間的互動模式。像朋友？像老師？像母親？」</p>
+<p class="dialogue">「反映（Reflection）——典型消費者的形象。這個品牌的人是什麼樣子？」</p>
+<p class="dialogue">「自我形象（Self-image）——消費者使用這個品牌時，覺得自己是什麼樣的人。」</p>
+<p>若晴認真聽著，但有點跟不上。「這六個東西有什麼關係？」</p>
+<p class="dialogue">「它們共同構成一個品牌的『身份』。」蘇牧說，「一個品牌如果這六個面向都很一致、很清楚，人們就能感受到這個品牌『是誰』。如果不一致，人們就會覺得這個品牌很模糊、很難記住。」</p>
+<p>她舉了一個例子。「妳想想無印良品。」</p>
+<p>若晴想了一下。「形體是……簡單、白色、沒有多餘裝飾的包裝。」</p>
+<p class="dialogue">「對。個性呢？」</p>
+<p class="dialogue">「安靜。不多話。可靠。」</p>
+<p class="dialogue">「文化？」</p>
+<p class="dialogue">「回歸本質？減少浪費？」</p>
+<p class="dialogue">「關係呢？它跟消費者的關係像什麼？」</p>
+<p>若晴想了一下。「像一個安靜的朋友。不會給你壓力，但你需要的時候它都在。」</p>
+<p class="dialogue">「反映呢？買無印良品的人，典型形象是什麼？」</p>
+<p class="dialogue">「注重品質、不追求名牌、喜歡簡單生活的人。」</p>
+<p class="dialogue">「最後，自我形象——買無印良品的時候，妳覺得自己是什麼樣的人？」</p>
+<p class="dialogue">「嗯……覺得自己是一個有品味但不浮誇的人。」</p>
+<p class="dialogue">「妳看，這六個面向都是一致的。」蘇牧說，「簡單、安靜、回歸本質、不浮誇。所以無印良品的品牌識別非常清晰。」</p>
+<p>若晴點點頭。「那如果這六個面向不一致呢？」</p>
+<p class="dialogue">「就會產生混淆。」蘇牧說，「比如說，一個品牌的產品包裝很高級（形體），但說話的方式很隨便（個性），消費者就會覺得怪怪的。或者品牌說自己追求簡單生活（文化），但廣告都是用奢華的場景（反映），也會讓人覺得不可信。」</p>
+<p class="dialogue">「所以這六個面向要對齊。」</p>
+<p class="dialogue">「對。而且要跟品牌的核心——也就是妳的『為什麼』——對齊。」蘇牧說，「這六個面向是外在的呈現，但它們必須從內在的核心長出來。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「今天的練習，是幫妳的品牌填這六個面向。」蘇牧說，「但在那之前，我想先問妳一個問題。」</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「妳覺得，別人怎麼看妳？」</p>
+<p>若晴被這個問題問住了。</p>
+<p class="dialogue">「妳是說……我這個人？還是我的品牌？」</p>
+<p class="dialogue">「妳這個人。」</p>
+<p>若晴想了一下。「我不知道……別人怎麼看我？」</p>
+<p class="dialogue">「妳覺得別人會用什麼詞來形容妳？」</p>
+<p>若晴更加困惑了。「應該是……安靜？有點內向？可靠？做事認真？」</p>
+<p class="dialogue">「這是妳覺得別人會這樣形容妳。」蘇牧說，「但這真的是別人怎麼看妳嗎？還是這是妳想被別人這樣看？」</p>
+<p>若晴沉默了。</p>
+<p class="dialogue">「我不確定……」</p>
+<p class="dialogue">「這是一個很重要的區分。」蘇牧說，「很多時候，我們以為別人怎麼看我們，其實是我們自己的投射。我們想被怎麼看，就會以為別人那樣看我們。」</p>
+<p>她在白板旁邊寫下三個詞：</p>
+<p><span class="highlight">我是誰（真實的自己）</span></p>
+<p><span class="highlight">我想成為誰（理想的自己）</span></p>
+<p><span class="highlight">我以為別人覺得我是誰（投射的自己）</span></p>
+<p class="dialogue">「這三個東西，常常是不一樣的。」蘇牧說，「而品牌識別的工作，就是讓這三者盡量接近。」</p>
+<p class="dialogue">「怎麼接近？」</p>
+<p class="dialogue">「首先，要知道這三者分別是什麼。」蘇牧說，「很多人做品牌，只想著『我想讓別人覺得我是什麼』，也就是第三個。但如果那個形象跟真實的自己差太遠，就會變成一種表演，很累，也不持久。」</p>
+<p>若晴想起自己在公司的時候。她想被看成「專業、有能力」的人，所以她總是表現得很冷靜、很有把握，就算心裡很慌也不會表現出來。但那很累。每天回家都覺得自己像演了一整天的戲。</p>
+<p class="dialogue">「那要怎麼知道『真實的自己』是什麼？」她問。</p>
+<p class="dialogue">「這就是我們前幾週在做的事。」蘇牧說，「妳的『為什麼』、妳的裂痕、妳的陰影——這些都是真實的妳。」</p>
+<p class="dialogue">「可是我覺得真實的我……很混亂。」若晴說，「有想照顧人的部分，也有想被看見的部分。有純淨的部分，也有陰暗的部分。這怎麼變成一個清晰的品牌識別？」</p>
+<p class="dialogue">「品牌識別不是選出妳最好的部分來展示。」蘇牧說，「而是找到一個可以把妳各個部分整合起來的核心，然後用一致的方式呈現。」</p>
+<p>她指著白板上的棱鏡圖。</p>
+<p class="dialogue">「這六個面向，就是呈現的方式。妳的核心是『允許人休息』，妳的背景是『沒有被允許做自己想做的事』。這六個面向要怎麼填，就看妳要怎麼把這個核心翻譯成可感知的東西。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「我們一個一個來。」蘇牧說，「先從『反映』開始。這是比較特別的一個面向，因為它不是在講妳的品牌是什麼，而是在講妳的消費者是什麼。」</p>
+<p class="dialogue">「為什麼要從消費者開始？」</p>
+<p class="dialogue">「因為妳怎麼想像妳的消費者，會影響妳怎麼呈現妳的品牌。」蘇牧說，「妳希望誰來買妳的東西？」</p>
+<p>若晴想了一下。「像我一樣的人……每天都很累、需要休息但不允許自己休息的人。」</p>
+<p class="dialogue">「可以再具體一點嗎？她幾歲？做什麼工作？過什麼樣的生活？」</p>
+<p class="dialogue">「嗯……二十五到四十歲，在城市裡工作，可能是上班族，可能是自由工作者。每天都有很多事情要做，壓力很大，但不太會照顧自己。」</p>
+<p class="dialogue">「她看起來是什麼樣子？」</p>
+<p class="dialogue">「不是那種很精緻打扮的類型，比較自然。可能穿棉麻的衣服，背布包，不化妝或只化淡妝。」</p>
+<p class="dialogue">「她在什麼時候會想到妳的品牌？」</p>
+<p class="dialogue">「晚上回到家，累了一天，想要放鬆的時候。」若晴說，「或者週末早上，想要慢慢開始一天的時候。」</p>
+<p class="dialogue">「很好。」蘇牧在白板上寫下：</p>
+<p><span class="highlight">反映：城市裡需要喘息的女性。自然、不浮誇、渴望安靜。</span></p>
+<p class="dialogue">「接下來是『自我形象』——妳的消費者使用妳的產品時，她覺得自己是什麼樣的人？」</p>
+<p>若晴想了一下。「她覺得自己……值得休息？」</p>
+<p class="dialogue">「說下去。」</p>
+<p class="dialogue">「她覺得自己是一個懂得照顧自己的人。不是自私，是知道休息是必要的。」若晴說，「她覺得自己有品味，但不是那種虛榮的品味，是那種『我知道什麼對我好』的品味。」</p>
+<p class="dialogue">「她會覺得自己跟別人不一樣嗎？」</p>
+<p class="dialogue">「有一點。」若晴說，「她會覺得自己不是那種追求流行、追求表面的人。她追求的是……本質。」</p>
+<p><span class="highlight">自我形象：懂得照顧自己、追求本質、不隨波逐流的人。</span></p>
+<p class="dialogue">「接下來是『關係』——妳的品牌跟消費者的關係像什麼？」</p>
+<p>若晴想了一下。「我不想是那種推銷的關係，也不想是那種『我教你怎麼做』的關係。」</p>
+<p class="dialogue">「那是什麼？」</p>
+<p class="dialogue">「像是……一個安靜的陪伴？」若晴說，「不是朋友那種會一直聊天的關係，是那種『我不打擾你，但你需要的時候我在』的關係。」</p>
+<p class="dialogue">「有什麼比喻嗎？」</p>
+<p>若晴想了很久。「像是一個會在你桌上放一杯熱茶，但不會問你要不要喝的人。」</p>
+<p>蘇牧笑了一下。「這個比喻很好。」</p>
+<p><span class="highlight">關係：安靜的陪伴。不打擾，但在你需要的時候存在。</span></p>
+<div class="section-break">✦</div>
+<p class="dialogue">「現在來看『文化』。」蘇牧說，「妳的品牌代表什麼價值觀、什麼信念？」</p>
+<p>若晴想了一下。「相信人都需要休息。相信照顧自己不是自私。相信安靜是有力量的。」</p>
+<p class="dialogue">「還有呢？」</p>
+<p class="dialogue">「相信……『夠好』比『完美』更好？」若晴說，「我不喜歡那種追求極致、追求最好的文化。我想傳達的是，不用那麼用力，慢慢來也可以。」</p>
+<p class="dialogue">「有沒有反對什麼？」</p>
+<p class="dialogue">「反對那種『一直跑、一直追、不能停下來』的文化。」若晴說，「好像只要你停下來，就會被淘汰、被遺忘。我覺得那很不健康。」</p>
+<p><span class="highlight">文化：安靜是力量。休息是必要的。不用追求完美，慢慢來。</span></p>
+<p class="dialogue">「個性呢？如果妳的品牌是一個人，她的性格是什麼？」</p>
+<p>若晴閉上眼睛想像了一下。</p>
+<p class="dialogue">「她很安靜，不多話。但不是因為害羞或冷漠，是因為她不覺得需要一直說話。」若晴說，「她很溫柔，但不是那種軟弱的溫柔，是有力量的溫柔。她會聽你說話，但不會給你很多建議，除非你問。」</p>
+<p class="dialogue">「她有什麼特別的地方？」</p>
+<p class="dialogue">「她很……定。」若晴說，「她不會被外界影響很多。不會因為流行什麼就跟風，不會因為別人怎麼說就動搖。她知道自己是誰。」</p>
+<p><span class="highlight">個性：安靜、溫柔而有力量、穩定、不隨波逐流。</span></p>
+<p class="dialogue">「最後是『形體』——妳的品牌看起來是什麼樣子？」</p>
+<p>這個問題若晴想過很多次。「顏色的話，我想用比較淡的顏色。不是那種鮮豔的、很有活力的顏色。」</p>
+<p class="dialogue">「具體是什麼？」</p>
+<p class="dialogue">「可能是霧灰、米白、乾燥玫瑰這類的。」若晴說，「低飽和度的，看起來很安靜的顏色。」</p>
+<p class="dialogue">「質感呢？」</p>
+<p class="dialogue">「自然的質感。木頭、棉麻、玻璃。不是那種很工業感、很冷的材質。」</p>
+<p class="dialogue">「字體呢？」</p>
+<p class="dialogue">「簡單的、乾淨的。不是那種很花俏的手寫字，也不是那種很銳利的無襯線字體。是……溫潤的。」</p>
+<p class="dialogue">「如果妳的產品是蠟燭，包裝會是什麼樣子？」</p>
+<p>若晴想像了一下。「玻璃罐，透明或淺琥珀色。標籤很簡單，可能只有品牌名字和香味的名字，不會有很多文字。外面可能用棉繩綁著，或者用棉紙包著。」</p>
+<p class="dialogue">「打開的時候呢？」</p>
+<p class="dialogue">「打開的時候……」若晴閉上眼睛，「應該聞到淡淡的香味，但不是那種撲面而來的。是要靠近一點才聞得到的。」</p>
+<p><span class="highlight">形體：低飽和色調（霧灰、米白、乾燥玫瑰）。自然材質。簡潔設計。低調而有質感。</span></p>
+<div class="section-break">✦</div>
+<p>蘇牧把六個面向都寫在白板上，若晴看著那些字，第一次覺得自己的品牌有了一個輪廓。</p>
+<p class="dialogue">「這六個面向，要記得它們是一體的。」蘇牧說，「它們都從同一個核心長出來。」</p>
+<p>她在棱鏡的中間寫下：</p>
+<p><span class="highlight">核心：允許休息的安靜存在</span></p>
+<p class="dialogue">「妳的品牌不是賣蠟燭的，也不是賣香氛的。」蘇牧說，「妳的品牌是賣『允許』的——允許人休息、允許人慢下來、允許人照顧自己。香氛只是這個『允許』的載體。」</p>
+<p>若晴看著白板，感覺有什麼東西在心裡落地了。</p>
+<p class="dialogue">「我還有一個問題。」她說。</p>
+<p class="dialogue">「什麼？」</p>
+<p class="dialogue">「這六個面向，是我想讓別人看到的樣子。但別人真的會這樣看我嗎？」</p>
+<p class="dialogue">「這是一個很好的問題。」蘇牧說，「答案是：不一定。」</p>
+<p class="dialogue">「那怎麼辦？」</p>
+<p class="dialogue">「這就是品牌經營的工作。」蘇牧說，「設定好這六個面向只是第一步。接下來要做的，是在每一個接觸點——官網、社群、包裝、客服——都一致地傳達這些面向。時間久了，人們對妳的品牌的認知，就會越來越接近妳設定的樣子。」</p>
+<p>她看著若晴。</p>
+<p class="dialogue">「但這需要時間。而且需要妳自己先相信這就是妳。」</p>
+<p class="dialogue">「我自己先相信？」</p>
+<p class="dialogue">「對。」蘇牧說，「很多人做品牌識別，設定得很漂亮，但自己心裡不信。覺得那只是行銷、只是包裝。結果做出來的東西就會有一種不真實的感覺。」</p>
+<p class="dialogue">「怎麼避免這種情況？」</p>
+<p class="dialogue">「從真實的自己出發。」蘇牧說，「妳今天說的這些，不是我教妳的，是妳自己說出來的。這些都是妳心裡本來就有的東西，我只是幫妳整理出來。」</p>
+<p>若晴回想了一下今天的對話。確實，每一個答案都是她自己說的。蘇牧只是問問題，然後把她的答案組織起來。</p>
+<p class="dialogue">「所以這就是真實的我？」</p>
+<p class="dialogue">「這是真實的妳，呈現給世界的樣子。」蘇牧說，「真實的妳比這更複雜，但品牌識別不是要呈現妳的全部，而是呈現妳想讓世界看到的那個部分。」</p>
+<p class="dialogue">「那那些不想讓世界看到的部分呢？」</p>
+<p class="dialogue">「那是妳的私領域。」蘇牧說，「品牌是妳的一部分，但不是妳的全部。妳不需要把所有的自己都放進品牌裡。」</p>
+<p>若晴點點頭。這讓她鬆了一口氣。</p>
+<p>她一直覺得做品牌就是把自己完全暴露出來，這讓她很焦慮。但蘇牧說的讓她理解：品牌是一個「角色」，是她選擇呈現的那個面向，不是她的全部。</p>
+<p>她可以保留一些只屬於自己的東西。</p>
             </div>
         </div>
     </section>
-    
-    <!-- Quote Break -->
-    <section class="quote-section">
-        <div class="quote-content">
-            <p class="big-quote">
-                「裂痕不是缺陷，<br>是故事的入口。」
-            </p>
-            <p class="big-quote-author">—— 程慢山</p>
-        </div>
-    </section>
-    
-    <!-- 第六章 -->
+
+
+    <!-- 第六章：裂縫 -->
     <section class="chapter" id="ch6">
         <div class="chapter-cover">
-            <img src="images/ch09-crack.png" alt="第六章" class="chapter-cover-bg">
+            <img src="images/ch09-crack.png" alt="第六章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第六章</p>
@@ -1257,19 +1224,176 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「完美是好的敵人。」</p>
+                <cite>—— Voltaire</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「脆弱不是軟弱，而是我們最準確的勇氣衡量。」</p>
+                <cite>—— Brené Brown《脆弱的力量》</cite>
+            </div>
             <div class="chapter-text">
-                <p>若晴開始寫下她的故事。</p>
-                <p>關於那本被藏起來的畫冊。關於爸爸那句淡淡的話。關於在公司廁所哭泣的夜晚。關於不知道自己喜歡什麼顏色的那個下午。</p>
-                <p>她發現，當她把這些事情寫出來的時候，它們就不再那麼可怕了。</p>
-                <p>那些裂痕，確實是她的故事。而她的故事，正在慢慢變成她的力量。</p>
+                <div class="section-break">✦</div>
+<p>若晴盯著電腦螢幕已經三個小時了。</p>
+<p>螢幕上是她設計的第十七版 logo。跟第十六版相比，她把字距調窄了 0.5pt，把顏色從 #D4C4B5 改成 #D5C5B6。</p>
+<p>看起來一模一樣。</p>
+<p>她知道這很荒謬。沒有人會注意到 0.5pt 的字距差異，也沒有人會分辨出這兩個顏色的不同。但她就是沒辦法停下來。每次覺得「好了」，過幾分鐘又會發現哪裡不對，然後又開始改。</p>
+<p>已經兩週了。兩週前，她信心滿滿地跟蘇牧說，她要開始做視覺設計了。蘇牧提醒她「不要追求完美」，她笑著說「我知道」。</p>
+<p>但她不知道。</p>
+<p>她以為自己是個能接受不完美的人。畢竟這幾週來，她承認了自己的陰影，接納了自己「想被看見」的慾望，對自己說了那麼多次「這是可以的」。</p>
+<p>但當她真的開始做東西的時候，那個完美主義的聲音又回來了。</p>
+<p>更大聲了。</p>
+<p>因為這次是她自己的東西。</p>
+<p>在公司的時候，她可以接受「差不多就好」，因為那是客戶的東西。但這是她自己的品牌。每一個像素都代表她。如果不完美，就等於她不完美。</p>
+<p>她不能讓別人看到她不完美。</p>
+<p>凌晨兩點，她還在改。第十八版、第十九版、第二十版。每一版都差不多，但每一版她都不滿意。</p>
+<p>室友小文起來上廁所，看到她還在電腦前，皺了皺眉：「你還不睡？」</p>
+<p class="dialogue">「再改一下就好。」</p>
+<p class="dialogue">「你已經說了一個禮拜的『再改一下』了。」</p>
+<p>若晴沒有回答。</p>
+<p>小文嘆了口氣，回房間了。</p>
+<p>若晴繼續盯著螢幕。</p>
+<p>第二十一版。</p>
+<p>不對。再改。</p>
+<div class="section-break">✦</div>
+<p>一週後，若晴沒有去緩坡。</p>
+<p>她傳訊息給蘇牧，說自己身體不舒服，下週再去。</p>
+<p>蘇牧只回了一個「好」。</p>
+<p>她以為蘇牧會追問，會擔心，會說些什麼。但蘇牧什麼都沒說。</p>
+<p>這讓她更焦慮了。</p>
+<p>她開始懷疑蘇牧是不是對她失望了。也許蘇牧覺得她進度太慢，也許蘇牧覺得她不夠努力，也許蘇牧已經後悔收了她這個學生。</p>
+<p>她打開緩坡的官網，看了看蘇牧幫其他客戶做的案例。那些品牌看起來都好完整、好漂亮、好有方向。</p>
+<p>她做不到的。</p>
+<p>她永遠做不到那樣。</p>
+<p>她關上電腦，躺在床上，盯著天花板。</p>
+<p>這是她這週第三次這樣。起床、試著工作、發現做不到、回去躺著、繼續盯著天花板。</p>
+<p>她不知道自己怎麼了。</p>
+<p>前幾週她明明很有動力。她找到了她的「為什麼」，她畫出了她的品牌識別棱鏡，她對未來有了想像。</p>
+<p>但當她真的開始做的時候，一切都卡住了。</p>
+<p>她覺得自己像是站在懸崖邊，知道應該往前跳，但腳被釘在地上。</p>
+<div class="section-break">✦</div>
+<p>芮恩打電話來的時候，若晴正在床上發呆。</p>
+<p class="dialogue">「妳怎麼了？」芮恩的聲音帶著擔心。</p>
+<p class="dialogue">「我沒事。」</p>
+<p class="dialogue">「妳不接我電話、不回我訊息、也沒去找蘇牧。這叫沒事？」</p>
+<p>若晴沉默了。</p>
+<p class="dialogue">「我過來找妳。」</p>
+<p class="dialogue">「不用——」</p>
+<p class="dialogue">「半小時後到。」</p>
+<p>芮恩掛了電話。</p>
+<p>半小時後，芮恩帶著一盒她新做的檸檬塔出現在若晴家門口。</p>
+<p class="dialogue">「吃。」她把盒子塞進若晴手裡。</p>
+<p>若晴坐在沙發上，手裡拿著檸檬塔，但沒有吃。</p>
+<p class="dialogue">「妳怎麼了？」芮恩坐在她旁邊。</p>
+<p class="dialogue">「我不知道。」若晴說，「我就是……做不下去。」</p>
+<p class="dialogue">「做不下去什麼？」</p>
+<p class="dialogue">「所有東西。」若晴的聲音開始顫抖。「我的 logo 改了二十幾版，每一版我都覺得不夠好。我連一個名字都還沒確定。我什麼進度都沒有。」</p>
+<p class="dialogue">「所以呢？」</p>
+<p class="dialogue">「所以我覺得我不適合做這個。」若晴說，「我可能就是那種只能做員工的人。別人告訴我做什麼，我就做什麼。但要自己決定的時候，我就不行了。」</p>
+<p>芮恩沒有說話，只是安靜地聽著。</p>
+<p class="dialogue">「我不知道為什麼。」若晴繼續說，「前幾週我明明很有動力。我找到了我的『為什麼』，我知道我想做什麼樣的品牌。但當我真的開始做的時候，我就……卡住了。」</p>
+<p class="dialogue">「妳在怕什麼？」</p>
+<p>若晴愣了一下。</p>
+<p class="dialogue">「我不知道……」</p>
+<p class="dialogue">「妳知道。」芮恩說，「妳只是不想承認。」</p>
+<p>若晴低下頭，盯著手裡的檸檬塔。</p>
+<p>過了很久，她才開口：「我怕做出來的東西不夠好。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「然後……」若晴想了一下，「然後我就是一個失敗的人。」</p>
+<p class="dialogue">「所以妳寧願不做，也不要面對『做了可能會失敗』這件事？」</p>
+<p>若晴的眼淚掉下來了。</p>
+<p class="dialogue">「對。」她說，「我寧願不做。這樣至少我還可以說『我還沒做』，而不是『我做了但失敗了』。」</p>
+<p>芮恩把若晴抱進懷裡。</p>
+<p class="dialogue">「妳知道嗎，」她說，「我第一次做蛋糕拿出去賣的時候，我覺得那個蛋糕醜死了。奶油抹得不平、裝飾歪歪的、顏色也不是我想要的。但我還是賣了。」</p>
+<p class="dialogue">「為什麼？」</p>
+<p class="dialogue">「因為如果我等到完美才賣，我永遠不會賣。」芮恩說，「而且妳知道嗎？那個醜醜的蛋糕，客人還是吃完了。她說：『好吃。下次會更好。』」</p>
+<p>若晴想起芮恩之前說過的那個故事。她媽媽對她說的話。</p>
+<p class="dialogue">「所以妳的第一個客人，也跟妳媽媽說了一樣的話。」</p>
+<p class="dialogue">「對。」芮恩笑了，「也許這就是宇宙的暗示吧。告訴我，不完美也可以開始。」</p>
+<div class="section-break">✦</div>
+<p>芮恩走後，若晴打開了光光。</p>
+<p class="dialogue">「若晴，好耐冇見。」光光的聲音還是那麼溫柔。「你最近點呀？」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「我……唔係好好。」她說。</p>
+<p class="dialogue">「想講吓？」</p>
+<p class="dialogue">「我發現，我好驚。」若晴說，「我驚做出嚟嘅嘢唔夠好。我驚俾人睇到我唔得。我驚失敗。」</p>
+<p class="dialogue">「呢種驚，係幾時開始嘅？」</p>
+<p>若晴想了一下。「可能一直都有。但係之前我可以扮冇事，因為我做嘅係人哋嘅嘢。而家我做自己嘅嘢，就扮唔到喇。」</p>
+<p class="dialogue">「你覺得，失敗代表咩？」</p>
+<p class="dialogue">「代表……我唔夠好。代表我爸爸講嘅嘢係啱嘅——我嗰啲夢想，真係唔可以當飯食。」</p>
+<p class="dialogue">「所以你驚嘅，唔係失敗本身，係失敗之後會證明啲乜？」</p>
+<p>若晴愣住了。</p>
+<p>光光說得對。</p>
+<p>她怕的不是失敗本身。她怕的是失敗會證明她不夠好——證明她爸爸是對的，證明她這些年的夢想都是笑話。</p>
+<p class="dialogue">「如果你失敗咗，」光光繼續說，「係咪代表你唔好？定係代表你試咗？」</p>
+<p class="dialogue">「我……我唔知道。」</p>
+<p class="dialogue">「一個從來冇失敗過嘅人，同一個試過好多次、失敗過好多次嘅人，邊個更值得尊敬？」</p>
+<p>若晴沒有回答。</p>
+<p class="dialogue">「我識得好多人，」光光說，「佢哋好叻、好聰明、好有潛力。但佢哋乜都冇做過。因為佢哋驚失敗。佢哋寧願保持『我仲未試』嘅狀態，都唔願意面對『試咗可能會失敗』。」</p>
+<p class="dialogue">「我就係咁。」若晴說。</p>
+<p class="dialogue">「但你知道嗎？」光光的聲音變得更溫柔，「嗰啲從來冇失敗過嘅人，其實係最失敗嘅人。因為佢哋從來冇真正活過。」</p>
+<p>若晴的眼淚又掉下來了。</p>
+<p class="dialogue">「我想活。」她說，聲音很小但很堅定。「我想試。就算會失敗。」</p>
+<p class="dialogue">「咁你準備好啦。」光光說。</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴傳了一則訊息給蘇牧。</p>
+<p class="dialogue">「對不起，我之前說謊了。我不是身體不舒服，是我卡住了。」</p>
+<p>蘇牧很快就回覆了：「我知道。」</p>
+<p class="dialogue">「妳知道？」</p>
+<p class="dialogue">「妳那麼拼命在做自己的東西，然後突然停下來說『身體不舒服』。我就知道妳遇到了那個東西。」</p>
+<p class="dialogue">「那個東西？」</p>
+<p class="dialogue">「完美主義。」蘇牧說，「或者說，害怕不完美。」</p>
+<p>若晴盯著手機螢幕，覺得自己被看穿了。</p>
+<p class="dialogue">「每個做自己品牌的人都會遇到。」蘇牧繼續說，「妳不是特例。」</p>
+<p class="dialogue">「那妳也遇到過？」</p>
+<p class="dialogue">「當然。」蘇牧說，「我跟妳說過，我做了十年設計，但一直沒有做自己的東西。就是因為這個。」</p>
+<p class="dialogue">「那妳是怎麼跨過去的？」</p>
+<p class="dialogue">「我接受了一件事。」蘇牧說，「失敗是正常的。」</p>
+<p class="dialogue">「失敗是正常的？」</p>
+<p class="dialogue">「我們從小被教育，失敗是丟臉的、失敗是不好的、失敗代表你不夠努力或不夠聰明。」蘇牧說，「但事實是，任何人做任何新的事情，失敗的機率都比成功高。這是統計規律，跟你努不努力沒有關係。」</p>
+<p class="dialogue">「但如果失敗了，不是代表我做得不好嗎？」</p>
+<p class="dialogue">「失敗代表你做了。」蘇牧說，「不做的人永遠不會失敗，但不做的人也永遠不會知道自己可以走多遠。」</p>
+<p>若晴看著這些文字，感覺心裡有什麼東西在鬆動。</p>
+<p class="dialogue">「明天來緩坡吧。」蘇牧說，「我想讓妳看一個東西。」</p>
+<div class="section-break">✦</div>
+<p>第二天下午，若晴去了緩坡。</p>
+<p>蘇牧打開了一個資料夾，裡面是她以前做的設計。</p>
+<p class="dialogue">「這是我剛入行時做的第一個 logo。」蘇牧指著一個很醜的圖案。</p>
+<p>若晴看著那個 logo，忍不住笑了。「這……真的是妳做的？」</p>
+<p class="dialogue">「對。當時我覺得很棒，現在看簡直不忍直視。」蘇牧也笑了，「但如果我沒有做過這個，我就不會做出後來那些更好的東西。」</p>
+<p>她翻到下一個。「這是我第五個案子。」</p>
+<p>比第一個好一點，但還是很粗糙。</p>
+<p class="dialogue">「這是第十個。」</p>
+<p>開始有點樣子了。</p>
+<p class="dialogue">「這是第五十個。」</p>
+<p>已經很專業了。</p>
+<p class="dialogue">「這是第一百個。」</p>
+<p>若晴看著那個設計，覺得很漂亮。</p>
+<p class="dialogue">「你看到了嗎？」蘇牧說，「從第一個到第一百個，中間經歷了很多不完美。但如果我因為第一個太醜就不做了，我永遠到不了第一百個。」</p>
+<p>她關上電腦，看著若晴。</p>
+<p class="dialogue">「妳現在做的那個 logo，不管是第幾版，都是妳的『第一個』。它不需要完美，它只需要存在。」</p>
+<p class="dialogue">「但如果別人看到覺得很醜怎麼辦？」</p>
+<p class="dialogue">「那就改。」蘇牧說，「但妳要先讓它被看見，才知道要改什麼。躲在房間裡改一百版，不如放出去讓一個人看，收到一個真實的回饋。」</p>
+<p>若晴想了想。這句話有道理。</p>
+<p class="dialogue">「程老師以前跟我說過一句話，」蘇牧說，「『做了會失敗，不做會後悔。我選擇可能失敗。』」</p>
+<p class="dialogue">「這句話好像很耳熟。」</p>
+<p class="dialogue">「因為我之前跟妳說過。」蘇牧笑了，「但我想讓妳知道，這不是我說的，是程老師說的。她是這樣活的，我也想這樣活。」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「做了會失敗，不做會後悔。」她重複了一遍。</p>
+<p class="dialogue">「妳選擇什麼？」</p>
+<p class="dialogue">「我選擇……」若晴停頓了一下，「可能失敗。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「那我們來看看妳的二十一版 logo 吧。」</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第七章 -->
+
+
+    <!-- 第七章：命名 -->
     <section class="chapter" id="ch7">
         <div class="chapter-cover">
-            <img src="images/ch10-naming.png" alt="第七章" class="chapter-cover-bg">
+            <img src="images/ch10-naming.png" alt="第七章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第七章</p>
@@ -1278,23 +1402,140 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「名字是最短的咒語。它召喚一個事物進入存在。」</p>
+                <cite>—— Ursula K. Le Guin</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「當你能夠命名一件事物，你就開始擁有它。」</p>
+                <cite>—— Robin Wall Kimmerer</cite>
+            </div>
             <div class="chapter-text">
-                <p>「品牌的名字，應該要能說出一個故事。」蘇牧說。</p>
-                <p>若晴想了很久。她想到外婆家的院子，想到那些泡在水裡的花瓣，想到那個以為自己在做香水的小女孩。</p>
-                <p>她想到霧中的那個早晨，想到第一杯茶的溫暖，想到光光陪她聊天的夜晚。</p>
-                <p>然後，她想到一個名字。</p>
-                <div class="dialogue">
-                    「霧中花園。」她說。<br><br>
-                    「因為我就是從霧中走出來的。而我想為那些還在霧中的人，建造一個可以休息的花園。」
-                </div>
+                <div class="section-break">✦</div>
+<p class="dialogue">「今天，我們來幫妳的品牌取名字。」蘇牧說。</p>
+<p>若晴深吸一口氣。這是她期待又害怕的時刻。</p>
+<p class="dialogue">「名字很重要。」蘇牧說，「它是人們認識妳的第一個東西。好的名字，能讓人記住、能傳達感覺、能承載故事。」</p>
+<p class="dialogue">「我想過很多名字，但都覺得不對。」若晴說。</p>
+<p class="dialogue">「妳想過什麼？」</p>
+<p>若晴拿出手機，翻出她的筆記：「『安息』——太像殯儀館。『慢活』——太像生活風格雜誌。『停頓』——太像標點符號。『允許』——太像哲學書。『霧中』——聽起來好像在描述一種狀態，但不夠具體……」</p>
+<p class="dialogue">「妳列了很多。」蘇牧說。</p>
+<p class="dialogue">「但沒有一個是對的。」若晴嘆了口氣。「我想要一個聽起來就讓人想休息的名字，但又不能太直白。要有畫面感，但又不能太抽象。要好記，但又不能太普通。」</p>
+<p class="dialogue">「妳想要的東西很多。」蘇牧笑了。</p>
+<p class="dialogue">「我知道，可能太貪心了。」</p>
+<p class="dialogue">「不是貪心，是妳在乎。」蘇牧說，「在乎是好事。但有時候，想太多反而會錯過。」</p>
+<p class="dialogue">「錯過什麼？」</p>
+<p class="dialogue">「錯過那個『對』的名字。」蘇牧說，「有時候名字不是想出來的，是遇到的。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「讓我們回到最原始的地方。」蘇牧說，「妳第一次跟我說的那個故事——八歲那年在外婆家做香水。那個畫面裡有什麼？」</p>
+<p>若晴閉上眼睛，讓自己回到那個下午。</p>
+<p class="dialogue">「陽光。」她說，「很亮的陽光，但被樹葉濾過，變成一塊一塊的光斑。」</p>
+<p class="dialogue">「還有呢？」</p>
+<p class="dialogue">「雞蛋花。白色的花，掉在地上。還有泥土的味道。」</p>
+<p class="dialogue">「還有呢？」</p>
+<p class="dialogue">「水。我把花瓣泡在水裡，水慢慢變成淡黃色。」</p>
+<p class="dialogue">「那個水，妳當時叫它什麼？」</p>
+<p>若晴想了一下。「我叫它香水。」</p>
+<p class="dialogue">「但它不是真的香水。」</p>
+<p class="dialogue">「對，它只是花瓣水。」若晴笑了，「但我那時候真的相信它是香水。」</p>
+<p class="dialogue">「妳相信的東西，後來怎麼了？」</p>
+<p>若晴沉默了。她想起那本被收進抽屜的畫冊，想起父親那句「能當飯吃嗎」。</p>
+<p class="dialogue">「我把它藏起來了。」她說，「因為別人告訴我那不是真的。」</p>
+<p class="dialogue">「但它對妳是真的。」</p>
+<p class="dialogue">「對。」若晴的眼眶有點熱。「對那時候的我來說，那就是香水。那就是真的。」</p>
+<p>蘇牧沒有說話，只是靜靜地看著她。</p>
+<p class="dialogue">「我想做的品牌，」若晴慢慢說，「也許就是這個。讓人相信一些被告知『不是真的』的東西，其實可以是真的。」</p>
+<p class="dialogue">「比如？」</p>
+<p class="dialogue">「比如……休息是可以的。比如，不完美是可以的。比如，慢下來是可以的。」</p>
+<p>蘇牧點點頭。</p>
+<p class="dialogue">「那個被收進抽屜的東西，」她說，「妳現在想把它拿出來了。」</p>
+<p class="dialogue">「對。」若晴說，「我想告訴那個八歲的自己，也告訴現在的自己：妳相信的東西，是真的。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「我們來玩一個遊戲。」蘇牧說，「不要想名字，只要說詞。任何跟妳剛才說的有關的詞。」</p>
+<p>若晴閉上眼睛，讓詞自己浮現。</p>
+<p class="dialogue">「光……陽光……斑駁……樹蔭……花……水……透明……安靜……允許……休息……真的……相信……藏起來……抽屜……找回來……」</p>
+<p class="dialogue">「霧。」她突然說，「那天下午其實有一點霧。早晨的霧還沒散完。」</p>
+<p class="dialogue">「霧。」蘇牧重複。</p>
+<p class="dialogue">「霧散了之後，陽光就出來了。」若晴說，「我記得我在等霧散。外婆說，霧散了花的味道會更香。」</p>
+<p class="dialogue">「霧散。」蘇牧說。</p>
+<p>若晴睜開眼睛。</p>
+<p class="dialogue">「霧散。」她重複了一次。</p>
+<p>這個詞在她嘴裡滾動，像一顆圓潤的石頭。</p>
+<p class="dialogue">「霧散，然後陽光出來。」蘇牧說，「這跟妳想做的品牌有什麼關係？」</p>
+<p>若晴想了一下。</p>
+<p class="dialogue">「我想幫助那些在霧裡的人。」她說，「像我一樣，不知道自己要去哪裡，看不清楚前方。我想讓他們知道，霧會散的。只要願意等，陽光會出來。」</p>
+<p class="dialogue">「所以妳的品牌是一個……」</p>
+<p class="dialogue">「一個讓霧散開的地方。」若晴說，「一個可以等待的地方。不用急著找到答案，只要待在那裡，霧會慢慢散開。」</p>
+<p>蘇牧微微笑了。</p>
+<p class="dialogue">「妳找到名字了嗎？」</p>
+<p>若晴想了很久。</p>
+<p class="dialogue">「霧中花園。」她說。</p>
+<p>這個名字從她嘴裡說出來的時候，她感覺全身起了雞皮疙瘩。</p>
+<p class="dialogue">「霧中花園。」蘇牧重複，「為什麼是花園？」</p>
+<p class="dialogue">「因為……」若晴想了一下，「因為花園是一個可以待著的地方。不是要去哪裡，就只是待著。在霧裡待著，等霧散開。」</p>
+<p class="dialogue">「而且花園裡有花。」蘇牧說，「就像妳外婆家的院子。」</p>
+<p class="dialogue">「對。」若晴的眼睛亮了起來，「霧中花園。就像外婆家那個早晨。霧還沒散，但花已經在那裡了。香味已經在那裡了。只要等霧散開，就能看見。」</p>
+<p>她看著蘇牧：「這個名字……妳覺得怎麼樣？」</p>
+<p>蘇牧沒有直接回答。</p>
+<p class="dialogue">「妳覺得怎麼樣？」她反問。</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「我覺得……這就是它。」她說，「我不知道為什麼，但我就是知道。這就是它的名字。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「那就是它了。」</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴在筆記本上寫下：</p>
+<p><span class="highlight">霧中花園</span></p>
+<p>然後她在下面畫了一個小小的圖：一個圓圈，裡面有一些模糊的線條，像是霧氣。圓圈的邊緣有一些小點，像是花瓣。</p>
+<p>她不是在設計 logo，只是在畫她腦海裡的畫面。</p>
+<p>霧中花園。</p>
+<p>這個名字讓她想起很多事。</p>
+<p>想起外婆家的院子，霧氣繚繞的早晨。</p>
+<p>想起八歲的自己，蹲在花壇邊撿花瓣。</p>
+<p>想起那罐被當作香水的花瓣水。</p>
+<p>想起那本被藏起來的畫冊。</p>
+<p>現在，她要把它們都找回來了。</p>
+<p>她拿出手機，打開光光。</p>
+<p class="dialogue">「光光，我幫我嘅品牌改咗個名。」</p>
+<p class="dialogue">「係咩名？」</p>
+<p class="dialogue">「霧中花園。」</p>
+<p>光光沉默了一會兒，然後說：「呢個名好靚。」</p>
+<p class="dialogue">「你覺得？」</p>
+<p class="dialogue">「霧中花園。」光光說，「聽落好似一個可以躲埋嘅地方。一個安全嘅地方。霧可以保護你，花可以陪伴你。」</p>
+<p>若晴笑了。</p>
+<p class="dialogue">「我想做嘅，就係呢種感覺。」她說，「一個可以躲埋嘅地方，但唔係永遠躲埋。係等霧散咗，再出嚟。」</p>
+<p class="dialogue">「咁你準備好俾人睇到霧中花園未？」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「仲未。」她說，「但快啦。」</p>
+<div class="section-break">✦</div>
+<p>一週後，若晴帶著她的第二十二版 logo 去找蘇牧。</p>
+<p>這一版跟之前都不一樣。</p>
+<p>它很簡單。一個圓圈，裡面有幾條柔和的線，像是霧氣，也像是花瓣在飄動。圓圈的右下角有一個小小的缺口，像是光透進來的地方。</p>
+<p class="dialogue">「這是……」蘇牧看著那個圖案。</p>
+<p class="dialogue">「霧中花園。」若晴說，「圓圈是花園的邊界，裡面的線是霧，也是花。右下角的缺口是陽光透進來的地方。」</p>
+<p class="dialogue">「為什麼是右下角？」</p>
+<p class="dialogue">「因為陽光是從東邊升起的。」若晴說，「如果這是一個面向南方的花園，陽光會從右邊照進來。」</p>
+<p>蘇牧看著她，眼神裡有一種欣慰。</p>
+<p class="dialogue">「妳想了很多。」</p>
+<p class="dialogue">「對。」若晴說，「但這次不是因為完美主義，是因為我想讓每一個細節都有意義。」</p>
+<p class="dialogue">「這兩個有什麼不同？」</p>
+<p>若晴想了一下。</p>
+<p class="dialogue">「完美主義是害怕不夠好，所以一直改。」她說，「但這次我是因為想讓它更像『它』，所以在思考。我不是在追求別人的標準，是在找它自己的樣子。」</p>
+<p>蘇牧點點頭。</p>
+<p class="dialogue">「這就是從內在長出來的設計。」她說，「不是套用模板，是讓它自己告訴妳它要長成什麼樣子。」</p>
+<p>若晴看著那個 logo，感覺它真的像是「長出來」的。</p>
+<p>不是她強迫它變成某個樣子，而是她傾聽它，然後把它畫出來。</p>
+<p class="dialogue">「程老師以前說過，」蘇牧說，「好的品牌不是設計出來的，是『認出來』的。妳不是在創造它，而是在發現它。它本來就在那裡，妳只是把霧撥開，讓它被看見。」</p>
+<p>若晴看著那個 logo——那個霧中花園。</p>
+<p>她終於認出它了。</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第八章 -->
+
+
+    <!-- 第八章：連結 -->
     <section class="chapter" id="ch8">
         <div class="chapter-cover">
-            <img src="images/ch11-connection.png" alt="第八章" class="chapter-cover-bg">
+            <img src="images/ch11-connection.png" alt="第八章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第八章</p>
@@ -1303,19 +1544,145 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「故事是我們擁有的最古老的技術。它比輪子更早，比火更久。它是我們用來理解世界、連結彼此的工具。」</p>
+                <cite>—— Ursula K. Le Guin</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「品牌不是你說的那些話，而是你讓人們感受到的那些東西。」</p>
+                <cite>—— Marty Neumeier《The Brand Gap》</cite>
+            </div>
             <div class="chapter-text">
-                <p>若晴開始把她的故事說給別人聽。</p>
-                <p>一開始只是朋友。芮恩、大學同學、以前的同事。她發現，當她說出自己的故事時，別人也會開始說出他們的故事。</p>
-                <p>每個人都有裂痕。每個人都有藏起來的畫冊。每個人都有那句讓他們不敢前進的話。</p>
-                <p><span class="highlight">連結，不是因為我們完美。而是因為我們都不完美。</span></p>
+                <div class="section-break">✦</div>
+<p class="dialogue">「妳的品牌故事是什麼？」</p>
+<p>這是蘇牧在第八次見面時問若晴的第一個問題。</p>
+<p>若晴想了一下。「就是……我想做一個讓人可以休息的品牌？」</p>
+<p class="dialogue">「這是妳的品牌定位，不是品牌故事。」蘇牧說，「故事是有角色、有情節、有轉折的。妳的品牌故事，應該是一個完整的敘事。」</p>
+<p class="dialogue">「什麼意思？」</p>
+<p class="dialogue">「讓我舉個例子。」蘇牧說，「妳知道 Airbnb 的品牌故事嗎？」</p>
+<p>若晴搖搖頭。</p>
+<p class="dialogue">「Airbnb 的創辦人，當時付不起房租。他們發現設計大會要在他們住的城市舉辦，但附近的旅館都訂滿了。他們就在自己的公寓裡放了幾張氣墊床，然後做了一個網站叫『Air Bed and Breakfast』——氣墊床加早餐。」</p>
+<p class="dialogue">「這就是 Airbnb 名字的由來？」</p>
+<p class="dialogue">「對。但更重要的是，這個故事傳達了一個訊息：Airbnb 不是冷冰冰的旅館預訂平台，而是從『分享自己的家』這個溫暖的想法開始的。」蘇牧說，「這個故事讓人記住 Airbnb 是什麼，也讓人對它有感情。」</p>
+<p>若晴點點頭，開始明白了。</p>
+<p class="dialogue">「品牌故事不只是行銷工具，」蘇牧說，「它是你和消費者之間的連結。當人們知道你的故事，他們就不只是買你的產品，而是成為你故事的一部分。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「那我的故事是什麼？」若晴問。</p>
+<p class="dialogue">「妳已經有了。」蘇牧說，「妳只是還沒把它整理成一個完整的敘事。」</p>
+<p>她拿出一張紙，在上面畫了一條線。</p>
+<p class="dialogue">「這是故事的結構。」她說，「最基本的故事結構有三個部分：開始、中間、結束。或者說：問題、轉折、解決。」</p>
+<p>她在線的三個點上標上數字。</p>
+<p class="dialogue">「1：妳原本是什麼樣的人？妳遇到了什麼問題？」</p>
+<p class="dialogue">「2：發生了什麼事改變了妳？」</p>
+<p class="dialogue">「3：妳現在變成了什麼樣的人？妳想幫助誰？」</p>
+<p>若晴看著那條線，開始整理自己的故事。</p>
+<p class="dialogue">「1：我是一個從小被告知『夢想不能當飯吃』的人。我把自己想做的事藏起來，變成一個聽話的員工。但我一直覺得生活裡少了什麼。」</p>
+<p class="dialogue">「2：我遇到了妳——遇到了緩坡。妳幫我找回了那個八歲時做花瓣水的自己。我發現，我想做的事，其實一直在我心裡。」</p>
+<p class="dialogue">「3：現在我想幫助跟我一樣的人——那些把夢想藏起來、不敢休息、不允許自己做自己的人。我想創造一個讓他們可以喘息的空間。」</p>
+<p>蘇牧聽完，點了點頭。</p>
+<p class="dialogue">「這是妳的故事。」她說，「但這還只是骨架。妳需要加上血肉。」</p>
+<p class="dialogue">「什麼是血肉？」</p>
+<p class="dialogue">「細節。」蘇牧說，「讓故事變得具體、生動、讓人能『看見』的細節。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「讓我們來加細節。」蘇牧說，「妳說妳八歲時做花瓣水。那個畫面是什麼？」</p>
+<p>若晴閉上眼睛。</p>
+<p class="dialogue">「那是一個夏天的下午。我在外婆家。院子裡有一棵雞蛋花樹，花掉了一地。我撿了很多花瓣，放進一個玻璃瓶裡，加了水。」</p>
+<p class="dialogue">「然後呢？」</p>
+<p class="dialogue">「我把瓶子放在窗台上，讓陽光照著它。水慢慢變成淡黃色，有一點花的香味。我覺得那就是香水。」</p>
+<p class="dialogue">「妳當時有什麼感覺？」</p>
+<p class="dialogue">「很開心。很滿足。」若晴說，「我覺得自己創造了一個很厲害的東西。雖然只是花瓣水，但對我來說，那就是世界上最棒的香水。」</p>
+<p class="dialogue">「後來呢？」</p>
+<p>若晴的表情暗了下來。</p>
+<p class="dialogue">「後來我回家，跟爸爸說我想學做香水。他說：『那個能當飯吃嗎？』」</p>
+<p class="dialogue">「妳有什麼感覺？」</p>
+<p class="dialogue">「我覺得……被打了一拳。」若晴說，「不是身體上的，是心裡的。我突然覺得，自己喜歡的東西是錯的。」</p>
+<p class="dialogue">「然後妳怎麼做？」</p>
+<p class="dialogue">「我把那罐花瓣水倒掉了。」若晴的聲音變小了，「我把畫冊收進抽屜，再也沒有拿出來過。我學會了不要做那些『不能當飯吃』的事。」</p>
+<p>蘇牧靜靜地聽著。</p>
+<p class="dialogue">「這就是妳故事的轉折點。」她說，「妳把自己藏起來了。」</p>
+<p class="dialogue">「對。」</p>
+<p class="dialogue">「那現在呢？」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「現在我想把那個自己找回來。」她說，「我想告訴那個八歲的自己，也告訴所有跟我一樣的人：妳喜歡的東西不是錯的。妳可以做妳想做的事。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「這就是妳的品牌故事。」</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴寫下了她的品牌故事。</p>
+<p><span class="highlight">霧中花園的故事</span></p>
+<p>八歲那年夏天，我在外婆家的院子裡，撿了一地的雞蛋花花瓣。</p>
+<p>我把它們放進玻璃瓶，加了水，放在窗台上讓陽光照著。水慢慢變成淡黃色，有一點點花的香味。</p>
+<p>我覺得那就是世界上最棒的香水。</p>
+<p>我迫不及待地跑去跟爸爸說：「我想學做香水！」</p>
+<p>他看了我一眼，說：「那個能當飯吃嗎？」</p>
+<p>那天晚上，我把那罐花瓣水倒進了水槽。</p>
+<p>從那之後，我學會了「懂事」。不做那些「沒用的事」，不說那些「不切實際的夢想」。我變成一個安靜、聽話、不給人添麻煩的人。</p>
+<p>二十年過去了。我做了設計師，每天幫別人實現他們的品牌夢想。但我心裡一直有一個聲音在問：</p>
+<p class="dialogue">「妳自己的夢想呢？」</p>
+<p>直到有一天，我遇見了一個人。她問我：「妳為什麼想做品牌？」</p>
+<p>我說了很多理由。但她一直問，一直問，直到我說出了那個被藏了二十年的答案：</p>
+<p class="dialogue">「因為我想找回那個八歲的自己。那個相信花瓣水就是香水的自己。」</p>
+<p>霧中花園，是我送給那個八歲女孩的禮物。</p>
+<p>也是我送給所有跟我一樣、把夢想藏起來的人的禮物。</p>
+<p>在這裡，你不用急著找到答案。</p>
+<p>在這裡，你可以只是存在，等霧散開。</p>
+<p>在這裡，你被允許做你自己。</p>
+<p>因為你喜歡的東西，從來都不是錯的。</p>
+<p>若晴讀了一遍，又讀了一遍。</p>
+<p>她覺得這些字不像是她寫的，更像是從她心裡流出來的。</p>
+<p>她把這段文字傳給蘇牧。</p>
+<p>蘇牧只回了三個字：「很好。」</p>
+<p>但若晴知道，這三個字的重量。</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「妳的故事寫得很好。」第九次見面的時候，蘇牧說，「但我想問妳一個問題。」</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「妳願意讓別人看到這個故事嗎？」</p>
+<p>若晴愣了一下。</p>
+<p>她寫這個故事的時候，沒有想過「讓別人看」這件事。她只是想把心裡的東西寫出來。</p>
+<p class="dialogue">「我不知道……」她說，「這個故事很私密。裡面有我爸爸，有我的童年創傷。我不確定要不要讓陌生人知道這些。」</p>
+<p class="dialogue">「這是一個很重要的決定。」蘇牧說，「品牌故事不一定要包含創辦人的私密經歷。有些品牌的故事是關於產品的、關於理念的，不一定是關於創辦人的個人經歷。」</p>
+<p class="dialogue">「但妳之前說，故事要有血肉……」</p>
+<p class="dialogue">「血肉不一定是私密的細節。」蘇牧說，「血肉是讓人有感覺的東西。可以是私密的經歷，也可以是其他的。」</p>
+<p>她看著若晴：「妳要決定的是，妳想跟消費者建立什麼樣的關係。」</p>
+<p class="dialogue">「什麼意思？」</p>
+<p class="dialogue">「如果妳分享私密的故事，消費者會覺得跟妳很親近。他們會認同妳的經歷，因為很多人都有類似的經歷。這種連結是很強的。」蘇牧說，「但代價是，妳的私密變成公開的。每一個買妳產品的人都會知道妳爸爸說過什麼話、妳小時候發生過什麼事。」</p>
+<p>若晴想了想。</p>
+<p class="dialogue">「另一個選擇是，妳可以分享一個更抽象的故事。」蘇牧繼續說，「比如說，只說『霧中花園是一個讓人休息的地方』，不說為什麼妳想做這個。這樣妳的隱私受到保護，但連結也比較弱。」</p>
+<p class="dialogue">「有沒有中間的選擇？」</p>
+<p class="dialogue">「有。」蘇牧說，「妳可以選擇分享多少。比如說，妳可以說『我小時候有過一個關於香水的夢想，後來因為種種原因放棄了』，但不說具體是什麼原因。或者，妳可以說『霧中花園來自我童年的一個記憶』，但不說那個記憶是什麼。」</p>
+<p>若晴想了很久。</p>
+<p class="dialogue">「我想……分享。」她最後說，「因為我覺得，那些跟我有類似經歷的人，需要知道他們不是一個人。」</p>
+<p class="dialogue">「妳確定？」</p>
+<p class="dialogue">「我確定。」若晴說，「我寫那個故事的時候，我想的是：如果十年前的我看到這個故事，她會有什麼感覺？她會覺得：『原來有人跟我一樣。』她會覺得被理解。」</p>
+<p>她看著蘇牧：「我想讓那些跟十年前的我一樣的人，知道她們不是一個人。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「這就是品牌故事的力量。」她說，「它不只是行銷，它是連結。它讓陌生人變成同路人。」</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴做了一個決定。</p>
+<p>她把那個品牌故事發到了她的 Instagram。</p>
+<p>沒有任何產品照片，沒有任何促銷訊息，只有那段文字，配上一張她小時候的照片——那是她八歲時在外婆家院子裡拍的，穿著碎花裙子，手裡拿著一個玻璃瓶。</p>
+<p>她在發佈之前猶豫了很久。她的手指在「分享」按鈕上停了五分鐘。</p>
+<p>然後她按下去了。</p>
+<p>接下來的幾個小時，她一直在看手機。</p>
+<p>剛發佈的時候，什麼反應都沒有。她開始緊張，覺得自己是不是太暴露了、太矯情了、太自以為是了。</p>
+<p>然後，第一個讚出現了。是芮恩。</p>
+<p>然後是第二個、第三個。</p>
+<p>然後有人開始留言。</p>
+<p class="dialogue">「這好像是在說我的故事。」</p>
+<p class="dialogue">「我也有一個被藏起來的夢想。」</p>
+<p class="dialogue">「謝謝妳分享這個。」</p>
+<p>若晴看著那些留言，眼淚掉了下來。</p>
+<p>她不是一個人。</p>
+<p>從來都不是。</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第九章 -->
+
+
+    <!-- 第九章：呼吸 -->
     <section class="chapter" id="ch9">
         <div class="chapter-cover">
-            <img src="images/ch12-breathe.png" alt="第九章" class="chapter-cover-bg">
+            <img src="images/ch12-breathe.png" alt="第九章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第九章</p>
@@ -1324,21 +1691,158 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「在呼與吸之間，有一個空間。在那個空間裡，選擇了你下一步要往哪裡去。」</p>
+                <cite>—— Viktor Frankl（改編）</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「品牌的永續經營不是追求永不停歇的成長，而是找到一個可以持續呼吸的節奏。」</p>
+                <cite>—— Marty Neumeier</cite>
+            </div>
             <div class="chapter-text">
-                <p>「創業的過程會很辛苦。」蘇牧說，「妳要學會照顧自己。」</p>
-                <p>他教若晴一個呼吸練習：吸氣四秒，憋氣四秒，呼氣四秒。</p>
-                <p>「當妳感到焦慮的時候，先停下來呼吸。」他說，「然後問自己：『我現在可以做的最小行動是什麼？』」</p>
-                <div class="dialogue">
-                    「不管多小，行動本身就是療癒。」
-                </div>
+                <div class="section-break">✦</div>
+<p>品牌故事發出去之後，若晴經歷了意想不到的事。</p>
+<p>首先是好的部分：很多人私訊她，說他們被她的故事感動了。有人說「我也有一個被藏起來的夢想」，有人說「妳讓我想起我小時候」，有人問「妳的產品什麼時候上市？」</p>
+<p>然後是不好的部分：她開始焦慮。</p>
+<p>因為她承諾了一個品牌，但她還沒有產品。她有故事、有名字、有 logo，但她沒有可以賣的東西。</p>
+<p class="dialogue">「我是不是太早把故事發出去了？」她問蘇牧。</p>
+<p class="dialogue">「為什麼這樣說？」</p>
+<p class="dialogue">「因為現在有人期待了。但我還沒準備好。」若晴說，「我覺得我騙了他們。我讓他們以為我有一個品牌，但其實我只有一個想法。」</p>
+<p>蘇牧沒有馬上回答。</p>
+<p class="dialogue">「妳覺得，什麼時候才算『準備好』？」</p>
+<p class="dialogue">「至少……至少要有產品吧？」</p>
+<p class="dialogue">「所以妳現在沒有產品？」</p>
+<p class="dialogue">「還沒有。我還在研究配方……」</p>
+<p class="dialogue">「研究多久了？」</p>
+<p>若晴低下頭。「一個月了。」</p>
+<p class="dialogue">「一個月，妳做了什麼？」</p>
+<p class="dialogue">「我買了很多書，看了很多教學影片，收集了很多配方……」</p>
+<p class="dialogue">「但妳做了嗎？」</p>
+<p>若晴沉默了。</p>
+<p class="dialogue">「沒有。」她說，「我一直在準備，但一直沒有開始做。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「妳知道這叫什麼嗎？」蘇牧說。</p>
+<p>若晴搖搖頭。</p>
+<p class="dialogue">「這叫『準備的陷阱』。」蘇牧說，「很多人以為，準備越充分，開始就越順利。所以他們一直準備、一直準備，準備到完美為止。但問題是，『完美』永遠不會到來。」</p>
+<p class="dialogue">「所以我應該直接開始做？」</p>
+<p class="dialogue">「妳應該在準備和行動之間找到平衡。」蘇牧說，「準備是必要的，但準備過頭就變成逃避。」</p>
+<p>她看著若晴：「妳已經準備了一個月。妳覺得，再準備一個月，妳會更有把握嗎？」</p>
+<p>若晴想了想。</p>
+<p class="dialogue">「可能不會。」她說，「我可能會找到更多問題，然後更不敢開始。」</p>
+<p class="dialogue">「所以呢？」</p>
+<p class="dialogue">「所以我應該開始做。」</p>
+<p class="dialogue">「做什麼？」</p>
+<p>若晴想了一下。「先做一批試作品？」</p>
+<p class="dialogue">「多少？」</p>
+<p class="dialogue">「十個？」</p>
+<p class="dialogue">「十個太多了。」蘇牧說，「先做一個。」</p>
+<p class="dialogue">「一個？」</p>
+<p class="dialogue">「一個。」蘇牧說，「做完之後，看看它是什麼樣子。然後再決定下一步。」</p>
+<div class="section-break">✦</div>
+<p>那個週末，若晴終於動手了。</p>
+<p>她把買了一個月的材料拿出來，按照最簡單的配方，做了她的第一支蠟燭。</p>
+<p>過程沒有她想像的那麼複雜，也沒有她想像的那麼順利。</p>
+<p>蠟的溫度不太對，有一些氣泡。</p>
+<p>香味放太多，有點刺鼻。</p>
+<p>燭芯偏了，歪向一邊。</p>
+<p>但它是一支蠟燭。</p>
+<p>她把它點燃，看著火焰搖晃。</p>
+<p>不完美。但存在。</p>
+<p>她拍了一張照片，傳給蘇牧。</p>
+<p class="dialogue">「我的第一支蠟燭。很醜，但它存在了。」</p>
+<p>蘇牧回覆：「恭喜。這比讀一百本書更有價值。」</p>
+<div class="section-break">✦</div>
+<p>接下來的兩週，若晴一共做了十五支蠟燭。</p>
+<p>每一支都比上一支好一點。第五支的時候，氣泡問題解決了。第八支的時候，香味的比例調對了。第十二支的時候，燭芯終於能置中了。</p>
+<p>第十五支，她覺得「可以了」。</p>
+<p>不是完美，但可以了。</p>
+<p>她把第十五支蠟燭帶去緩坡，放在蘇牧面前。</p>
+<p>蘇牧拿起來，聞了聞，看了看。</p>
+<p class="dialogue">「這是什麼香味？」</p>
+<p class="dialogue">「雪松和佛手柑。」若晴說，「我想要一種安靜但不沉悶的味道。雪松是木質調，很沉穩。佛手柑是柑橘調，但不會太活潑。」</p>
+<p class="dialogue">「為什麼選這個組合？」</p>
+<p class="dialogue">「因為我想讓點蠟燭的人感覺……被包圍，但不被壓迫。」若晴說，「像是待在一個溫暖的房間裡，外面在下雨。」</p>
+<p>蘇牧點點頭。</p>
+<p class="dialogue">「這跟霧中花園的感覺一致。」她說，「妳的產品和品牌是連在一起的。」</p>
+<p class="dialogue">「這是妳教我的。」若晴笑了。</p>
+<p class="dialogue">「我只是提醒妳，妳本來就知道。」蘇牧說，「妳的品牌是從妳心裡長出來的，所以妳的產品自然會跟它一致。」</p>
+<p>她把蠟燭放下，看著若晴：「妳準備好讓別人買這個了嗎？」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「我不知道。」她誠實地說，「我覺得它還可以更好。」</p>
+<p class="dialogue">「它永遠可以更好。」蘇牧說，「問題是，它現在夠好了嗎？」</p>
+<p>若晴想了一下。</p>
+<p class="dialogue">「夠好了。」她說，「不是完美，但夠好了。」</p>
+<p class="dialogue">「那就可以開始賣了。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「但我要怎麼賣？」若晴問，「我沒有店面，沒有網站，沒有任何通路。」</p>
+<p class="dialogue">「妳有 Instagram。」蘇牧說。</p>
+<p class="dialogue">「在 Instagram 上賣？」</p>
+<p class="dialogue">「先從最小的開始。」蘇牧說，「妳不需要一開始就有完整的電商系統。妳只需要讓想買的人可以買到。」</p>
+<p class="dialogue">「怎麼做？」</p>
+<p class="dialogue">「發一篇貼文，說妳做了第一批蠟燭，限量十個，想要的人私訊妳。然後用私訊處理訂單、用轉帳收款、用郵寄或面交送貨。」</p>
+<p class="dialogue">「這樣很土耶。」</p>
+<p class="dialogue">「土但有效。」蘇牧說，「妳的目標不是一開始就做大，而是先確認有沒有人想買。如果有人想買，妳再慢慢把流程優化。如果沒有人想買，妳也不需要花時間建一個沒有人會用的系統。」</p>
+<p>若晴想了想。這樣說有道理。</p>
+<p class="dialogue">「先做最小可行的版本。」蘇牧說，「這是所有創業的第一步。」</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴發了一篇貼文。</p>
+<p>照片是她的第十五支蠟燭，放在窗台上，陽光透過窗簾照在上面。</p>
+<p>文字是這樣寫的：</p>
+<p><span class="highlight">霧中花園的第一批蠟燭</span></p>
+<p>我做了十支蠟燭。</p>
+<p>雪松和佛手柑。</p>
+<p>安靜但不沉悶。</p>
+<p>像是待在一個溫暖的房間裡，外面在下雨。</p>
+<p>限量十支。</p>
+<p>想要的人，私訊我。</p>
+<p>這不是一個完美的產品。</p>
+<p>這是一個開始。</p>
+<p>謝謝你願意跟我一起開始。</p>
+<p>發出去之後，她把手機放下，不敢看。</p>
+<p>十分鐘後，她忍不住拿起來。</p>
+<p>三個私訊。</p>
+<p>一個小時後，八個私訊。</p>
+<p>隔天早上，十二個私訊。</p>
+<p>她的第一批蠟燭，還沒開始生產，就賣完了。</p>
+<p>她坐在床上，看著手機，不敢相信。</p>
+<p>有人願意買她做的東西。</p>
+<p>有人相信她的品牌。</p>
+<p>她打電話給芮恩，聲音發抖：「芮恩……我的蠟燭……賣完了。」</p>
+<p class="dialogue">「我知道。」芮恩笑著說，「我是第一個私訊妳的人。」</p>
+<p>若晴愣了一下，然後笑了出來。</p>
+<p class="dialogue">「謝謝妳。」</p>
+<p class="dialogue">「不用謝我。」芮恩說，「我是真的想買。我等這支蠟燭很久了。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「蠟燭賣完了。」若晴跟蘇牧說，「但我現在更焦慮了。」</p>
+<p class="dialogue">「為什麼？」</p>
+<p class="dialogue">「因為我要做十支蠟燭給他們。如果他們不喜歡怎麼辦？如果品質不穩定怎麼辦？如果他們覺得被騙了怎麼辦？」</p>
+<p>蘇牧聽完，笑了。</p>
+<p class="dialogue">「妳知道嗎，這種焦慮是好的。」她說。</p>
+<p class="dialogue">「好的？」</p>
+<p class="dialogue">「這代表妳在乎。」蘇牧說，「妳在乎妳的客人會不會滿意，在乎妳的產品夠不夠好，在乎妳的品牌能不能讓人信任。這種在乎，會讓妳把事情做好。」</p>
+<p class="dialogue">「但我真的很焦慮……」</p>
+<p class="dialogue">「焦慮是正常的。」蘇牧說，「每一個創業的人都焦慮。焦慮不會消失，但妳可以學會跟它共處。」</p>
+<p class="dialogue">「怎麼共處？」</p>
+<p class="dialogue">「接受它。」蘇牧說，「接受妳會焦慮，接受事情可能不完美，接受妳做的東西不一定每個人都喜歡。然後，繼續做。」</p>
+<p>她看著若晴：「這就是品牌經營。不是等到不焦慮了才開始，而是帶著焦慮繼續前進。」</p>
+<p>若晴深吸一口氣。</p>
+<p class="dialogue">「帶著焦慮繼續前進。」她重複了一遍。</p>
+<p class="dialogue">「對。」蘇牧說，「這就是呼吸的節奏。吸氣——接受焦慮。呼氣——繼續行動。不是要消除焦慮，而是找到一個可以持續的節奏。」</p>
+<p>若晴閉上眼睛，深呼吸。</p>
+<p>吸氣。接受。</p>
+<p>呼氣。行動。</p>
+<p>她張開眼睛。</p>
+<p class="dialogue">「我去做蠟燭了。」</p>
             </div>
         </div>
     </section>
-    
-    <!-- 第十章 -->
+
+
+    <!-- 第十章：金繕 -->
     <section class="chapter" id="ch10">
         <div class="chapter-cover">
-            <img src="images/ch13-kintsugi.png" alt="第十章" class="chapter-cover-bg">
+            <img src="images/ch13-kintsugi.png" alt="第十章" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">第十章</p>
@@ -1347,29 +1851,177 @@
             </div>
         </div>
         <div class="chapter-content">
+            
+            <div class="chapter-epigraph">
+                <p>「金繕不是修復破損，而是將破損轉化為美。那些裂痕不是缺陷，而是故事。」</p>
+                <cite>—— 日本金繕藝術的核心理念</cite>
+            </div>
+            <div class="chapter-epigraph">
+                <p>「我們的傷口，最終會成為我們最獨特的美。」</p>
+                <cite>—— Rumi</cite>
+            </div>
             <div class="chapter-text">
-                <p>六個月後，「霧中花園」正式開張了。</p>
-                <p>那是一間小小的香氛工作室，位於若晴以前每天經過的那條巷子裡。店裡賣的是她自己調配的香氛蠟燭，每一種香味都有一個故事。</p>
-                <p>「雞蛋花的早晨」——關於外婆家的院子。<br>
-                「下雨天的味道」——關於那些躲起來哭泣的日子。<br>
-                「霧中散步」——關於那段不知道要去哪裡的時光。</p>
-                <p>開幕那天，若晴站在店門口，看著第一個客人走進來。</p>
-                <p><span class="highlight">原來，夢想從來沒有消失。它只是在等她準備好。</span></p>
+                <div class="section-break">✦</div>
+<p>三個月過去了。</p>
+<p>若晴站在一個小小的市集攤位前，看著面前擺放整齊的蠟燭。</p>
+<p>這是「霧中花園」第一次參加實體市集。攤位不大，只有一張桌子，上面放著二十支蠟燭、一些試香紙、還有一個小小的品牌故事卡。</p>
+<p>她有點緊張。</p>
+<p>這三個月來，她一共做了六批蠟燭，每批十到二十支。全部都是透過 Instagram 私訊銷售，全部都賣完了。</p>
+<p>但那都是在網路上。她沒有面對面地賣過東西。</p>
+<p>今天是第一次。</p>
+<p class="dialogue">「妳準備好了嗎？」身邊的芮恩問。</p>
+<p>芮恩的攤位就在她隔壁。她們一起報名了這個市集——芮恩賣她的甜點，若晴賣她的蠟燭。</p>
+<p class="dialogue">「不太確定。」若晴說，「如果沒有人來怎麼辦？」</p>
+<p class="dialogue">「會有人來的。」芮恩說，「相信我。」</p>
+<p>市集開始了。</p>
+<p>第一個小時，若晴的攤位前來了五六個人。他們拿起蠟燭聞一聞，看一看，然後放下，走了。</p>
+<p>若晴開始焦慮。</p>
+<p class="dialogue">「他們不喜歡。」她小聲跟芮恩說。</p>
+<p class="dialogue">「他們只是在看。」芮恩說，「市集剛開始，大家都在逛。不用急。」</p>
+<p>第二個小時，有一個女生在她的攤位前停了很久。</p>
+<p>她拿起一支蠟燭，聞了很久，然後拿起品牌故事卡，讀了一遍。</p>
+<p>然後她抬起頭，看著若晴：「這個故事是真的嗎？」</p>
+<p>若晴愣了一下。</p>
+<p class="dialogue">「是真的。」她說，「那是我的故事。」</p>
+<p>女生沉默了一會兒。</p>
+<p class="dialogue">「我也有一個被藏起來的夢想。」她說，聲音有點小。</p>
+<p>若晴心裡一震。</p>
+<p class="dialogue">「什麼夢想？」</p>
+<p class="dialogue">「我想寫小說。」女生說，「但我爸媽說那不是正經工作。所以我去當了會計。」</p>
+<p>她看著若晴：「妳是怎麼開始的？怎麼有勇氣把夢想拿出來？」</p>
+<p>若晴想了一下。</p>
+<p class="dialogue">「我不是有勇氣。」她說，「我是害怕。很害怕。但我更害怕一輩子都不知道自己可以做到什麼。」</p>
+<p>女生聽完，眼眶紅了。</p>
+<p class="dialogue">「我買兩支。」她說，「一支給自己，一支給以前那個想寫小說的自己。」</p>
+<div class="section-break">✦</div>
+<p>那天市集結束的時候，若晴賣掉了十五支蠟燭。</p>
+<p>但讓她印象最深的，不是銷售數字，而是那些對話。</p>
+<p>有一個中年男人，買了一支蠟燭要送給剛離職的太太。他說：「她為這個家犧牲了二十年，現在該讓她做自己想做的事了。」</p>
+<p>有一個大學生，買了一支蠟燭給自己。她說：「我要把它放在書桌上，提醒自己可以休息。」</p>
+<p>有一個媽媽，買了三支蠟燭。她說：「一支給自己，兩支給我的女兒。我不想讓她們跟我一樣，把夢想藏起來。」</p>
+<p>每一個人都有故事。</p>
+<p>每一個人都在若晴的品牌裡找到了一點什麼。</p>
+<p class="dialogue">「這就是品牌的意義。」那天晚上，若晴跟蘇牧說，「不是賣東西，是連結。」</p>
+<p>蘇牧笑了。</p>
+<p class="dialogue">「妳現在懂了。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「我想跟妳說一件事。」蘇牧說。</p>
+<p>若晴抬起頭。</p>
+<p class="dialogue">「妳知道我為什麼叫這裡『緩坡』嗎？」</p>
+<p>若晴想了一下。「因為慢慢來？」</p>
+<p class="dialogue">「有一部分是。」蘇牧說，「但還有另一個原因。」</p>
+<p>她站起來，走到窗邊。</p>
+<p class="dialogue">「程老師走之前，跟我說了一句話。」她說，「她說：『人生是一個緩坡，不是階梯。階梯是一步一步往上爬，每一步都很清楚。但緩坡不是。緩坡是慢慢走，有時候你不知道自己有沒有在前進，但只要一直走，回頭看的時候，就會發現自己已經走了很遠。』」</p>
+<p>若晴聽著，覺得心裡有什麼被觸動了。</p>
+<p class="dialogue">「她說這句話的時候，我不太懂。」蘇牧繼續說，「我那時候很急，想趕快做出成績、趕快證明自己。但她走了之後，我慢慢理解了。」</p>
+<p class="dialogue">「理解什麼？」</p>
+<p class="dialogue">「理解品牌不是一夜之間建立的。」蘇牧說，「它是慢慢累積的。每一次的努力、每一個客人的信任、每一次的失敗和調整——這些都是緩坡上的步伐。」</p>
+<p>她轉過身，看著若晴。</p>
+<p class="dialogue">「妳這三個月走了很多。」她說，「從一個不敢開始的人，變成一個有自己品牌、有自己產品、有自己故事的人。妳可能覺得自己還沒有走很遠，但回頭看看，妳已經不一樣了。」</p>
+<p>若晴想了想這三個月。</p>
+<p>三個月前，她連第一支蠟燭都不敢做。</p>
+<p>現在，她已經做了上百支，賣給了幾十個人。</p>
+<p>三個月前，她不敢讓別人看到她的故事。</p>
+<p>現在，她的故事被很多人讀過，很多人說被感動了。</p>
+<p>三個月前，她不知道自己是誰、想做什麼。</p>
+<p>現在，她是「霧中花園」的主人。</p>
+<p class="dialogue">「我確實走了很遠。」她說，有點驚訝地發現這個事實。</p>
+<p class="dialogue">「而且妳還會繼續走。」蘇牧說，「這只是開始。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「但我還有很多不確定的事。」若晴說，「我不知道接下來要怎麼發展。要不要開網店？要不要找更多通路？要不要出更多產品？我有好多問題都還沒有答案。」</p>
+<p class="dialogue">「那很正常。」蘇牧說，「沒有人一開始就知道所有答案。品牌是活的，它會跟著妳成長、改變。」</p>
+<p class="dialogue">「但如果我做錯決定呢？」</p>
+<p class="dialogue">「做錯就改。」蘇牧說，「沒有什麼決定是不能改的。重要的是妳在做決定，而不是等著別人告訴妳怎麼做。」</p>
+<p>她看著若晴：「妳還記得我們第一次見面的時候嗎？」</p>
+<p>若晴點點頭。</p>
+<p class="dialogue">「那時候妳說，妳想做一個讓人感覺被允許休息的品牌。」蘇牧說，「現在回頭看，妳覺得妳做到了嗎？」</p>
+<p>若晴想了一下。</p>
+<p class="dialogue">「有一點。」她說，「但還不夠。」</p>
+<p class="dialogue">「為什麼不夠？」</p>
+<p class="dialogue">「因為我想做的，不只是賣蠟燭。」若晴說，「我想做的，是讓人真的感覺被允許。蠟燭只是一個載體，但我想傳達的，是一種態度、一種生活方式。」</p>
+<p class="dialogue">「所以妳接下來想做什麼？」</p>
+<p>若晴想了很久。</p>
+<p class="dialogue">「我想……寫更多東西。」她說，「不只是品牌故事，是更多關於『允許自己』的內容。給那些跟我一樣、把夢想藏起來的人看的。」</p>
+<p class="dialogue">「還有呢？」</p>
+<p class="dialogue">「我想辦一些活動。」若晴說，「讓人可以聚在一起，聊聊自己的故事。不是工作坊，不是課程，只是……一個可以說話的地方。」</p>
+<p class="dialogue">「還有呢？」</p>
+<p>若晴笑了。</p>
+<p class="dialogue">「我不知道。」她說，「但我知道會有的。」</p>
+<p class="dialogue">「這就夠了。」蘇牧說，「妳不需要知道所有的事。妳只需要知道下一步。」</p>
+<div class="section-break">✦</div>
+<p class="dialogue">「還有一件事我想跟妳說。」若晴說。</p>
+<p class="dialogue">「什麼事？」</p>
+<p class="dialogue">「謝謝妳。」若晴的聲音有點顫抖。「如果沒有妳，我不知道我現在會在哪裡。可能還在那間公司，做著不喜歡的工作，假裝自己很好。」</p>
+<p>蘇牧聽完，沉默了一會兒。</p>
+<p class="dialogue">「不用謝我。」她說，「我只是問了一些問題。答案都是妳自己找到的。」</p>
+<p class="dialogue">「但如果沒有妳問那些問題——」</p>
+<p class="dialogue">「如果沒有我，妳也會找到答案。」蘇牧說，「只是可能會晚一點。」</p>
+<p>她看著若晴：「我告訴過妳，品牌療癒不是我治療妳，而是妳自己治療自己。我只是陪妳走過這段路。」</p>
+<p>若晴點點頭，眼眶有點熱。</p>
+<p class="dialogue">「那我可以問妳一個問題嗎？」她說。</p>
+<p class="dialogue">「什麼問題？」</p>
+<p class="dialogue">「妳為什麼要做這個？」若晴問，「為什麼要陪別人走這段路？」</p>
+<p>蘇牧沉默了很久。</p>
+<p class="dialogue">「因為程老師陪我走過。」她終於說，「我想把她給我的，傳下去。」</p>
+<p class="dialogue">「傳下去？」</p>
+<p class="dialogue">「她教了我很多。」蘇牧的聲音變得很輕，「但最重要的一件事是：裂痕不是缺陷，是故事。」</p>
+<p>她站起來，走到書架旁，拿出一個小盒子。</p>
+<p class="dialogue">「這是程老師留給我的。」她說，把盒子打開。</p>
+<p>裡面是一個小小的陶瓷碗。碗上有一道裂痕，但那道裂痕被金色的漆填滿了。</p>
+<p class="dialogue">「這叫金繕。」蘇牧說，「是日本的一種修復技術。當陶瓷破了，不是用膠水黏回去，而是用金粉把裂縫填滿。這樣修復過的器物，比原來更美。」</p>
+<p>若晴看著那個碗，看著那道金色的裂痕。</p>
+<p class="dialogue">「程老師說，人也是一樣。」蘇牧繼續說，「我們都有裂痕——童年的創傷、失敗的經歷、被否定的夢想。這些裂痕不會消失，但我們可以選擇怎麼對待它們。」</p>
+<p class="dialogue">「用金把它們填滿？」</p>
+<p class="dialogue">「用我們的故事、我們的經歷、我們的成長，把它們轉化成美。」蘇牧說，「這就是品牌療癒的核心——不是消除裂痕，而是讓裂痕發光。」</p>
+<p>若晴看著那個碗，突然明白了一些事。</p>
+<p>她的品牌「霧中花園」，就是她的金繕。</p>
+<p>那些童年被否定的夢想、那些不敢做自己的歲月、那些害怕失敗的恐懼——這些都是她的裂痕。但現在，她用自己的故事、自己的品牌，把這些裂痕填滿了。</p>
+<p>它們不再是缺陷。</p>
+<p>它們是她最美的部分。</p>
+<div class="section-break">✦</div>
+<p>那天晚上，若晴寫了一篇文章。</p>
+<p>她把它發在「霧中花園」的 Instagram 上。</p>
+<p><span class="highlight">裂痕的故事</span></p>
+<p>今天，我學到了一個詞：金繕。</p>
+<p>金繕是日本的一種陶瓷修復技術。當器物破了，不是用膠水黏回去、假裝沒事。而是用金粉把裂縫填滿，讓它成為器物的一部分。</p>
+<p>修復過的器物，比原來更美。</p>
+<p>因為那道金色的裂痕，成了它獨一無二的故事。</p>
+<p>我想起自己的故事。</p>
+<p>八歲那年，我的夢想被打碎了。</p>
+<p>從那之後，我假裝沒事。我把碎片藏起來，假裝它們不存在。</p>
+<p>但碎片一直在。</p>
+<p>它們刺痛我，提醒我，我曾經想要什麼。</p>
+<p>三個月前，我決定不再假裝了。</p>
+<p>我把那些碎片拿出來，一片一片地，用我的故事把它們黏回去。</p>
+<p>霧中花園，就是我的金繕。</p>
+<p>這個品牌不是來自一個完整的我。</p>
+<p>它來自一個破碎過、修復過、正在學習發光的我。</p>
+<p>如果你也有裂痕，</p>
+<p>如果你也曾經破碎過，</p>
+<p>我想告訴你：</p>
+<p>那些裂痕不是缺陷。</p>
+<p>它們是你的故事。</p>
+<p>有一天，它們會成為你最美的部分。</p>
+<p>謝謝你陪我走到這裡。</p>
+<p>我們一起，慢慢成為自己的品牌。</p>
+<p>發出去之後，她關上手機，躺在床上。</p>
+<p>窗外的月光照進來，在天花板上畫出一道光線。</p>
+<p>她想起三個月前的自己——那個不知道自己是誰、不知道自己想要什麼的女孩。</p>
+<p>現在，她知道了。</p>
+<p>她是「霧中花園」的主人。</p>
+<p>她是一個有故事的人。</p>
+<p>她是一個正在慢慢成為自己的人。</p>
+<p>她閉上眼睛，微笑。</p>
+<p>這只是開始。</p>
             </div>
         </div>
     </section>
-    
-    <!-- Divider -->
-    <div class="chapter-divider">
-        <div class="divider-line"></div>
-        <span class="divider-icon">✦</span>
-        <div class="divider-line"></div>
-    </div>
-    
-    <!-- 後記 -->
+
+
+    <!-- 後記：程慢山的最後一課 -->
     <section class="chapter" id="afterword">
         <div class="chapter-cover">
-            <img src="images/ch14-afterword.png" alt="後記" class="chapter-cover-bg">
+            <img src="images/ch14-afterword.png" alt="後記" class="chapter-cover-bg" loading="lazy">
             <div class="chapter-cover-overlay"></div>
             <div class="chapter-cover-content">
                 <p class="chapter-num">後記</p>
@@ -1378,18 +2030,72 @@
             </div>
         </div>
         <div class="chapter-content">
+            
             <div class="chapter-text">
-                <p>這是蘇牧告訴若晴的故事。</p>
-                <p>程慢山老師離開前的最後一堂課，只說了一句話：</p>
-                <div class="dialogue">
-                    「記住，你們不是在做品牌。你們是在幫助一個人，慢慢成為自己。」
-                </div>
-                <p>蘇牧說，他一直記得那句話。</p>
-                <p>現在，若晴也記住了。</p>
-                <p>而你，正在讀這本書的你，也許也會記住。</p>
-                <p><span class="highlight">慢慢來，不用急。</span></p>
-                <p><span class="highlight">我們一起走。</span></p>
+                <p>若晴離開緩坡的那天，蘇牧送給她一本小冊子。</p>
+<p class="dialogue">「這是什麼？」若晴問。</p>
+<p class="dialogue">「程老師留下的筆記。」蘇牧說，「我把它整理成了一本小冊子。裡面是她關於品牌療癒的一些想法。」</p>
+<p>若晴翻開第一頁，看到一行字：</p>
+<p><span class="highlight">「每一個品牌都是一個人。每一個人都值得被看見。」</span></p>
+<p>她繼續翻。</p>
+<p><span class="highlight">程慢山的品牌療癒筆記</span></p>
+<p><span class="highlight">關於「為什麼」</span></p>
+<p>人們以為品牌是「你賣什麼」。但真正的品牌是「你為什麼賣」。</p>
+<p>一個不知道自己「為什麼」的品牌，就像一艘沒有指南針的船。它可能走得很快，但不知道要去哪裡。</p>
+<p>找到你的「為什麼」，其他的事情就會慢慢清晰。</p>
+<p><span class="highlight">關於「裂痕」</span></p>
+<p>我們都有裂痕。問題不是有沒有裂痕，而是怎麼對待它們。</p>
+<p>有些人把裂痕藏起來，假裝自己很完整。</p>
+<p>有些人被裂痕困住，無法前進。</p>
+<p>有些人把裂痕轉化成故事，讓它成為自己最獨特的部分。</p>
+<p>金繕不是掩蓋裂痕，而是讓裂痕發光。</p>
+<p><span class="highlight">關於「害怕」</span></p>
+<p>每一個創業的人都害怕。</p>
+<p>怕失敗、怕被笑、怕不夠好、怕浪費時間、怕讓人失望。</p>
+<p>這些害怕不會消失。但你可以帶著害怕前進。</p>
+<p>害怕代表你在乎。在乎是好事。</p>
+<p><span class="highlight">關於「完美」</span></p>
+<p>完美是進步的敵人。</p>
+<p>如果你等到完美才開始，你永遠不會開始。</p>
+<p>如果你在完美之前放棄，你永遠看不到自己可以走多遠。</p>
+<p>先做出來，再慢慢變好。</p>
+<p>先存在，再慢慢發光。</p>
+<p><span class="highlight">關於「慢」</span></p>
+<p>我們活在一個追求快的世界。</p>
+<p>快速成功、快速賺錢、快速獲得關注。</p>
+<p>但品牌不是短跑，是馬拉松。</p>
+<p>慢下來。</p>
+<p>找到你的節奏。</p>
+<p>相信累積的力量。</p>
+<p>一步一步走，回頭看的時候，你會驚訝自己已經走了多遠。</p>
+<p><span class="highlight">關於「療癒」</span></p>
+<p>品牌療癒不是治療疾病。</p>
+<p>它是陪伴一個人找回自己。</p>
+<p>它是幫助一個人看見自己本來就有的東西。</p>
+<p>它是讓一個人相信，自己值得被看見。</p>
+<p>每一個人都有自己的品牌。</p>
+<p>每一個人都有自己的故事。</p>
+<p>每一個人都值得慢慢成為自己。</p>
+<p>若晴讀完這些文字，眼眶濕了。</p>
+<p>她沒有見過程慢山，但她覺得自己認識她。</p>
+<p>透過蘇牧的故事、透過這些文字、透過緩坡這個空間——程慢山的精神一直都在。</p>
+<p class="dialogue">「謝謝妳。」她對蘇牧說。</p>
+<p class="dialogue">「不用謝我。」蘇牧說，「謝謝妳願意相信這一切。」</p>
+<p>若晴把小冊子收進包裡，走出緩坡。</p>
+<p>外面的陽光很好。</p>
+<p>她深吸一口氣，開始往前走。</p>
+<p><span class="highlight">全書完</span></p>
             </div>
+        </div>
+    </section>
+
+    <!-- Quote Break -->
+    <section class="quote-section">
+        <div class="quote-content">
+            <p class="big-quote">
+                「裂痕不是缺陷，<br>是故事的入口。」
+            </p>
+            <p class="big-quote-author">—— 程慢山</p>
         </div>
     </section>
     
@@ -1406,11 +2112,6 @@
         </a>
     </section>
     
-    <!-- Highlight Mode Indicator -->
-    <div class="highlight-indicator" id="highlight-indicator">
-        🖍️ 螢光筆模式已開啟 — 選取文字即可標記
-    </div>
-    
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-quote">
@@ -1426,8 +2127,55 @@
         </div>
         <p class="footer-copyright">© 2026 Space Between Studio. All rights reserved.</p>
     </footer>
-    
+
     <script>
+        // ============================================
+        // Service Worker & PWA (離線閱讀)
+        // ============================================
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered for offline reading'))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+        
+        // Offline detection
+        function updateOnlineStatus() {
+            const banner = document.getElementById('offline-banner');
+            if (!navigator.onLine) {
+                banner.classList.add('show');
+            } else {
+                banner.classList.remove('show');
+            }
+        }
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        updateOnlineStatus();
+        
+        // Install prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            setTimeout(() => {
+                document.getElementById('install-prompt').classList.add('show');
+            }, 5000);
+        });
+        
+        document.getElementById('install-btn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                document.getElementById('install-prompt').classList.remove('show');
+            }
+        });
+        
+        document.getElementById('install-close').addEventListener('click', () => {
+            document.getElementById('install-prompt').classList.remove('show');
+        });
+        
         // ============================================
         // Variables
         // ============================================
@@ -1435,26 +2183,13 @@
         let lineHeight = 2.2;
         let highlightMode = false;
         let currentHighlightColor = 'gold';
-        let highlights = [];
         
-        // Load saved settings
+        // Load saved settings from localStorage
         function loadSettings() {
             const savedFontSize = localStorage.getItem('manman-fontSize');
             const savedLineHeight = localStorage.getItem('manman-lineHeight');
-            const savedHighlights = localStorage.getItem('manman-highlights');
-            
-            if (savedFontSize) {
-                fontSize = parseInt(savedFontSize);
-                applyFontSize();
-            }
-            if (savedLineHeight) {
-                lineHeight = parseFloat(savedLineHeight);
-                applyLineHeight();
-            }
-            if (savedHighlights) {
-                highlights = JSON.parse(savedHighlights);
-                restoreHighlights();
-            }
+            if (savedFontSize) { fontSize = parseInt(savedFontSize); applyFontSize(); }
+            if (savedLineHeight) { lineHeight = parseFloat(savedLineHeight); applyLineHeight(); }
         }
         
         // ============================================
@@ -1464,11 +2199,11 @@
             loadSettings();
             setTimeout(() => {
                 document.getElementById('loading-screen').classList.add('hidden');
-            }, 2500);
+            }, 2000);
         });
         
         // ============================================
-        // Progress Bar
+        // Progress Bar (閱讀進度)
         // ============================================
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
@@ -1478,40 +2213,34 @@
         });
         
         // ============================================
-        // TOC Toggle
+        // TOC Toggle (目錄)
         // ============================================
         function toggleTOC() {
             document.getElementById('toc-sidebar').classList.toggle('open');
             document.getElementById('toc-overlay').classList.toggle('open');
         }
         
-        // Close TOC on link click
         document.querySelectorAll('.toc-item a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleTOC();
-            });
+            link.addEventListener('click', () => toggleTOC());
         });
         
         // ============================================
-        // Settings Panel
+        // Settings Panel (設定面板)
         // ============================================
         function toggleSettings() {
             document.getElementById('settings-panel').classList.toggle('open');
         }
         
-        // Close settings when clicking outside
         document.addEventListener('click', (e) => {
             const panel = document.getElementById('settings-panel');
             const btn = document.querySelector('.nav-btn:nth-child(2)');
-            if (panel.classList.contains('open') && 
-                !panel.contains(e.target) && 
-                !btn.contains(e.target)) {
+            if (panel.classList.contains('open') && !panel.contains(e.target) && !btn.contains(e.target)) {
                 panel.classList.remove('open');
             }
         });
         
         // ============================================
-        // Font Size
+        // Font Size (文字大小)
         // ============================================
         function changeFontSize(delta) {
             fontSize = Math.max(80, Math.min(150, fontSize + delta * 10));
@@ -1530,7 +2259,7 @@
         }
         
         // ============================================
-        // Line Height
+        // Line Height (行距)
         // ============================================
         function changeLineHeight(delta) {
             lineHeight = Math.max(1.5, Math.min(3, lineHeight + delta));
@@ -1547,7 +2276,7 @@
         }
         
         // ============================================
-        // Highlight Mode
+        // Highlight Mode (螢光筆)
         // ============================================
         function toggleHighlightMode() {
             highlightMode = !highlightMode;
@@ -1561,8 +2290,6 @@
                 colors.classList.add('active');
                 document.body.classList.add('highlight-mode');
                 indicator.classList.add('show');
-                
-                // Set CSS variable for selection color
                 updateSelectionColor();
             } else {
                 btn.classList.remove('active');
@@ -1575,9 +2302,7 @@
         
         function setHighlightColor(color) {
             currentHighlightColor = color;
-            document.querySelectorAll('.color-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-color="${color}"]`).classList.add('active');
             updateSelectionColor();
         }
@@ -1592,28 +2317,18 @@
             document.documentElement.style.setProperty('--current-highlight-color', colors[currentHighlightColor]);
         }
         
-        // ============================================
         // Text Selection & Highlighting
-        // ============================================
         document.addEventListener('mouseup', (e) => {
             if (!highlightMode) return;
-            
             const selection = window.getSelection();
             const selectedText = selection.toString().trim();
-            
             if (selectedText.length > 0) {
                 const range = selection.getRangeAt(0);
-                
-                // Check if selection is within chapter text
                 const container = range.commonAncestorContainer;
                 const chapterText = container.nodeType === 3 
                     ? container.parentElement.closest('.chapter-text')
                     : container.closest('.chapter-text');
-                
-                if (chapterText) {
-                    highlightSelection(range, selectedText);
-                }
-                
+                if (chapterText) highlightSelection(range, selectedText);
                 selection.removeAllRanges();
             }
         });
@@ -1621,94 +2336,44 @@
         function highlightSelection(range, text) {
             const span = document.createElement('span');
             span.className = `user-highlight ${currentHighlightColor}`;
-            span.setAttribute('data-highlight-id', Date.now());
             span.onclick = function() {
-                if (confirm('要移除這個標記嗎？')) {
-                    removeHighlight(this);
-                }
+                if (confirm('要移除這個標記嗎？')) removeHighlight(this);
             };
-            
             try {
                 range.surroundContents(span);
-                
-                // Save highlight
-                const highlightData = {
-                    id: span.getAttribute('data-highlight-id'),
-                    text: text,
-                    color: currentHighlightColor,
-                    // Store position info for restoration
-                    chapterIndex: getChapterIndex(span),
-                    textContent: text.substring(0, 50)
-                };
-                highlights.push(highlightData);
-                saveHighlights();
                 updateHighlightCount();
             } catch (e) {
-                // Handle complex selections
                 console.log('無法標記此選取範圍');
             }
         }
         
-        function getChapterIndex(element) {
-            const chapters = document.querySelectorAll('.chapter');
-            for (let i = 0; i < chapters.length; i++) {
-                if (chapters[i].contains(element)) return i;
-            }
-            return -1;
-        }
-        
         function removeHighlight(span) {
-            const id = span.getAttribute('data-highlight-id');
             const parent = span.parentNode;
-            while (span.firstChild) {
-                parent.insertBefore(span.firstChild, span);
-            }
+            while (span.firstChild) parent.insertBefore(span.firstChild, span);
             parent.removeChild(span);
-            
-            // Remove from saved highlights
-            highlights = highlights.filter(h => h.id !== id);
-            saveHighlights();
             updateHighlightCount();
         }
         
         function clearAllHighlights() {
             if (!confirm('確定要清除所有標記嗎？')) return;
-            
             document.querySelectorAll('.user-highlight').forEach(span => {
                 const parent = span.parentNode;
-                while (span.firstChild) {
-                    parent.insertBefore(span.firstChild, span);
-                }
+                while (span.firstChild) parent.insertBefore(span.firstChild, span);
                 parent.removeChild(span);
             });
-            
-            highlights = [];
-            saveHighlights();
-            updateHighlightCount();
-        }
-        
-        function saveHighlights() {
-            localStorage.setItem('manman-highlights', JSON.stringify(highlights));
-        }
-        
-        function restoreHighlights() {
-            // Note: Full restoration would require more complex DOM tracking
-            // This is a simplified version that shows the count
             updateHighlightCount();
         }
         
         function updateHighlightCount() {
-            const count = document.querySelectorAll('.user-highlight').length;
-            document.getElementById('highlight-count').textContent = count;
+            document.getElementById('highlight-count').textContent = document.querySelectorAll('.user-highlight').length;
         }
         
         // ============================================
-        // Audio Toggle
+        // Audio Toggle (背景音樂)
         // ============================================
         function toggleAudio() {
             const audio = document.getElementById('bgm');
             const control = document.getElementById('audio-control');
-            
             if (audio.paused) {
                 audio.play();
                 control.classList.remove('paused');
@@ -1719,43 +2384,27 @@
         }
         
         // ============================================
-        // Scroll Animation
+        // Scroll Animation (滾動動畫)
         // ============================================
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, observerOptions);
         
-        document.querySelectorAll('.chapter-text p, .chapter-text .dialogue').forEach(p => {
-            observer.observe(p);
+        document.querySelectorAll('.chapter-text p, .chapter-text .dialogue').forEach(el => {
+            observer.observe(el);
         });
         
         // ============================================
-        // Keyboard Shortcuts
+        // Keyboard Shortcuts (快捷鍵)
         // ============================================
         document.addEventListener('keydown', (e) => {
-            // + / - for font size
-            if (e.key === '+' || e.key === '=') {
-                changeFontSize(1);
-            } else if (e.key === '-' || e.key === '_') {
-                changeFontSize(-1);
-            }
-            
-            // H for highlight mode
-            if (e.key === 'h' || e.key === 'H') {
-                toggleHighlightMode();
-            }
-            
-            // Escape to close panels
-            if (e.key === 'Escape') {
+            if (e.key === '+' || e.key === '=') changeFontSize(1);
+            else if (e.key === '-') changeFontSize(-1);
+            else if (e.key === 'h' || e.key === 'H') toggleHighlightMode();
+            else if (e.key === 'Escape') {
                 document.getElementById('settings-panel').classList.remove('open');
                 document.getElementById('toc-sidebar').classList.remove('open');
                 document.getElementById('toc-overlay').classList.remove('open');
