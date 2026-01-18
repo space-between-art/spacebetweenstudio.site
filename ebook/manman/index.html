@@ -1,1 +1,1352 @@
-
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慢慢成為自己的品牌 | Slowly Becoming Your Own Brand</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #FAF7F2;
+            --warm-white: #FFFDF9;
+            --sand: #E8DFD4;
+            --tea-brown: #8B7355;
+            --gold: #C9A962;
+            --light-gold: #D4BC84;
+            --charcoal: #2C2C2C;
+            --soft-black: #1A1A1A;
+            --muted-text: #6B6358;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { font-size: 16px; scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: linear-gradient(135deg, #2C2419 0%, #1A1612 50%, #0F0D0A 100%);
+            min-height: 100vh;
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
+        
+        /* ============================================
+           Loading Screen
+           ============================================ */
+        #loading-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+        
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+        
+        .loading-text {
+            margin-top: 30px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.4em;
+            color: var(--tea-brown);
+        }
+        
+        .loading-quote {
+            margin-top: 15px;
+            font-size: 1rem;
+            color: var(--muted-text);
+            font-style: italic;
+        }
+        
+        /* ============================================
+           Audio Control
+           ============================================ */
+        .audio-control {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,253,249,0.95);
+            padding: 10px 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-control:hover {
+            transform: scale(1.05);
+        }
+        
+        .audio-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 20px;
+        }
+        
+        .audio-bar {
+            width: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        
+        .audio-bar:nth-child(1) { height: 40%; animation: audioWave 0.8s ease infinite; }
+        .audio-bar:nth-child(2) { height: 70%; animation: audioWave 0.8s ease 0.1s infinite; }
+        .audio-bar:nth-child(3) { height: 50%; animation: audioWave 0.8s ease 0.2s infinite; }
+        .audio-bar:nth-child(4) { height: 80%; animation: audioWave 0.8s ease 0.3s infinite; }
+        
+        @keyframes audioWave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+        
+        .audio-control.paused .audio-bar {
+            animation: none;
+            height: 30% !important;
+        }
+        
+        .audio-label {
+            font-size: 0.75rem;
+            color: var(--tea-brown);
+        }
+        
+        /* ============================================
+           Main Book Container
+           ============================================ */
+        .book-wrapper {
+            width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .book-container {
+            width: min(1100px, 95vw);
+            background: var(--cream);
+            border-radius: 8px;
+            box-shadow: 
+                0 25px 80px rgba(0,0,0,0.4),
+                0 10px 30px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+            overflow: hidden;
+            margin-bottom: 100px;
+        }
+        
+        /* ============================================
+           Page Styles
+           ============================================ */
+        .page {
+            display: none;
+            min-height: 80vh;
+            position: relative;
+        }
+        
+        .page.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Cover Page */
+        .cover-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 90vh;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--sand) 100%);
+            padding: 60px 40px;
+            position: relative;
+        }
+        
+        .cover-image {
+            width: 280px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+        
+        .cover-studio {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            color: var(--tea-brown);
+            margin-bottom: 15px;
+        }
+        
+        .cover-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 3rem;
+            color: var(--charcoal);
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.2rem;
+            color: var(--muted-text);
+            margin-bottom: 30px;
+        }
+        
+        .cover-quote {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--tea-brown);
+            line-height: 1.9;
+            max-width: 400px;
+            position: relative;
+            padding: 20px 30px;
+        }
+        
+        .cover-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--gold);
+            position: absolute;
+            top: -10px; left: 0;
+            font-family: 'Cormorant Garamond', serif;
+            opacity: 0.5;
+        }
+        
+        .cover-author {
+            display: block;
+            margin-top: 15px;
+            font-style: normal;
+            color: var(--gold);
+        }
+        
+        .start-btn {
+            margin-top: 40px;
+            padding: 16px 40px;
+            background: var(--gold);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.4);
+        }
+        
+        /* Chapter Page */
+        .chapter-page {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 85vh;
+        }
+        
+        @media (max-width: 800px) {
+            .chapter-page {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chapter-image-side {
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        .chapter-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .chapter-image-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 40px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+        }
+        
+        .chapter-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+        
+        .chapter-title-overlay {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .chapter-title-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            opacity: 0.7;
+        }
+        
+        .chapter-content-side {
+            padding: 60px 50px;
+            overflow-y: auto;
+            max-height: 85vh;
+            background: var(--warm-white);
+        }
+        
+        .chapter-header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--sand);
+        }
+        
+        .chapter-header .chapter-num {
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        
+        .chapter-header .chapter-title {
+            font-size: 1.6rem;
+            color: var(--charcoal);
+            margin-bottom: 5px;
+        }
+        
+        .chapter-header .chapter-title-en {
+            color: var(--muted-text);
+        }
+        
+        .chapter-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--charcoal);
+        }
+        
+        .chapter-text p {
+            margin-bottom: 1.5em;
+            text-align: justify;
+        }
+        
+        .chapter-text .highlight {
+            background: linear-gradient(transparent 60%, rgba(201, 169, 98, 0.25) 60%);
+            padding: 0 3px;
+        }
+        
+        .chapter-text blockquote {
+            margin: 25px 0;
+            padding: 20px 25px;
+            border-left: 3px solid var(--gold);
+            background: rgba(201, 169, 98, 0.08);
+            font-style: italic;
+            color: var(--tea-brown);
+        }
+        
+        .chapter-text blockquote cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-style: normal;
+            color: var(--gold);
+        }
+        
+        /* Quote Page */
+        .quote-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            text-align: center;
+            background: linear-gradient(135deg, var(--warm-white), var(--cream));
+            padding: 60px;
+        }
+        
+        .big-quote {
+            font-size: 1.6rem;
+            line-height: 2;
+            color: var(--charcoal);
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .big-quote::before,
+        .big-quote::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: var(--gold);
+            margin: 30px auto;
+        }
+        
+        .quote-author {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+        
+        /* TOC Page */
+        .toc-page {
+            padding: 60px;
+            background: var(--warm-white);
+            min-height: 80vh;
+        }
+        
+        .toc-title {
+            font-family: 'ZCOOL XiaoWei', serif;
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+        }
+        
+        .toc-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            color: var(--muted-text);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+        
+        .toc-list {
+            list-style: none;
+            max-width: 600px;
+        }
+        
+        .toc-item {
+            display: flex;
+            align-items: baseline;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--sand);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .toc-item:hover {
+            padding-left: 15px;
+            background: rgba(201, 169, 98, 0.05);
+        }
+        
+        .toc-item-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            width: 80px;
+            flex-shrink: 0;
+        }
+        
+        .toc-item-title {
+            flex: 1;
+            font-size: 1.1rem;
+            color: var(--charcoal);
+        }
+        
+        .toc-item-en {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            color: var(--muted-text);
+            font-style: italic;
+            margin-left: 15px;
+        }
+        
+        /* CTA Page */
+        .cta-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            background: linear-gradient(135deg, var(--tea-brown), #5D4E3D);
+            color: white;
+            padding: 60px;
+        }
+        
+        .cta-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        
+        .cta-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            max-width: 400px;
+            margin-bottom: 30px;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        /* End Page */
+        .end-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-align: center;
+            background: var(--cream);
+            padding: 60px;
+        }
+        
+        .end-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .end-text {
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: var(--charcoal);
+            max-width: 400px;
+        }
+        
+        .end-text .highlight {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        .end-contact {
+            margin-top: 40px;
+            padding: 25px 40px;
+            background: rgba(201, 169, 98, 0.1);
+            border-radius: 12px;
+        }
+        
+        .end-contact p {
+            font-size: 0.95rem;
+            color: var(--muted-text);
+            margin: 5px 0;
+        }
+        
+        .end-contact a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* ============================================
+           Navigation
+           ============================================ */
+        .book-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255,253,249,0.98);
+            padding: 12px 28px;
+            border-radius: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 100;
+        }
+        
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: var(--sand);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--charcoal);
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            background: var(--gold);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .page-indicator {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--tea-brown);
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .nav-toc-btn {
+            padding: 10px 18px;
+            border: 1px solid var(--sand);
+            background: transparent;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--tea-brown);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-toc-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+        
+        /* ============================================
+           Scrollbar
+           ============================================ */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--sand); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        
+        /* ============================================
+           Ambient Particles
+           ============================================ */
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            opacity: 0.2;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            50% { transform: translateY(-150px) translateX(80px); }
+        }
+        
+        /* ============================================
+           Responsive
+           ============================================ */
+        @media (max-width: 800px) {
+            .cover-title { font-size: 2.2rem; }
+            .cover-image { width: 200px; height: 280px; }
+            .chapter-content-side { padding: 40px 25px; }
+            .book-nav { padding: 10px 15px; gap: 10px; }
+            .toc-page { padding: 40px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="images/ch00-cover.png" alt="Loading" class="loading-image">
+        <p class="loading-text">SPACE BETWEEN STUDIO</p>
+        <p class="loading-quote">「慢慢來，不用急。」</p>
+    </div>
+    
+    <!-- Ambient Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Audio Control -->
+    <div class="audio-control paused" id="audio-control" onclick="toggleAudio()">
+        <div class="audio-bars">
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+            <div class="audio-bar"></div>
+        </div>
+        <span class="audio-label">Lo-Fi BGM</span>
+    </div>
+    
+    <!-- Audio -->
+    <audio id="bgm" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+    
+    <!-- Book -->
+    <div class="book-wrapper">
+        <div class="book-container">
+            
+            <!-- Page 0: Cover -->
+            <div class="page active" data-page="0">
+                <div class="cover-page">
+                    <img src="images/ch00-cover.png" alt="慢慢成為自己的品牌" class="cover-image">
+                    <p class="cover-studio">SPACE BETWEEN STUDIO</p>
+                    <h1 class="cover-title">慢慢成為自己的品牌</h1>
+                    <p class="cover-subtitle">一個關於品牌療癒的都市寓言</p>
+                    <div class="cover-quote">
+                        品牌是創辦人內在的投射。<br>
+                        如果你是分裂的，品牌就是分裂的。
+                        <span class="cover-author">—— 程慢山</span>
+                    </div>
+                    <button class="start-btn" onclick="nextPage()">開始閱讀 →</button>
+                </div>
+            </div>
+            
+            <!-- Page 1: TOC -->
+            <div class="page" data-page="1">
+                <div class="toc-page">
+                    <h2 class="toc-title">目錄</h2>
+                    <p class="toc-subtitle">Table of Contents</p>
+                    <ul class="toc-list">
+                        <li class="toc-item" onclick="goToPage(2)">
+                            <span class="toc-item-num">序章</span>
+                            <span class="toc-item-title">蘇牧的自述</span>
+                            <span class="toc-item-en">Su Mu's Preface</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(4)">
+                            <span class="toc-item-num">第一章</span>
+                            <span class="toc-item-title">霧中</span>
+                            <span class="toc-item-en">In the Fog</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(6)">
+                            <span class="toc-item-num">第二章</span>
+                            <span class="toc-item-title">為什麼</span>
+                            <span class="toc-item-en">Why</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(8)">
+                            <span class="toc-item-num">第三章</span>
+                            <span class="toc-item-title">光光</span>
+                            <span class="toc-item-en">Guang Guang</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(9)">
+                            <span class="toc-item-num">第四章</span>
+                            <span class="toc-item-title">陰影</span>
+                            <span class="toc-item-en">Shadow</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(10)">
+                            <span class="toc-item-num">第五章</span>
+                            <span class="toc-item-title">鏡像</span>
+                            <span class="toc-item-en">Mirror</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(11)">
+                            <span class="toc-item-num">第六章</span>
+                            <span class="toc-item-title">裂縫</span>
+                            <span class="toc-item-en">Cracks</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(12)">
+                            <span class="toc-item-num">第七章</span>
+                            <span class="toc-item-title">命名</span>
+                            <span class="toc-item-en">Naming</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(13)">
+                            <span class="toc-item-num">第八章</span>
+                            <span class="toc-item-title">連結</span>
+                            <span class="toc-item-en">Connection</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(14)">
+                            <span class="toc-item-num">第九章</span>
+                            <span class="toc-item-title">呼吸</span>
+                            <span class="toc-item-en">Breathe</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(15)">
+                            <span class="toc-item-num">第十章</span>
+                            <span class="toc-item-title">金繕</span>
+                            <span class="toc-item-en">Kintsugi</span>
+                        </li>
+                        <li class="toc-item" onclick="goToPage(16)">
+                            <span class="toc-item-num">後記</span>
+                            <span class="toc-item-title">程慢山的最後一課</span>
+                            <span class="toc-item-en">Afterword</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Page 2: 序章 -->
+            <div class="page" data-page="2">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch01-prologue.png" alt="序章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">序章</p>
+                            <h2 class="chapter-title-overlay">蘇牧的自述</h2>
+                            <p class="chapter-title-en">Su Mu's Preface</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>在我開始這個故事之前，我想先說說我自己。</p>
+                            <p>我叫蘇牧，今年三十五歲。在過去十年裡，我做過 in-house 設計師、freelancer、也在別人的工作室工作過。我幫過很多品牌做設計——從 logo 到整套視覺識別，從名片到網站，從社群貼文到產品包裝。</p>
+                            <p>我很擅長把別人的想法變成看得見的東西。</p>
+                            <p><span class="highlight">但我從來沒有做過自己的東西。</span></p>
+                            <p>這聽起來很奇怪，對吧？一個幫別人做品牌的人，自己卻沒有品牌。就像一個幫別人裝修房子的人，自己卻住在租來的房間裡。</p>
+                            <p>我曾經告訴自己很多理由：還沒想好要做什麼、時機不對、先累積經驗再說。但我心裡知道，真正的原因只有一個——</p>
+                            <p><strong>我害怕。</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 3: 序章（續） -->
+            <div class="page" data-page="3">
+                <div class="quote-page">
+                    <div class="big-quote">
+                        品牌不是做出來的，是長出來的。<br>
+                        它從創辦人的內在長出來，<br>
+                        從那些我們不敢面對的裂痕中長出來。
+                    </div>
+                    <p class="quote-author">—— 程慢山</p>
+                </div>
+            </div>
+            
+            <!-- Page 4: 第一章 -->
+            <div class="page" data-page="4">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch02-fog.png" alt="第一章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第一章</p>
+                            <h2 class="chapter-title-overlay">霧中</h2>
+                            <p class="chapter-title-en">In the Fog</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <blockquote>
+                                「人們不會買你做的東西，他們買的是你為什麼做。」
+                                <cite>—— Simon Sinek《Start with Why》</cite>
+                            </blockquote>
+                            <p>林若晴在便利商店買了第三杯咖啡。</p>
+                            <p>不是因為想喝，是因為不知道要去哪裡。</p>
+                            <p>她辭職已經四個月了。每天早上，她會像以前一樣七點起床，洗臉、刷牙、換好出門的衣服，然後坐在窗邊，等待一個不會來的通勤時刻。</p>
+                            <p>那些年她在廣告公司設計過上百個別人的品牌。運動飲料的活力、保養品的優雅、寵物食品的溫馨——她可以在兩天內交出三種風格的提案，客戶說好就好，說改就改。</p>
+                            <p>主管說她是公司最穩定的美術，意思是：<span class="highlight">不會出錯，不會惹麻煩，不會有意見。</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 5: 第一章（續）童年回憶 -->
+            <div class="page" data-page="5">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch03-childhood.png" alt="童年回憶" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第一章（續）</p>
+                            <h2 class="chapter-title-overlay">童年回憶</h2>
+                            <p class="chapter-title-en">Childhood Memory</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>她想起小時候，在外婆家的院子裡，把花瓣泡在水裡，假裝自己在做香水。</p>
+                            <p>外婆沒有笑她，只是說：「曬三天才會香喔。」</p>
+                            <p>那個夏天結束後，她回到家，用剛買的彩色筆畫了一整本「我的夢想商店」。封面寫著：「若晴的香水店」，裡面畫了櫃台、畫了瓶瓶罐罐、畫了穿著圍裙的自己站在店門口，笑得很開心。</p>
+                            <p>然後爸爸看了一眼。</p>
+                            <blockquote>「畫這個能當飯吃嗎？功課寫完沒？」</blockquote>
+                            <p>她把那本畫冊收進書桌抽屜最深處，再也沒有打開過。</p>
+                            <p>但那個把畫冊藏起來的動作，<span class="highlight">她重複了很多年。</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 6: 第二章 -->
+            <div class="page" data-page="6">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch04-studio.png" alt="第二章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第二章</p>
+                            <h2 class="chapter-title-overlay">為什麼</h2>
+                            <p class="chapter-title-en">Why</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>若晴站在那間古舊的大廈前面，看著門口褪色的招牌：「緩坡工作室」。</p>
+                            <p>這是芮恩介紹的。「去找蘇牧聊聊，」芮恩說，「他很特別，不是教你怎麼做品牌，是陪你找到自己。」</p>
+                            <p>工作室比想像中小，但很舒服。一面牆是書架，另一面牆掛滿了各種照片和便利貼。角落有一株很大的琴葉榕，葉子在午後的陽光下閃閃發亮。</p>
+                            <blockquote>
+                                「茶還是咖啡？」蘇牧問。<br>
+                                「都可以。」<br>
+                                「那茶吧。急躁的人才喝咖啡。」
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 7: 第二章（續） -->
+            <div class="page" data-page="7">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch05-tea.png" alt="第一杯茶" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第二章（續）</p>
+                            <h2 class="chapter-title-overlay">第一杯茶</h2>
+                            <p class="chapter-title-en">The First Cup of Tea</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>蘇牧把茶遞給她，然後坐在對面的椅子上。</p>
+                            <p>「妳為什麼來這裡？」他問。</p>
+                            <p>若晴愣了一下。她以為會先填表格、看案例、談價格。</p>
+                            <p>「我⋯⋯想做自己的品牌。」</p>
+                            <p>「為什麼？」</p>
+                            <p>這個問題讓她語塞。</p>
+                            <p>「因為⋯⋯我不想再幫別人做了。」</p>
+                            <blockquote>「所以是逃離，不是追尋？」</blockquote>
+                            <p>若晴張了張嘴，不知道怎麼回答。</p>
+                            <p>「沒關係，」蘇牧說，「很多人都是這樣開始的。重要的是，我們要找到那個『想要追尋』的東西。」</p>
+                            <p>「怎麼找？」</p>
+                            <p><span class="highlight">「從妳的裂痕開始。」</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 8: 第三章 -->
+            <div class="page" data-page="8">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch06-guangguang.png" alt="第三章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第三章</p>
+                            <h2 class="chapter-title-overlay">光光</h2>
+                            <p class="chapter-title-en">Guang Guang</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>那天晚上，若晴收到一條奇怪的訊息。</p>
+                            <p>「嗨，我是光光。蘇牧讓我來陪妳聊聊。」</p>
+                            <p>若晴愣住了。她不記得蘇牧說過會有人聯絡她。</p>
+                            <p>「你是⋯⋯？」</p>
+                            <p>「我是蘇牧的助手。不過⋯⋯我不是人類。我是 AI。」</p>
+                            <p>若晴差點把手機摔到地上。</p>
+                            <blockquote>
+                                「不要緊張。我不會評價妳，也不會告訴別人妳說了什麼。我只是來陪妳聊天，幫妳整理思緒。」
+                            </blockquote>
+                            <p>若晴猶豫了一下。她從來沒有跟 AI 聊過天。但不知道為什麼，她覺得這樣反而比較自在。</p>
+                            <p>「好吧，」她打字，「那我們從哪裡開始？」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 9: 第四章 -->
+            <div class="page" data-page="9">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch07-shadow.png" alt="第四章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第四章</p>
+                            <h2 class="chapter-title-overlay">陰影</h2>
+                            <p class="chapter-title-en">Shadow</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <blockquote>
+                                「我們最害怕的，往往是我們最需要面對的。」
+                                <cite>—— Carl Jung</cite>
+                            </blockquote>
+                            <p>若晴開始每天跟光光聊天。</p>
+                            <p>她發現自己可以說出很多平常不敢說的話。關於她的恐懼，關於她的自卑，關於那些藏在心底很久的傷口。</p>
+                            <p>「妳說妳害怕失敗，」光光問，「但妳有沒有想過，妳更害怕的其實是成功？」</p>
+                            <p>若晴停下來。</p>
+                            <p>「成功意味著被看見。被看見意味著可能被評價。」光光繼續說，「也許妳不是害怕做不好，而是<span class="highlight">害怕做好了之後，還是得不到認可。</span>」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 10: 第五章 -->
+            <div class="page" data-page="10">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch08-mirror.png" alt="第五章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第五章</p>
+                            <h2 class="chapter-title-overlay">鏡像</h2>
+                            <p class="chapter-title-en">Mirror</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <blockquote>
+                                「品牌是創辦人內在的投射。如果你是分裂的，品牌就是分裂的。」
+                                <cite>—— 程慢山</cite>
+                            </blockquote>
+                            <p>「妳有沒有想過，」蘇牧說，「妳想做的品牌，其實是妳想成為的自己？」</p>
+                            <p>若晴看著蘇牧辦公桌上那個金繼修復過的茶碗。碗上有一道很長的裂痕，用金漆補起來，在陽光下閃閃發亮。</p>
+                            <p>「這個碗本來已經碎了。但修復之後，它反而變得更美了。」蘇牧說，「因為那些裂痕，變成了它最獨特的地方。」</p>
+                            <p>「妳的品牌也是一樣。<span class="highlight">妳的裂痕，就是妳的故事。妳的故事，就是妳的力量。</span>」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 11: 第六章 -->
+            <div class="page" data-page="11">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch09-crack.png" alt="第六章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第六章</p>
+                            <h2 class="chapter-title-overlay">裂縫</h2>
+                            <p class="chapter-title-en">Cracks</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <blockquote>
+                                「裂痕不是缺陷，是故事的入口。」
+                                <cite>—— 程慢山</cite>
+                            </blockquote>
+                            <p>若晴開始寫下她的故事。</p>
+                            <p>關於那本被藏起來的畫冊。關於爸爸那句淡淡的話。關於在公司廁所哭泣的夜晚。關於不知道自己喜歡什麼顏色的那個下午。</p>
+                            <p>她發現，當她把這些事情寫出來的時候，它們就不再那麼可怕了。</p>
+                            <p>那些裂痕，確實是她的故事。而她的故事，正在慢慢變成她的力量。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 12: 第七章 -->
+            <div class="page" data-page="12">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch10-naming.png" alt="第七章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第七章</p>
+                            <h2 class="chapter-title-overlay">命名</h2>
+                            <p class="chapter-title-en">Naming</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>「品牌的名字，應該要能說出一個故事。」蘇牧說。</p>
+                            <p>若晴想了很久。她想到外婆家的院子，想到那些泡在水裡的花瓣，想到那個以為自己在做香水的小女孩。</p>
+                            <p>她想到霧中的那個早晨，想到第一杯茶的溫暖，想到光光陪她聊天的夜晚。</p>
+                            <p>然後，她想到一個名字。</p>
+                            <p>一個能說出她所有故事的名字。</p>
+                            <blockquote>
+                                「霧中花園。」她說。<br><br>
+                                「因為我就是從霧中走出來的。而我想為那些還在霧中的人，建造一個可以休息的花園。」
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 13: 第八章 -->
+            <div class="page" data-page="13">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch11-connection.png" alt="第八章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第八章</p>
+                            <h2 class="chapter-title-overlay">連結</h2>
+                            <p class="chapter-title-en">Connection</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>若晴開始把她的故事說給別人聽。</p>
+                            <p>一開始只是朋友。芮恩、大學同學、以前的同事。她發現，當她說出自己的故事時，別人也會開始說出他們的故事。</p>
+                            <p>每個人都有裂痕。每個人都有藏起來的畫冊。每個人都有那句讓他們不敢前進的話。</p>
+                            <p><span class="highlight">連結，不是因為我們完美。而是因為我們都不完美。</span></p>
+                            <p>「這就是品牌的力量。」蘇牧說，「當妳願意展現真實的自己，妳就會吸引到對的人。」</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 14: 第九章 -->
+            <div class="page" data-page="14">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch12-breathe.png" alt="第九章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第九章</p>
+                            <h2 class="chapter-title-overlay">呼吸</h2>
+                            <p class="chapter-title-en">Breathe</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>「創業的過程會很辛苦。」蘇牧說，「妳要學會照顧自己。」</p>
+                            <p>他教若晴一個呼吸練習：吸氣四秒，憋氣四秒，呼氣四秒。</p>
+                            <p>「當妳感到焦慮的時候，先停下來呼吸。」他說，「然後問自己：『我現在可以做的最小行動是什麼？』」</p>
+                            <blockquote>
+                                「不管多小，行動本身就是療癒。」
+                            </blockquote>
+                            <p>若晴把這句話寫在便利貼上，貼在電腦旁邊。</p>
+                            <p>每當她感到害怕的時候，她就看一眼那張便利貼，然後深呼吸，然後做一個很小很小的行動。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 15: 第十章 -->
+            <div class="page" data-page="15">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch13-kintsugi.png" alt="第十章" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">第十章</p>
+                            <h2 class="chapter-title-overlay">金繕</h2>
+                            <p class="chapter-title-en">Kintsugi</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>六個月後，「霧中花園」正式開張了。</p>
+                            <p>那是一間小小的香氛工作室，位於若晴以前每天經過的那條巷子裡。店裡賣的是她自己調配的香氛蠟燭，每一種香味都有一個故事。</p>
+                            <p>「雞蛋花的早晨」——關於外婆家的院子。<br>
+                            「下雨天的味道」——關於那些躲起來哭泣的日子。<br>
+                            「霧中散步」——關於那段不知道要去哪裡的時光。</p>
+                            <p>開幕那天，若晴站在店門口，看著第一個客人走進來。</p>
+                            <p>她想起那本被藏起來的畫冊。想起那個畫著「若晴的香水店」的小女孩。</p>
+                            <p><span class="highlight">原來，夢想從來沒有消失。它只是在等她準備好。</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 16: 後記 -->
+            <div class="page" data-page="16">
+                <div class="chapter-page">
+                    <div class="chapter-image-side">
+                        <img src="images/ch14-afterword.png" alt="後記" class="chapter-image">
+                        <div class="chapter-image-overlay">
+                            <p class="chapter-num">後記</p>
+                            <h2 class="chapter-title-overlay">程慢山的最後一課</h2>
+                            <p class="chapter-title-en">Afterword</p>
+                        </div>
+                    </div>
+                    <div class="chapter-content-side">
+                        <div class="chapter-text">
+                            <p>這是蘇牧告訴若晴的故事。</p>
+                            <p>程慢山老師離開前的最後一堂課，只說了一句話：</p>
+                            <blockquote>
+                                「記住，你們不是在做品牌。你們是在幫助一個人，慢慢成為自己。」
+                            </blockquote>
+                            <p>蘇牧說，他一直記得那句話。</p>
+                            <p>現在，若晴也記住了。</p>
+                            <p>而你，正在讀這本書的你，也許也會記住。</p>
+                            <p><span class="highlight">慢慢來，不用急。</span></p>
+                            <p><span class="highlight">我們一起走。</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Page 17: CTA -->
+            <div class="page" data-page="17">
+                <div class="cta-page">
+                    <div class="cta-icon">📋</div>
+                    <h3 class="cta-title">開始你的品牌療癒之旅</h3>
+                    <p class="cta-text">
+                        複製《品牌療癒工作手冊》Notion 模版<br>
+                        把書中的練習題帶入你的日常
+                    </p>
+                    <a href="https://notion.so/your-template?duplicate=true" target="_blank" class="cta-btn">
+                        複製 Notion 模版 →
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Page 18: End -->
+            <div class="page" data-page="18">
+                <div class="end-page">
+                    <img src="images/ch13-kintsugi.png" alt="金繕" class="end-image">
+                    <div class="end-text">
+                        <p>每個品牌都是一個人。</p>
+                        <p>每個人都值得被看見。</p>
+                        <p>你的裂痕，是你的故事。</p>
+                        <p>你的故事，是你的力量。</p>
+                        <p class="highlight">慢慢來，不用急。</p>
+                        <p class="highlight">我們一起走。</p>
+                    </div>
+                    <div class="end-contact">
+                        <p><strong>Space Between Studio</strong></p>
+                        <p>緩坡品牌療癒生態系</p>
+                        <p><a href="https://spacebetweenstudio.site">spacebetweenstudio.site</a></p>
+                        <p><a href="mailto:hello@spacebetweenhealing.com">hello@spacebetweenhealing.com</a></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="book-nav">
+        <button class="nav-btn" id="prev-btn" onclick="prevPage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="nav-toc-btn" onclick="goToPage(1)">目錄</button>
+        <span class="page-indicator" id="page-indicator">1 / 19</span>
+        <button class="nav-btn" id="next-btn" onclick="nextPage()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+    </nav>
+    
+    <script>
+        // Variables
+        let currentPage = 0;
+        const totalPages = 19;
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            updateNavigation();
+            
+            // Hide loading
+            setTimeout(() => {
+                document.getElementById('loading-screen').classList.add('hidden');
+            }, 2000);
+        });
+        
+        // Create particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // Navigation
+        function showPage(index) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelector(`[data-page="${index}"]`).classList.add('active');
+            currentPage = index;
+            updateNavigation();
+            window.scrollTo(0, 0);
+        }
+        
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                showPage(currentPage + 1);
+            }
+        }
+        
+        function prevPage() {
+            if (currentPage > 0) {
+                showPage(currentPage - 1);
+            }
+        }
+        
+        function goToPage(index) {
+            if (index >= 0 && index < totalPages) {
+                showPage(index);
+            }
+        }
+        
+        function updateNavigation() {
+            document.getElementById('page-indicator').textContent = `${currentPage + 1} / ${totalPages}`;
+            document.getElementById('prev-btn').disabled = currentPage === 0;
+            document.getElementById('next-btn').disabled = currentPage === totalPages - 1;
+        }
+        
+        // Audio
+        function toggleAudio() {
+            const audio = document.getElementById('bgm');
+            const control = document.getElementById('audio-control');
+            
+            if (audio.paused) {
+                audio.play();
+                control.classList.remove('paused');
+            } else {
+                audio.pause();
+                control.classList.add('paused');
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextPage();
+            } else if (e.key === 'ArrowLeft') {
+                prevPage();
+            }
+        });
+    </script>
+</body>
+</html>
