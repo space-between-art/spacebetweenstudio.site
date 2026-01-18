@@ -2,510 +2,160 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>慢慢成為自己的品牌 | Slowly Becoming Your Own Brand</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慢慢成為自己的品牌</title>
     <meta name="description" content="一個關於品牌療癒的都市寓言 - Space Between Studio">
-    <meta name="author" content="Space Between Studio">
-    
-    <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#C9A962">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="慢慢品牌">
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="images/ch00-cover.png">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="慢慢成為自己的品牌">
-    <meta property="og:description" content="一個關於品牌療癒的都市寓言">
-    <meta property="og:image" content="images/ch00-cover.png">
-    <meta property="og:type" content="book">
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --cream: #FAF7F2;
-            --warm-white: #FFFDF9;
-            --sand: #E8DFD4;
-            --tea-brown: #8B7355;
-            --deep-brown: #5D4E3D;
-            --gold: #C9A962;
-            --light-gold: #D4BC84;
-            --charcoal: #2C2C2C;
-            --soft-black: #1A1A1A;
-            --muted-text: #6B6358;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{--cream:#FAF7F2;--sand:#E8DFD4;--tea:#8B7355;--gold:#C9A962;--char:#2C2C2C;--muted:#6B6358}
+        html{font-size:16px;scroll-behavior:smooth}
+        body{font-family:'Noto Serif TC',Georgia,serif;background:var(--cream);color:var(--char);line-height:2}
+        
+        #loading{position:fixed;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.8s}
+        #loading.hide{opacity:0;pointer-events:none}
+        #loading p{margin-top:20px;color:var(--tea);font-size:14px;letter-spacing:0.3em}
+        
+        #progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:1000;width:0;transition:width 0.1s}
+        
+        .nav{position:fixed;top:20px;right:20px;z-index:100;display:flex;gap:10px}
+        .nav button{padding:10px 16px;background:rgba(255,255,255,0.95);border:none;border-radius:20px;font-family:inherit;font-size:14px;color:var(--tea);cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+        .nav button:hover{background:var(--gold);color:white}
+        
+        #settings{position:fixed;top:70px;right:20px;width:260px;background:white;border-radius:12px;padding:20px;box-shadow:0 10px 40px rgba(0,0,0,0.15);z-index:150;display:none}
+        #settings.show{display:block}
+        #settings h3{font-size:14px;margin-bottom:15px}
+        #settings label{display:block;font-size:13px;color:var(--muted);margin:15px 0 8px}
+        .ctrl{display:flex;align-items:center;justify-content:center;gap:15px}
+        .ctrl button{width:40px;height:40px;border:1px solid var(--sand);background:white;border-radius:8px;cursor:pointer;font-size:16px}
+        .ctrl button:hover{background:var(--gold);color:white;border-color:var(--gold)}
+        .ctrl span{min-width:50px;text-align:center;font-size:14px}
+        
+        #toc-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);z-index:150;display:none}
+        #toc-overlay.show{display:block}
+        #toc{position:fixed;top:0;left:-320px;width:320px;height:100vh;background:white;z-index:200;padding:50px 30px;overflow-y:auto;transition:left 0.3s}
+        #toc.show{left:0}
+        #toc h2{font-family:'ZCOOL XiaoWei',serif;font-size:20px;margin-bottom:30px}
+        #toc ul{list-style:none}
+        #toc li{padding:12px 0;border-bottom:1px solid var(--sand)}
+        #toc a{text-decoration:none;color:var(--char);display:flex;gap:15px}
+        #toc a:hover{color:var(--gold)}
+        #toc .num{color:var(--gold);min-width:50px;font-size:13px}
+        #toc-close{position:absolute;top:15px;right:15px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--muted)}
+        
+        .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;position:relative}
+        .hero img{width:280px;max-width:60vw;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.15);margin-bottom:40px}
+        .hero h1{font-family:'ZCOOL XiaoWei',serif;font-size:clamp(1.8rem,5vw,2.8rem);margin-bottom:10px}
+        .hero .sub{font-size:14px;color:var(--muted);font-style:italic;margin-bottom:30px}
+        .hero .quote{max-width:400px;font-size:16px;color:var(--tea);line-height:2}
+        .hero .author{color:var(--gold);margin-top:10px}
+        .scroll-hint{position:absolute;bottom:30px;color:var(--muted);font-size:13px;animation:bounce 2s infinite}
+        @keyframes bounce{50%{transform:translateY(8px)}}
+        
+        .chapter{min-height:100vh}
+        .ch-cover{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+        .ch-cover img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.6)}
+        .ch-cover-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(250,247,242,0.2),rgba(0,0,0,0.3),rgba(250,247,242,0.9))}
+        .ch-cover-text{position:relative;z-index:1;text-align:center;color:white;padding:30px}
+        .ch-cover-text .num{font-size:13px;letter-spacing:0.3em;opacity:0.9;margin-bottom:10px}
+        .ch-cover-text h2{font-family:'ZCOOL XiaoWei',serif;font-size:clamp(1.8rem,4vw,2.5rem);text-shadow:0 2px 15px rgba(0,0,0,0.3)}
+        .ch-cover-text .en{font-size:14px;font-style:italic;opacity:0.8;margin-top:8px}
+        
+        .ch-content{max-width:680px;margin:0 auto;padding:60px 25px}
+        .chapter-epigraph{margin-bottom:40px;padding:25px;border-left:3px solid var(--gold);background:rgba(201,169,98,0.05)}
+        .chapter-epigraph p{font-style:italic;color:var(--tea);font-size:15px}
+        .chapter-epigraph cite{display:block;margin-top:12px;color:var(--gold);font-size:13px;font-style:normal}
+        
+        .chapter-text{font-size:17px;line-height:2.2}
+        .chapter-text p{margin-bottom:1.8em;text-align:justify}
+        .chapter-text .highlight{background:linear-gradient(transparent 60%,rgba(201,169,98,0.25) 60%)}
+        .chapter-text .dialogue{margin:20px 0;padding:18px 22px;background:rgba(255,255,255,0.8);border-radius:6px;font-style:italic;color:var(--tea)}
+        .section-break{text-align:center;padding:30px 0;color:var(--gold);font-size:18px}
+        
+        .workbook{margin-top:60px;padding-top:40px;border-top:2px solid var(--sand)}
+        .workbook-title{font-family:'ZCOOL XiaoWei',serif;font-size:20px;color:var(--tea);margin-bottom:30px;text-align:center}
+        .exercise{margin-bottom:35px;padding:25px;background:rgba(255,255,255,0.6);border-radius:10px;border:1px solid var(--sand)}
+        .exercise h4{font-size:16px;color:var(--char);margin-bottom:15px}
+        .exercise p{font-size:15px;margin-bottom:15px;color:var(--muted)}
+        .exercise-list{margin-left:20px}
+        .exercise-list li{margin-bottom:12px;font-size:15px;line-height:1.8}
+        .exercise-list strong{color:var(--tea)}
+        .golden-quotes{margin:30px 0}
+        .golden-quotes h4{font-size:16px;color:var(--gold);margin-bottom:15px}
+        .golden-quotes blockquote{margin:15px 0;padding:15px 20px;background:rgba(201,169,98,0.08);border-left:3px solid var(--gold);font-style:italic;color:var(--tea)}
+        .golden-quotes cite{display:block;margin-top:8px;color:var(--gold);font-size:13px;font-style:normal}
+        .next-step{margin-top:30px;padding:20px;background:var(--sand);border-radius:8px}
+        .next-step h4{margin-bottom:10px}
+        .next-step p{font-size:15px}
+        
+        .quote-section{min-height:40vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background:linear-gradient(135deg,#5D4E3D,var(--tea));color:white}
+        .quote-section .big{font-size:clamp(1.2rem,3vw,1.6rem);line-height:2;max-width:500px}
+        .quote-section .auth{margin-top:20px;color:var(--gold)}
+        
+        .cta{padding:80px 20px;text-align:center;background:white}
+        .cta h3{font-size:20px;margin-bottom:15px}
+        .cta p{color:var(--muted);margin-bottom:25px}
+        .cta a{display:inline-block;padding:15px 35px;background:var(--gold);color:white;text-decoration:none;border-radius:25px}
+        .cta a:hover{box-shadow:0 10px 30px rgba(201,169,98,0.3)}
+        
+        footer{padding:60px 20px;text-align:center;background:var(--char);color:white}
+        footer .fq{color:var(--gold);line-height:2.2;margin-bottom:30px}
+        footer a{color:var(--gold)}
+        footer .copy{margin-top:20px;font-size:12px;color:var(--muted)}
+        
+        @media(max-width:600px){
+            .nav{top:10px;right:10px}
+            .nav button{padding:8px 12px;font-size:13px}
+            .ch-content{padding:40px 18px}
+            .chapter-text{font-size:16px}
+            #toc{width:100%;left:-100%}
+            #settings{right:10px;width:calc(100% - 20px);max-width:280px}
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 16px; scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Noto Serif TC', serif;
-            background: var(--cream);
-            color: var(--charcoal);
-            line-height: 2;
-            overflow-x: hidden;
-        }
-        
-        /* Loading Screen */
-        #loading-screen {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--cream);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 1s ease, visibility 1s ease;
-        }
-        #loading-screen.hidden { opacity: 0; visibility: hidden; }
-        
-        .loading-bowl { width: 120px; height: 120px; }
-        .loading-bowl svg { width: 100%; height: 100%; }
-        .crack-line {
-            stroke-dasharray: 200;
-            stroke-dashoffset: 200;
-            animation: drawCrack 2s ease forwards;
-        }
-        @keyframes drawCrack { to { stroke-dashoffset: 0; } }
-        
-        .loading-text {
-            margin-top: 30px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 12px;
-            letter-spacing: 0.4em;
-            color: var(--tea-brown);
-        }
-        .loading-quote {
-            margin-top: 15px;
-            font-size: 1rem;
-            color: var(--muted-text);
-            font-style: italic;
-        }
-        
-        /* Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0; left: 0;
-            width: 0%; height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--light-gold));
-            z-index: 1000;
-            transition: width 0.1s ease;
-        }
-        
-        /* Offline Banner */
-        .offline-banner {
-            position: fixed;
-            top: -50px;
-            left: 0; right: 0;
-            background: var(--gold);
-            color: white;
-            text-align: center;
-            padding: 12px;
-            font-size: 0.9rem;
-            z-index: 1001;
-            transition: top 0.3s ease;
-        }
-        .offline-banner.show { top: 0; }
-        
-        /* Install Prompt */
-        .install-prompt {
-            position: fixed;
-            bottom: -100px;
-            left: 20px; right: 20px;
-            background: var(--warm-white);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 -5px 30px rgba(0,0,0,0.15);
-            z-index: 1001;
-            transition: bottom 0.4s ease;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .install-prompt.show { bottom: 20px; }
-        .install-prompt-text { flex: 1; }
-        .install-prompt-text h4 { font-size: 1rem; margin-bottom: 5px; }
-        .install-prompt-text p { font-size: 0.85rem; color: var(--muted-text); }
-        .install-btn {
-            padding: 10px 20px;
-            background: var(--gold);
-            color: white;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .install-close {
-            background: none;
-            border: none;
-            font-size: 20px;
-            cursor: pointer;
-            color: var(--muted-text);
-        }
-        
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 20px; right: 20px;
-            z-index: 100;
-            display: flex;
-            gap: 10px;
-        }
-        .nav-btn {
-            padding: 12px 18px;
-            background: rgba(255,253,249,0.95);
-            border: none;
-            border-radius: 30px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            color: var(--tea-brown);
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        .nav-btn:hover {
-            background: var(--gold);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        /* Audio Control */
-        .audio-control { display: flex; align-items: center; gap: 8px; }
-        .audio-bars { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
-        .audio-bar { width: 3px; background: var(--gold); border-radius: 2px; }
-        .audio-bar:nth-child(1) { height: 40%; animation: audioWave 0.8s ease infinite; }
-        .audio-bar:nth-child(2) { height: 70%; animation: audioWave 0.8s ease 0.1s infinite; }
-        .audio-bar:nth-child(3) { height: 50%; animation: audioWave 0.8s ease 0.2s infinite; }
-        @keyframes audioWave { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.5); } }
-        .audio-control.paused .audio-bar { animation: none; height: 30% !important; }
-        
-        /* Settings Panel */
-        .settings-panel {
-            position: fixed;
-            top: 70px; right: 20px;
-            width: 280px;
-            background: var(--warm-white);
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-            z-index: 150;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-        .settings-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .settings-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--sand);
-        }
-        .settings-header h3 { font-size: 1rem; color: var(--charcoal); font-weight: 500; }
-        .settings-close { width: 30px; height: 30px; border: none; background: transparent; font-size: 20px; cursor: pointer; color: var(--muted-text); }
-        .settings-section { margin-bottom: 20px; }
-        .settings-section label { display: block; font-size: 0.85rem; color: var(--muted-text); margin-bottom: 10px; }
-        
-        .font-size-controls, .line-height-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        .font-btn, .line-btn {
-            width: 44px; height: 44px;
-            border: 1px solid var(--sand);
-            background: white;
-            border-radius: 10px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: var(--charcoal);
-        }
-        .font-btn:hover, .line-btn:hover { background: var(--gold); color: white; border-color: var(--gold); }
-        .font-size-display, .line-height-display { min-width: 60px; text-align: center; font-size: 0.95rem; color: var(--charcoal); font-weight: 500; }
-        
-        .highlight-controls { display: flex; flex-direction: column; gap: 12px; }
-        .highlight-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border: 1px solid var(--sand);
-            background: white;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-            font-size: 0.9rem;
-            color: var(--charcoal);
-        }
-        .highlight-btn.active { background: var(--gold); color: white; border-color: var(--gold); }
-        .highlight-colors { display: flex; justify-content: center; gap: 10px; opacity: 0.5; transition: opacity 0.3s ease; }
-        .highlight-colors.active { opacity: 1; }
-        .color-btn { width: 36px; height: 36px; border: 2px solid transparent; border-radius: 50%; cursor: pointer; transition: all 0.2s ease; }
-        .color-btn:hover { transform: scale(1.1); }
-        .color-btn.active { border-color: var(--charcoal); transform: scale(1.15); }
-        .clear-btn { width: 100%; padding: 12px; border: 1px solid #e74c3c; background: transparent; color: #e74c3c; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 0.85rem; transition: all 0.2s ease; }
-        .clear-btn:hover { background: #e74c3c; color: white; }
-        .highlight-count { text-align: center; font-size: 0.85rem; color: var(--muted-text); }
-        .highlight-count strong { color: var(--gold); }
-        
-        .user-highlight { padding: 2px 0; border-radius: 3px; cursor: pointer; transition: all 0.2s ease; }
-        .user-highlight.gold { background: rgba(201, 169, 98, 0.35); }
-        .user-highlight.green { background: rgba(144, 190, 109, 0.35); }
-        .user-highlight.blue { background: rgba(131, 168, 194, 0.35); }
-        .user-highlight.pink { background: rgba(219, 160, 169, 0.35); }
-        
-        body.highlight-mode { cursor: crosshair; }
-        body.highlight-mode .chapter-text::selection { background: var(--current-highlight-color, rgba(201, 169, 98, 0.5)); }
-        
-        .highlight-indicator {
-            position: fixed;
-            bottom: 30px; left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 25px;
-            background: var(--gold);
-            color: white;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            box-shadow: 0 5px 20px rgba(201, 169, 98, 0.4);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-        }
-        .highlight-indicator.show { opacity: 1; visibility: visible; }
-        
-        /* TOC Sidebar */
-        .toc-sidebar {
-            position: fixed;
-            top: 0; left: -350px;
-            width: 350px;
-            height: 100vh;
-            background: var(--warm-white);
-            box-shadow: 5px 0 30px rgba(0,0,0,0.1);
-            z-index: 200;
-            padding: 60px 40px;
-            transition: left 0.4s ease;
-            overflow-y: auto;
-        }
-        .toc-sidebar.open { left: 0; }
-        .toc-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border: none; background: transparent; font-size: 24px; cursor: pointer; color: var(--tea-brown); }
-        .toc-title { font-family: 'ZCOOL XiaoWei', serif; font-size: 1.5rem; margin-bottom: 10px; color: var(--charcoal); }
-        .toc-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--muted-text); font-style: italic; margin-bottom: 40px; }
-        .toc-list { list-style: none; }
-        .toc-item { padding: 15px 0; border-bottom: 1px solid var(--sand); }
-        .toc-item a { text-decoration: none; color: var(--charcoal); display: flex; align-items: baseline; gap: 15px; transition: all 0.3s ease; }
-        .toc-item a:hover { color: var(--gold); padding-left: 10px; }
-        .toc-num { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; color: var(--gold); min-width: 60px; }
-        .toc-name { font-size: 1rem; }
-        .toc-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 150; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-        .toc-overlay.open { opacity: 1; visibility: visible; }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--cream) 100%);
-            position: relative;
-        }
-        .hero-image {
-            width: min(300px, 60vw);
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.15);
-            margin-bottom: 50px;
-        }
-        .hero-studio { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; letter-spacing: 0.4em; color: var(--tea-brown); margin-bottom: 20px; }
-        .hero h1 { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(2rem, 6vw, 3.5rem); font-weight: 400; color: var(--charcoal); letter-spacing: 0.1em; margin-bottom: 15px; }
-        .hero-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--muted-text); margin-bottom: 40px; }
-        .hero-quote { max-width: 500px; font-size: 1.1rem; color: var(--tea-brown); line-height: 2; position: relative; padding: 0 30px; }
-        .hero-quote::before { content: '"'; position: absolute; top: -20px; left: 0; font-size: 4rem; color: var(--gold); opacity: 0.3; font-family: 'Cormorant Garamond', serif; }
-        .hero-author { display: block; margin-top: 15px; font-style: normal; color: var(--gold); font-size: 0.95rem; }
-        .scroll-hint { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--muted-text); font-size: 0.8rem; animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
-        
-        /* Chapter Section */
-        .chapter { min-height: 100vh; position: relative; }
-        .chapter-cover { min-height: 70vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .chapter-cover-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
-        .chapter-cover-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(250, 247, 242, 0.3) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(250, 247, 242, 0.9) 100%); }
-        .chapter-cover-content { position: relative; z-index: 1; text-align: center; color: white; padding: 40px; }
-        .chapter-num { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.3em; opacity: 0.9; margin-bottom: 15px; }
-        .chapter-title { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; margin-bottom: 10px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-        .chapter-title-en { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; opacity: 0.8; }
-        
-        .chapter-content { max-width: 700px; margin: 0 auto; padding: 80px 30px; }
-        .chapter-epigraph { margin-bottom: 50px; padding: 30px; border-left: 3px solid var(--gold); background: rgba(201, 169, 98, 0.05); }
-        .chapter-epigraph p { font-style: italic; color: var(--tea-brown); font-size: 1.05rem; line-height: 2; }
-        .chapter-epigraph cite { display: block; margin-top: 15px; font-style: normal; color: var(--gold); font-size: 0.9rem; }
-        
-        .chapter-text { font-size: 1.1rem; line-height: 2.2; color: var(--charcoal); }
-        .chapter-text p { margin-bottom: 1.8em; text-align: justify; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .chapter-text p.visible { opacity: 1; transform: translateY(0); }
-        .chapter-text .highlight { background: linear-gradient(transparent 60%, rgba(201, 169, 98, 0.25) 60%); padding: 0 3px; }
-        .chapter-text .dialogue { margin: 25px 0; padding: 20px 25px; background: var(--warm-white); border-radius: 8px; font-style: italic; color: var(--tea-brown); }
-        .chapter-text blockquote { margin: 30px 0; padding: 25px 30px; border-left: 3px solid var(--gold); background: rgba(201, 169, 98, 0.08); font-style: italic; color: var(--tea-brown); }
-        .chapter-text blockquote cite { display: block; margin-top: 12px; font-style: normal; color: var(--gold); font-size: 0.9rem; }
-        
-        .section-break { text-align: center; padding: 40px 0; color: var(--gold); font-size: 1.2rem; }
-        
-        /* Quote Section */
-        .quote-section { min-height: 50vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 80px 20px; background: linear-gradient(135deg, var(--deep-brown), var(--tea-brown)); color: white; }
-        .quote-content { max-width: 600px; }
-        .big-quote { font-size: clamp(1.3rem, 3vw, 1.8rem); line-height: 2; font-weight: 300; }
-        .big-quote-author { margin-top: 30px; font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--light-gold); }
-        
-        /* CTA Section */
-        .cta-section { padding: 100px 20px; text-align: center; background: var(--warm-white); }
-        .cta-icon { font-size: 3rem; margin-bottom: 25px; }
-        .cta-title { font-size: 1.5rem; color: var(--charcoal); margin-bottom: 15px; }
-        .cta-text { font-size: 1rem; color: var(--muted-text); max-width: 400px; margin: 0 auto 30px; line-height: 1.8; }
-        .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px; background: var(--gold); color: white; text-decoration: none; border-radius: 30px; font-size: 1rem; transition: all 0.3s ease; }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201, 169, 98, 0.4); }
-        
-        /* Footer */
-        .footer { padding: 80px 20px; text-align: center; background: var(--charcoal); color: white; }
-        .footer-quote { font-size: 1.2rem; line-height: 2.2; max-width: 400px; margin: 0 auto 40px; color: var(--light-gold); }
-        .footer-contact { margin-bottom: 30px; }
-        .footer-contact p { font-size: 0.9rem; color: var(--sand); margin: 8px 0; }
-        .footer-contact a { color: var(--gold); text-decoration: none; }
-        .footer-copyright { font-size: 0.8rem; color: var(--muted-text); }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav { top: 15px; right: 15px; gap: 8px; }
-            .nav-btn { padding: 10px 14px; font-size: 0.8rem; }
-            .chapter-content { padding: 60px 20px; }
-            .chapter-text { font-size: 1rem; }
-            .toc-sidebar { width: 100%; left: -100%; }
-            .settings-panel { right: 10px; width: calc(100% - 20px); max-width: 300px; }
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--sand); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loading-bowl">
-            <svg viewBox="0 0 100 100">
-                <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" stroke="#C9A962" stroke-width="2"/>
-                <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" stroke="#C9A962" stroke-width="2"/>
-                <path class="crack-line" d="M35 45 Q50 55, 45 70 Q55 60, 65 50" fill="none" stroke="#C9A962" stroke-width="2"/>
-            </svg>
-        </div>
-        <p class="loading-text">SPACE BETWEEN STUDIO</p>
-        <p class="loading-quote">「慢慢來，不用急。」</p>
+    <div id="loading">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" stroke="#C9A962" stroke-width="2"></ellipse>
+            <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" stroke="#C9A962" stroke-width="2"></path>
+        </svg>
+        <p>SPACE BETWEEN STUDIO</p>
     </div>
     
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progress-bar"></div>
+    <div id="progress"></div>
     
-    <!-- Offline Banner -->
-    <div class="offline-banner" id="offline-banner">📴 離線模式 - 您正在閱讀已緩存的內容</div>
-    
-    <!-- Install Prompt -->
-    <div class="install-prompt" id="install-prompt">
-        <div class="install-prompt-text">
-            <h4>📱 安裝到主畫面</h4>
-            <p>離線也能隨時閱讀</p>
-        </div>
-        <button class="install-btn" id="install-btn">安裝</button>
-        <button class="install-close" id="install-close">×</button>
-    </div>
-    
-    <!-- Navigation -->
     <nav class="nav">
-        <button class="nav-btn" onclick="toggleTOC()">☰ 目錄</button>
-        <button class="nav-btn" onclick="toggleSettings()">Aa</button>
-        <button class="nav-btn audio-control paused" id="audio-control" onclick="toggleAudio()">
-            <div class="audio-bars">
-                <div class="audio-bar"></div>
-                <div class="audio-bar"></div>
-                <div class="audio-bar"></div>
-            </div>
-        </button>
+        <button onclick="toggleToc()">☰ 目錄</button>
+        <button onclick="toggleSettings()">Aa</button>
     </nav>
     
-    <!-- Settings Panel -->
-    <div class="settings-panel" id="settings-panel">
-        <div class="settings-header">
-            <h3>閱讀設定</h3>
-            <button class="settings-close" onclick="toggleSettings()">×</button>
+    <div id="settings">
+        <h3>閱讀設定</h3>
+        <label>文字大小</label>
+        <div class="ctrl">
+            <button onclick="changeFont(-1)">A-</button>
+            <span id="fontVal">100%</span>
+            <button onclick="changeFont(1)">A+</button>
         </div>
-        <div class="settings-section">
-            <label>文字大小</label>
-            <div class="font-size-controls">
-                <button class="font-btn" onclick="changeFontSize(-1)">A-</button>
-                <span class="font-size-display" id="font-size-display">100%</span>
-                <button class="font-btn" onclick="changeFontSize(1)">A+</button>
-            </div>
-        </div>
-        <div class="settings-section">
-            <label>行距</label>
-            <div class="line-height-controls">
-                <button class="line-btn" onclick="changeLineHeight(-0.1)">緊</button>
-                <span class="line-height-display" id="line-height-display">2.2</span>
-                <button class="line-btn" onclick="changeLineHeight(0.1)">鬆</button>
-            </div>
-        </div>
-        <div class="settings-section">
-            <label>螢光筆模式</label>
-            <div class="highlight-controls">
-                <button class="highlight-btn" id="highlight-toggle" onclick="toggleHighlightMode()">
-                    <span class="highlight-icon">🖍️</span>
-                    <span class="highlight-text">關閉</span>
-                </button>
-                <div class="highlight-colors" id="highlight-colors">
-                    <button class="color-btn active" data-color="gold" onclick="setHighlightColor('gold')" style="background: rgba(201, 169, 98, 0.4);"></button>
-                    <button class="color-btn" data-color="green" onclick="setHighlightColor('green')" style="background: rgba(144, 190, 109, 0.4);"></button>
-                    <button class="color-btn" data-color="blue" onclick="setHighlightColor('blue')" style="background: rgba(131, 168, 194, 0.4);"></button>
-                    <button class="color-btn" data-color="pink" onclick="setHighlightColor('pink')" style="background: rgba(219, 160, 169, 0.4);"></button>
-                </div>
-            </div>
-        </div>
-        <div class="settings-section">
-            <button class="clear-btn" onclick="clearAllHighlights()">清除所有標記</button>
-        </div>
-        <div class="settings-section highlight-count">
-            <span>已標記 <strong id="highlight-count">0</strong> 處</span>
+        <label>行距</label>
+        <div class="ctrl">
+            <button onclick="changeLine(-0.1)">緊</button>
+            <span id="lineVal">2.2</span>
+            <button onclick="changeLine(0.1)">鬆</button>
         </div>
     </div>
     
-    <!-- Audio -->
-    <audio id="bgm" loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-    </audio>
+    <div id="toc-overlay" onclick="toggleToc()"></div>
     
-    <!-- TOC Overlay -->
-    <div class="toc-overlay" id="toc-overlay" onclick="toggleTOC()"></div>
-    
-    <!-- TOC Sidebar -->
-    <aside class="toc-sidebar" id="toc-sidebar">
-        <button class="toc-close" onclick="toggleTOC()">×</button>
-        <h2 class="toc-title">目錄</h2>
-        <p class="toc-subtitle">Table of Contents</p>
-        <ul class="toc-list">
+    <aside id="toc">
+        <button id="toc-close" onclick="toggleToc()">×</button>
+        <h2>目錄</h2>
+        <ul>
 <li class="toc-item"><a href="#prologue"><span class="toc-num">序章</span><span class="toc-name">蘇牧的自述</span></a></li>
 <li class="toc-item"><a href="#ch1"><span class="toc-num">第一章</span><span class="toc-name">霧中</span></a></li>
 <li class="toc-item"><a href="#ch2"><span class="toc-num">第二章</span><span class="toc-name">為什麼</span></a></li>
@@ -520,29 +170,18 @@
 <li class="toc-item"><a href="#afterword"><span class="toc-num">後記</span><span class="toc-name">程慢山的最後一課</span></a></li>        </ul>
     </aside>
     
-    <!-- Highlight Mode Indicator -->
-    <div class="highlight-indicator" id="highlight-indicator">
-        🖍️ 螢光筆模式已開啟 — 選取文字即可標記
-    </div>
-    
-    <!-- Hero -->
     <section class="hero">
-        <img src="images/ch00-cover.png" alt="慢慢成為自己的品牌" class="hero-image">
-        <p class="hero-studio">SPACE BETWEEN STUDIO</p>
+        <img src="images/ch00-cover.png" alt="慢慢成為自己的品牌">
         <h1>慢慢成為自己的品牌</h1>
-        <p class="hero-subtitle">Slowly Becoming Your Own Brand</p>
-        <div class="hero-quote">
+        <p class="sub">Slowly Becoming Your Own Brand</p>
+        <div class="quote">
             品牌是創辦人內在的投射。<br>
             如果你是分裂的，品牌就是分裂的。
-            <span class="hero-author">—— 程慢山</span>
+            <div class="author">—— 程慢山</div>
         </div>
-        <div class="scroll-hint">
-            <span>往下滑動開始閱讀</span>
-            <span>↓</span>
-        </div>
+        <div class="scroll-hint">↓ 往下滑動開始閱讀</div>
     </section>
 
-    <!-- 序章：蘇牧的自述 -->
     <section class="chapter" id="prologue">
         <div class="chapter-cover">
             <img src="images/ch01-prologue.png" alt="序章" class="chapter-cover-bg" loading="lazy">
@@ -580,11 +219,11 @@
 <p>——蘇牧</p>
 <p>寫於緩坡工作室</p>
             </div>
+            
         </div>
     </section>
 
 
-    <!-- 第一章：霧中 -->
     <section class="chapter" id="ch1">
         <div class="chapter-cover">
             <img src="images/ch02-fog.png" alt="第一章" class="chapter-cover-bg" loading="lazy">
@@ -790,11 +429,61 @@
 <p>她說不上來是什麼，只是覺得，鏡子裡的人好像稍微清晰了一點。</p>
 <p>像是霧，開始慢慢散開。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：找回那個下午</h4>
+<p>找一個安靜的時間，準備紙筆，回答以下問題。不用想「正確」的答案，只要寫下第一個浮現的畫面。</p>
+<ol class="exercise-list">
+<li><strong>你人生中最快樂的一個下午是什麼時候？那天發生了什麼事？</strong></li>
+<li><strong>那個畫面裡有什麼顏色、氣味、聲音？</strong></li>
+<li><strong>那時候的你，幾歲？在哪裡？</strong></li>
+<li><strong>那個時刻的你，不需要證明什麼，只是單純地在做某件事。那件事是什麼？</strong></li>
+<li><strong>如果那個時刻的你，可以對現在的你說一句話，會是什麼？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：抽屜裡的東西</h4>
+<p>我們都有一些「收進抽屜最深處」的東西——可能是一個夢想、一種興趣、一句話、或者一個畫面。</p>
+<ol class="exercise-list">
+<li><strong>你有沒有什麼「收起來」的東西？是什麼？</strong></li>
+<li><strong>你是什麼時候把它收起來的？發生了什麼事？</strong></li>
+<li><strong>是誰的聲音（或什麼事件）讓你決定把它收起來？</strong></li>
+<li><strong>如果現在重新打開那個抽屜，你有什麼感覺？</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：此刻的霧</h4>
+<p>若晴形容自己的狀態是「站在霧裡」。</p>
+<ol class="exercise-list">
+<li><strong>如果用一種天氣或風景來形容你現在的狀態，會是什麼？</strong></li>
+<li><strong>這個狀態讓你感覺怎麼樣？（可以寫超過一種感覺）</strong></li>
+<li><strong>你覺得這個狀態想要告訴你什麼？</strong></li>
+<li><strong>如果可以往前踏一步，那一步會是什麼？（不用是大事，可以是很小的事）</strong></li>
+</ol>
+<div class="exercise"><h4>🎯 本章品牌思考題</h4>
+<p>在開始做品牌之前，最重要的問題不是「要做什麼」，而是「為什麼要做」。</p>
+<p>回想你想做的事情（不管是創業、轉職、開始一個新計畫，或只是一個小小的改變）：</p>
+<ol class="exercise-list">
+<li><strong>你為什麼想做這件事？（如果答案是「因為可以賺錢」或「因為應該要」，再往下問一層：然後呢？那又是為什麼？）</strong></li>
+<li><strong>做這件事，會讓你想起什麼？</strong></li>
+<li><strong>如果明天世界末日，你會後悔沒做這件事嗎？</strong></li>
+</ol>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「能不能找到，要先願意去找。」</blockquote>
+<cite>——蘇牧</cite>
+<blockquote>「品牌是創辦人內在的投射。如果你是分裂的，品牌就是分裂的。」</blockquote>
+<cite>——程慢山</cite>
+<p>把這些話抄下來，放在看得到的地方。</p>
+</div>
+<div class="next-step"><h4>👣 下一步</h4>
+<p>如果你完成了這些練習，你已經比昨天的自己更靠近一點了。</p>
+<p>不用急。慢慢來。</p>
+<p>就像蘇牧的工作室名字——「緩坡」。</p>
+<p>慢慢走，不用急。</p>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第二章：為什麼 -->
     <section class="chapter" id="ch2">
         <div class="chapter-cover">
             <img src="images/ch04-studio.png" alt="第二章" class="chapter-cover-bg" loading="lazy">
@@ -963,11 +652,61 @@
 <p>不是因為難過。</p>
 <p>是因為終於有人告訴她，她可以。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：十年後的客人</h4>
+<p>閉上眼睛，想像你的品牌（或你想做的事）已經存在了十年。</p>
+<p>有一個客人從第一年就開始支持你。現在你要訪問她：</p>
+<ol class="exercise-list">
+<li><strong>她為什麼第一次選擇你？</strong></li>
+<li><strong>她為什麼一直支持你？</strong></li>
+<li><strong>她覺得你的品牌給了她什麼？</strong></li>
+<li><strong>如果她要用一句話形容你的品牌，她會說什麼？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：「允許」的練習</h4>
+<p>這週，每天花十分鐘問自己：</p>
+<p><strong>「今天，我允許自己什麼？」</strong></p>
+<p>把答案記錄下來：</p>
+<p>- 第一天：_______________</p>
+<p>- 第二天：_______________</p>
+<p>- 第三天：_______________</p>
+<p>- 第四天：_______________</p>
+<p>- 第五天：_______________</p>
+<p>- 第六天：_______________</p>
+<p>- 第七天：_______________</p>
+<p>一週後回顧：<strong>這個練習讓你發現了什麼？</strong></p>
+<div class="exercise"><h4>練習三：給別人你沒有得到過的東西</h4>
+<p>回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>在成長過程中，你最渴望但沒有得到的是什麼？</strong></li>
+</ol>
+<p>（可能是肯定、允許、理解、陪伴、自由……）</p>
+<ol class="exercise-list">
+<li><strong>這個渴望，現在還在嗎？</strong></li>
+<li><strong>如果你的品牌可以給別人一樣東西，你希望是什麼？</strong></li>
+<li><strong>這個東西，跟你沒有得到過的，有沒有關係？</strong></li>
+</ol>
+<div class="exercise"><h4>🎯 本章品牌思考題</h4>
+<p>Simon Sinek 說：「人們不會買你做的東西，他們買的是你為什麼做。」</p>
+<ol class="exercise-list">
+<li><strong>你的品牌「做什麼」？（產品/服務）</strong></li>
+<li><strong>你的品牌「怎麼做」？（方法/特色）</strong></li>
+<li><strong>你的品牌「為什麼做」？（信念/意義）</strong></li>
+</ol>
+<p>如果你只能回答前兩個問題，這一章的練習可以幫助你找到第三個。</p>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「妳想做的品牌，不只是賣香氛蠟燭。妳想做的，是一個能讓人感覺『被允許休息』的存在。」</blockquote>
+<cite>——蘇牧</cite>
+<p>把這句話改成你自己的版本：</p>
+<p>「我想做的品牌，不只是賣_______________。我想做的，是一個能讓人感覺_______________的存在。」</p>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第三章：光光 -->
     <section class="chapter" id="ch3">
         <div class="chapter-cover">
             <img src="images/ch06-guangguang.png" alt="第三章" class="chapter-cover-bg" loading="lazy">
@@ -1129,11 +868,65 @@
 <p>蘇牧笑了。</p>
 <p class="dialogue">「咁我哋下星期，」她說，「開始搵妳嘅金線。」</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：你的三道裂痕</h4>
+<p>如果你是一個碗，你身上有哪些裂痕？</p>
+<p>寫下三道：</p>
+<ol class="exercise-list">
+<li><strong>第一道裂痕：_______________________</strong></li>
+</ol>
+<p>這道裂痕是什麼時候出現的？發生了什麼事？</p>
+<ol class="exercise-list">
+<li><strong>第二道裂痕：_______________________</strong></li>
+</ol>
+<p>這道裂痕是什麼時候出現的？發生了什麼事？</p>
+<ol class="exercise-list">
+<li><strong>第三道裂痕：_______________________</strong></li>
+</ol>
+<p>這道裂痕是什麼時候出現的？發生了什麼事？</p>
+<div class="exercise"><h4>練習二：裂痕的聲音</h4>
+<p>每一道裂痕，都有它想說的話。</p>
+<ol class="exercise-list">
+<li><strong>第一道裂痕想對你說：_______________________</strong></li>
+<li><strong>第二道裂痕想對你說：_______________________</strong></li>
+<li><strong>第三道裂痕想對你說：_______________________</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：金線的可能</h4>
+<p>如果你可以用金線修補這些裂痕，讓它們發光而不是隱藏：</p>
+<ol class="exercise-list">
+<li><strong>第一道裂痕的金線是什麼？（這個經歷教會了你什麼？）</strong></li>
+</ol>
+<p>_______________________</p>
+<ol class="exercise-list">
+<li><strong>第二道裂痕的金線是什麼？（這個經歷教會了你什麼？）</strong></li>
+</ol>
+<p>_______________________</p>
+<ol class="exercise-list">
+<li><strong>第三道裂痕的金線是什麼？（這個經歷教會了你什麼？）</strong></li>
+</ol>
+<p>_______________________</p>
+<div class="exercise"><h4>練習四：與光光對話</h4>
+<p>想像你正在跟光光對話。</p>
+<p>光光問你：「今日，你有冇好好呼吸過？」</p>
+<p>你的回答：_______________________</p>
+<p>光光問你：「如果你可以允許自己一件事，會係乜？」</p>
+<p>你的回答：_______________________</p>
+<p>光光問你：「你最想俾人睇到嘅，同最唔想俾人睇到嘅，係唔係同一樣嘢？」</p>
+<p>你的回答：_______________________</p>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「碎咗唔係完結，碎咗係變成另一個形狀。」</blockquote>
+<cite>——蘇牧外婆</cite>
+<blockquote>「嗰啲扮到從來冇碎過嘅嘢，摸落去總係硬繃繃、凍冰冰。但敢承認碎過嘅嘢，摸落去係暖嘅。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第四章：陰影 -->
     <section class="chapter" id="ch4">
         <div class="chapter-cover">
             <img src="images/ch07-shadow.png" alt="第四章" class="chapter-cover-bg" loading="lazy">
@@ -1266,11 +1059,50 @@
 <p>走到公車站的時候，她說了第五次。</p>
 <p>這一次，她覺得那句話好像不那麼假了。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：找出你的陰影</h4>
+<p>我們都有不想承認的慾望或特質。花一些時間，回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>你有沒有什麼想要的東西，但你覺得不應該想要？</strong></li>
+</ol>
+<p>（例如：想被讚美、想成功、想被羨慕、想有錢……）</p>
+<ol class="exercise-list">
+<li><strong>為什麼你覺得不應該想要這個？</strong></li>
+<li><strong>這個想法是誰教你的？</strong></li>
+<li><strong>如果你允許自己想要這個，會發生什麼事？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：陰影與品牌</h4>
+<p>回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>你想做這個品牌（或這件事），有多少是為了別人？有多少是為了自己？</strong></li>
+<li><strong>為了自己的那部分，是什麼？</strong></li>
+</ol>
+<p>（例如：想證明自己、想被肯定、想賺錢、想有成就感……）</p>
+<ol class="exercise-list">
+<li><strong>你對這些「為了自己」的動機，有什麼感覺？</strong></li>
+<li><strong>如果你完全接受這些動機，你會有什麼不同？</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：每日陰影練習</h4>
+<p>這週，每天對自己說一次：</p>
+<p><strong>「我想___________，而這是可以的。」</strong></p>
+<p>（填入你的陰影慾望）</p>
+<p>記錄你的感受：</p>
+<p>- 第一天：_______________</p>
+<p>- 第三天：_______________</p>
+<p>- 第七天：_______________</p>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「我們最害怕被看見的部分，往往藏著我們最大的力量。」</blockquote>
+<cite>——蘇牧</cite>
+<blockquote>「我想被看見，而這是可以的。」</blockquote>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第五章：鏡像 -->
     <section class="chapter" id="ch5">
         <div class="chapter-cover">
             <img src="images/ch08-mirror.png" alt="第五章" class="chapter-cover-bg" loading="lazy">
@@ -1434,11 +1266,54 @@
 <p>她一直覺得做品牌就是把自己完全暴露出來，這讓她很焦慮。但蘇牧說的讓她理解：品牌是一個「角色」，是她選擇呈現的那個面向，不是她的全部。</p>
 <p>她可以保留一些只屬於自己的東西。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：畫出你的品牌識別棱鏡</h4>
+<p>準備一張紙，畫一個六邊形。在六個角分別標上：</p>
+<p>- 形體（Physique）</p>
+<p>- 個性（Personality）</p>
+<p>- 文化（Culture）</p>
+<p>- 關係（Relationship）</p>
+<p>- 反映（Reflection）</p>
+<p>- 自我形象（Self-image）</p>
+<p>然後回答以下問題，把答案填進對應的位置。</p>
+<div class="exercise"><h4>練習二：六個面向的問題</h4>
+<p><strong>形體：</strong></p>
+<p>- 你的品牌看起來是什麼樣子？</p>
+<p>- 主要顏色是什麼？</p>
+<p>- 材質、質感是什麼？</p>
+<p>- 如果有 logo，它是什麼風格？</p>
+<p><strong>個性：</strong></p>
+<p>- 如果你的品牌是一個人，她的性格是什麼？</p>
+<p>- 她說話的方式是怎樣的？</p>
+<p>- 她給人的第一印象是什麼？</p>
+<p><strong>文化：</strong></p>
+<p>- 你的品牌代表什麼價值觀？</p>
+<p>- 你的品牌相信什麼？反對什麼？</p>
+<p>- 你的品牌想要改變什麼？</p>
+<p><strong>關係：</strong></p>
+<p>- 你的品牌跟消費者的關係像什麼？</p>
+<p>- 是像朋友？老師？母親？陪伴者？</p>
+<p>- 你的品牌會怎麼對待消費者？</p>
+<p><strong>反映：</strong></p>
+<p>- 你的典型消費者是什麼樣的人？</p>
+<p>- 她幾歲？做什麼工作？過什麼生活？</p>
+<p>- 她看起來是什麼樣子？</p>
+<p><strong>自我形象：</strong></p>
+<p>- 消費者使用你的品牌時，她覺得自己是什麼樣的人？</p>
+<p>- 她會為此感到驕傲嗎？</p>
+<p>- 這個品牌讓她覺得自己有什麼特別？</p>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「品牌是妳的一部分，但不是妳的全部。妳不需要把所有的自己都放進品牌裡。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第六章：裂縫 -->
     <section class="chapter" id="ch6">
         <div class="chapter-cover">
             <img src="images/ch09-crack.png" alt="第六章" class="chapter-cover-bg" loading="lazy">
@@ -1612,11 +1487,38 @@
 <p>蘇牧笑了。</p>
 <p class="dialogue">「那我們來看看妳的二十一版 logo 吧。」</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：完美主義檢視</h4>
+<p>回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>你有沒有一件想做但一直沒做的事？是什麼？</strong></li>
+<li><strong>你為什麼還沒做？（列出所有原因）</strong></li>
+<li><strong>這些原因背後，有沒有可能是「害怕失敗」或「害怕被評價」？</strong></li>
+<li><strong>如果你做了但失敗了，最壞會發生什麼？</strong></li>
+<li><strong>如果你不做，一年後你會怎麼想？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：重寫「失敗」的定義</h4>
+<p>我們對「失敗」的定義，往往來自小時候被教導的觀念。</p>
+<ol class="exercise-list">
+<li><strong>在你的成長過程中，「失敗」意味著什麼？</strong></li>
+<li><strong>當你失敗的時候，周圍的人（父母、老師、同學）是怎麼對待你的？</strong></li>
+<li><strong>這些經驗讓你相信了什麼？</strong></li>
+<li><strong>如果你可以重新定義「失敗」，你會怎麼定義？</strong></li>
+</ol>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「做了會失敗，不做會後悔。我選擇可能失敗。」</blockquote>
+<cite>——程慢山</cite>
+<blockquote>「失敗代表你做了。不做的人永遠不會失敗，但不做的人也永遠不會知道自己可以走多遠。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第七章：命名 -->
     <section class="chapter" id="ch7">
         <div class="chapter-cover">
             <img src="images/ch10-naming.png" alt="第七章" class="chapter-cover-bg" loading="lazy">
@@ -1754,11 +1656,42 @@
 <p>若晴看著那個 logo——那個霧中花園。</p>
 <p>她終於認出它了。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：回到原點</h4>
+<p>找一個安靜的時間，閉上眼睛，回到你最初想做這件事的那個畫面。</p>
+<ol class="exercise-list">
+<li><strong>那個畫面裡有什麼？（顏色、聲音、氣味、質感）</strong></li>
+<li><strong>那個畫面讓你想到什麼詞？（不要過濾，讓詞自己浮現）</strong></li>
+<li><strong>這些詞裡面，有沒有可以組合成名字的？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：名字的清單</h4>
+<p>寫下至少 20 個可能的名字。不要評判，只要寫。</p>
+<p>然後問自己：</p>
+<ol class="exercise-list">
+<li><strong>哪個名字讓你有感覺？（可以是正面的，也可以是奇怪的感覺）</strong></li>
+<li><strong>那個感覺是什麼？</strong></li>
+<li><strong>這個名字跟你的故事有什麼連結？</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：名字的測試</h4>
+<p>選出 3 個你最喜歡的名字，然後問自己：</p>
+<ol class="exercise-list">
+<li><strong>這個名字好唸嗎？第一次聽到的人能記住嗎？</strong></li>
+<li><strong>這個名字能傳達你品牌的感覺嗎？</strong></li>
+<li><strong>這個名字有故事嗎？你能用一段話解釋它的由來嗎？</strong></li>
+<li><strong>十年後，你還會喜歡這個名字嗎？</strong></li>
+</ol>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「好的品牌不是設計出來的，是『認出來』的。你不是在創造它，而是在發現它。」</blockquote>
+<cite>——蘇牧（引述程慢山）</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第八章：連結 -->
     <section class="chapter" id="ch8">
         <div class="chapter-cover">
             <img src="images/ch11-connection.png" alt="第八章" class="chapter-cover-bg" loading="lazy">
@@ -1901,11 +1834,42 @@
 <p>她不是一個人。</p>
 <p>從來都不是。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：你的故事結構</h4>
+<p>用三句話寫下你的品牌故事：</p>
+<ol class="exercise-list">
+<li><strong>開始：</strong>你原本是什麼樣的人？你遇到了什麼問題？</li>
+<li><strong>中間：</strong>發生了什麼事改變了你？</li>
+<li><strong>結束：</strong>你現在變成了什麼樣的人？你想幫助誰？</li>
+</ol>
+<div class="exercise"><h4>練習二：加上血肉</h4>
+<p>回答以下問題，為你的故事加上細節：</p>
+<ol class="exercise-list">
+<li><strong>有沒有一個具體的畫面或場景，可以代表你的「開始」？</strong></li>
+<li><strong>那個場景裡有什麼？（顏色、聲音、氣味、感覺）</strong></li>
+<li><strong>那個「轉折」發生的時候，你在哪裡？發生了什麼具體的事？</strong></li>
+<li><strong>你現在想幫助的人，他們面對的問題是什麼？你的經歷如何讓你理解他們？</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：決定你的分享程度</h4>
+<p>在分享你的故事之前，問自己：</p>
+<ol class="exercise-list">
+<li><strong>這個故事裡有沒有你不想公開的部分？</strong></li>
+<li><strong>如果這個故事被陌生人看到，你會有什麼感覺？</strong></li>
+<li><strong>你願意為了連結而分享多少？</strong></li>
+<li><strong>有沒有一個「剛剛好」的版本——既能建立連結，又能保護你的隱私？</strong></li>
+</ol>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「品牌故事不只是行銷，它是連結。它讓陌生人變成同路人。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第九章：呼吸 -->
     <section class="chapter" id="ch9">
         <div class="chapter-cover">
             <img src="images/ch12-breathe.png" alt="第九章" class="chapter-cover-bg" loading="lazy">
@@ -2061,11 +2025,45 @@
 <p>她張開眼睛。</p>
 <p class="dialogue">「我去做蠟燭了。」</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：你在「準備的陷阱」裡嗎？</h4>
+<p>回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>你有沒有一件想做但一直在「準備」的事？</strong></li>
+<li><strong>你已經「準備」多久了？</strong></li>
+<li><strong>如果再「準備」一個月，你會更有把握嗎？還是會找到更多不開始的理由？</strong></li>
+<li><strong>你可以今天就做的最小行動是什麼？</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：最小可行版本</h4>
+<p>不管你想做什麼，問自己：</p>
+<ol class="exercise-list">
+<li><strong>這件事的「完整版本」是什麼樣子？</strong></li>
+<li><strong>如果只做 1/10，最核心的部分是什麼？</strong></li>
+<li><strong>這個「最小版本」需要多少時間？多少錢？</strong></li>
+<li><strong>如果這個「最小版本」失敗了，最壞會發生什麼？</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：與焦慮共處</h4>
+<p>下次你感到焦慮的時候，試試這個練習：</p>
+<ol class="exercise-list">
+<li><strong>閉上眼睛，深呼吸三次。</strong></li>
+<li><strong>對自己說：「我感到焦慮，這是正常的。」</strong></li>
+<li><strong>問自己：「我現在可以做的最小行動是什麼？」</strong></li>
+<li><strong>去做那個行動。不管多小。</strong></li>
+</ol>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「品牌經營不是等到不焦慮了才開始，而是帶著焦慮繼續前進。」</blockquote>
+<cite>——蘇牧</cite>
+<blockquote>「這就是呼吸的節奏。吸氣——接受焦慮。呼氣——繼續行動。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 第十章：金繕 -->
     <section class="chapter" id="ch10">
         <div class="chapter-cover">
             <img src="images/ch13-kintsugi.png" alt="第十章" class="chapter-cover-bg" loading="lazy">
@@ -2240,11 +2238,46 @@
 <p>她閉上眼睛，微笑。</p>
 <p>這只是開始。</p>
             </div>
+            <div class="workbook">
+<h3 class="workbook-title">📝 品牌療癒工作手冊</h3>
+<p>給讀者的自我探索練習</p>
+<div class="exercise"><h4>練習一：你的裂痕</h4>
+<p>回答以下問題：</p>
+<ol class="exercise-list">
+<li><strong>你人生中有哪些「裂痕」？（童年的創傷、失敗的經歷、被否定的夢想……）</strong></li>
+<li><strong>這些裂痕如何影響了你？</strong></li>
+<li><strong>你以前是怎麼對待這些裂痕的？（忽略、隱藏、假裝沒事……）</strong></li>
+<li><strong>如果你可以用「金」把這些裂痕填滿，那個「金」是什麼？（你的故事、你的成長、你的品牌……）</strong></li>
+</ol>
+<div class="exercise"><h4>練習二：回顧你的旅程</h4>
+<p>如果你跟著這本書走到了這裡，現在是回顧的時候。</p>
+<ol class="exercise-list">
+<li><strong>你在這本書裡學到了什麼？</strong></li>
+<li><strong>你對自己有什麼新的發現？</strong></li>
+<li><strong>你接下來想做什麼？</strong></li>
+<li><strong>你的「品牌」是什麼？（不一定是商業品牌，可以是你想成為的人、你想傳達的價值）</strong></li>
+</ol>
+<div class="exercise"><h4>練習三：寫給自己的信</h4>
+<p>寫一封信給三個月後的自己。</p>
+<p>告訴那個未來的你：</p>
+<ol class="exercise-list">
+<li><strong>你現在在哪裡？</strong></li>
+<li><strong>你希望三個月後的你變成什麼樣子？</strong></li>
+<li><strong>你想對那個未來的你說什麼？</strong></li>
+</ol>
+<p>把這封信收好，三個月後打開。</p>
+</div>
+<div class="golden-quotes"><h4>✨ 本章金句</h4>
+<blockquote>「裂痕不是缺陷，是故事。用我們的經歷，把它們轉化成美。」</blockquote>
+<cite>——程慢山</cite>
+<blockquote>「品牌療癒不是我治療你，而是你自己治療自己。我只是陪你走過這段路。」</blockquote>
+<cite>——蘇牧</cite>
+</div>
+</div>
         </div>
     </section>
 
 
-    <!-- 後記：程慢山的最後一課 -->
     <section class="chapter" id="afterword">
         <div class="chapter-cover">
             <img src="images/ch14-afterword.png" alt="後記" class="chapter-cover-bg" loading="lazy">
@@ -2311,343 +2344,163 @@
 <p>外面的陽光很好。</p>
 <p>她深吸一口氣，開始往前走。</p>
 <p><span class="highlight">全書完</span></p>
+<p><span class="highlight">Step 1：回顧你的人生</span></p>
+<p>- 你小時候喜歡做什麼？</p>
+<p>- 有沒有什麼夢想被你放棄了？</p>
+<p>- 你人生中最重要的轉折點是什麼？</p>
+<p><span class="highlight">Step 2：找出模式</span></p>
+<p>- 這些經歷有什麼共同點？</p>
+<p>- 它們反映了你什麼樣的價值觀？</p>
+<p>- 它們讓你想要改變什麼？</p>
+<p><span class="highlight">Step 3：寫下你的「為什麼」</span></p>
+<p>完成這個句子：「我想做_______，因為_______。」</p>
+<p>畫一個六邊形，在六個角填入：</p>
+<p>1. <span class="highlight">形體</span>：你的品牌看起來是什麼樣子？</p>
+<p>2. <span class="highlight">個性</span>：如果品牌是一個人，她的性格是什麼？</p>
+<p>3. <span class="highlight">文化</span>：你的品牌代表什麼價值觀？</p>
+<p>4. <span class="highlight">關係</span>：品牌跟消費者的關係像什麼？</p>
+<p>5. <span class="highlight">反映</span>：典型消費者的形象是什麼？</p>
+<p>6. <span class="highlight">自我形象</span>：消費者使用品牌時覺得自己是什麼樣的人？</p>
+<p>用這個結構寫出你的品牌故事：</p>
+<p><span class="highlight">開始：</span></p>
+<p>- 你原本是什麼樣的人？</p>
+<p>- 你遇到了什麼問題或困境？</p>
+<p><span class="highlight">中間：</span></p>
+<p>- 發生了什麼事改變了你？</p>
+<p>- 這個轉變帶給你什麼？</p>
+<p><span class="highlight">結束：</span></p>
+<p>- 你現在變成了什麼樣的人？</p>
+<p>- 你想幫助誰？怎麼幫助？</p>
+<p>- [ ] 今天我為我的品牌做了什麼？</p>
+<p>- [ ] 今天我學到了什麼？</p>
+<p>- [ ] 今天我遇到了什麼困難？</p>
+<p>- [ ] 明天我要做什麼？</p>
+<p>1. 閉上眼睛</p>
+<p>2. 深呼吸：吸氣 4 秒，憋氣 4 秒，呼氣 4 秒</p>
+<p>3. 重複 3-5 次</p>
+<p>4. 對自己說：「我感到焦慮，這是正常的。」</p>
+<p>5. 問自己：「我現在可以做的最小行動是什麼？」</p>
+<p>6. 去做那個行動</p>
+<p>感謝每一個願意相信自己、願意慢慢來的人。</p>
+<p>感謝程慢山老師的精神，雖然她已不在，但她的智慧一直在影響著我們。</p>
+<p>感謝緩坡的每一位來訪者，你們的故事讓這本書有了血肉。</p>
+<p>感謝你，讀到這裡的你。</p>
+<p>願你也能慢慢成為自己的品牌。</p>
+<p><span class="highlight">蘇牧</span></p>
+<p><span class="highlight">緩坡品牌療癒工作室</span></p>
             </div>
+            
         </div>
     </section>
 
-    <!-- Quote Break -->
     <section class="quote-section">
-        <div class="quote-content">
-            <p class="big-quote">
-                「裂痕不是缺陷，<br>是故事的入口。」
-            </p>
-            <p class="big-quote-author">—— 程慢山</p>
+        <div>
+            <p class="big">「裂痕不是缺陷，<br>是故事的入口。」</p>
+            <p class="auth">—— 程慢山</p>
         </div>
     </section>
     
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-icon">📋</div>
-        <h3 class="cta-title">開始你的品牌療癒之旅</h3>
-        <p class="cta-text">
-            複製《品牌療癒工作手冊》Notion 模版<br>
-            把書中的練習題帶入你的日常
-        </p>
-        <a href="#" class="cta-btn">
-            複製 Notion 模版 →
-        </a>
+    <section class="cta">
+        <h3>📋 開始你的品牌療癒之旅</h3>
+        <p>複製 Notion 模版，把練習題帶入日常</p>
+        <a href="#">複製 Notion 模版 →</a>
     </section>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-quote">
+    <footer>
+        <div class="fq">
             每個品牌都是一個人。<br>
-            每個人都值得被看見。<br>
-            你的裂痕，是你的故事。<br>
-            你的故事，是你的力量。
+            每個人都值得被看見。
         </div>
-        <div class="footer-contact">
-            <p><strong>Space Between Studio</strong></p>
-            <p>緩坡品牌療癒生態系</p>
-            <p><a href="https://spacebetweenstudio.site">spacebetweenstudio.site</a></p>
-        </div>
-        <p class="footer-copyright">© 2026 Space Between Studio. All rights reserved.</p>
+        <p><strong>Space Between Studio</strong></p>
+        <p><a href="https://spacebetweenstudio.site">spacebetweenstudio.site</a></p>
+        <p class="copy">© 2026 Space Between Studio</p>
     </footer>
 
     <script>
-        // ============================================
-        // Service Worker & PWA (離線閱讀)
-        // ============================================
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('SW registered'))
-                    .catch(err => console.log('SW failed:', err));
-            });
-        }
-        
-        // Offline detection
-        function updateOnlineStatus() {
-            const banner = document.getElementById('offline-banner');
-            if (banner) {
-                if (!navigator.onLine) {
-                    banner.classList.add('show');
-                } else {
-                    banner.classList.remove('show');
-                }
-            }
-        }
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-        
-        // Install prompt
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            setTimeout(() => {
-                const prompt = document.getElementById('install-prompt');
-                if (prompt) prompt.classList.add('show');
-            }, 5000);
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var l = document.getElementById('loading');
+                if (l) l.classList.add('hide');
+            }, 1500);
+            loadSettings();
         });
         
-        const installBtn = document.getElementById('install-btn');
-        if (installBtn) {
-            installBtn.addEventListener('click', async () => {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    await deferredPrompt.userChoice;
-                    deferredPrompt = null;
-                    document.getElementById('install-prompt').classList.remove('show');
-                }
-            });
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            var p = h > 0 ? (window.scrollY / h) * 100 : 0;
+            var bar = document.getElementById('progress');
+            if (bar) bar.style.width = p + '%';
+        });
+        
+        function toggleToc() {
+            var t = document.getElementById('toc');
+            var o = document.getElementById('toc-overlay');
+            if (t) t.classList.toggle('show');
+            if (o) o.classList.toggle('show');
         }
         
-        const installClose = document.getElementById('install-close');
-        if (installClose) {
-            installClose.addEventListener('click', () => {
-                document.getElementById('install-prompt').classList.remove('show');
-            });
+        var tocLinks = document.querySelectorAll('#toc a');
+        for (var i = 0; i < tocLinks.length; i++) {
+            tocLinks[i].addEventListener('click', toggleToc);
         }
         
-        // ============================================
-        // Variables
-        // ============================================
-        let fontSize = 100;
-        let lineHeight = 2.2;
-        let highlightMode = false;
-        let currentHighlightColor = 'gold';
+        function toggleSettings() {
+            var s = document.getElementById('settings');
+            if (s) s.classList.toggle('show');
+        }
+        
+        var fontSize = 100;
+        function changeFont(d) {
+            fontSize = Math.max(80, Math.min(140, fontSize + d * 10));
+            applyFont();
+            try { localStorage.setItem('mm-font', fontSize); } catch(e) {}
+        }
+        function applyFont() {
+            var els = document.querySelectorAll('.chapter-text');
+            for (var i = 0; i < els.length; i++) {
+                els[i].style.fontSize = (17 * fontSize / 100) + 'px';
+            }
+            var v = document.getElementById('fontVal');
+            if (v) v.textContent = fontSize + '%';
+        }
+        
+        var lineH = 2.2;
+        function changeLine(d) {
+            lineH = Math.max(1.6, Math.min(3, lineH + d));
+            lineH = Math.round(lineH * 10) / 10;
+            applyLine();
+            try { localStorage.setItem('mm-line', lineH); } catch(e) {}
+        }
+        function applyLine() {
+            var els = document.querySelectorAll('.chapter-text');
+            for (var i = 0; i < els.length; i++) {
+                els[i].style.lineHeight = lineH;
+            }
+            var v = document.getElementById('lineVal');
+            if (v) v.textContent = lineH.toFixed(1);
+        }
         
         function loadSettings() {
-            const savedFontSize = localStorage.getItem('manman-fontSize');
-            const savedLineHeight = localStorage.getItem('manman-lineHeight');
-            if (savedFontSize) { fontSize = parseInt(savedFontSize); applyFontSize(); }
-            if (savedLineHeight) { lineHeight = parseFloat(savedLineHeight); applyLineHeight(); }
-        }
-        
-        // ============================================
-        // Loading Screen
-        // ============================================
-        window.addEventListener('load', () => {
-            loadSettings();
-            updateOnlineStatus();
-            setTimeout(() => {
-                const loading = document.getElementById('loading-screen');
-                if (loading) loading.classList.add('hidden');
-            }, 2000);
-        });
-        
-        // ============================================
-        // Progress Bar
-        // ============================================
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrollTop / docHeight) * 100;
-            const bar = document.getElementById('progress-bar');
-            if (bar) bar.style.width = progress + '%';
-        });
-        
-        // ============================================
-        // TOC Toggle
-        // ============================================
-        function toggleTOC() {
-            document.getElementById('toc-sidebar').classList.toggle('open');
-            document.getElementById('toc-overlay').classList.toggle('open');
-        }
-        
-        document.querySelectorAll('.toc-item a').forEach(link => {
-            link.addEventListener('click', () => toggleTOC());
-        });
-        
-        // ============================================
-        // Settings Panel
-        // ============================================
-        function toggleSettings() {
-            document.getElementById('settings-panel').classList.toggle('open');
-        }
-        
-        document.addEventListener('click', (e) => {
-            const panel = document.getElementById('settings-panel');
-            const btn = document.querySelector('.nav-btn:nth-child(2)');
-            if (panel && panel.classList.contains('open') && !panel.contains(e.target) && btn && !btn.contains(e.target)) {
-                panel.classList.remove('open');
-            }
-        });
-        
-        // ============================================
-        // Font Size
-        // ============================================
-        function changeFontSize(delta) {
-            fontSize = Math.max(80, Math.min(150, fontSize + delta * 10));
-            applyFontSize();
-            localStorage.setItem('manman-fontSize', fontSize);
-        }
-        
-        function applyFontSize() {
-            document.querySelectorAll('.chapter-text').forEach(el => {
-                el.style.fontSize = (1.1 * fontSize / 100) + 'rem';
-            });
-            const display = document.getElementById('font-size-display');
-            if (display) display.textContent = fontSize + '%';
-        }
-        
-        // ============================================
-        // Line Height
-        // ============================================
-        function changeLineHeight(delta) {
-            lineHeight = Math.max(1.5, Math.min(3, lineHeight + delta));
-            lineHeight = Math.round(lineHeight * 10) / 10;
-            applyLineHeight();
-            localStorage.setItem('manman-lineHeight', lineHeight);
-        }
-        
-        function applyLineHeight() {
-            document.querySelectorAll('.chapter-text').forEach(el => {
-                el.style.lineHeight = lineHeight;
-            });
-            const display = document.getElementById('line-height-display');
-            if (display) display.textContent = lineHeight.toFixed(1);
-        }
-        
-        // ============================================
-        // Highlight Mode
-        // ============================================
-        function toggleHighlightMode() {
-            highlightMode = !highlightMode;
-            const btn = document.getElementById('highlight-toggle');
-            const colors = document.getElementById('highlight-colors');
-            const indicator = document.getElementById('highlight-indicator');
-            
-            if (highlightMode) {
-                if (btn) { btn.classList.add('active'); btn.querySelector('.highlight-text').textContent = '開啟'; }
-                if (colors) colors.classList.add('active');
-                document.body.classList.add('highlight-mode');
-                if (indicator) indicator.classList.add('show');
-                updateSelectionColor();
-            } else {
-                if (btn) { btn.classList.remove('active'); btn.querySelector('.highlight-text').textContent = '關閉'; }
-                if (colors) colors.classList.remove('active');
-                document.body.classList.remove('highlight-mode');
-                if (indicator) indicator.classList.remove('show');
-            }
-        }
-        
-        function setHighlightColor(color) {
-            currentHighlightColor = color;
-            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
-            const colorBtn = document.querySelector('[data-color="' + color + '"]');
-            if (colorBtn) colorBtn.classList.add('active');
-            updateSelectionColor();
-        }
-        
-        function updateSelectionColor() {
-            const colors = {
-                gold: 'rgba(201, 169, 98, 0.5)',
-                green: 'rgba(144, 190, 109, 0.5)',
-                blue: 'rgba(131, 168, 194, 0.5)',
-                pink: 'rgba(219, 160, 169, 0.5)'
-            };
-            document.documentElement.style.setProperty('--current-highlight-color', colors[currentHighlightColor]);
-        }
-        
-        document.addEventListener('mouseup', (e) => {
-            if (!highlightMode) return;
-            const selection = window.getSelection();
-            const selectedText = selection.toString().trim();
-            if (selectedText.length > 0) {
-                const range = selection.getRangeAt(0);
-                const container = range.commonAncestorContainer;
-                const chapterText = container.nodeType === 3 
-                    ? container.parentElement.closest('.chapter-text')
-                    : container.closest('.chapter-text');
-                if (chapterText) highlightSelection(range);
-                selection.removeAllRanges();
-            }
-        });
-        
-        function highlightSelection(range) {
-            const span = document.createElement('span');
-            span.className = 'user-highlight ' + currentHighlightColor;
-            span.onclick = function() {
-                if (confirm('要移除這個標記嗎？')) removeHighlight(this);
-            };
             try {
-                range.surroundContents(span);
-                updateHighlightCount();
-            } catch (e) {}
+                var f = localStorage.getItem('mm-font');
+                var l = localStorage.getItem('mm-line');
+                if (f) { fontSize = parseInt(f); applyFont(); }
+                if (l) { lineH = parseFloat(l); applyLine(); }
+            } catch(e) {}
         }
         
-        function removeHighlight(span) {
-            const parent = span.parentNode;
-            while (span.firstChild) parent.insertBefore(span.firstChild, span);
-            parent.removeChild(span);
-            updateHighlightCount();
-        }
-        
-        function clearAllHighlights() {
-            if (!confirm('確定要清除所有標記嗎？')) return;
-            document.querySelectorAll('.user-highlight').forEach(span => {
-                const parent = span.parentNode;
-                while (span.firstChild) parent.insertBefore(span.firstChild, span);
-                parent.removeChild(span);
-            });
-            updateHighlightCount();
-        }
-        
-        function updateHighlightCount() {
-            const count = document.getElementById('highlight-count');
-            if (count) count.textContent = document.querySelectorAll('.user-highlight').length;
-        }
-        
-        // ============================================
-        // Audio Toggle
-        // ============================================
-        function toggleAudio() {
-            const audio = document.getElementById('bgm');
-            const control = document.getElementById('audio-control');
-            if (audio && control) {
-                if (audio.paused) {
-                    audio.play();
-                    control.classList.remove('paused');
-                } else {
-                    audio.pause();
-                    control.classList.add('paused');
+        document.addEventListener('click', function(e) {
+            var s = document.getElementById('settings');
+            if (s && s.classList.contains('show')) {
+                if (!s.contains(e.target) && !e.target.closest('.nav')) {
+                    s.classList.remove('show');
                 }
             }
+        });
+        
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js').catch(function(){});
         }
-        
-        // ============================================
-        // Scroll Animation
-        // ============================================
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.chapter-text p, .chapter-text .dialogue').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // ============================================
-        // Keyboard Shortcuts
-        // ============================================
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '+' || e.key === '=') changeFontSize(1);
-            else if (e.key === '-') changeFontSize(-1);
-            else if (e.key === 'h' || e.key === 'H') toggleHighlightMode();
-            else if (e.key === 'Escape') {
-                const settings = document.getElementById('settings-panel');
-                const toc = document.getElementById('toc-sidebar');
-                const overlay = document.getElementById('toc-overlay');
-                if (settings) settings.classList.remove('open');
-                if (toc) toc.classList.remove('open');
-                if (overlay) overlay.classList.remove('open');
-                if (highlightMode) toggleHighlightMode();
-            }
-        });
     </script>
 </body>
 </html>
