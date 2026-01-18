@@ -1,1 +1,404 @@
-
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賣雨的人 | 有聲書</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ink-black: #08090c;
+            --deep-charcoal: #181c24;
+            --gold: #C9A962;
+            --light-gold: #d4b896;
+            --cream: #f5f2eb;
+            --soft-gray: #6b6b6b;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Noto Serif TC', serif;
+            background: var(--ink-black);
+            color: var(--cream);
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        .header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+        }
+        
+        .header a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+        
+        /* Album Art */
+        .album-container {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .album-art {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .album-art img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .book-title {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .book-subtitle {
+            font-size: 14px;
+            color: var(--soft-gray);
+        }
+        
+        /* Player Controls */
+        .player {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--deep-charcoal);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--soft-gray);
+        }
+        
+        /* Controls */
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .control-btn {
+            background: none;
+            border: none;
+            color: var(--cream);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-size: 20px;
+        }
+        
+        .control-btn:hover {
+            color: var(--gold);
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .play-btn:hover {
+            background: var(--light-gold);
+        }
+        
+        /* Playlist */
+        .playlist {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+        }
+        
+        .playlist-title {
+            font-size: 14px;
+            color: var(--soft-gray);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+        
+        .track {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: var(--deep-charcoal);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .track:hover {
+            background: rgba(201, 169, 98, 0.1);
+        }
+        
+        .track.active {
+            border-left: 3px solid var(--gold);
+        }
+        
+        .track-number {
+            width: 30px;
+            font-size: 14px;
+            color: var(--soft-gray);
+        }
+        
+        .track-info {
+            flex: 1;
+        }
+        
+        .track-title {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .track-duration {
+            font-size: 12px;
+            color: var(--soft-gray);
+        }
+        
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--ink-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .loading-overlay.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading -->
+    <div class="loading-overlay" id="loading">
+        <p>正在驗證存取權限...</p>
+    </div>
+    
+    <!-- Header -->
+    <header class="header">
+        <a href="/selection.html">← 返回選物店</a>
+    </header>
+    
+    <!-- Album Art -->
+    <div class="album-container">
+        <div class="album-art">
+            <img src="/images/rain-seller-cover-new.jpg" alt="賣雨的人">
+        </div>
+        <h1 class="book-title">賣雨的人</h1>
+        <p class="book-subtitle">The Rain Seller · 有聲書</p>
+    </div>
+    
+    <!-- Player -->
+    <div class="player">
+        <!-- Progress -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <span id="totalTime">0:00</span>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div class="controls">
+            <button class="control-btn" id="prevBtn">⏮</button>
+            <button class="control-btn play-btn" id="playBtn">▶</button>
+            <button class="control-btn" id="nextBtn">⏭</button>
+        </div>
+    </div>
+    
+    <!-- Playlist -->
+    <div class="playlist">
+        <p class="playlist-title">章節列表</p>
+        <div id="trackList">
+            <!-- 動態載入 -->
+        </div>
+    </div>
+    
+    <!-- Audio Element -->
+    <audio id="audio" preload="metadata"></audio>
+    
+    <script>
+        // 章節資料
+        const tracks = [
+            { id: 0, title: '序章：雨的味道', file: 'audio/00-prologue.mp3', duration: '5:23' },
+            { id: 1, title: '第一章：透明的牆', file: 'audio/01-chapter1.mp3', duration: '8:45' },
+            { id: 2, title: '第二章：裂縫', file: 'audio/02-chapter2.mp3', duration: '7:12' },
+            { id: 3, title: '第三章：陰影', file: 'audio/03-chapter3.mp3', duration: '9:30' },
+            { id: 4, title: '第四章：選擇', file: 'audio/04-chapter4.mp3', duration: '6:18' },
+            { id: 5, title: '第五章：金繼', file: 'audio/05-chapter5.mp3', duration: '8:02' },
+            { id: 6, title: '第六章：雨後', file: 'audio/06-chapter6.mp3', duration: '7:45' },
+            { id: 7, title: '第七章：新配方', file: 'audio/07-chapter7.mp3', duration: '6:55' },
+            { id: 8, title: '第八章：回家', file: 'audio/08-chapter8.mp3', duration: '8:20' },
+            { id: 9, title: '終章：賣雨的人', file: 'audio/09-ending.mp3', duration: '10:15' }
+        ];
+        
+        let currentTrack = 0;
+        let isPlaying = false;
+        const audio = document.getElementById('audio');
+        
+        // Token 驗證
+        async function verifyAccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token') || localStorage.getItem('audiobook_token');
+            
+            if (!token) {
+                window.location.href = '/selection.html';
+                return false;
+            }
+            
+            // 簡化驗證：儲存 token
+            localStorage.setItem('audiobook_token', token);
+            document.getElementById('loading').classList.add('hidden');
+            return true;
+        }
+        
+        // 渲染播放列表
+        function renderPlaylist() {
+            const trackList = document.getElementById('trackList');
+            trackList.innerHTML = tracks.map((track, index) => `
+                <div class="track ${index === currentTrack ? 'active' : ''}" onclick="playTrack(${index})">
+                    <span class="track-number">${String(index + 1).padStart(2, '0')}</span>
+                    <div class="track-info">
+                        <div class="track-title">${track.title}</div>
+                        <div class="track-duration">${track.duration}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // 播放指定曲目
+        function playTrack(index) {
+            currentTrack = index;
+            audio.src = tracks[index].file;
+            audio.play();
+            isPlaying = true;
+            updatePlayButton();
+            renderPlaylist();
+        }
+        
+        // 播放/暫停
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                if (!audio.src) {
+                    audio.src = tracks[currentTrack].file;
+                }
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+            updatePlayButton();
+        }
+        
+        function updatePlayButton() {
+            document.getElementById('playBtn').textContent = isPlaying ? '⏸' : '▶';
+        }
+        
+        // 上一首/下一首
+        function prevTrack() {
+            currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+            playTrack(currentTrack);
+        }
+        
+        function nextTrack() {
+            currentTrack = (currentTrack + 1) % tracks.length;
+            playTrack(currentTrack);
+        }
+        
+        // 進度條更新
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('currentTime').textContent = formatTime(audio.currentTime);
+        });
+        
+        audio.addEventListener('loadedmetadata', () => {
+            document.getElementById('totalTime').textContent = formatTime(audio.duration);
+        });
+        
+        audio.addEventListener('ended', nextTrack);
+        
+        // 點擊進度條
+        document.getElementById('progressBar').addEventListener('click', (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audio.currentTime = percent * audio.duration;
+        });
+        
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // 事件綁定
+        document.getElementById('playBtn').addEventListener('click', togglePlay);
+        document.getElementById('prevBtn').addEventListener('click', prevTrack);
+        document.getElementById('nextBtn').addEventListener('click', nextTrack);
+        
+        // 初始化
+        verifyAccess().then(valid => {
+            if (valid) {
+                renderPlaylist();
+            }
+        });
+    </script>
+</body>
+</html>
