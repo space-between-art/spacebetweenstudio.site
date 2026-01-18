@@ -198,7 +198,19 @@
         .toc-content {
             max-width: 500px;
             width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
             text-align: center;
+            padding: 20px;
+        }
+        
+        .toc-content::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        .toc-content::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 2px;
         }
         
         .toc-close {
