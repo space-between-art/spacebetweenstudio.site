@@ -1,1 +1,561 @@
-
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找到你的品牌金線 | Space Between Studio</title>
+    <meta name="description" content="用金繼哲學，把品牌的裂痕變成金線。13個練習，找到你獨一無二的品牌敘事。">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="找到你的品牌金線">
+    <meta property="og:description" content="用金繼哲學，把品牌的裂痕變成金線">
+    <meta property="og:type" content="website">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #C9A962;
+            --gold-light: #D4BC7D;
+            --ink: #08090C;
+            --ink-light: #1a1b1f;
+            --teal: #1A3A3A;
+            --cream: #F5F2EB;
+            --cream-dark: #E8E4DB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            line-height: 1.8;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--ink) 0%, var(--teal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23C9A962" opacity="0.1"/></svg>') repeat;
+            background-size: 50px 50px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 169, 98, 0.2);
+            color: var(--gold);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(201, 169, 98, 0.3);
+        }
+        
+        .hero h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--cream);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .hero h1 span {
+            color: var(--gold);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(245, 242, 235, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--ink);
+            padding: 18px 45px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-cta:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+        }
+        
+        /* Philosophy Section */
+        .philosophy {
+            padding: 100px 20px;
+            background: var(--cream);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--ink);
+        }
+        
+        .philosophy-content {
+            display: grid;
+            gap: 40px;
+        }
+        
+        .philosophy-text {
+            font-size: 1.1rem;
+            color: var(--ink-light);
+        }
+        
+        .philosophy-text p {
+            margin-bottom: 20px;
+        }
+        
+        .highlight-box {
+            background: var(--teal);
+            color: var(--cream);
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+        }
+        
+        .highlight-box h3 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        /* What You Get */
+        .features {
+            padding: 100px 20px;
+            background: var(--ink);
+        }
+        
+        .features .section-title {
+            color: var(--cream);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--ink-light);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(201, 169, 98, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: rgba(245, 242, 235, 0.7);
+            font-size: 0.95rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 100px 20px;
+            background: var(--cream);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        
+        .pricing-card.featured {
+            background: var(--ink);
+            color: var(--cream);
+        }
+        
+        .pricing-card.featured .pricing-name {
+            color: var(--gold);
+        }
+        
+        .pricing-card.featured .pricing-price {
+            color: var(--cream);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--ink);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .pricing-name {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--teal);
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .pricing-desc {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .pricing-card.featured .pricing-features li {
+            border-color: rgba(255,255,255,0.1);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--gold);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-btn.primary {
+            background: var(--gold);
+            color: var(--ink);
+        }
+        
+        .pricing-btn.primary:hover {
+            background: var(--gold-light);
+        }
+        
+        .pricing-btn.secondary {
+            background: var(--teal);
+            color: var(--cream);
+        }
+        
+        .pricing-btn.secondary:hover {
+            background: #245050;
+        }
+        
+        /* AI Section */
+        .ai-section {
+            padding: 100px 20px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--ink) 100%);
+            text-align: center;
+        }
+        
+        .ai-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 30px;
+        }
+        
+        .ai-section h2 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 20px;
+        }
+        
+        .ai-section p {
+            color: rgba(245, 242, 235, 0.8);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 16px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #20bd5a;
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--ink);
+            color: var(--cream);
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">📖 品牌療癒工作書</div>
+            <h1>找到你的<span>品牌金線</span></h1>
+            <p class="hero-subtitle">用金繼哲學，把品牌的裂痕變成金線。<br>13 個練習，找到你獨一無二的品牌敘事。</p>
+            <a href="#pricing" class="hero-cta">開始你的金繼之旅</a>
+        </div>
+    </section>
+    
+    <!-- Philosophy -->
+    <section class="philosophy">
+        <div class="container">
+            <h2 class="section-title">什麼是金繼哲學？</h2>
+            <div class="philosophy-content">
+                <div class="philosophy-text">
+                    <p><strong>金繼（Kintsugi）</strong>是日本修復破碎陶器的藝術。匠人用金粉填補裂痕，讓修復後的器皿比原來更美、更有價值。</p>
+                    <p>品牌也是如此。你的經歷、失敗、獨特之處，都是你的「裂痕」。而這些裂痕，正是讓你與眾不同的「金線」。</p>
+                </div>
+                <div class="highlight-box">
+                    <h3>「不是修補缺陷，而是擁抱不完美」</h3>
+                    <p>這本工作書會帶你找到那些被你忽略的裂痕，然後用金色的敘事，把它們變成你品牌最獨特的資產。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">你會得到什麼？</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <h4>132 頁工作書</h4>
+                    <p>系統性的品牌建構框架，從策略到執行，一步步帶你完成。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h4>13 個練習</h4>
+                    <p>每個練習都有明確的產出，做完就能看到自己品牌的樣子。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h4>Notion 模板</h4>
+                    <p>6 個即用模板，幫你整理品牌策略、追蹤執行進度。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Miro 視覺畫布</h4>
+                    <p>5 個視覺思考工具，讓抽象的品牌概念變得具體。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h4>影片教學</h4>
+                    <p>5 部手把手教學影片，教你用 Canva 做出專業視覺。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h4>光光 AI 助手</h4>
+                    <p>24/7 陪伴你完成練習，卡住的時候隨時可以問。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">選擇適合你的版本</h2>
+            <div class="pricing-grid">
+                <!-- Seed -->
+                <div class="pricing-card">
+                    <div class="pricing-name">Seed 種子版</div>
+                    <div class="pricing-price"><span>HKD</span> 98</div>
+                    <div class="pricing-desc">適合想先試水溫的你</div>
+                    <ul class="pricing-features">
+                        <li>132 頁電子書 (PDF)</li>
+                        <li>13 個品牌練習</li>
+                        <li>光光 AI 對話支援</li>
+                    </ul>
+                    <a href="https://pay.airwallex.com/hkhexbb35cle" class="pricing-btn secondary">立即購買</a>
+                </div>
+                
+                <!-- Complete -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">最受歡迎</div>
+                    <div class="pricing-name">Complete 完整版</div>
+                    <div class="pricing-price"><span>HKD</span> 198</div>
+                    <div class="pricing-desc">最完整的學習體驗</div>
+                    <ul class="pricing-features">
+                        <li>132 頁電子書 (PDF)</li>
+                        <li>13 個品牌練習</li>
+                        <li>6 個 Notion 模板</li>
+                        <li>5 個 Miro 視覺畫布</li>
+                        <li>5 部 Canva 影片教學</li>
+                        <li>Resource Hub 完整存取</li>
+                        <li>光光 AI 對話支援</li>
+                    </ul>
+                    <a href="https://pay.airwallex.com/hkhexbdv6fvp" class="pricing-btn primary">立即購買</a>
+                </div>
+                
+                <!-- Kintsugi -->
+                <div class="pricing-card">
+                    <div class="pricing-name">Kintsugi 金繼版</div>
+                    <div class="pricing-price"><span>HKD</span> 498</div>
+                    <div class="pricing-desc">學費即訂金</div>
+                    <ul class="pricing-features">
+                        <li>Complete 完整版所有內容</li>
+                        <li>優先客戶支援</li>
+                        <li style="color: var(--gold); font-weight: 600;">💰 全額可抵設計服務費</li>
+                    </ul>
+                    <a href="https://pay.airwallex.com/hkhexbevtwaa" class="pricing-btn secondary">立即購買</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- AI Section -->
+    <section class="ai-section">
+        <div class="ai-avatar">🌟</div>
+        <h2>認識光光</h2>
+        <p>光光是你的品牌療癒師。無論你卡在哪個練習，或者有任何品牌相關的問題，都可以隨時問光光。講廣東話也可以！</p>
+        <a href="https://wa.me/85252872126?text=你好光光，我想了解《找到你的品牌金線》" class="whatsapp-btn">
+            <span>💬</span> 與光光對話
+        </a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 <a href="/">Space Between Studio</a></p>
+        <p style="margin-top: 10px; opacity: 0.6; font-size: 14px;">品牌療癒生態系 | 金繼哲學</p>
+    </footer>
+</body>
+</html>
