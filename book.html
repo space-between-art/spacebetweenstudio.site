@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《AI 給我的第一桶金》| Space Between Studio</title>
+  <meta name="description" content="一個關於「如何在不傷害生活的前提下，嘗試第二條能力與收入曲線」的真實實驗。六個普通人的可承受實驗。">
+  <meta property="og:title" content="《AI 給我的第一桶金》六個普通人的可承受實驗">
+  <meta property="og:description" content="這不是一本成功學，也不是 AI 暴富指南。如果你正處於對工作的不安，卻又不敢亂辭職的狀態——這本書是為你而寫的。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://spacebetweenstudio.site/book.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0d0d0d;
+      --bg-section: #141414;
+      --bg-card: #1a1a1a;
+      --text-primary: #e8e0d4;
+      --text-secondary: #a89f93;
+      --text-muted: #6b6560;
+      --accent: #c9a96e;
+      --accent-dim: #8a7a56;
+      --accent-glow: rgba(201, 169, 110, 0.08);
+      --border: rgba(201, 169, 110, 0.12);
+      --serif: 'Noto Serif TC', 'Songti TC', serif;
+      --sans: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.9;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(13, 13, 13, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+
+    nav .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+    }
+
+    nav .logo {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    nav .nav-links a {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+    }
+
+    nav .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 640px;
+      position: relative;
+    }
+
+    .hero-label {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--accent-dim);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.4s forwards;
+    }
+
+    .hero h1 .subtitle {
+      display: block;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 400;
+      color: var(--accent);
+      margin-top: 0.8rem;
+    }
+
+    .hero-premise {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-top: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.6s forwards;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.8s forwards;
+    }
+
+    .hero-cta a {
+      display: inline-block;
+      border: 1px solid var(--accent-dim);
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      padding: 0.8rem 2.2rem;
+      text-decoration: none;
+      transition: all 0.4s;
+    }
+
+    .hero-cta a:hover {
+      background: var(--accent);
+      color: var(--bg-deep);
+      border-color: var(--accent);
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 5rem 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    section.alt {
+      max-width: 100%;
+      background: var(--bg-section);
+    }
+
+    section.alt .section-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.5em;
+      padding: 2rem 0;
+      opacity: 0.4;
+    }
+
+    /* ─── NOT-FOR / FOR YOU ─── */
+    .filter-block {
+      margin-bottom: 3rem;
+    }
+
+    .filter-block h2 {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .filter-block.positive h2 {
+      color: var(--accent);
+    }
+
+    .filter-item {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .filter-item::before {
+      display: inline-block;
+      width: 1.5rem;
+      font-size: 0.75rem;
+    }
+
+    .filter-block.negative .filter-item::before {
+      content: '✕';
+      color: var(--text-muted);
+    }
+
+    .filter-block.positive .filter-item::before {
+      content: '○';
+      color: var(--accent-dim);
+    }
+
+    /* ─── WHAT'S INSIDE ─── */
+    .feature-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h3 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    /* ─── HONEST SECTION ─── */
+    .honest-block {
+      border-left: 2px solid var(--accent-dim);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .honest-block h2 {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .honest-block p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 2;
+    }
+
+    /* ─── WHO SECTION ─── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .who-card {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .who-card h3 {
+      font-family: var(--serif);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.8rem;
+    }
+
+    .who-card.not-for {
+      opacity: 0.5;
+    }
+
+    .who-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-block {
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .about-block h2 {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .about-block p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 2.1;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .final-cta {
+      text-align: center;
+      padding: 5rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 2;
+      margin-bottom: 2.5rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg-deep);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding: 0.9rem 2.5rem;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      padding: 0.6rem 1.5rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-secondary);
+      border-color: var(--text-muted);
+    }
+
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .closing-line {
+      font-family: var(--serif);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 3rem;
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0 0.8rem;
+      transition: color 0.3s;
+    }
+
+    footer a:hover { color: var(--accent); }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      .who-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav .nav-links a {
+        margin-left: 1rem;
+        font-size: 0.75rem;
+      }
+
+      section {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .feature-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="logo">SPACE BETWEEN STUDIO</a>
+      <div class="nav-links">
+        <a href="/">首頁</a>
+        <a href="selection.html">選物</a>
+        <a href="podcast.html">電台</a>
+        <a href="course.html">課程</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-label">Space Between Studio 出版</div>
+      <h1>
+        《AI 給我的第一桶金》
+        <span class="subtitle">六個普通人的可承受實驗</span>
+      </h1>
+      <p class="hero-premise">
+        一個關於「如何在不傷害生活的前提下，<br>
+        嘗試第二條能力與收入曲線」的真實實驗
+      </p>
+      <div class="hero-cta">
+        <a href="#start">了解更多</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTER: NOT FOR YOU -->
+  <section id="start">
+    <div class="filter-block negative fade-in">
+      <h2>這不是一本成功學，也不是 AI 暴富指南。</h2>
+      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        如果你正在找：
+      </p>
+      <div class="filter-item">「用 AI 快速致富」的方法</div>
+      <div class="filter-item">「三個月翻身」的保證路線</div>
+      <div class="filter-item">「照做就一定成功」的副業配方</div>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 1.5rem;">
+        這本書不適合你。
+      </p>
+    </div>
+
+    <div class="section-divider">· · ·</div>
+
+    <!-- FILTER: FOR YOU -->
+    <div class="filter-block positive fade-in">
+      <h2>但如果你正處於以下狀態——</h2>
+      <div class="filter-item">對現在的工作感到不安，但又不敢亂辭職</div>
+      <div class="filter-item">想試試 AI，卻不知道從哪裡開始才不會走歪路</div>
+      <div class="filter-item">希望多一條收入可能，但前提是不犧牲生活與心理安全</div>
+      <p style="font-size: 0.92rem; color: var(--text-primary); margin-top: 1.5rem; font-family: var(--serif);">
+        那麼，這本書是為你而寫的。
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT IS THIS BOOK -->
+  <section class="alt">
+    <div class="section-inner">
+      <div class="honest-block fade-in">
+        <h2>這本書在做什麼？</h2>
+        <p>
+          《AI 給我的第一桶金》不是教你「賺多少錢」，而是記錄了一個問題：
+        </p>
+        <p style="color: var(--accent); font-family: var(--serif); font-size: 0.95rem; margin: 1.5rem 0;">
+          普通人，能不能在風險可控的情況下，<br>慢慢建立第二條能力與收入曲線？
+        </p>
+        <p>
+          書裡沒有神話，只有實驗——一萬港幣的可承受預算、真實使用過的工具與流程、六個普通人的嘗試紀錄。包括走得順的，也包括卡住與修正的。
+        </p>
+        <p style="margin-top: 1rem;">
+          這是一份被完整寫下來的現實紀錄，而不是包裝過的成功故事。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="feature-card fade-in">
+      <h3>不是工具清單，而是選擇邏輯</h3>
+      <p>
+        你會知道：哪些 AI 工具值得一試，哪些暫時不用理。什麼情況下才需要付費升級。如何避免一開始就把錢花錯地方。
+      </p>
+    </div>
+
+    <div class="feature-card fade-in">
+      <h3>不是副業排行，而是適合度判斷</h3>
+      <p>
+        書中拆解了五條常見 AI 嘗試路徑，重點不是「哪條最賺」，而是——哪一條，適合你現在的狀態。
+      </p>
+    </div>
+
+    <div class="feature-card fade-in">
+      <h3>不是速成教學，而是 30 天可實行的行動節奏</h3>
+      <p>
+        你會得到一個可以慢慢走、不用 All-in 的行動結構，而不是一張逼你衝刺的時間表。
+      </p>
+    </div>
+  </section>
+
+  <!-- HONEST DISCLAIMER -->
+  <section class="alt">
+    <div class="section-inner">
+      <div class="honest-block fade-in">
+        <h2>這本書不承諾什麼？</h2>
+        <p>需要先說清楚：</p>
+        <p style="margin: 1rem 0;">
+          這本書不保證結果。不是每個人都會在 3–6 個月內有穩定收入。有些人一年後仍在摸索，這是正常的。
+        </p>
+        <p>
+          但它能幫你做到一件事：<br>
+          <span style="color: var(--text-primary); font-family: var(--serif);">
+            避免走那些一開始就會把你拖垮的路。
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section>
+    <div class="fade-in">
+      <div class="who-grid">
+        <div class="who-card">
+          <h3>適合你，如果⋯⋯</h3>
+          <p>正在上班，但不想把未來押在單一選項</p>
+        </div>
+        <div class="who-card">
+          <h3>適合你，如果⋯⋯</h3>
+          <p>對 AI 有好奇，但不想被行銷話術牽著走</p>
+        </div>
+        <div class="who-card">
+          <h3>適合你，如果⋯⋯</h3>
+          <p>願意嘗試，但前提是「可承受、可退出、可修正」</p>
+        </div>
+        <div class="who-card not-for">
+          <h3>不適合你，如果⋯⋯</h3>
+          <p>只想要快速致富答案、無法接受「沒有保證」、希望有人替你決定方向</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="alt">
+    <div class="section-inner">
+      <div class="about-block fade-in">
+        <h2>關於 Space Between Studio</h2>
+        <p>
+          這本書由 Space Between Studio 出版。<br><br>
+          我們是一間以療癒為方法的品牌設計顧問。<br>
+          我們長期關注的不是工具，而是：<br>
+          <span style="color: var(--text-primary); font-family: var(--serif);">
+            人在不確定狀態下，如何做出不傷害自己的選擇。
+          </span>
+          <br><br>
+          這本書，是我們其中一次，把方法帶到現實生活的實驗。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta">
+    <h2 class="fade-in">你可以從這裡開始</h2>
+    <p class="fade-in">
+      如果你不確定這本書是否適合你，沒關係。<br>
+      你可以先免費閱讀前三章。<br><br>
+      內容包括：為什麼只用一萬港幣嘗試、AI 能做什麼與不能做什麼、五條常見嘗試路徑的完整比較。<br><br>
+      讀完之後，你自然會知道：<br>
+      這是不是你現在需要的節奏。
+    </p>
+
+    <div class="cta-buttons fade-in">
+      <a href="#" class="btn-primary">免費下載前三章</a>
+      <a href="#" class="btn-secondary">直接購買完整版 →</a>
+    </div>
+
+    <p class="price-note fade-in">完整版電子書 HKD 99 ・ 不需要購買、不需要承諾</p>
+
+    <p class="closing-line fade-in">
+      如果你讀完後選擇停下來，那也是一個好的選擇。<br>
+      這本書的目的，不是推你往前，而是陪你開始。
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-links">
+      <a href="/">首頁</a>
+      <a href="selection.html">選物</a>
+      <a href="podcast.html">電台</a>
+      <a href="course.html">課程</a>
+      <a href="https://spacebetweenhealing.com">光光 AI</a>
+    </div>
+    <div>© 2026 Space Between Studio. All rights reserved.</div>
+  </footer>
+
+  <!-- SCROLL REVEAL -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
