@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>關於我們 | Space Between Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+TC:wght@300;400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF7F2;
+      --warm: #F0E9DC;
+      --gold: #C9A962;
+      --gold-light: #E2C98A;
+      --earth: #3D3530;
+      --earth-mid: #6B5E54;
+      --earth-light: #9C8878;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--earth);
+      font-family: 'DM Sans', 'Noto Serif TC', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.4rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250, 247, 242, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; letter-spacing: 0.12em;
+      color: var(--earth); text-decoration: none;
+    }
+    .nav-brand em { font-style: italic; color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--earth-mid); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    .hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 8rem 3rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '隙';
+      position: absolute;
+      font-family: 'Noto Serif TC', serif;
+      font-size: 38vw; font-weight: 300;
+      color: rgba(201, 169, 98, 0.055);
+      right: -8vw; top: 50%; transform: translateY(-50%);
+      line-height: 1; pointer-events: none;
+    }
+    .hero-inner { max-width: 820px; position: relative; z-index: 1; }
+    .hero-tag {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-tag::before {
+      content: ''; display: block;
+      width: 32px; height: 1px; background: var(--gold);
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300; line-height: 1.15;
+      margin-bottom: 1.8rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; line-height: 1.9;
+      color: var(--earth-mid); max-width: 560px;
+    }
+
+    .divider {
+      padding: 0 3rem; max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(201, 169, 98, 0.25); }
+    .divider-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--gold); font-style: italic;
+    }
+
+    .services {
+      padding: 7rem 3rem;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--earth-light); margin-bottom: 3.5rem;
+    }
+    .service-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    .service-card {
+      padding: 2.5rem;
+      border: 1px solid rgba(201, 169, 98, 0.2);
+      background: rgba(240, 233, 220, 0.3);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .service-card:hover { border-color: rgba(201, 169, 98, 0.6); transform: translateY(-4px); }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem; color: rgba(201, 169, 98, 0.3);
+      line-height: 1; margin-bottom: 1.2rem;
+    }
+    .service-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.05rem; color: var(--earth);
+      margin-bottom: 0.8rem; font-weight: 400;
+    }
+    .service-desc { font-size: 0.88rem; line-height: 1.85; color: var(--earth-mid); }
+
+    .audience {
+      padding: 6rem 3rem;
+      background: var(--earth); color: var(--cream);
+    }
+    .audience-inner { max-width: 1100px; margin: 0 auto; }
+    .audience h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300; line-height: 1.3; margin-bottom: 1rem;
+    }
+    .audience h2 em { font-style: italic; color: var(--gold-light); }
+    .audience-sub {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.95rem; line-height: 2;
+      color: rgba(250, 247, 242, 0.65);
+      max-width: 600px; margin-bottom: 3.5rem;
+    }
+    .audience-list { display: flex; flex-wrap: wrap; gap: 1rem; list-style: none; }
+    .audience-list li {
+      padding: 0.6rem 1.4rem;
+      border: 1px solid rgba(201, 169, 98, 0.35);
+      font-size: 0.85rem; letter-spacing: 0.06em;
+      color: var(--gold-light);
+      font-family: 'Noto Serif TC', serif;
+    }
+
+    .founder {
+      padding: 8rem 3rem;
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+      align-items: center;
+    }
+    .founder-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 300; line-height: 1.25; margin-bottom: 1.8rem;
+    }
+    .founder-text h2 em { font-style: italic; color: var(--gold); }
+    .founder-text p {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.92rem; line-height: 2.1;
+      color: var(--earth-mid); margin-bottom: 1.4rem;
+    }
+    .founder-sig {
+      margin-top: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem; font-style: italic; color: var(--gold);
+    }
+    .founder-sig span {
+      display: block; font-size: 0.8rem;
+      font-family: 'DM Sans', sans-serif;
+      font-style: normal; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--earth-light);
+      margin-top: 0.4rem;
+    }
+    .cert-row { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .cert-tag {
+      padding: 0.3rem 0.9rem;
+      background: rgba(201, 169, 98, 0.12);
+      border: 1px solid rgba(201, 169, 98, 0.25);
+      font-size: 0.72rem; letter-spacing: 0.08em; color: var(--earth-mid);
+    }
+    .founder-quote-card {
+      padding: 3rem;
+      border: 1px solid rgba(201, 169, 98, 0.3);
+      background: var(--warm); position: relative;
+    }
+    .founder-quote-card::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8rem; line-height: 0.6;
+      color: rgba(201, 169, 98, 0.2);
+      position: absolute; top: 2rem; left: 2rem;
+    }
+    .founder-quote-card blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-style: italic;
+      line-height: 1.7; color: var(--earth); position: relative; z-index: 1;
+    }
+    .founder-quote-card cite {
+      display: block; margin-top: 1.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold); font-style: normal;
+    }
+
+    .cta {
+      padding: 8rem 3rem; text-align: center;
+      background: linear-gradient(180deg, var(--cream) 0%, var(--warm) 100%);
+    }
+    .cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 300; line-height: 1.4; margin-bottom: 1rem;
+    }
+    .cta h2 em { font-style: italic; color: var(--gold); }
+    .cta p {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 0.9rem; color: var(--earth-mid);
+      margin-bottom: 3rem; line-height: 2;
+    }
+    .cta-buttons { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 1rem 2.5rem; background: var(--earth); color: var(--cream);
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+    .btn-secondary {
+      padding: 1rem 2.5rem; border: 1px solid var(--earth); color: var(--earth);
+      font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+    footer {
+      padding: 2.5rem 3rem;
+      border-top: 1px solid rgba(201, 169, 98, 0.2);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer p { font-size: 0.78rem; color: var(--earth-light); letter-spacing: 0.06em; }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero, .services, .cta { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .founder { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .audience { padding: 5rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="./" class="nav-brand">Space Between <em>Studio</em></a>
+    <ul class="nav-links">
+      <li><a href="./">首頁</a></li>
+      <li><a href="about.html" class="active">關於</a></li>
+      <li><a href="shop/">商店</a></li>
+      <li><a href="workshop/">光光工作坊</a></li>
+      <li><a href="lab/">Lab</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-tag">About Us</p>
+      <h1>品牌，不只是<em>外表</em><br>它是你在這個世界的<em>位置</em></h1>
+      <p class="hero-sub">Space Between Studio 是一間品牌療癒顧問工作室。<br>我們相信，真正有力量的品牌，從自我認識開始。</p>
+    </div>
+  </section>
+
+  <div class="divider reveal">
+    <div class="divider-line"></div>
+    <span class="divider-mark">隙光</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <section class="services reveal">
+    <p class="section-label">我們的服務</p>
+    <div class="service-grid">
+      <div class="service-card">
+        <p class="service-num">01</p>
+        <h3 class="service-name">品牌療癒設計</h3>
+        <p class="service-desc">找到你的品牌金線——那條連結你的故事、專業與受眾的核心敘事。讓你的品牌從裡到外，散發真實的力量。</p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">02</p>
+        <h3 class="service-name">初創品牌諮詢</h3>
+        <p class="service-desc">為正在起步的創業者提供品牌定位、命名、視覺方向與核心訊息的整合諮詢，讓第一步走得穩。</p>
+      </div>
+      <div class="service-card">
+        <p class="service-num">03</p>
+        <h3 class="service-name">職涯轉型陪伴</h3>
+        <p class="service-desc">對職涯方向感到困惑？透過品牌思維重新梳理自身優勢與價值，找到下一步的方向與底氣。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="audience reveal">
+    <div class="audience-inner">
+      <h2>如果你是一位<br><em>正在尋找自己聲音</em>的人</h2>
+      <p class="audience-sub">無論你是助人工作者、獨立創作者、初創人士，還是正在職涯十字路口的人——只要你想建立一個真實、有靈魂的品牌，這裡就是你的空間。</p>
+      <ul class="audience-list">
+        <li>療癒師 / 教練</li>
+        <li>品牌主理人</li>
+        <li>初創創辦人</li>
+        <li>獨立顧問</li>
+        <li>職涯轉型中</li>
+        <li>助人工作者</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="founder">
+    <div class="founder-text reveal">
+      <p class="section-label">創辦人</p>
+      <h2>我是 Wins<br><em>品牌療癒師</em></h2>
+      <p>我叫曾詠詩（Wins），筆名隙光。過去十年，我在設計、諮詢與書寫之間穿行——十年平面設計、電話輔導經驗、以及四十萬字的療癒城市奇幻小說。</p>
+      <p>我創立 Space Between Studio，是因為我相信品牌不是包裝，而是一個人在世界上誠實存在的方式。當你的品牌與你的內在一致，你才能說出真正打動人的話。</p>
+      <p>我以「品牌金線」方法論陪伴客戶找到品牌的核心，協助他們建立真實而有力量的品牌聲音。</p>
+      <div class="cert-row">
+        <span class="cert-tag">ACF CSC #26134</span>
+        <span class="cert-tag">Self-Coaching Cards® Licensed Facilitator</span>
+        <span class="cert-tag">10yr Graphic Design</span>
+      </div>
+      <div class="founder-sig">
+        隙光
+        <span>Wins Tsang · Space Between Studio</span>
+      </div>
+    </div>
+    <div class="founder-visual reveal">
+      <div class="founder-quote-card">
+        <blockquote>裂縫不需要被修好——它需要被看見，然後發光。</blockquote>
+        <cite>— 品牌金線方法論核心信念</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta reveal">
+    <h2>準備好找到<br>你的<em>品牌金線</em>了嗎？</h2>
+    <p>預約一次品牌療癒對話，由你的故事開始。</p>
+    <div class="cta-buttons">
+      <a href="mailto:hello@spacebetweenstudio.site" class="btn-primary">電郵預約 →</a>
+      <a href="https://wa.me/85294568231" class="btn-secondary">WhatsApp 94568231</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Space Between Studio · <a href="https://spacebetweenstudio.site">spacebetweenstudio.site</a></p>
+    <p>hello@spacebetweenstudio.site</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
