@@ -19,7 +19,7 @@
 | 3 | 手機導航 | 3 頁手機版**完全無選單**；book.html 換成兩行；selection footer 擠爆 | 統一「選單」按鈕 + nav 下方全寬面板 |
 | 4 | `color-scheme` | PR #8 已加入（tokens.css + 16 頁 meta）；**`writing/index.html` 仍欠 meta** | 補上 `writing/index.html` 的 meta |
 | 5 | Footer 社交連結 | 沒有 | 新增「追蹤我們」欄：Instagram、Threads、Facebook（網址待提供） |
-| 6 | 封面應用 | 首頁用 emoji 當封面；/writing 是純文字卡片；og:image 全站同一張 | 首頁產品卡用真實封面＋文字封面；/writing 改書架；各書頁用自己的 og 圖（§8） |
+| 6 | 封面應用 | 首頁用 emoji 當封面；/writing 是純文字卡片；og:image 全站同一張 | 首頁產品卡三張都用真實封面；/writing 改書架；各書頁用自己的 og 圖（§8） |
 
 360／768／1280px 量度結果：六頁現在**都沒有橫向捲動**（index／about／writing 靠 `body { overflow-x: hidden }` 遮住跑馬燈溢出）。preview/home-v2.html 三個寬度同樣沒有橫向捲動。
 
@@ -86,7 +86,7 @@
 ### 1.5 寫作 `writing/index.html`
 
 1. **層次太平**
-   五張作品卡同一大小、同一重量；「已出版長篇（五部）」是最重要的入口，卻與「即將連載」同級。→ 主卡佔滿一行（`grid-column: 1 / -1`），其餘四張兩欄；「寫作中」「即將連載」改為小狀態標籤。
+   五張作品卡同一大小、同一重量；「已完成五部長篇作品」（原「已出版長篇（五部）」）是最重要的入口，卻與「即將連載」同級。→ 主卡佔滿一行（`grid-column: 1 / -1`），其餘四張兩欄；「寫作中」「即將連載」改為小狀態標籤。
 
 2. **分隔線過多、節奏像表格**
    每段 `section + section` 都有 border-top，「作者手記」「追蹤」各只有一行字卻各佔一整段落高度。→ 去掉段與段之間的線，改用留白；兩個短段在視覺上併成一組（兩欄並排，文案不變）。
@@ -122,7 +122,7 @@
 
 `on-dark`（`#D4B872`）對 Ivory 只有 1.69:1，所以兩個值**不可以互換**：淺底一定用 `on-light`，深綠底一定用 `on-dark`。
 
-### 2.2 使用位置（全站 6 處，其餘地方一律不用）
+### 2.2 使用位置（全站 5 處，其餘地方一律不用）
 
 | # | 頁面 | 位置 | 形式 | 預覽 |
 |---|---|---|---|---|
@@ -131,17 +131,17 @@
 | ③ | 關於 | 「隙光」分隔線（`.divider-line` 兩條） | 1px 直線 | — |
 | ④ | 關於 | 創辦人金句卡「裂縫不需要被修好……」左邊 | 2px 左邊框 | — |
 | ⑤ | 金線頁 | 「什麼是金繼哲學？」標題下（該區需保持 ivory 底） | 48px 短線 | — |
-| ⑥ | 首頁 | 「品牌金線自我教練卡」文字封面，書名下（深綠底，用 `on-dark`） | 1.5px 短線 | ✅ 已套用 |
+| ~~⑥~~ | 首頁 | ~~「品牌金線自我教練卡」文字封面書名下~~ | — | 已取消：改用真實封面 |
 
 使用規則：
 - 只用於**線條／圖形**，線寬 1–2px；不用於內文、標題文字、按鈕、背景色塊、卡片底色。
-- ①–⑤ 用 `on-light`，⑥ 用 `on-dark`；workshop、footer 等深綠區塊不放金線。
+- ①–⑤ 都在淺底，用 `on-light`。`on-dark`（#D4B872）現時沒有使用位置，保留 token 以備日後深綠底需要時用；workshop、footer 等深綠區塊暫不放金線。
 - 不加漸層、光暈、閃爍動畫；不用於 Logo（Logo 只可 Rainforest／黑／白）。
 - 批准後才把值寫入 `css/tokens.css`（現時預覽在頁內覆寫 token）。
 
-### 2.3 文字封面上的金線（位置 ⑥）
+### 2.3 深綠底金線（`on-dark`）
 
-「品牌金線自我教練卡」的文字封面是 Rainforest 底，書名下一條細金線（§8.1），用 `--color-gold-thread-on-dark`（`#D4B872`，對 Rainforest 6.14:1）。
+原本用於「品牌金線自我教練卡」文字封面（位置 ⑥）。該產品已有真實封面，文字封面及位置 ⑥ 取消。`--color-gold-thread-on-dark: #D4B872`（對 Rainforest 6.14:1）保留為 token，日後深綠底如需金線，先列位置再用。
 
 ---
 
@@ -204,7 +204,7 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 ## 6. 需要你決定的事項
 
-1. ~~金線顏色~~ ✅ 已定（兩個深淺）。§2.2 的 6 個位置是否全部保留？
+1. ~~金線顏色~~ ✅ 已定（兩個深淺）。§2.2 的 5 個位置是否全部保留？
 2. **導航項目統一**：兩套 nav（首頁／關於／寫作／商店／光光工作坊 vs 首頁／選物／電台／課程／寫作）要合併成哪一套？
 3. **404 連結**：`shop/`、`shop/rain.html`、`shop/brand.html`、`workshop/` 應指向哪裡（例如 `selection.html`？`workshop-v2.html`？）
 4. **Facebook 網址**。
@@ -212,11 +212,13 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 6. **golden-thread 保留哪一個深色區塊**：featured 價錢卡，還是「認識光光」AI 區？
 7. ~~文字封面上的金線~~ ✅ 已定：`#D4B872`。
 8. **跑馬燈改靜態**：是否同意？
-9. **各書版本（紙本／電子書）**：確認後補 JSON-LD `bookFormat`；現時一律不寫（§8.2）。
+9. ~~各書版本~~ ✅ 所有書暫時只有電子版、未正式出版：`bookFormat` 一律 `https://schema.org/EBook`；待出版的《拾味小館》及未連載的《還是要走》不加。
 10. ~~`site-covers.zip`~~ ✅ 已解壓並刪除。
-11. **「已出版長篇（五部）」包括哪五部？** zip 有《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》三本小說封面；第四、五部是否包括《賣雨的人》？另一部是哪本、有冇封面？（§8.2）
-12. **`publisher`**：zip 的 JSON-LD 把 Space Between Studio 標為各書出版者。小說是否由工作室出版？如否，預覽的 `publisher` 要刪（§8.2）。
-13. **《慢慢成為自己的品牌》放入 /writing 書架？** 現時 /writing 沒有這本書；zip 的書架片段有。預覽已放入（只有書名，沒有新文案、沒有連結）。
+11. ~~五本書名~~ ✅ 《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《賣雨的人》《拾味小館》；《拾味小館》標籤由「寫作中」改為「待出版」。
+12. ~~`publisher`~~ ✅ 全部移除。
+13. ~~《慢慢成為自己的品牌》放 /writing？~~ ✅ 不放，只保留在 selection。
+14. ~~《賣雨的人》封面~~ ✅ 全站改用新封面（雨瓶）。
+15. 各書封面稍後會加 Logo 再重新上傳覆蓋同名檔案；覆蓋後頁面無需改動（檔名、尺寸不變的前提下）。
 
 ## 7. 改了甚麼／沒改甚麼
 
@@ -236,7 +238,27 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - 新增 `preview/writing-v2.html`（書架＋合併 JSON-LD）
 - 本文件：§2、§6、§8 更新
 
-**沒有改**
+**第四輪（封面確認）新增／更改**——⚠️ 這一輪按指示**有改正式頁面**：
+- `index.html`：《賣雨的人》產品卡的 📖 換成新封面（`assets/covers/mai-yu-de-ren-400/800.webp`），新增 `.product-cover-img` 樣式；另外兩張卡未改（仍是 emoji）
+- `selection.html`：《賣雨的人》產品圖換新封面（WebP + srcset，完整顯示不裁切）；`og:image` 由相對路徑的舊封面改為 `https://spacebetweenstudio.site/assets/og/mai-yu-de-ren-og.jpg`，加 width／height／alt
+- `audiobook/rain-seller/index.html`：專輯封面換新封面
+- 新增 `assets/covers/pin-pai-jin-xian-zi-wo-jiao-lian-ka-400/800.webp`（品牌金線自我教練卡封面）
+- `preview/home-v2.html`：自我教練卡改用真實封面，移除文字封面
+- `preview/writing-v2.html`：移除《慢慢成為自己的品牌》；JSON-LD 移除所有 `publisher` 及《慢慢》節點
+- 未改：`images/rain-seller-cover-new.jpg` 檔案保留（未刪）；`selection.html` 的組合圖（`bundle-mockup.jpg`）及預覽區章節插圖 `ch9-rainseller.jpg` 不是封面，未換
+
+**第五輪（電子版確認、selection 細節）**——有改正式頁面：
+- 全站「已出版五部長篇」→「已完成五部長篇作品」、「已出版長篇（五部）」→「已完成五部長篇作品」：`writing/index.html`（meta description、og、twitter、JSON-LD、引言、作品卡標題）、`llms.txt`、`preview/writing-v2.html`
+- JSON-LD `bookFormat: https://schema.org/EBook`：`index.html`（《賣雨的人》《慢慢成為自己的品牌》）、`writing/index.html`（《賣雨的人》）、`preview/writing-v2.html`（四本完成的書）；Draft 的不加
+- `selection.html`：《慢慢成為自己的品牌》換新封面，完整顯示；「互動式電子書」「可填寫工作手冊」標籤由封面上移到卡片文字區；📱🔐💬🎁 換成 inline 單線 SVG（1.5px、Rainforest、28px／標題內 24px）
+- 「AI 給我的第一桶金」保留文字封面（待插畫）——第六輪已換成插畫封面
+
+**第六輪（五部書名、第一桶金封面）**——有改正式頁面：
+- 新增 `assets/covers/ai-gei-wo-de-di-yi-tong-jin-400/800.webp`；`selection.html`《AI 給我的第一桶金》文字封面換成插畫封面（完整顯示），刪除已無用的產品圖 Logo 樣式
+- 《拾味小館》「寫作中」→「待出版」：`writing/index.html`（作品卡、JSON-LD description）、`llms.txt`、`preview/writing-v2.html`
+- `preview/writing-v2.html`：五部書同一排（桌面 5 欄），取消「作品」分區
+
+**沒有改（第一至三輪）**
 - 任何現有頁面、`css/tokens.css`、`css/brand-logo.css`、`llms.txt`、`robots.txt`、JSON-LD。
 - 預覽頁的文案與首頁一致，沒有改字；唯一的顯示變化是國旗 emoji 換成「TW」「HK」（該兩個代碼已在原文「TW × HK」出現），以及新增的「追蹤我們」欄及預覽提示條。
 - 預覽頁連結保持與首頁相同（包括仍然 404 的 `shop/`、`workshop/`，以及 footer「LINE（台灣）」的 `href="#"`），待 §6 決定後才改。
@@ -253,10 +275,10 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - 「賣雨的人」「慢慢成為自己的品牌」用真實封面，封面比例 2:3 直身。
 - **桌面／平板**：卡片上半是淺色封面框，封面置中、約 60% 闊，有淡陰影。
 - **手機（≤ 560px）**：改為**左圖右文**。封面欄佔 40%，文字在右；簡介最多 3 行（`line-clamp`），價錢與「立即閱讀」上下排。每張卡約 250px 高；如果改為封面置中 60%，每張卡會超過 600px，三張就要捲兩屏多，所以不建議。
-- 「品牌金線自我教練卡」未有封面，改用**文字封面**：同樣 2:3、Rainforest 底、Ivory 書名（對比 10.3:1）、書名下一條細金線（`--color-gold-thread-on-dark` #D4B872，§2.3）、右下角白色門・隙符號（32×32px，即最小尺寸；Logo 只可用白／黑／Rainforest，所以用白色版，冇用 Ivory）。「即將推出」標籤放在封面框上，手機版移到封面下方。
+- 「品牌金線自我教練卡」已有真實封面（`assets/covers/pin-pai-jin-xian-zi-wo-jiao-lian-ka-400/800.webp`，2:3，封面本身已含 Logo），取代之前的文字封面。「即將推出」標籤放在封面框上，手機版移到封面下方。
 - 價錢改為「HKD 68｜約 TWD 280」「HKD 168｜約 TWD 680」。
 - 封面用 `assets/covers/` 的 WebP（400×600／800×1200，`srcset` + `sizes`），alt 沿用 `writing-snippet.html` 的描述。首頁兩張封面合共約 97KB（400w），比之前用的 `images/` 原圖（560KB + 190KB）輕得多。
-- 注意：zip 的《賣雨的人》封面（女子手持雨瓶）與 `images/rain-seller-cover-new.jpg`（金繼碗）不是同一張圖。`selection.html` 等頁面仍用舊圖——正式套用時要決定是否全站換成新封面。
+- 《賣雨的人》已確認全站改用新封面（雨瓶），`index.html`、`selection.html`、`audiobook/rain-seller/` 已更新（見 §7 第四輪）。
 
 ### 8.2 /writing 改成書架形式（預覽：`preview/writing-v2.html`）
 
@@ -264,9 +286,9 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 **版面**
 - 上方維持「關於隙光」＋引言（引言放大一級）。
-- **「已出版長篇（五部）」**：書架一排——《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》，標題旁保留「前往 space-between.art 閱讀」。⚠️ 這三本歸入「已出版」是根據 zip 內容推斷，五部的完整名單待你確認（§6 第 11 項）。
-- **「作品」**：《賣雨的人》（品牌療癒電子書・立即閱讀 →）、《慢慢成為自己的品牌》、《拾味小館》。
-- **《拾味小館》只標「寫作中」**：封面左下角有「寫作中」標籤，下方狀態「寫作中」＋「登記出版通知」；不放在「已出版」書架，JSON-LD 亦標為 Draft。
+- **「已完成五部長篇作品」**（原「已出版長篇（五部）」）：一排五本——《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《賣雨的人》《拾味小館》，標題旁保留「前往 space-between.art 閱讀」。桌面 5 欄。
+- 原本的「作品」分區已取消（《賣雨的人》《拾味小館》併入上面一排）。《慢慢成為自己的品牌》不放 /writing，只保留在 selection。
+- **《拾味小館》標示「待出版」**：封面左下角「待出版」標籤，下方狀態「待出版」＋「登記出版通知」；JSON-LD `description: 待出版`，維持 `creativeWorkStatus: Draft`（未出版），**不加 `bookFormat`**。
 - 未有封面的《渡口區生活誌》《還是要走》改為兩張細卡片；「作者手記」「追蹤」兩欄並排，去掉段與段之間的分隔線。
 - 書架：封面 2:3、淡陰影，每排底部一條 1px 線當「書架底板」；桌面 4 欄、平板 3 欄、手機 2 欄。
 - 文案全部沿用現有 /writing；新增的只有 zip 提供的書名、英文副題及封面 alt。
@@ -274,22 +296,46 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 **JSON-LD 合併**（預覽頁 `<head>` 內，已用 JSON parser 驗證）
 - 以 `writing/index.html` 現有 `@graph` 為基礎：Person 保留原 `@id`（`/writing/#xiguang`）、`description`、`url`、`sameAs`；只加 zip 的 `alternateName: Xiguang`、`jobTitle`、`worksFor`。zip 用的是另一個 `@id`（`/about#xiguang`），沒有採用，避免同一人出現兩個節點。
-- 《賣雨的人》保留原 `description`、`url`（selection.html），加 `alternateName`、`image`、`publisher`。
-- 新增《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《慢慢成為自己的品牌》四個 Book 節點（`image`、`alternateName`、`publisher`）。
-- 《拾味小館》保留 `creativeWorkStatus: Draft`、`description: 寫作中`；只加 `alternateName`、`image`；**不加 `publisher`**。
+- 《賣雨的人》保留原 `description`、`url`（selection.html），加 `alternateName`、`image`。
+- 新增《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》三個 Book 節點（`image`、`alternateName`）。
+- 《拾味小館》保留 `creativeWorkStatus: Draft`；`description` 由「寫作中」改為「待出版」；只加 `alternateName`、`image`；不加 `bookFormat`。
+- **不寫 `publisher`**（已確認全部移除）。
 - 《還是要走》《渡口區生活誌》原樣保留（zip 沒有這兩項）。
 - 新增 zip 的 Organization（`/#studio`）及 CollectionPage + ItemList，但 ItemList 只用 `@id` 引用上面的節點，不重複寫書目資料；`url` 用現有 canonical `/writing/`（有斜線）。
-- **所有 `bookFormat` 已移除**（zip 原本把 5 本標為 Paperback、1 本標為 EBook）；待你確認版本後再補。
+- `bookFormat`：zip 原本把 5 本標為 Paperback；已確認暫時只有電子版，完成的書一律 `https://schema.org/EBook`。《拾味小館》《還是要走》（Draft）不加。
 
 ### 8.3 og:image 套用
 
 | 頁面 | 現時 og:image | 建議 |
 |---|---|---|
-| `selection.html` | `images/rain-seller-cover-new.jpg`（**相對路徑**，社交平台讀不到） | 選物店總覽：品牌 og `assets/og/sbs-og-1200x630.png`（絕對網址）；如想突出主打書，可用 `assets/og/mai-yu-de-ren-og.jpg` |
+| `selection.html` | ✅ 已改為 `https://spacebetweenstudio.site/assets/og/mai-yu-de-ren-og.jpg`（原本是相對路徑的舊封面） | — |
 | `ebook/rain-seller/`、`audiobook/rain-seller/`、`ebook/manman/` | 無 og；有 `noindex`（付費閱讀頁） | **不加**——付費頁不應被分享預覽；分享入口應是公開介紹頁 |
 | `book.html`（《AI 給我的第一桶金》） | 品牌 og（絕對網址 ✓） | zip 沒有此書 og，維持 |
 | 將來的公開書頁（例如 `shop/rain.html`、`shop/brand.html`，現時 404） | — | `mai-yu-de-ren-og.jpg`、`man-man-cheng-wei-zi-ji-de-pin-pai-og.jpg` |
-| 將來每本小說的介紹頁（或 `/writing/#slug` 分享） | — | `zhu-guang-de-yao-shi-og.jpg`、`wei-zhang-ling-hun-gai-jian-shi-wu-suo-og.jpg`、`xin-zhai-jin-shi-og.jpg`、`shi-wei-xiao-guan-og.jpg`（《拾味小館》og 圖的文案亦只可寫「寫作中」） |
+| 將來每本小說的介紹頁（或 `/writing/#slug` 分享） | — | `zhu-guang-de-yao-shi-og.jpg`、`wei-zhang-ling-hun-gai-jian-shi-wu-suo-og.jpg`、`xin-zhai-jin-shi-og.jpg`、`shi-wei-xiao-guan-og.jpg`（《拾味小館》og 圖的文案亦只可寫「待出版」） |
 | `writing/` | 品牌 og（絕對網址 ✓） | zip 片段示範用 `zhu-guang-de-yao-shi-og.jpg`（alt「小說《逐光的藥師》— 隙光」）；預覽已套用。另一做法是維持品牌 og，由你決定 |
 
 規則：一律用 `https://spacebetweenstudio.site/...` 絕對網址；同時加 `og:image:width`／`og:image:height`／`og:image:alt`，`twitter:card` 用 `summary_large_image`。付費／閘門頁（有 `noindex`）不需要 og 圖。
+
+---
+
+## 9. 其他頁面的 emoji icon（只列出，未改）
+
+`selection.html` 已全部換成單線 SVG（只餘預覽區清單的 `✦` 項目符號，屬排版符號，未改）。其他頁面：
+
+| 頁面 | emoji | 用途 |
+|---|---|---|
+| `index.html` | ✍️ 🧭（產品卡封面）、🇹🇼 🇭🇰（市場卡）、✦ ×16（跑馬燈分隔） | 產品封面、國旗、分隔符 |
+| `golden-thread/index.html` | 📖 ✍️ 📋 🎨 🎬 🤖（feature 卡）、🌟（光光頭像）、💬（WhatsApp 按鈕）、💰（價錢清單）、✓（清單符號） | feature icon、按鈕 |
+| `golden-thread-landing.html` | 📖 ✍️ 🎯 🤖 🗣️ ⏰ 📚 ✨、✓ | feature icon |
+| `course.html` | 🪞 ✨ 🎯 | feature icon |
+| `podcast.html` | 🎧 📄 | icon |
+| `tips.html` | 📄 ✨ | icon |
+| `book.html` | ✕ | 關閉按鈕 |
+| `audiobook/rain-seller/` | ⏮ ⏭ ⏸ | 播放器控制（功能按鈕，換 SVG 時要保留 `aria-label`） |
+| `ebook/rain-seller/` | ✕、✨ | 關閉按鈕、點綴 |
+| `ebook/manman/` | ☰、📝 ×10、🎯、✨ ×10、👣、📋、✦ ×51 | 選單按鈕、練習標記 |
+| `resource-hub/index.html` | 🔐 📦 ✨ 🚀 📋 🎨 🎬 🔗 💡 📝 🌟、💬 ×14 | 標題及按鈕 icon |
+| `workshop-v2.html`、`workshop-full.html` | 約 35 種（🧵 🏺 🌟 💬 🎯 🎨 🎬 📖 📅 ☕ 🍵 🎉 …，每頁 100+ 個） | 大量 UI icon |
+
+建議：將 selection 用的 SVG 抽成共用 icon 集（例如 `assets/icons/*.svg` 或頁內 `<symbol>` sprite），按頁面優先次序替換：`golden-thread/` → `course`／`podcast`／`tips` → `index` → 播放器／關閉按鈕（功能性，需保留無障礙標籤）→ workshop 兩頁（量最大，建議整頁重做時一併處理）。

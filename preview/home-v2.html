@@ -333,30 +333,6 @@
     }
     img.cover { height: auto; object-fit: cover; }
 
-    /* 文字封面（未有設計稿的產品）：Rainforest 底、Ivory 書名、一條細金線、角落門・隙符號 */
-    .text-cover {
-      position: relative;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 12% 12%;
-      background: var(--color-rainforest);
-      color: var(--color-ivory);
-      container-type: inline-size;
-    }
-    .text-cover-title {
-      font-size: clamp(0.6rem, 11cqi, 1.5rem);
-      font-weight: var(--font-weight-light);
-      line-height: 1.5; letter-spacing: 0.1em;
-      word-break: keep-all;
-    }
-    .text-cover-thread {
-      width: 40%; height: var(--gold-thread-width);
-      margin-top: 10%;
-      background: var(--color-gold-thread-on-dark);
-    }
-    .text-cover-symbol {
-      position: absolute; right: 8%; bottom: 6%;
-      width: 32px; height: 32px;   /* 符號最小 32×32px */
-    }
     .product-badge {
       position: absolute; top: var(--space-sm); right: var(--space-sm); z-index: 1;
       padding: var(--space-3xs) var(--space-xs);
@@ -508,7 +484,6 @@
       .product-grid { gap: var(--space-md); }
       .product-card { display: grid; grid-template-columns: 40% 1fr; align-items: stretch; }
       .product-cover { padding: var(--space-xs); align-items: flex-start; }
-      .text-cover { padding: 12% 10%; }
       .cover { width: 100%; }
       .product-badge { top: auto; bottom: var(--space-xs); left: 50%; right: auto; transform: translateX(-50%); white-space: nowrap; font-size: 0.7rem; }
       .product-body { padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-xs); }
@@ -629,11 +604,11 @@
           <div class="product-card">
             <div class="product-cover">
               <span class="product-badge">即將推出</span>
-              <div class="cover text-cover" role="img" aria-label="《品牌金線自我教練卡》文字封面">
-                <p class="text-cover-title" aria-hidden="true">品牌金線<br>自我教練卡</p>
-                <span class="text-cover-thread" aria-hidden="true"></span>
-                <img class="text-cover-symbol" src="../assets/logo/SYMBOL/SBS_SYMBOL_WH.svg" alt="" width="32" height="32">
-              </div>
+              <img class="cover" src="../assets/covers/pin-pai-jin-xian-zi-wo-jiao-lian-ka-400.webp"
+                srcset="../assets/covers/pin-pai-jin-xian-zi-wo-jiao-lian-ka-400.webp 400w, ../assets/covers/pin-pai-jin-xian-zi-wo-jiao-lian-ka-800.webp 800w"
+                sizes="(max-width: 560px) 36vw, 220px"
+                width="400" height="600" loading="lazy" decoding="async"
+                alt="《品牌金線自我教練卡》封面：女子在窗邊手持一張有金色裂紋的卡片，桌上散放著卡片，窗外是黃昏城市">
             </div>
             <div class="product-body">
               <p class="product-tag">自我教練工具</p>
