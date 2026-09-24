@@ -18,6 +18,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/brand-logo.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     
     <style>
         
@@ -70,12 +73,6 @@
             gap: 15px;
             text-decoration: none;
             color: var(--color-accent);
-        }
-        
-        .nav-logo-text {
-            font-family: var(--font-display);
-            font-size: 14px;
-            letter-spacing: 3px;
         }
         
         .nav-links {
@@ -244,6 +241,24 @@
         
         .product-card:hover .product-image img {
             transform: scale(1.05);
+        }
+        
+        /* Logo 不跟隨產品圖放大／裁切 */
+        .product-image img.sbs-logo {
+            width: var(--sbs-logo-footer-width);
+            height: auto;
+            object-fit: fill;
+            transition: none;
+        }
+        
+        .product-card:hover .product-image img.sbs-logo {
+            transform: none;
+        }
+        
+        @media (max-width: 768px) {
+            .product-image img.sbs-logo {
+                width: var(--sbs-logo-footer-width-mobile);
+            }
         }
         
         .product-badge {
@@ -608,8 +623,8 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="/" class="nav-logo">
-            <span class="nav-logo-text">SPACE BETWEEN STUDIO</span>
+        <a href="/" class="nav-logo sbs-logo-link">
+            <img class="sbs-logo sbs-logo--nav" src="assets/logo/COMBO/SBS_COMBO_GREEN.svg" alt="Space Between Studio" width="180" height="32">
         </a>
         <div class="nav-links">
             <a href="/">首頁</a>
@@ -706,7 +721,7 @@
             <div class="product-card">
                 <div class="product-image" style="background: var(--color-inverse-bg); display: flex; align-items: center; justify-content: center; min-height: 280px;">
                     <div style="text-align: center; padding: 30px;">
-                        <div style="font-size: 13px; letter-spacing: 3px; color: var(--color-inverse-text); opacity: 0.7; margin-bottom: 12px;">SPACE BETWEEN STUDIO</div>
+                        <div class="sbs-footer-mark"><img class="sbs-logo sbs-logo--footer" src="assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></div>
                         <div style="font-family: var(--font-body); font-size: 28px; color: var(--color-inverse-text); line-height: 1.4;">AI 給我的第一桶金</div>
                         <div style="font-size: 14px; color: var(--color-inverse-text); margin-top: 10px; letter-spacing: 1px;">六個普通人的可承受實驗</div>
                     </div>
@@ -829,7 +844,7 @@
     
     <!-- Footer -->
     <footer>
-        <p class="footer-logo">SPACE BETWEEN STUDIO</p>
+        <p class="footer-logo"><img class="sbs-logo sbs-logo--footer" src="assets/logo/WORDMARK/SBS_WORDMARK_GREEN.svg" alt="Space Between Studio" width="200" height="42"></p>
         <div class="footer-links">
             <a href="/">首頁</a>
             <a href="/podcast.html">緩坡電台</a>

@@ -1,0 +1,42 @@
+/* ========================================
+   Space Between Studio — Logo System v1.1
+   Logo 檔案：/assets/logo/（不可重畫、變形、改色、加效果）
+   組合標誌 SVG 已內含上下留白；這裡只控制闊度及左右留白。
+======================================== */
+
+:root {
+  --sbs-logo-nav-width: 180px;
+  --sbs-logo-nav-width-mobile: 140px;     /* 橫版最小 120px，已含 SVG 內建留白 */
+  --sbs-logo-footer-width: 200px;
+  --sbs-logo-footer-width-mobile: 160px;
+  --sbs-logo-clearspace: var(--space-sm);   /* 需先載入 css/tokens.css */
+}
+
+.sbs-logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  margin-right: var(--sbs-logo-clearspace);
+}
+
+.sbs-logo {
+  display: inline-block;
+  max-width: none;
+  height: auto;
+  vertical-align: middle;
+}
+
+.sbs-logo--nav { width: var(--sbs-logo-nav-width); }
+.sbs-logo--footer { width: var(--sbs-logo-footer-width); }
+
+@media (max-width: 768px) {
+  .sbs-logo--nav { width: var(--sbs-logo-nav-width-mobile); }
+  .sbs-logo--footer { width: var(--sbs-logo-footer-width-mobile); }
+}
+
+/* Footer 文字標誌下方留白（用於原本沒有品牌標誌的 footer） */
+.sbs-footer-mark {
+  margin-bottom: var(--sbs-logo-clearspace);
+  line-height: 0;
+}
