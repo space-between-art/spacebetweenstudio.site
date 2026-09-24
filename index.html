@@ -132,7 +132,7 @@
       color: var(--color-accent) !important;
       transition: all 0.25s !important;
     }
-    .nav-cta:hover { background: var(--color-button-bg); color: var(--color-button-text) !important; }
+    .nav-cta:hover { background: var(--color-accent); color: var(--color-ivory) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -183,7 +183,7 @@
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
       text-decoration: none; transition: background 0.25s, transform 0.2s;
     }
-    .btn-dark:hover { background: var(--color-button-hover-bg); transform: translateY(-2px); }
+    .btn-dark:hover { background: var(--color-accent); transform: translateY(-2px); }
     .btn-outline {
       padding: 0.9rem 2rem; border: 1px solid var(--color-text-muted); color: var(--color-text-muted);
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
@@ -287,7 +287,7 @@
     .product-badge {
       position: absolute; top: 1rem; right: 1rem; z-index: 1;
       padding: 0.3rem 0.7rem;
-      background: var(--color-inverse-bg); color: var(--color-inverse-text);
+      background: var(--color-inverse-bg); color: var(--color-accent);
       font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
     }
     .badge-coming {
@@ -305,39 +305,38 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
       align-items: center;
     }
-    .workshop .section-label { color: var(--color-inverse-muted); }
+    .workshop .section-label { color: color-mix(in srgb, var(--color-accent) 60%, transparent); }
     .workshop .section-heading { color: var(--color-inverse-text); margin-bottom: 1.2rem; }
-    .workshop .section-heading em { color: var(--color-inverse-muted); }
     .workshop .section-sub { color: var(--color-inverse-muted); margin-bottom: 2.5rem; }
     .workshop-features { list-style: none; margin-bottom: 2.5rem; }
     .workshop-features li {
       padding: 0.7rem 0;
-      border-bottom: 1px solid var(--color-inverse-line);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 15%, transparent);
       font-family: var(--font-body);
       font-size: 0.88rem; color: var(--color-inverse-text);
       display: flex; align-items: center; gap: 1rem;
     }
     .workshop-features li::before {
-      content: '—'; color: var(--color-inverse-muted); font-family: var(--font-display);
+      content: '—'; color: var(--color-accent); font-family: var(--font-display);
     }
     .btn-gold {
       display: inline-block;
-      padding: 0.9rem 2rem; border: 1px solid var(--color-inverse-text); color: var(--color-inverse-text);
+      padding: 0.9rem 2rem; border: 1px solid var(--color-accent); color: var(--color-accent);
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
       text-decoration: none; transition: all 0.25s;
     }
-    .btn-gold:hover { background: var(--color-inverse-text); color: var(--color-inverse-bg); transform: translateY(-2px); }
+    .btn-gold:hover { background: var(--color-accent); color: var(--color-text); transform: translateY(-2px); }
     .workshop-visual {
       display: flex; flex-direction: column; gap: 1.2rem;
     }
     .workshop-stat {
       padding: 1.8rem 2rem;
-      border: 1px solid var(--color-inverse-line);
+      border: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
       background: color-mix(in srgb, var(--color-ivory) 4%, transparent);
     }
     .workshop-stat-num {
       font-family: var(--font-display);
-      font-size: 2.8rem; color: var(--color-inverse-text); line-height: 1;
+      font-size: 2.8rem; color: var(--color-accent); line-height: 1;
     }
     .workshop-stat-label {
       font-size: 0.8rem; color: var(--color-inverse-muted);
@@ -428,7 +427,7 @@
     }
     .footer-brand {
       font-family: var(--font-display);
-      font-size: 1.2rem; letter-spacing: 0.1em; color: var(--color-inverse-text);
+      font-size: 1.2rem; letter-spacing: 0.1em; color: var(--color-accent);
       margin-bottom: 1rem;
     }
     .footer-tagline {
@@ -438,7 +437,7 @@
     }
     .footer-col h4 {
       font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--color-inverse-muted); margin-bottom: 1.2rem;
+      color: var(--color-accent); margin-bottom: 1.2rem;
     }
     .footer-col ul { list-style: none; }
     .footer-col li { margin-bottom: 0.6rem; }
@@ -446,16 +445,16 @@
       font-size: 0.85rem; color: var(--color-inverse-muted);
       text-decoration: none; transition: color 0.25s;
     }
-    .footer-col a:hover { color: var(--color-inverse-text); }
+    .footer-col a:hover { color: var(--color-accent); }
     .footer-bottom {
       max-width: 1100px; margin: 0 auto;
       padding-top: 2rem;
-      border-top: 1px solid var(--color-inverse-line);
+      border-top: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
       display: flex; justify-content: space-between; align-items: center;
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-bottom p { font-size: 0.75rem; color: var(--color-inverse-muted); }
-    .footer-bottom a { color: var(--color-inverse-muted); text-decoration: none; }
+    .footer-bottom a { color: color-mix(in srgb, var(--color-accent) 60%, transparent); text-decoration: none; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }

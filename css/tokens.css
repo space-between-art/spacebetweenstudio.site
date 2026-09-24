@@ -23,13 +23,17 @@
   --color-surface-strong: color-mix(in srgb, var(--color-river-stone) 22%, var(--color-ivory));
   --color-heading: var(--color-rainforest);
   --color-text-muted: color-mix(in srgb, var(--color-text) 75%, var(--color-ivory)); /* 6.1:1 on ivory */
-  --color-accent: var(--color-rainforest);          /* 強調文字、標籤、按鈕 */
+  --color-accent: var(--color-river-stone);         /* 舊金色（#C9A962 等）一律暫代為 River Stone */
   --color-accent-soft: var(--color-river-stone);    /* 只用於線條／圖形／大字，不用於內文（3.3:1） */
   --color-accent-tint: color-mix(in srgb, var(--color-river-stone) 14%, transparent);
   --color-accent-wash: color-mix(in srgb, var(--color-river-stone) 6%, transparent);
   --color-line: color-mix(in srgb, var(--color-river-stone) 35%, transparent);
   --color-line-soft: color-mix(in srgb, var(--color-river-stone) 18%, transparent);
   --color-link-hover: var(--color-river-stone);
+
+  /* 金繼「金線」點綴：預留，暫不使用。
+     位置與顏色留待版面改善（Session B）時決定；值暫設為 River Stone。 */
+  --color-gold-thread: var(--color-river-stone);
 
   /* 深色區塊（footer、強調段落）：Rainforest 底 + Ivory 字 */
   --color-inverse-bg: var(--color-rainforest);

@@ -15,7 +15,7 @@
             font-family: var(--font-body);
             background: var(--color-inverse-bg);
             color: var(--color-ivory);
-            line-height: 1.6; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            line-height: 1.6; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         /* ==================== GATE OVERLAY ==================== */
         .gate-overlay {
@@ -29,7 +29,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            padding: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .gate-overlay.hidden {
             display: none;
@@ -127,7 +127,7 @@
         }
         
         .gate-btn:hover {
-            background: var(--color-button-hover-bg);
+            background: var(--color-accent);
             transform: translateY(-2px);
         }
         
@@ -191,7 +191,7 @@
             border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             position: sticky;
             top: 0;
-            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .header-top {
             display: flex;
@@ -238,7 +238,7 @@
         }
         
         .btn-sm.primary:hover {
-            background: var(--color-button-hover-bg);
+            background: var(--color-accent);
         }
         
         .btn-sm.demo {
@@ -278,7 +278,7 @@
             border-radius: 15px;
             font-size: 0.8rem;
             cursor: pointer;
-            margin-left: 10px; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-button-hover-bg); }
+            margin-left: 10px; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
         
         /* Progress */
         .progress-section {
@@ -294,7 +294,7 @@
         }
         
         .progress-fill {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-button-hover-bg));
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent));
             height: 100%;
             width: 0%;
             transition: width 0.5s ease;
@@ -320,7 +320,7 @@
             overflow-x: auto;
             position: sticky;
             top: 110px;
-            z-index: 99; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            z-index: 99; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .nav-sections {
             display: flex;
@@ -531,7 +531,7 @@
         .sticky-note.yellow { background: color-mix(in srgb, var(--color-river-stone) 12%, var(--color-white)); color: var(--color-text); }
         .sticky-note.pink { background: color-mix(in srgb, var(--color-river-stone) 26%, var(--color-white)); color: var(--color-text); }
         .sticky-note.green { background: color-mix(in srgb, var(--color-river-stone) 40%, var(--color-white)); color: var(--color-text); }
-        .sticky-note.orange { background: var(--color-ivory); color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-button-hover-bg); }
+        .sticky-note.orange { background: var(--color-ivory); color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
         .sticky-note.blue { background: color-mix(in srgb, var(--color-rainforest) 16%, var(--color-white)); color: var(--color-text); }
         .sticky-note.purple { background: color-mix(in srgb, var(--color-rainforest) 28%, var(--color-white)); color: var(--color-text); }
         
@@ -834,7 +834,7 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .btn-whatsapp:hover {
             background: var(--color-inverse-bg);
@@ -873,7 +873,7 @@
         }
         
         .action-btn.primary:hover {
-            background: var(--color-button-hover-bg);
+            background: var(--color-accent);
             transform: translateY(-2px);
         }
         
@@ -961,7 +961,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             display: inline-block;
-            margin-bottom: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            margin-bottom: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .cta-btn {
             display: inline-flex;
@@ -976,7 +976,7 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-text: var(--color-rainforest); --color-button-hover-bg: var(--color-inverse-muted); }
+            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
         
         .cta-btn:hover {
             background: var(--color-inverse-bg);
@@ -1083,7 +1083,7 @@
             
             .card {
                 background: var(--color-surface-alt);
-                border: 1px solid var(--color-surface-strong); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-button-hover-bg); }
+                border: 1px solid var(--color-surface-strong); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
             
             .sticky-note {
                 border: 1px solid var(--color-surface-strong);
