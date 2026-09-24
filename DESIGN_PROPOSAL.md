@@ -17,8 +17,9 @@
 | 1 | 各頁版面 | 見 §1 | 每頁 2–3 項，共 15 項 |
 | 2 | 金線 `--color-gold-thread` | tokens.css 已預留，暫時等於 River Stone | **#86672A**（對 Ivory 4.61:1），全站只用 5 個位置 |
 | 3 | 手機導航 | 3 頁手機版**完全無選單**；book.html 換成兩行；selection footer 擠爆 | 統一「選單」按鈕 + nav 下方全寬面板 |
-| 4 | `color-scheme` | **全站都沒有** | 加 `<meta name="color-scheme" content="only light">` 及 `:root { color-scheme: only light; }` |
+| 4 | `color-scheme` | PR #8 已加入（tokens.css + 16 頁 meta）；**`writing/index.html` 仍欠 meta** | 補上 `writing/index.html` 的 meta |
 | 5 | Footer 社交連結 | 沒有 | 新增「追蹤我們」欄：Instagram、Threads、Facebook（網址待提供） |
+| 6 | 封面應用 | 首頁用 emoji 當封面；/writing 是純文字卡片；og:image 全站同一張 | 首頁產品卡用真實封面＋文字封面；/writing 改書架；各書頁用自己的 og 圖（§8） |
 
 360／768／1280px 量度結果：六頁現在**都沒有橫向捲動**（index／about／writing 靠 `body { overflow-x: hidden }` 遮住跑馬燈溢出）。preview/home-v2.html 三個寬度同樣沒有橫向捲動。
 
@@ -128,6 +129,17 @@
 - 不加漸層、光暈、閃爍動畫；不用於 Logo（Logo 只可 Rainforest／黑／白）。
 - 批准後才把值寫入 `css/tokens.css`（現時預覽在頁內覆寫 token）。
 
+### 2.3 例外：文字封面上的金線（第 6 處，按你的指示加入）
+
+「品牌金線自我教練卡」的文字封面是 Rainforest 底，上面有一條細金線（§8.1）。`#86672A` 對 Rainforest 只有 2.24:1——作為**純裝飾線**，WCAG 不要求對比度，但肉眼偏暗。
+
+預覽用獨立 token `--color-gold-thread-on-dark`，現時**等於** `--color-gold-thread`（沒有加新顏色）。兩個選擇，待你決定：
+
+| 選項 | 值 | 對 Rainforest | 備註 |
+|---|---|---|---|
+| A（現狀） | `#86672A` | 2.24:1 | 全站只有一個金色；線偏暗 |
+| B | `#D4B872`（淺金） | 6.14:1 | 線清楚；但係新顏色，只准用於深綠底 |
+
 ---
 
 ## 3. 手機版導航
@@ -158,19 +170,15 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 ## 4. `color-scheme` 檢查
 
-全站搜尋 `color-scheme`：**0 個結果**（所有 `.html` 及 `css/`）。
+> 更新：提案初稿時全站 0 處；其後 PR #8（已合併入 main）已加入。
 
-建議加入（兩處都加）：
+現況（main）：
+- `css/tokens.css` 的 `:root` 已有 `color-scheme: only light;`
+- 16 個 HTML 頁面已有 `<meta name="color-scheme" content="only light">`
+- **`writing/index.html` 未有 meta**（CSS 經 tokens.css 已生效，但 meta 能令瀏覽器在 CSS 載入前就用淺色，避免閃一下深色）→ 建議補上一行
+- `preview/home-v2.html` 兩處都有
 
-```html
-<meta name="color-scheme" content="only light">
-```
-```css
-/* css/tokens.css */
-:root { color-scheme: only light; }
-```
-
-原因：網站只有淺色設計；未聲明時，部分瀏覽器（例如 Android Chrome 強制深色、Samsung Internet）會自動反色，令 Ivory 底變深、Logo 及 Rainforest 文字對比失效；表單控件及捲動條亦會跟系統深色。預覽已套用。
+原因：網站只有淺色設計；未聲明時，部分瀏覽器（例如 Android Chrome 強制深色、Samsung Internet）會自動反色，令 Ivory 底變深、Logo 及 Rainforest 文字對比失效。
 
 ---
 
@@ -199,8 +207,10 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 4. **Facebook 網址**。
 5. **圓角**：全站統一直角，還是統一 `--radius-sm`（4px）？（selection／golden-thread 現在 8–20px）
 6. **golden-thread 保留哪一個深色區塊**：featured 價錢卡，還是「認識光光」AI 區？
-7. **首頁產品卡改用真實封面圖**：「品牌金線自我教練卡」暫時沒有圖，預覽用空白底 + 「即將推出」標籤，是否可以？
+7. **文字封面上的金線**：選項 A（沿用 #86672A，偏暗）或 B（淺金 #D4B872，新顏色）？（§2.3）
 8. **跑馬燈改靜態**：是否同意？
+9. **是否有紙本／電子書格式**：決定 JSON-LD 的 `bookFormat`（§8.2）。
+10. **`site-covers.zip`**：未見於 repo（本機、所有遠端分支、main 都沒有），請再上傳或告訴我放在哪個分支。
 
 ## 7. 改了甚麼／沒改甚麼
 
@@ -209,6 +219,11 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - `preview/home-v2.html`：套用 §1.1、§2（位置 ①②）、§3、§4、§5；另加 skip link、`:focus-visible`、`prefers-reduced-motion`、48px 點擊範圍。
 - `docs/screenshots/design-proposal/`：`home-v2-{360,768,1280}.jpg`、`home-v2-360-menu.jpg`、`current-index-nav-360.jpg`、`current-book-nav-360.jpg`、`current-selection-footer-360.jpg`
 
+**第二輪（封面）新增／更改**
+- `preview/home-v2.html`：產品卡封面（§8.1）、文字封面、價錢格式、手機左圖右文
+- 本文件：§2.3、§4 更新、§8
+- 將 main 合併入本分支（帶入 PR #8）
+
 **沒有改**
 - 任何現有頁面、`css/tokens.css`、`css/brand-logo.css`、`llms.txt`、`robots.txt`、JSON-LD。
 - 預覽頁的文案與首頁一致，沒有改字；唯一的顯示變化是國旗 emoji 換成「TW」「HK」（該兩個代碼已在原文「TW × HK」出現），以及新增的「追蹤我們」欄及預覽提示條。
@@ -216,3 +231,45 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 **未能驗證**
 - 未跑 Lighthouse（環境未安裝）。已人手檢查：所有圖片有 alt、landmark（nav／main／footer）、標題層級、按鈕 `aria-expanded`、所有文字對比 ≥ 4.5:1。
+
+---
+
+## 8. 封面應用
+
+### 8.1 首頁產品卡（已在 preview 套用）
+
+- 「賣雨的人」「慢慢成為自己的品牌」用真實封面，封面比例 2:3 直身。
+- **桌面／平板**：卡片上半是淺色封面框，封面置中、約 60% 闊，有淡陰影。
+- **手機（≤ 560px）**：改為**左圖右文**。封面欄佔 40%，文字在右；簡介最多 3 行（`line-clamp`），價錢與「立即閱讀」上下排。每張卡約 250px 高；如果改為封面置中 60%，每張卡會超過 600px，三張就要捲兩屏多，所以不建議。
+- 「品牌金線自我教練卡」未有封面，改用**文字封面**：同樣 2:3、Rainforest 底、Ivory 書名（對比 10.3:1）、書名下一條細金線（§2.3）、右下角白色門・隙符號（32×32px，即最小尺寸；Logo 只可用白／黑／Rainforest，所以用白色版，冇用 Ivory）。「即將推出」標籤放在封面框上，手機版移到封面下方。
+- 價錢改為「HKD 68｜約 TWD 280」「HKD 168｜約 TWD 680」。
+- 現時預覽暫用 `images/` 內的原圖（`rain-seller-cover-new.jpg` 1600×2400、560KB；`manman-cover.jpg` 1250×2000，實際上係 WebP 格式，比例 5:8，所以放入 2:3 框時會裁走少少）。`site-covers.zip` 放入 repo 後，會換成 `assets/covers/` 的 WebP 400／800，並用 `srcset`。
+
+### 8.2 /writing 改成書架形式
+
+> ⏳ 待 `site-covers.zip`（`writing-snippet.html`、JSON-LD 片段）放入 repo 後補完。以下是原則，拿到檔案後按此處理。
+
+- 版面：用 `writing-snippet.html` 的書架結構取代現有五張純文字卡片；每本書 = 2:3 封面＋書名＋一行狀態，手機兩欄、平板三欄、桌面四至五欄。
+- 「已出版長篇（五部）」、《賣雨的人》：正常封面＋連結。
+- **《拾味小館》只可標示「寫作中」**：用文字封面或淡化處理，連結維持「登記出版通知」，不可放入「已出版」行列，亦不可在 JSON-LD 用出版相關屬性（見下）。
+- 《還是要走》維持「即將連載」。
+- 文案不改；如 snippet 內有與現有頁面不同的文字，會先列出給你確認。
+
+**JSON-LD 合併規則**（不直接覆蓋 `writing/index.html` 現有 `@graph`）：
+1. 以現有 `@graph` 為準，保留 `Person`（`#xiguang`）及其 `sameAs`、各 `Book`／`Periodical` 的現有欄位。
+2. 只**加入**現有資料沒有的欄位（例如 `image` 指向封面、`isbn`、`datePublished`、`publisher`），以書名對應同一個節點，不產生重複節點。
+3. **移除 `bookFormat: Paperback`**——除非你確認有紙本；電子書可用 `https://schema.org/EBook`，同樣要你確認。
+4. 《拾味小館》保留 `creativeWorkStatus: "Draft"`，**不加** `datePublished`、`isbn`、`offers`、`bookFormat`。
+5. 合併後用 JSON parser 及 Schema.org validator 檢查。
+
+### 8.3 og:image 套用
+
+| 頁面 | 現時 og:image | 建議 |
+|---|---|---|
+| `selection.html` | `images/rain-seller-cover-new.jpg`（**相對路徑**，社交平台讀不到） | 改為絕對網址；選物店總覽頁建議用品牌 og（`assets/og/sbs-og-1200x630.png`），或 zip 內的書架／合集 og 圖 |
+| `ebook/rain-seller/`、`audiobook/rain-seller/`、`ebook/manman/` | 無 og；有 `noindex`（付費閱讀頁） | **不加**——付費頁不應被分享預覽；分享入口應是公開介紹頁 |
+| `book.html`（《AI 給我的第一桶金》） | 品牌 og（絕對網址 ✓） | zip 如有此書 og 就換；否則維持 |
+| 將來的公開書頁（例如 `shop/rain.html`、`shop/brand.html`，現時 404） | — | 每本書用自己的 1200×630 og 圖 |
+| `writing/` | 品牌 og（絕對網址 ✓） | 可改為書架 og 圖（如 zip 有） |
+
+規則：一律用 `https://spacebetweenstudio.site/...` 絕對網址；同時加 `og:image:width`／`og:image:height`／`og:image:alt`，`twitter:card` 用 `summary_large_image`。付費／閘門頁（有 `noindex`）不需要 og 圖。
