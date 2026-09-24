@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="only light">
+  <!-- 預覽頁：不收錄。正式上線時換回 writing/index.html 的 SEO meta -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>寫作頁書架預覽 | Space Between Studio</title>
+  <meta name="description" content="/writing 書架形式預覽（DESIGN_PROPOSAL.md §8.2）。">
+
+  <!-- OG 卡片示範（DESIGN_PROPOSAL.md §8.3） -->
+  <meta property="og:image" content="https://spacebetweenstudio.site/assets/og/zhu-guang-de-yao-shi-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="小說《逐光的藥師》— 隙光">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- 合併版 JSON-LD：以 writing/index.html 現有 @graph 為基礎，只加入 site-covers 的新欄位與新書。
+       未寫 bookFormat（待確認版本）；《拾味小館》維持 Draft，不加 publisher。 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://spacebetweenstudio.site/#studio",
+        "name": "Space Between Studio",
+        "url": "https://spacebetweenstudio.site"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://spacebetweenstudio.site/writing/#xiguang",
+        "name": "隙光",
+        "alternateName": "Xiguang",
+        "jobTitle": "小說作者",
+        "description": "療癒系都市奇幻作者，已出版五部長篇，逾四十萬字。",
+        "url": "https://spacebetweenstudio.site/writing/",
+        "worksFor": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        },
+        "sameAs": [
+          "https://space-between.art",
+          "https://vocus.cc/salon/xiguang",
+          "https://www.threads.com/@wins_twilight"
+        ]
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#zhu-guang-de-yao-shi",
+        "name": "逐光的藥師",
+        "alternateName": "The Light Chaser",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/zhu-guang-de-yao-shi-800.webp",
+        "publisher": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#wei-zhang-ling-hun-gai-jian-shi-wu-suo",
+        "name": "違章靈魂改建事務所",
+        "alternateName": "The Soul Renovator",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/wei-zhang-ling-hun-gai-jian-shi-wu-suo-800.webp",
+        "publisher": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#xin-zhai-jin-shi",
+        "name": "心宅：禁室",
+        "alternateName": "The Forbidden Room",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/xin-zhai-jin-shi-800.webp",
+        "publisher": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#mai-yu-de-ren",
+        "name": "賣雨的人",
+        "alternateName": "The Rain Seller",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/mai-yu-de-ren-800.webp",
+        "publisher": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        },
+        "description": "品牌療癒電子書",
+        "url": "https://spacebetweenstudio.site/selection.html"
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#man-man-cheng-wei-zi-ji-de-pin-pai",
+        "name": "慢慢成為自己的品牌",
+        "alternateName": "Slowly Becoming Your Own Brand",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp",
+        "publisher": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#shi-wei-xiao-guan",
+        "name": "拾味小館",
+        "alternateName": "The Flavor Bistro",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "inLanguage": "zh-Hant",
+        "image": "https://spacebetweenstudio.site/assets/covers/shi-wei-xiao-guan-800.webp",
+        "description": "寫作中",
+        "creativeWorkStatus": "Draft"
+      },
+      {
+        "@type": "Book",
+        "@id": "https://spacebetweenstudio.site/writing/#huan-shi-yao-zou",
+        "name": "還是要走",
+        "description": "即將於方格子連載",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "creativeWorkStatus": "Draft",
+        "inLanguage": "zh-Hant"
+      },
+      {
+        "@type": "Periodical",
+        "@id": "https://spacebetweenstudio.site/writing/#du-kou-qu",
+        "name": "渡口區生活誌",
+        "description": "《拾味小館》世界的地方刊物，每週一更新",
+        "author": {
+          "@id": "https://spacebetweenstudio.site/writing/#xiguang"
+        },
+        "url": "https://vocus.cc/salon/xiguang",
+        "inLanguage": "zh-Hant"
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://spacebetweenstudio.site/writing/#page",
+        "url": "https://spacebetweenstudio.site/writing/",
+        "name": "隙光｜寫作",
+        "isPartOf": {
+          "@id": "https://spacebetweenstudio.site/#studio"
+        },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListOrder": "https://schema.org/ItemListUnordered",
+          "numberOfItems": 8,
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#zhu-guang-de-yao-shi"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#wei-zhang-ling-hun-gai-jian-shi-wu-suo"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#xin-zhai-jin-shi"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#mai-yu-de-ren"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#man-man-cheng-wei-zi-ji-de-pin-pai"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#shi-wei-xiao-guan"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#huan-shi-yao-zou"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "item": {
+                "@id": "https://spacebetweenstudio.site/writing/#du-kou-qu"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/brand-logo.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+  <style>
+    /* ── 提案 token（未寫入 css/tokens.css；批准後才搬過去） ── */
+    :root {
+      color-scheme: only light;
+
+      /* 金線（兩個深淺）：只用於線條同細小點綴，不用於文字、按鈕、色塊
+         on-light  #86672A：對 Ivory 4.61:1、White 5.27:1、surface-alt 4.17:1
+         on-dark   #D4B872：對 Rainforest 6.14:1（只可放深綠底） */
+      --color-gold-thread-on-light: #86672A;
+      --color-gold-thread-on-dark: #D4B872;
+      --gold-thread-width: 1.5px;
+
+      /* 版面節奏 */
+      --section-pad-y: var(--space-4xl);
+      --section-pad-x: var(--space-xl);
+      --content-max: 1100px;
+      --measure: 34em;
+      --nav-height: 72px;
+      --tap-target: 48px;
+    }
+    @media (max-width: 768px) {
+      :root {
+        --section-pad-y: var(--space-2xl);
+        --section-pad-x: var(--space-md);
+        --nav-height: 64px;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-light);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute; left: var(--space-sm); top: -100px; z-index: 200;
+      padding: var(--space-2xs) var(--space-sm);
+      background: var(--color-button-bg); color: var(--color-button-text);
+      text-decoration: none;
+    }
+    .skip-link:focus { top: var(--space-sm); }
+
+    /* 預覽提示條 */
+    .preview-bar {
+      background: var(--color-surface-strong);
+      color: var(--color-text);
+      font-size: 0.8rem; text-align: center;
+      padding: var(--space-2xs) var(--space-md);
+      margin-top: var(--nav-height);
+    }
+
+    /* ── NAV（統一版：桌面橫排／手機選單按鈕） ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-height);
+      padding: 0 var(--section-pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--color-overlay);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-line-soft);
+    }
+    .nav-links { display: flex; align-items: center; gap: var(--space-lg); list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      color: var(--color-text-muted); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--color-accent); }
+    .nav-cta {
+      display: inline-block;
+      padding: var(--space-2xs) var(--space-md);
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent) !important;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nav-cta:hover { background: var(--color-button-bg); color: var(--color-button-text) !important; }
+
+    .nav-toggle {
+      display: none;
+      align-items: center; gap: var(--space-2xs);
+      min-width: var(--tap-target); min-height: var(--tap-target);
+      padding: 0 var(--space-2xs);
+      background: none; border: 0; cursor: pointer;
+      color: var(--color-accent);
+      font: inherit; font-size: 0.85rem; letter-spacing: 0.08em;
+    }
+    .nav-toggle-icon { position: relative; width: 20px; height: 12px; }
+    .nav-toggle-icon::before, .nav-toggle-icon::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1px;
+      background: currentColor; transition: transform 0.25s, top 0.25s;
+    }
+    .nav-toggle-icon::before { top: 2px; }
+    .nav-toggle-icon::after { top: 9px; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon::before { top: 6px; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon::after { top: 6px; transform: rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* 沒有 JS 時：選單照常顯示在 nav 下方（不會像現在一樣整組消失） */
+      .site-nav { flex-wrap: wrap; height: auto; min-height: var(--nav-height); }
+      .nav-links {
+        flex-basis: 100%;
+        flex-direction: column; align-items: stretch; gap: 0;
+        padding: var(--space-2xs) 0 var(--space-md);
+      }
+      .nav-links a {
+        display: flex; align-items: center;
+        min-height: var(--tap-target);
+        font-size: 1rem;
+        border-bottom: 1px solid var(--color-line-soft);
+      }
+      .nav-links li:nth-last-child(2) a { border-bottom: 0; }
+      .nav-links .nav-cta { justify-content: center; margin-top: var(--space-sm); border: 1px solid var(--color-accent); }
+
+      /* 有 JS 時：收合成「選單」按鈕，展開為 nav 下方的全寬面板 */
+      .js .nav-toggle { display: inline-flex; }
+      .js .site-nav { flex-wrap: nowrap; height: var(--nav-height); }
+      .js .nav-links {
+        position: fixed; left: 0; right: 0; top: var(--nav-height);
+        max-height: calc(100svh - var(--nav-height)); overflow-y: auto;
+        padding: var(--space-2xs) var(--section-pad-x) var(--space-lg);
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-line);
+        box-shadow: 0 12px 24px var(--color-shadow);
+        visibility: hidden; opacity: 0; transform: translateY(-8px);
+        transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s;
+      }
+      .js .site-nav.is-open .nav-links {
+        visibility: visible; opacity: 1; transform: none;
+        transition: opacity 0.2s, transform 0.2s;
+      }
+    }
+
+    /* ── 共用 ── */
+    .section { padding: var(--section-pad-y) var(--section-pad-x); }
+    .inner { max-width: var(--content-max); margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.22em;
+      color: var(--color-accent); margin-bottom: var(--space-sm);
+    }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: var(--font-weight-light); line-height: 1.3;
+      color: var(--color-heading);
+      margin-bottom: var(--space-md);
+    }
+    .section-heading em { font-style: normal; font-weight: var(--font-weight-regular); }
+    .section-sub {
+      font-size: 1rem; line-height: 2;
+      color: var(--color-text-muted); max-width: var(--measure);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: var(--tap-target);
+      padding: 0 var(--space-lg);
+      font-size: 0.85rem; letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-primary {
+      background: var(--color-button-bg); color: var(--color-button-text);
+      box-shadow: inset 0 0 0 1px var(--color-button-ring);
+    }
+    .btn-primary:hover { background: var(--color-button-hover-bg); transform: translateY(-2px); }
+    .btn-secondary { border: 1px solid var(--color-accent); color: var(--color-accent); }
+    .btn-secondary:hover { background: var(--color-button-bg); color: var(--color-button-text); transform: translateY(-2px); }
+
+
+    /* ── 寫作頁 ── */
+    main { max-width: var(--content-max); margin: 0 auto; padding: var(--space-3xl) var(--section-pad-x) var(--space-3xl); }
+    .page-head { max-width: 40em; margin-bottom: var(--space-3xl); }
+    .page-head h1, .shelf-title, .notes h2 {
+      font-family: var(--font-literary); font-weight: var(--font-weight-regular);
+      color: var(--color-heading); letter-spacing: 0.08em;
+    }
+    .page-head h1 { font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: var(--space-md); }
+    .lede { font-family: var(--font-literary); font-size: 1.15rem; line-height: 2.1; }
+
+    .shelf-group { margin-bottom: var(--space-3xl); }
+    .shelf-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2xs) var(--space-md); margin-bottom: var(--space-lg); }
+    .shelf-title { font-size: clamp(1.3rem, 3vw, 1.6rem); }
+    .shelf-desc { color: var(--color-text-muted); font-size: 0.95rem; }
+    .text-link {
+      color: var(--color-accent); text-decoration: underline;
+      text-decoration-color: var(--color-accent-soft); text-underline-offset: 0.3em;
+    }
+    .text-link:hover { text-decoration-color: var(--color-accent); }
+
+    /* 書架：封面 2:3，手機兩欄、平板三欄、桌面四欄 */
+    .bookshelf {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-xl) var(--space-lg);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--color-line);   /* 書架底板 */
+    }
+    .book { display: flex; flex-direction: column; }
+    .book-cover-wrap { position: relative; margin-bottom: var(--space-sm); }
+    .book-cover { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; box-shadow: 0 10px 24px var(--color-shadow-strong); }
+    .book-status {
+      position: absolute; left: var(--space-2xs); bottom: var(--space-2xs);
+      padding: var(--space-3xs) var(--space-xs);
+      background: var(--color-surface); color: var(--color-accent);
+      border: 1px solid var(--color-line);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+    }
+    .book h3 { font-family: var(--font-literary); font-size: 1.05rem; font-weight: var(--font-weight-medium); color: var(--color-heading); letter-spacing: 0.04em; line-height: 1.5; }
+    .book .en { font-family: var(--font-display); font-size: 0.8rem; color: var(--color-text-muted); letter-spacing: 0.04em; margin-bottom: var(--space-2xs); }
+    .book .meta { font-size: 0.9rem; color: var(--color-text-muted); }
+    .book .text-link { font-size: 0.9rem; margin-top: var(--space-3xs); align-self: flex-start; }
+
+    /* 未有封面的作品：細卡片 */
+    .serials { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+    .serial { padding: var(--space-lg); background: var(--color-surface); border: 1px solid var(--color-line-soft); }
+    .serial h3 { font-family: var(--font-literary); font-size: 1.05rem; font-weight: var(--font-weight-medium); color: var(--color-heading); margin-bottom: var(--space-2xs); }
+    .serial p { font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: var(--space-2xs); }
+
+    .notes { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); padding-top: var(--space-xl); }
+    .notes h2 { font-size: 1.3rem; margin-bottom: var(--space-2xs); }
+    .notes p { font-size: 1rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--color-inverse-bg); color: var(--color-inverse-muted);
+      --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted);
+      --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory);
+      padding: var(--space-2xl) var(--section-pad-x) var(--space-lg);
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    .footer-brand { margin-bottom: var(--space-sm); }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.9; max-width: 280px; }
+    .footer-col h2 {
+      font-size: 0.75rem; font-weight: var(--font-weight-regular); letter-spacing: 0.18em;
+      color: var(--color-accent); margin-bottom: var(--space-sm);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: var(--space-3xs); }
+    .footer-col a, .footer-col .pending {
+      display: inline-flex; align-items: center; gap: var(--space-2xs);
+      min-height: 36px;
+      font-size: 0.88rem; color: var(--color-inverse-muted);
+      text-decoration: none; transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--color-accent); }
+    .social-icon { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .footer-col .pending { flex-wrap: wrap; }
+    .pending small { font-size: 0.75rem; white-space: nowrap; }
+    .footer-bottom {
+      max-width: var(--content-max); margin: 0 auto;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-inverse-line);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);
+    }
+    .footer-bottom p { font-size: 0.8rem; }
+    .footer-bottom a { color: var(--color-accent); text-decoration: none; }
+
+    /* ── 進場動畫（尊重減少動態設定） ── */
+    .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .bookshelf { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      main { padding-top: var(--space-2xl); }
+      .page-head { margin-bottom: var(--space-2xl); }
+      .shelf-group { margin-bottom: var(--space-2xl); }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+      .footer-inner > :first-child { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 560px) {
+      .bookshelf { grid-template-columns: repeat(2, 1fr); gap: var(--space-lg) var(--space-md); }
+      .serials, .notes { grid-template-columns: 1fr; }
+      .notes { gap: var(--space-lg); }
+      .book h3 { font-size: 0.98rem; }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">跳至主要內容</a>
+
+  <nav class="site-nav" aria-label="主選單">
+    <a href="../" class="sbs-logo-link"><img class="sbs-logo sbs-logo--nav" src="../assets/logo/COMBO/SBS_COMBO_GREEN.svg" alt="Space Between Studio" width="180" height="32"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
+      <span class="nav-toggle-label">選單</span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../">首頁</a></li>
+      <li><a href="../about.html">關於</a></li>
+      <li><a href="../writing/" aria-current="page">寫作</a></li>
+      <li><a href="../shop/">商店</a></li>
+      <li><a href="../workshop/">光光工作坊</a></li>
+      <li><a href="https://spacebetweenhealing.com" class="nav-cta">預約諮詢</a></li>
+    </ul>
+  </nav>
+
+  <p class="preview-bar">寫作頁書架預覽 · 只作提案，詳見 DESIGN_PROPOSAL.md §8.2</p>
+
+  <main id="main">
+    <header class="page-head">
+      <h1>關於隙光</h1>
+      <p class="lede">療癒系都市奇幻作者，已出版五部長篇，逾四十萬字。</p>
+    </header>
+
+    <section class="shelf-group" aria-labelledby="published-title">
+      <div class="shelf-head">
+        <div>
+          <h2 class="shelf-title" id="published-title">已出版長篇（五部）</h2>
+          <p class="shelf-desc">療癒系都市奇幻長篇作品集</p>
+        </div>
+        <a class="text-link" href="https://space-between.art" target="_blank" rel="noopener">前往 space-between.art 閱讀</a>
+      </div>
+      <ul class="bookshelf">
+        <li class="book" id="zhu-guang-de-yao-shi">
+          <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/zhu-guang-de-yao-shi-400.webp"
+                srcset="../assets/covers/zhu-guang-de-yao-shi-400.webp 400w, ../assets/covers/zhu-guang-de-yao-shi-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《逐光的藥師》封面：藥師在天台花園手持發光藥瓶，俯瞰城市夜景"></div>
+          <h3>逐光的藥師</h3>
+          <p class="en" lang="en">The Light Chaser</p>
+        </li>
+        <li class="book" id="wei-zhang-ling-hun-gai-jian-shi-wu-suo">
+          <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/wei-zhang-ling-hun-gai-jian-shi-wu-suo-400.webp"
+                srcset="../assets/covers/wei-zhang-ling-hun-gai-jian-shi-wu-suo-400.webp 400w, ../assets/covers/wei-zhang-ling-hun-gai-jian-shi-wu-suo-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《違章靈魂改建事務所》封面：雨中男子手持圖紙與鎚子，身後牆面裂縫透出金光"></div>
+          <h3>違章靈魂改建事務所</h3>
+          <p class="en" lang="en">The Soul Renovator</p>
+        </li>
+        <li class="book" id="xin-zhai-jin-shi">
+          <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/xin-zhai-jin-shi-400.webp"
+                srcset="../assets/covers/xin-zhai-jin-shi-400.webp 400w, ../assets/covers/xin-zhai-jin-shi-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《心宅：禁室》封面：女子在舊屋中撫觸一扇門，斜射的光落在門上"></div>
+          <h3>心宅：禁室</h3>
+          <p class="en" lang="en">The Forbidden Room</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="shelf-group" aria-labelledby="works-title">
+      <div class="shelf-head">
+        <h2 class="shelf-title" id="works-title">作品</h2>
+      </div>
+      <ul class="bookshelf">
+        <li class="book" id="mai-yu-de-ren">
+          <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/mai-yu-de-ren-400.webp"
+                srcset="../assets/covers/mai-yu-de-ren-400.webp 400w, ../assets/covers/mai-yu-de-ren-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《賣雨的人》封面：女子手持裝著一場雨的玻璃瓶，窗外是雨中城市"></div>
+          <h3>《賣雨的人》</h3>
+          <p class="en" lang="en">The Rain Seller</p>
+          <p class="meta">品牌療癒電子書</p>
+          <a class="text-link" href="../selection.html">立即閱讀 →</a>
+        </li>
+        <li class="book" id="man-man-cheng-wei-zi-ji-de-pin-pai">
+          <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp"
+                srcset="../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp 400w, ../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="《慢慢成為自己的品牌》封面：以金繼手法修補一只陶罐，裂縫化為金線"></div>
+          <h3>《慢慢成為自己的品牌》</h3>
+          <p class="en" lang="en">Slowly Becoming Your Own Brand</p>
+        </li>
+        <li class="book" id="shi-wei-xiao-guan">
+          <div class="book-cover-wrap">
+            <img class="book-cover" src="../assets/covers/shi-wei-xiao-guan-400.webp"
+                srcset="../assets/covers/shi-wei-xiao-guan-400.webp 400w, ../assets/covers/shi-wei-xiao-guan-800.webp 800w"
+                sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《拾味小館》封面：雨夜小館裡，店主端著一碗冒著金光熱氣的湯">
+            <span class="book-status">寫作中</span>
+          </div>
+          <h3>《拾味小館》</h3>
+          <p class="en" lang="en">The Flavor Bistro</p>
+          <p class="meta">寫作中</p>
+          <a class="text-link" href="https://form.jotform.com/262421313128042" target="_blank" rel="noopener">登記出版通知</a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="shelf-group" aria-label="連載與刊物">
+      <ul class="serials">
+        <li class="serial">
+          <h3>《渡口區生活誌》</h3>
+          <p>《拾味小館》世界的地方刊物，每週一更新</p>
+          <a class="text-link" href="https://vocus.cc/salon/xiguang" target="_blank" rel="noopener">方格子 →</a>
+        </li>
+        <li class="serial">
+          <h3>《還是要走》</h3>
+          <p>即將於方格子連載</p>
+          <p>即將連載</p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="notes">
+      <section aria-labelledby="notes-title">
+        <h2 id="notes-title">作者手記</h2>
+        <p>每週四於<a class="text-link" href="https://vocus.cc/salon/xiguang" target="_blank" rel="noopener">方格子</a>更新</p>
+      </section>
+      <section aria-labelledby="follow-title">
+        <h2 id="follow-title">追蹤</h2>
+        <p><a class="text-link" href="https://www.threads.com/@wins_twilight" target="_blank" rel="noopener">Threads @wins_twilight</a></p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="inner footer-inner">
+      <div>
+        <p class="footer-brand"><img class="sbs-logo sbs-logo--footer" src="../assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></p>
+        <p class="footer-tagline">品牌療癒・自我教練・數位產品<br>台灣 × 香港</p>
+      </div>
+      <div class="footer-col">
+        <h2>產品與服務</h2>
+        <ul>
+          <li><a href="../shop/">數位商店</a></li>
+          <li><a href="../workshop/">光光工作坊</a></li>
+          <li><a href="https://spacebetweenhealing.com">品牌設計服務</a></li>
+          <li><a href="https://spacebetweenhealing.com">一對一諮詢</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>聯絡我們</h2>
+        <ul>
+          <li><a href="../about.html">關於 Studio</a></li>
+          <li><a href="mailto:hello@spacebetweenstudio.site">電郵</a></li>
+          <li><a href="https://wa.me/85294568231">WhatsApp（香港）</a></li>
+          <li><a href="#">LINE（台灣）</a></li>
+        </ul>
+      </div>
+      <!-- 建議 5：社交連結 -->
+      <div class="footer-col">
+        <h2>追蹤我們</h2>
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/spacebetweenstudiohk/" target="_blank" rel="noopener" aria-label="Instagram @spacebetweenstudiohk（新視窗）">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6"/></svg>
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="https://www.threads.com/@spacebetweenstudiohk" target="_blank" rel="noopener" aria-label="Threads @spacebetweenstudiohk（新視窗）">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 11.2c-.4-2.6-2.1-3.9-4.4-3.9-2.6 0-4.3 1.9-4.3 4.7s1.7 4.8 4.3 4.8c1.9 0 3.2-.9 3.6-2.4.5-1.8-.6-3.2-3-3.2-1.6 0-2.6.8-2.6 1.8 0 1.1 1 1.7 2.1 1.6 1.9-.1 2.9-1.8 2.9-4.4"/><path d="M19.5 7.5C18.3 4.8 15.7 3 12.2 3 7.1 3 4 6.6 4 12s3.1 9 8.2 9c3.3 0 5.8-1.5 7-4.1"/></svg>
+              Threads
+            </a>
+          </li>
+          <li>
+            <!-- Facebook 網址待提供：提供前不放 href，避免再出現 href="#" -->
+            <span class="pending" title="網址待提供">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H7.5v3.5H10V21h3.5v-6.5H16l.5-3.5h-3V8.8c0-.4.3-.8.5-.8z"/></svg>
+              Facebook <small>（網址待提供）</small>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Space Between Studio · 品牌療癒生態系 · 台灣 × 香港</p>
+      <p><a href="https://spacebetweenhealing.com">spacebetweenhealing.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // 統一手機選單：按鈕切換、Esc 關閉、點連結後關閉
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      var toggle = nav.querySelector('.nav-toggle');
+      var label = toggle.querySelector('.nav-toggle-label');
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        label.textContent = open ? '關閉' : '選單';
+      }
+      toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+      nav.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+      });
+      window.matchMedia('(min-width: 769px)').addEventListener('change', function (e) { if (e.matches) setOpen(false); });
+    })();
+
+    // 進場動畫
+    (function () {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { reveals.forEach(function (el) { el.classList.add('visible'); }); return; }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      reveals.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+</body>
+</html>

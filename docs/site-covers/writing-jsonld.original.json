@@ -1,0 +1,152 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://spacebetweenstudio.site#studio",
+      "name": "Space Between Studio",
+      "url": "https://spacebetweenstudio.site"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://spacebetweenstudio.site/about#xiguang",
+      "name": "隙光",
+      "alternateName": "Xiguang",
+      "jobTitle": "小說作者",
+      "worksFor": {
+        "@id": "https://spacebetweenstudio.site#studio"
+      },
+      "url": "https://spacebetweenstudio.site/about"
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://spacebetweenstudio.site/writing#page",
+      "url": "https://spacebetweenstudio.site/writing",
+      "name": "作品 — 隙光",
+      "isPartOf": {
+        "@id": "https://spacebetweenstudio.site#studio"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListOrder": "https://schema.org/ItemListUnordered",
+        "numberOfItems": 6,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#zhu-guang-de-yao-shi",
+              "name": "逐光的藥師",
+              "alternateName": "The Light Chaser",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/zhu-guang-de-yao-shi-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/Paperback"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#shi-wei-xiao-guan",
+              "name": "拾味小館",
+              "alternateName": "The Flavor Bistro",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/shi-wei-xiao-guan-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/Paperback"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#wei-zhang-ling-hun-gai-jian-shi-wu-suo",
+              "name": "違章靈魂改建事務所",
+              "alternateName": "The Soul Renovator",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/wei-zhang-ling-hun-gai-jian-shi-wu-suo-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/Paperback"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#xin-zhai-jin-shi",
+              "name": "心宅：禁室",
+              "alternateName": "The Forbidden Room",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/xin-zhai-jin-shi-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/Paperback"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#mai-yu-de-ren",
+              "name": "賣雨的人",
+              "alternateName": "The Rain Seller",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/mai-yu-de-ren-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/Paperback"
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "Book",
+              "@id": "https://spacebetweenstudio.site/writing#man-man-cheng-wei-zi-ji-de-pin-pai",
+              "name": "慢慢成為自己的品牌",
+              "alternateName": "Slowly Becoming Your Own Brand",
+              "author": {
+                "@id": "https://spacebetweenstudio.site/about#xiguang"
+              },
+              "inLanguage": "zh-Hant",
+              "image": "https://spacebetweenstudio.site/assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp",
+              "publisher": {
+                "@id": "https://spacebetweenstudio.site#studio"
+              },
+              "bookFormat": "https://schema.org/EBook"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
