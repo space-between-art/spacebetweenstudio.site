@@ -251,11 +251,11 @@
             color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .resource-btn.canva {
-            background: var(--color-river-stone);
+            background: var(--color-button-bg);
         }
         
         .resource-btn.video {
-            background: var(--color-error);
+            background: var(--color-button-bg);
         }
         
         /* Exercise List */
@@ -302,7 +302,7 @@
         }
         
         .exercise-tools span {
-            background: var(--color-accent-soft);
+            background: var(--color-button-bg); color: var(--color-button-text);
             padding: 3px 10px;
             border-radius: 20px;
             margin-right: 8px;
@@ -492,6 +492,7 @@
         
         .error-message {
             color: var(--color-error);
+            background: var(--color-error-bg); padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-sm);
             font-size: 0.9rem;
             margin-top: 10px;
             display: none;

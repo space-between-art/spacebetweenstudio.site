@@ -67,7 +67,12 @@
   --color-scrim-strong: color-mix(in srgb, var(--color-text) 85%, transparent);
   --color-shadow: color-mix(in srgb, var(--color-text) 10%, transparent);
   --color-shadow-strong: color-mix(in srgb, var(--color-text) 18%, transparent);
-  --color-error: var(--color-text);
+
+  /* 功能色：錯誤／警告（品牌色以外唯一例外，只用於表單錯誤及警告）
+     #9B2C2C 對 Ivory 6.6:1、對 White 7.5:1；對 Rainforest 只有 1.6:1，
+     所以深綠區塊內的錯誤訊息要放在 Ivory 底（--color-error-bg）上。 */
+  --color-error: #9B2C2C;
+  --color-error-bg: var(--color-ivory);
 
   /* 區塊作用域：深色區塊在頁面 CSS 內把 --color-text / --color-accent 等
      重新指向淺色；淺色卡片以 --on-light-* 切回（這些值在 :root 解析，固定不變） */
