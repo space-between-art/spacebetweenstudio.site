@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /ebook/
+Disallow: /audiobook/
+Disallow: /resource-hub/
+Disallow: /workshop-v2.html
+Disallow: /workshop-full.html
+Disallow: /golden-thread-website-package/resource-hub.html
+Disallow: /notion/
