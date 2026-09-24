@@ -17,7 +17,7 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- 合併版 JSON-LD：以 writing/index.html 現有 @graph 為基礎，只加入 site-covers 的新欄位與新書。
-       已完成的書 bookFormat 一律 EBook（暫時只有電子版）；寫作中的《拾味小館》《還是要走》不加；不寫 publisher。 -->
+       已完成的書 bookFormat 一律 EBook（暫時只有電子版）；待出版的《拾味小館》及未連載的《還是要走》不加；不寫 publisher。 -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -105,7 +105,7 @@
         },
         "inLanguage": "zh-Hant",
         "image": "https://spacebetweenstudio.site/assets/covers/shi-wei-xiao-guan-800.webp",
-        "description": "寫作中",
+        "description": "待出版",
         "creativeWorkStatus": "Draft"
       },
       {
@@ -406,10 +406,10 @@
     }
     .text-link:hover { text-decoration-color: var(--color-accent); }
 
-    /* 書架：封面 2:3，手機兩欄、平板三欄、桌面四欄 */
+    /* 書架：封面 2:3，手機兩欄、平板三欄、桌面五欄 */
     .bookshelf {
       list-style: none;
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: grid; grid-template-columns: repeat(5, 1fr);
       gap: var(--space-xl) var(--space-lg);
       padding-bottom: var(--space-lg);
       border-bottom: 1px solid var(--color-line);   /* 書架底板 */
@@ -570,20 +570,12 @@
           <h3>心宅：禁室</h3>
           <p class="en" lang="en">The Forbidden Room</p>
         </li>
-      </ul>
-    </section>
-
-    <section class="shelf-group" aria-labelledby="works-title">
-      <div class="shelf-head">
-        <h2 class="shelf-title" id="works-title">作品</h2>
-      </div>
-      <ul class="bookshelf">
         <li class="book" id="mai-yu-de-ren">
           <div class="book-cover-wrap"><img class="book-cover" src="../assets/covers/mai-yu-de-ren-400.webp"
                 srcset="../assets/covers/mai-yu-de-ren-400.webp 400w, ../assets/covers/mai-yu-de-ren-800.webp 800w"
                 sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
                 alt="小說《賣雨的人》封面：女子手持裝著一場雨的玻璃瓶，窗外是雨中城市"></div>
-          <h3>《賣雨的人》</h3>
+          <h3>賣雨的人</h3>
           <p class="en" lang="en">The Rain Seller</p>
           <p class="meta">品牌療癒電子書</p>
           <a class="text-link" href="../selection.html">立即閱讀 →</a>
@@ -594,11 +586,11 @@
                 srcset="../assets/covers/shi-wei-xiao-guan-400.webp 400w, ../assets/covers/shi-wei-xiao-guan-800.webp 800w"
                 sizes="(max-width: 560px) 42vw, 200px" width="400" height="600" loading="lazy" decoding="async"
                 alt="小說《拾味小館》封面：雨夜小館裡，店主端著一碗冒著金光熱氣的湯">
-            <span class="book-status">寫作中</span>
+            <span class="book-status">待出版</span>
           </div>
-          <h3>《拾味小館》</h3>
+          <h3>拾味小館</h3>
           <p class="en" lang="en">The Flavor Bistro</p>
-          <p class="meta">寫作中</p>
+          <p class="meta">待出版</p>
           <a class="text-link" href="https://form.jotform.com/262421313128042" target="_blank" rel="noopener">登記出版通知</a>
         </li>
       </ul>

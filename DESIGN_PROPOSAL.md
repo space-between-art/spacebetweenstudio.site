@@ -212,9 +212,9 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 6. **golden-thread 保留哪一個深色區塊**：featured 價錢卡，還是「認識光光」AI 區？
 7. ~~文字封面上的金線~~ ✅ 已定：`#D4B872`。
 8. **跑馬燈改靜態**：是否同意？
-9. ~~各書版本~~ ✅ 所有書暫時只有電子版、未正式出版：`bookFormat` 一律 `https://schema.org/EBook`；寫作中的《拾味小館》（及未開始連載的《還是要走》）不加。
+9. ~~各書版本~~ ✅ 所有書暫時只有電子版、未正式出版：`bookFormat` 一律 `https://schema.org/EBook`；待出版的《拾味小館》及未連載的《還是要走》不加。
 10. ~~`site-covers.zip`~~ ✅ 已解壓並刪除。
-11. **「已完成五部長篇作品」的五本書名**：之前回覆中的書名是佔位字（【書名一…五】），仍待提供；預覽暫時只放《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》（§8.2）。
+11. ~~五本書名~~ ✅ 《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《賣雨的人》《拾味小館》；《拾味小館》標籤由「寫作中」改為「待出版」。
 12. ~~`publisher`~~ ✅ 全部移除。
 13. ~~《慢慢成為自己的品牌》放 /writing？~~ ✅ 不放，只保留在 selection。
 14. ~~《賣雨的人》封面~~ ✅ 全站改用新封面（雨瓶）。
@@ -251,7 +251,12 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - 全站「已出版五部長篇」→「已完成五部長篇作品」、「已出版長篇（五部）」→「已完成五部長篇作品」：`writing/index.html`（meta description、og、twitter、JSON-LD、引言、作品卡標題）、`llms.txt`、`preview/writing-v2.html`
 - JSON-LD `bookFormat: https://schema.org/EBook`：`index.html`（《賣雨的人》《慢慢成為自己的品牌》）、`writing/index.html`（《賣雨的人》）、`preview/writing-v2.html`（四本完成的書）；Draft 的不加
 - `selection.html`：《慢慢成為自己的品牌》換新封面，完整顯示；「互動式電子書」「可填寫工作手冊」標籤由封面上移到卡片文字區；📱🔐💬🎁 換成 inline 單線 SVG（1.5px、Rainforest、28px／標題內 24px）
-- 「AI 給我的第一桶金」保留文字封面（待插畫）
+- 「AI 給我的第一桶金」保留文字封面（待插畫）——第六輪已換成插畫封面
+
+**第六輪（五部書名、第一桶金封面）**——有改正式頁面：
+- 新增 `assets/covers/ai-gei-wo-de-di-yi-tong-jin-400/800.webp`；`selection.html`《AI 給我的第一桶金》文字封面換成插畫封面（完整顯示），刪除已無用的產品圖 Logo 樣式
+- 《拾味小館》「寫作中」→「待出版」：`writing/index.html`（作品卡、JSON-LD description）、`llms.txt`、`preview/writing-v2.html`
+- `preview/writing-v2.html`：五部書同一排（桌面 5 欄），取消「作品」分區
 
 **沒有改（第一至三輪）**
 - 任何現有頁面、`css/tokens.css`、`css/brand-logo.css`、`llms.txt`、`robots.txt`、JSON-LD。
@@ -281,9 +286,9 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 **版面**
 - 上方維持「關於隙光」＋引言（引言放大一級）。
-- **「已完成五部長篇作品」**（原「已出版長篇（五部）」，已按確認改名）：書架一排——《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》，標題旁保留「前往 space-between.art 閱讀」。⚠️ 這三本歸入「已出版」是根據 zip 內容推斷，五部的完整名單待你確認（§6 第 11 項）。
-- **「作品」**：《賣雨的人》（品牌療癒電子書・立即閱讀 →）、《拾味小館》。《慢慢成為自己的品牌》不放 /writing，只保留在 selection。
-- **《拾味小館》只標「寫作中」**：封面左下角有「寫作中」標籤，下方狀態「寫作中」＋「登記出版通知」；不放在「已完成五部長篇作品」書架，JSON-LD 亦標為 Draft。
+- **「已完成五部長篇作品」**（原「已出版長篇（五部）」）：一排五本——《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《賣雨的人》《拾味小館》，標題旁保留「前往 space-between.art 閱讀」。桌面 5 欄。
+- 原本的「作品」分區已取消（《賣雨的人》《拾味小館》併入上面一排）。《慢慢成為自己的品牌》不放 /writing，只保留在 selection。
+- **《拾味小館》標示「待出版」**：封面左下角「待出版」標籤，下方狀態「待出版」＋「登記出版通知」；JSON-LD `description: 待出版`，維持 `creativeWorkStatus: Draft`（未出版），**不加 `bookFormat`**。
 - 未有封面的《渡口區生活誌》《還是要走》改為兩張細卡片；「作者手記」「追蹤」兩欄並排，去掉段與段之間的分隔線。
 - 書架：封面 2:3、淡陰影，每排底部一條 1px 線當「書架底板」；桌面 4 欄、平板 3 欄、手機 2 欄。
 - 文案全部沿用現有 /writing；新增的只有 zip 提供的書名、英文副題及封面 alt。
@@ -293,7 +298,7 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - 以 `writing/index.html` 現有 `@graph` 為基礎：Person 保留原 `@id`（`/writing/#xiguang`）、`description`、`url`、`sameAs`；只加 zip 的 `alternateName: Xiguang`、`jobTitle`、`worksFor`。zip 用的是另一個 `@id`（`/about#xiguang`），沒有採用，避免同一人出現兩個節點。
 - 《賣雨的人》保留原 `description`、`url`（selection.html），加 `alternateName`、`image`。
 - 新增《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》三個 Book 節點（`image`、`alternateName`）。
-- 《拾味小館》保留 `creativeWorkStatus: Draft`、`description: 寫作中`；只加 `alternateName`、`image`。
+- 《拾味小館》保留 `creativeWorkStatus: Draft`；`description` 由「寫作中」改為「待出版」；只加 `alternateName`、`image`；不加 `bookFormat`。
 - **不寫 `publisher`**（已確認全部移除）。
 - 《還是要走》《渡口區生活誌》原樣保留（zip 沒有這兩項）。
 - 新增 zip 的 Organization（`/#studio`）及 CollectionPage + ItemList，但 ItemList 只用 `@id` 引用上面的節點，不重複寫書目資料；`url` 用現有 canonical `/writing/`（有斜線）。
@@ -307,7 +312,7 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 | `ebook/rain-seller/`、`audiobook/rain-seller/`、`ebook/manman/` | 無 og；有 `noindex`（付費閱讀頁） | **不加**——付費頁不應被分享預覽；分享入口應是公開介紹頁 |
 | `book.html`（《AI 給我的第一桶金》） | 品牌 og（絕對網址 ✓） | zip 沒有此書 og，維持 |
 | 將來的公開書頁（例如 `shop/rain.html`、`shop/brand.html`，現時 404） | — | `mai-yu-de-ren-og.jpg`、`man-man-cheng-wei-zi-ji-de-pin-pai-og.jpg` |
-| 將來每本小說的介紹頁（或 `/writing/#slug` 分享） | — | `zhu-guang-de-yao-shi-og.jpg`、`wei-zhang-ling-hun-gai-jian-shi-wu-suo-og.jpg`、`xin-zhai-jin-shi-og.jpg`、`shi-wei-xiao-guan-og.jpg`（《拾味小館》og 圖的文案亦只可寫「寫作中」） |
+| 將來每本小說的介紹頁（或 `/writing/#slug` 分享） | — | `zhu-guang-de-yao-shi-og.jpg`、`wei-zhang-ling-hun-gai-jian-shi-wu-suo-og.jpg`、`xin-zhai-jin-shi-og.jpg`、`shi-wei-xiao-guan-og.jpg`（《拾味小館》og 圖的文案亦只可寫「待出版」） |
 | `writing/` | 品牌 og（絕對網址 ✓） | zip 片段示範用 `zhu-guang-de-yao-shi-og.jpg`（alt「小說《逐光的藥師》— 隙光」）；預覽已套用。另一做法是維持品牌 og，由你決定 |
 
 規則：一律用 `https://spacebetweenstudio.site/...` 絕對網址；同時加 `og:image:width`／`og:image:height`／`og:image:alt`，`twitter:card` 用 `summary_large_image`。付費／閘門頁（有 `noindex`）不需要 og 圖。

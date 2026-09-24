@@ -254,24 +254,6 @@
             background: var(--color-surface-alt);
         }
         
-        /* Logo 不跟隨產品圖放大／裁切 */
-        .product-image img.sbs-logo {
-            width: var(--sbs-logo-footer-width);
-            height: auto;
-            object-fit: fill;
-            transition: none;
-        }
-        
-        .product-card:hover .product-image img.sbs-logo {
-            transform: none;
-        }
-        
-        @media (max-width: 768px) {
-            .product-image img.sbs-logo {
-                width: var(--sbs-logo-footer-width-mobile);
-            }
-        }
-        
         .product-badge {
             position: absolute;
             top: 20px;
@@ -766,12 +748,12 @@
             
             <!-- Product 3: AI 給我的第一桶金 -->
             <div class="product-card">
-                <div class="product-image" style="background: var(--color-inverse-bg); display: flex; align-items: center; justify-content: center; min-height: 280px;">
-                    <div style="text-align: center; padding: 30px;">
-                        <div class="sbs-footer-mark"><img class="sbs-logo sbs-logo--footer" src="assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></div>
-                        <div style="font-family: var(--font-body); font-size: 28px; color: var(--color-inverse-text); line-height: 1.4;">AI 給我的第一桶金</div>
-                        <div style="font-size: 14px; color: var(--color-inverse-text); margin-top: 10px; letter-spacing: 1px;">六個普通人的可承受實驗</div>
-                    </div>
+                <div class="product-image">
+                    <img class="book-cover" src="assets/covers/ai-gei-wo-de-di-yi-tong-jin-800.webp"
+                         srcset="assets/covers/ai-gei-wo-de-di-yi-tong-jin-400.webp 400w, assets/covers/ai-gei-wo-de-di-yi-tong-jin-800.webp 800w"
+                         sizes="(max-width: 768px) 100vw, 380px"
+                         width="800" height="1200" decoding="async"
+                         alt="《AI 給我的第一桶金》封面：一幢舊樓的六個窗口裡，六個人各自在做手作、剪片、寫作、繪畫、錄音和計劃，一條金線把他們連起來">
                 </div>
                 <div class="product-info">
                     <p class="product-category">Practical Guide</p>
