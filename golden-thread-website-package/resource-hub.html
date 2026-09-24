@@ -5,35 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>Resource Hub | 找到你的品牌金線</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
     <style>
-        :root {
-            --gold: #C9A962;
-            --gold-light: rgba(201, 169, 98, 0.1);
-            --ink-black: #08090C;
-            --teal: #1A3A3A;
-            --cream: #F5F2EB;
-            --gray: #6B6B6B;
-            --success: #4A7C59;
-        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: var(--cream);
-            color: var(--ink-black);
+            font-family: var(--font-body);
+            background: var(--color-ivory);
+            color: var(--color-text);
             line-height: 1.7;
         }
         
         /* Header */
         .header {
-            background: var(--ink-black);
+            background: var(--color-inverse-bg);
             padding: 20px 40px;
             position: sticky;
             top: 0;
-            z-index: 100;
-        }
+            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .header-content {
             max-width: 1200px;
@@ -44,9 +35,9 @@
         }
         
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display);
             font-size: 1.5rem;
-            color: var(--gold);
+            color: var(--color-accent);
             text-decoration: none;
         }
         
@@ -56,32 +47,31 @@
         }
         
         .nav-links a {
-            color: var(--cream);
+            color: var(--color-ivory);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.3s;
         }
         
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         /* Hero */
         .hero {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--ink-black) 100%);
+            background: linear-gradient(135deg, var(--color-rainforest) 0%, var(--on-light-text) 100%);
             padding: 80px 40px;
             text-align: center;
-            color: var(--cream);
-        }
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .hero h1 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 2.5rem;
             margin-bottom: 15px;
         }
         
         .hero h1 span {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .hero p {
@@ -92,8 +82,8 @@
         }
         
         .passphrase-box {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid var(--gold);
+            background: color-mix(in srgb, var(--color-white) 10%, transparent);
+            border: 1px solid var(--color-accent-soft);
             border-radius: 12px;
             padding: 25px;
             max-width: 400px;
@@ -109,24 +99,24 @@
         .passphrase-input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--color-accent-soft);
             border-radius: 8px;
             background: transparent;
-            color: var(--cream);
+            color: var(--color-ivory);
             font-size: 1rem;
             text-align: center;
         }
         
         .passphrase-input::placeholder {
-            color: rgba(255,255,255,0.5);
+            color: color-mix(in srgb, var(--color-white) 50%, transparent);
         }
         
         .unlock-btn {
             width: 100%;
             padding: 12px;
             margin-top: 15px;
-            background: var(--gold);
-            color: var(--ink-black);
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             border: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -137,7 +127,7 @@
         
         .unlock-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(201, 169, 98, 0.3);
+            box-shadow: 0 5px 20px color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
         
         /* Main Content */
@@ -163,13 +153,13 @@
             gap: 15px;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 2px solid var(--color-accent-soft);
         }
         
         .section-icon {
             width: 50px;
             height: 50px;
-            background: var(--gold);
+            background: var(--color-accent-soft);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -178,12 +168,12 @@
         }
         
         .section-title {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.5rem;
         }
         
         .section-subtitle {
-            color: var(--gray);
+            color: var(--color-text-muted);
             font-size: 0.9rem;
         }
         
@@ -195,26 +185,24 @@
         }
         
         .resource-card {
-            background: white;
+            background: var(--color-white);
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+            box-shadow: 0 4px 20px color-mix(in srgb, var(--on-light-text) 5%, transparent);
+            transition: transform 0.3s, box-shadow 0.3s; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .resource-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px color-mix(in srgb, var(--on-light-text) 10%, transparent);
         }
         
         .resource-thumbnail {
             height: 160px;
-            background: linear-gradient(135deg, var(--teal) 0%, var(--ink-black) 100%);
+            background: linear-gradient(135deg, var(--color-rainforest) 0%, var(--on-light-text) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-        }
+            font-size: 3rem; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-content {
             padding: 20px;
@@ -222,21 +210,21 @@
         
         .resource-type {
             font-size: 0.75rem;
-            color: var(--gold);
+            color: var(--color-accent);
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 8px;
         }
         
         .resource-title {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
         
         .resource-desc {
             font-size: 0.85rem;
-            color: var(--gray);
+            color: var(--color-text-muted);
             margin-bottom: 15px;
         }
         
@@ -245,33 +233,29 @@
             align-items: center;
             gap: 8px;
             padding: 10px 20px;
-            background: var(--ink-black);
-            color: var(--cream);
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory);
             text-decoration: none;
             border-radius: 8px;
             font-size: 0.85rem;
-            transition: background 0.3s;
-        }
+            transition: background 0.3s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-btn:hover {
-            background: var(--teal);
-        }
+            background: var(--color-button-bg); color: var(--color-button-text)}
         
         .resource-btn.notion {
-            background: var(--teal);
-        }
+            background: var(--color-rainforest); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-btn.miro {
-            background: #FFD02F;
-            color: var(--ink-black);
-        }
+            background: var(--color-surface-strong);
+            color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .resource-btn.canva {
-            background: #00C4CC;
+            background: var(--color-button-bg);
         }
         
         .resource-btn.video {
-            background: #E74C3C;
+            background: var(--color-button-bg);
         }
         
         /* Exercise List */
@@ -281,29 +265,27 @@
         }
         
         .exercise-item {
-            background: white;
+            background: var(--color-white);
             border-radius: 12px;
             padding: 20px 25px;
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+            box-shadow: 0 2px 10px color-mix(in srgb, var(--on-light-text) 5%, transparent); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .exercise-number {
             width: 45px;
             height: 45px;
-            background: var(--gold);
+            background: var(--color-button-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display);
             font-size: 1.3rem;
             font-weight: 600;
-            color: var(--ink-black);
-            flex-shrink: 0;
-        }
+            color: var(--color-button-text);
+            flex-shrink: 0; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .exercise-info {
             flex: 1;
@@ -316,11 +298,11 @@
         
         .exercise-tools {
             font-size: 0.8rem;
-            color: var(--gray);
+            color: var(--color-text-muted);
         }
         
         .exercise-tools span {
-            background: var(--gold-light);
+            background: var(--color-button-bg); color: var(--color-button-text);
             padding: 3px 10px;
             border-radius: 20px;
             margin-right: 8px;
@@ -344,46 +326,42 @@
         }
         
         .exercise-btn.primary {
-            background: var(--gold);
-            color: var(--ink-black);
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .exercise-btn.secondary {
-            background: var(--ink-black);
-            color: var(--cream);
-        }
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         /* AI Section */
         .ai-section {
-            background: var(--ink-black);
+            background: var(--color-inverse-bg);
             border-radius: 20px;
             padding: 40px;
-            color: var(--cream);
+            color: var(--color-ivory);
             display: flex;
             gap: 40px;
-            align-items: center;
-        }
+            align-items: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-avatar {
             width: 150px;
             height: 150px;
-            background: linear-gradient(135deg, var(--gold) 0%, #DAB96D 100%);
+            background: linear-gradient(135deg, var(--on-light-accent) 0%, var(--color-accent) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            flex-shrink: 0;
-        }
+            flex-shrink: 0; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-content h3 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.5rem;
             margin-bottom: 10px;
         }
         
         .ai-content h3 span {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .ai-content p {
@@ -399,7 +377,7 @@
         }
         
         .ai-feature {
-            background: rgba(255,255,255,0.1);
+            background: color-mix(in srgb, var(--color-white) 10%, transparent);
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -410,32 +388,30 @@
             align-items: center;
             gap: 10px;
             padding: 15px 30px;
-            background: #25D366;
-            color: white;
+            background: var(--color-rainforest);
+            color: var(--color-button-text);
             text-decoration: none;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+            transition: transform 0.2s, box-shadow 0.2s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .whatsapp-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--color-rainforest) 30%, transparent);
         }
         
         /* Footer */
         .footer {
-            background: var(--ink-black);
-            color: var(--cream);
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory);
             padding: 40px;
-            text-align: center;
-        }
+            text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .footer-logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display);
             font-size: 1.3rem;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 15px;
         }
         
@@ -481,7 +457,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 9, 12, 0.95);
+            background: color-mix(in srgb, var(--color-rainforest) 95%, transparent);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -494,7 +470,7 @@
         
         .locked-content {
             text-align: center;
-            color: var(--cream);
+            color: var(--color-ivory);
             padding: 40px;
         }
         
@@ -504,7 +480,7 @@
         }
         
         .locked-content h2 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.8rem;
             margin-bottom: 15px;
         }
@@ -515,7 +491,8 @@
         }
         
         .error-message {
-            color: #E74C3C;
+            color: var(--color-error);
+            background: var(--color-error-bg); padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-sm);
             font-size: 0.9rem;
             margin-top: 10px;
             display: none;
@@ -647,7 +624,7 @@
             
             <div class="resource-grid">
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #FFD02F 0%, #FFAB00 100%);">🔍</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🔍</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">品牌考古畫布</h3>
@@ -657,7 +634,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #FFD02F 0%, #FFAB00 100%);">✨</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">✨</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">金繼價值畫布</h3>
@@ -667,7 +644,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #FFD02F 0%, #FFAB00 100%);">🗺️</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🗺️</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">競品定位地圖</h3>
@@ -677,7 +654,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #FFD02F 0%, #FFAB00 100%);">🧭</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🧭</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">品牌旅程畫布</h3>
@@ -700,7 +677,7 @@
             
             <div class="resource-grid">
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #00C4CC 0%, #7C3AED 100%);">🎭</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-river-stone) 0%, var(--color-rainforest) 100%);">🎭</div>
                     <div class="resource-content">
                         <div class="resource-type">Video Tutorial</div>
                         <h3 class="resource-title">教學 01：品牌 Mood Board</h3>
@@ -710,7 +687,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #00C4CC 0%, #7C3AED 100%);">✏️</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-river-stone) 0%, var(--color-rainforest) 100%);">✏️</div>
                     <div class="resource-content">
                         <div class="resource-type">Video Tutorial</div>
                         <h3 class="resource-title">教學 02：Logo 設計入門</h3>
@@ -720,7 +697,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #00C4CC 0%, #7C3AED 100%);">🎨</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-river-stone) 0%, var(--color-rainforest) 100%);">🎨</div>
                     <div class="resource-content">
                         <div class="resource-type">Video Tutorial</div>
                         <h3 class="resource-title">教學 03：建立色彩系統</h3>
@@ -730,7 +707,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #00C4CC 0%, #7C3AED 100%);">📱</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-river-stone) 0%, var(--color-rainforest) 100%);">📱</div>
                     <div class="resource-content">
                         <div class="resource-type">Video Tutorial</div>
                         <h3 class="resource-title">教學 04：社交媒體模板</h3>
@@ -740,7 +717,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, #00C4CC 0%, #7C3AED 100%);">📄</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-river-stone) 0%, var(--color-rainforest) 100%);">📄</div>
                     <div class="resource-content">
                         <div class="resource-type">Video Tutorial</div>
                         <h3 class="resource-title">教學 05：品牌指南製作</h3>

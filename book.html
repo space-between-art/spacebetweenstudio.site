@@ -11,22 +11,9 @@
   <meta property="og:url" content="https://spacebetweenstudio.site/book.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
   <style>
-    :root {
-      --bg-deep: #0d0d0d;
-      --bg-section: #141414;
-      --bg-card: #1a1a1a;
-      --text-primary: #e8e0d4;
-      --text-secondary: #a89f93;
-      --text-muted: #6b6560;
-      --accent: #c9a96e;
-      --accent-dim: #8a7a56;
-      --accent-glow: rgba(201, 169, 110, 0.08);
-      --border: rgba(201, 169, 110, 0.12);
-      --serif: 'Noto Serif TC', 'Songti TC', serif;
-      --sans: 'Noto Sans TC', 'PingFang TC', sans-serif;
-    }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -36,9 +23,9 @@
     }
 
     body {
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      font-family: var(--sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
       font-weight: 300;
       line-height: 1.9;
       -webkit-font-smoothing: antialiased;
@@ -50,10 +37,10 @@
       top: 0;
       width: 100%;
       z-index: 100;
-      background: rgba(13, 13, 13, 0.85);
+      background: color-mix(in srgb, var(--color-ivory) 85%, transparent);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--color-line-soft);
       padding: 0 2rem;
     }
 
@@ -67,24 +54,24 @@
     }
 
     nav .logo {
-      font-family: var(--sans);
+      font-family: var(--font-body);
       font-weight: 500;
       font-size: 0.8rem;
       letter-spacing: 0.15em;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       text-decoration: none;
     }
 
     nav .nav-links a {
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       text-decoration: none;
       margin-left: 1.5rem;
       letter-spacing: 0.05em;
       transition: color 0.3s;
     }
 
-    nav .nav-links a:hover { color: var(--accent); }
+    nav .nav-links a:hover { color: var(--color-accent); }
 
     /* ─── HERO ─── */
     .hero {
@@ -106,7 +93,7 @@
       transform: translate(-50%, -50%);
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--color-accent-wash) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -116,10 +103,10 @@
     }
 
     .hero-label {
-      font-family: var(--sans);
+      font-family: var(--font-body);
       font-size: 0.75rem;
       letter-spacing: 0.25em;
-      color: var(--accent-dim);
+      color: var(--color-accent);
       text-transform: uppercase;
       margin-bottom: 2rem;
       opacity: 0;
@@ -127,11 +114,11 @@
     }
 
     .hero h1 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-weight: 700;
       font-size: clamp(2rem, 5vw, 2.8rem);
       line-height: 1.4;
-      color: var(--text-primary);
+      color: var(--color-text);
       margin-bottom: 1rem;
       opacity: 0;
       animation: fadeUp 0.8s ease 0.4s forwards;
@@ -141,14 +128,14 @@
       display: block;
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       font-weight: 400;
-      color: var(--accent);
+      color: var(--color-accent);
       margin-top: 0.8rem;
     }
 
     .hero-premise {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 0.95rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 2;
       margin-top: 2rem;
       opacity: 0;
@@ -163,8 +150,8 @@
 
     .hero-cta a {
       display: inline-block;
-      border: 1px solid var(--accent-dim);
-      color: var(--accent);
+      border: 1px solid var(--color-accent-soft);
+      color: var(--color-accent);
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       padding: 0.8rem 2.2rem;
@@ -173,9 +160,9 @@
     }
 
     .hero-cta a:hover {
-      background: var(--accent);
-      color: var(--bg-deep);
-      border-color: var(--accent);
+      background: var(--color-button-hover-bg);
+      color: var(--color-button-text);
+      border-color: var(--color-accent-soft);
     }
 
     /* ─── SECTIONS ─── */
@@ -187,7 +174,7 @@
 
     section.alt {
       max-width: 100%;
-      background: var(--bg-section);
+      background: var(--color-surface-alt);
     }
 
     section.alt .section-inner {
@@ -197,11 +184,10 @@
 
     .section-divider {
       text-align: center;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       font-size: 0.8rem;
       letter-spacing: 0.5em;
       padding: 2rem 0;
-      opacity: 0.4;
     }
 
     /* ─── NOT-FOR / FOR YOU ─── */
@@ -210,23 +196,23 @@
     }
 
     .filter-block h2 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 1.1rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       margin-bottom: 1.5rem;
       letter-spacing: 0.05em;
     }
 
     .filter-block.positive h2 {
-      color: var(--accent);
+      color: var(--color-accent);
     }
 
     .filter-item {
       padding: 0.8rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      border-bottom: 1px solid color-mix(in srgb, var(--color-text) 3%, transparent);
       font-size: 0.9rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 1.8;
     }
 
@@ -238,54 +224,54 @@
 
     .filter-block.negative .filter-item::before {
       content: '✕';
-      color: var(--text-muted);
+      color: var(--color-text-muted);
     }
 
     .filter-block.positive .filter-item::before {
       content: '○';
-      color: var(--accent-dim);
+      color: var(--color-accent-soft);
     }
 
     /* ─── WHAT'S INSIDE ─── */
     .feature-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: var(--color-surface);
+      border: 1px solid var(--color-line-soft);
       padding: 2rem;
       margin-bottom: 1.5rem;
     }
 
     .feature-card h3 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 1rem;
       font-weight: 600;
-      color: var(--accent);
+      color: var(--color-accent);
       margin-bottom: 1rem;
     }
 
     .feature-card p {
       font-size: 0.88rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 1.9;
     }
 
     /* ─── HONEST SECTION ─── */
     .honest-block {
-      border-left: 2px solid var(--accent-dim);
+      border-left: 2px solid var(--color-accent-soft);
       padding-left: 1.5rem;
       margin: 2rem 0;
     }
 
     .honest-block h2 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 1.05rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--color-text);
       margin-bottom: 1rem;
     }
 
     .honest-block p {
       font-size: 0.88rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 2;
     }
 
@@ -299,24 +285,24 @@
 
     .who-card {
       padding: 1.5rem;
-      border: 1px solid var(--border);
+      border: 1px solid var(--color-line-soft);
     }
 
     .who-card h3 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--color-text);
       margin-bottom: 0.8rem;
     }
 
     .who-card.not-for {
-      opacity: 0.5;
+      opacity: 0.9;
     }
 
     .who-card p {
       font-size: 0.82rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 1.8;
     }
 
@@ -327,17 +313,17 @@
     }
 
     .about-block h2 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 1rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       margin-bottom: 1.5rem;
       letter-spacing: 0.05em;
     }
 
     .about-block p {
       font-size: 0.88rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 2.1;
       max-width: 520px;
       margin: 0 auto;
@@ -352,16 +338,16 @@
     }
 
     .final-cta h2 {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 1.2rem;
       font-weight: 600;
-      color: var(--text-primary);
+      color: var(--color-text);
       margin-bottom: 1rem;
     }
 
     .final-cta p {
       font-size: 0.88rem;
-      color: var(--text-secondary);
+      color: var(--color-text-muted);
       line-height: 2;
       margin-bottom: 2.5rem;
     }
@@ -375,48 +361,47 @@
 
     .btn-primary {
       display: inline-block;
-      background: var(--accent);
-      color: var(--bg-deep);
+      background: var(--color-button-bg);
+      color: var(--color-button-text);
       font-size: 0.88rem;
       font-weight: 500;
       letter-spacing: 0.08em;
       padding: 0.9rem 2.5rem;
       text-decoration: none;
       transition: all 0.3s;
-      border: 1px solid var(--accent);
-    }
+      border: 1px solid var(--color-accent-soft); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
 
     .btn-primary:hover {
       background: transparent;
-      color: var(--accent);
+      color: var(--color-accent);
     }
 
     .btn-secondary {
       display: inline-block;
-      color: var(--text-muted);
+      color: var(--color-accent);
       font-size: 0.8rem;
       text-decoration: none;
       letter-spacing: 0.05em;
       padding: 0.6rem 1.5rem;
-      border: 1px solid var(--border);
+      border: 1px solid var(--color-accent);
       transition: all 0.3s;
     }
 
     .btn-secondary:hover {
-      color: var(--text-secondary);
-      border-color: var(--text-muted);
+      color: var(--color-button-text);
+      border-color: var(--color-button-bg); background: var(--color-button-bg);
     }
 
     .price-note {
       font-size: 0.78rem;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       margin-top: 1rem;
     }
 
     .closing-line {
-      font-family: var(--serif);
+      font-family: var(--font-literary);
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       margin-top: 3rem;
       font-style: italic;
     }
@@ -425,20 +410,20 @@
     footer {
       text-align: center;
       padding: 3rem 2rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--color-line-soft);
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       letter-spacing: 0.08em;
     }
 
     footer a {
-      color: var(--text-muted);
+      color: var(--color-text-muted);
       text-decoration: none;
       margin: 0 0.8rem;
       transition: color 0.3s;
     }
 
-    footer a:hover { color: var(--accent); }
+    footer a:hover { color: var(--color-accent); }
 
     .footer-links {
       margin-bottom: 1rem;
@@ -525,13 +510,13 @@
   <section id="start">
     <div class="filter-block negative fade-in">
       <h2>這不是一本成功學，也不是 AI 暴富指南。</h2>
-      <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+      <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">
         如果你正在找：
       </p>
       <div class="filter-item">「用 AI 快速致富」的方法</div>
       <div class="filter-item">「三個月翻身」的保證路線</div>
       <div class="filter-item">「照做就一定成功」的副業配方</div>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-top: 1.5rem;">
+      <p style="font-size: 0.88rem; color: var(--color-text-muted); margin-top: 1.5rem;">
         這本書不適合你。
       </p>
     </div>
@@ -544,7 +529,7 @@
       <div class="filter-item">對現在的工作感到不安，但又不敢亂辭職</div>
       <div class="filter-item">想試試 AI，卻不知道從哪裡開始才不會走歪路</div>
       <div class="filter-item">希望多一條收入可能，但前提是不犧牲生活與心理安全</div>
-      <p style="font-size: 0.92rem; color: var(--text-primary); margin-top: 1.5rem; font-family: var(--serif);">
+      <p style="font-size: 0.92rem; color: var(--color-text); margin-top: 1.5rem; font-family: var(--font-literary);">
         那麼，這本書是為你而寫的。
       </p>
     </div>
@@ -558,7 +543,7 @@
         <p>
           《AI 給我的第一桶金》不是教你「賺多少錢」，而是記錄了一個問題：
         </p>
-        <p style="color: var(--accent); font-family: var(--serif); font-size: 0.95rem; margin: 1.5rem 0;">
+        <p style="color: var(--color-accent); font-family: var(--font-literary); font-size: 0.95rem; margin: 1.5rem 0;">
           普通人，能不能在風險可控的情況下，<br>慢慢建立第二條能力與收入曲線？
         </p>
         <p>
@@ -606,7 +591,7 @@
         </p>
         <p>
           但它能幫你做到一件事：<br>
-          <span style="color: var(--text-primary); font-family: var(--serif);">
+          <span style="color: var(--color-text); font-family: var(--font-literary);">
             避免走那些一開始就會把你拖垮的路。
           </span>
         </p>
@@ -647,7 +632,7 @@
           這本書由 Space Between Studio 出版。<br><br>
           我們是一間以療癒為方法的品牌設計顧問。<br>
           我們長期關注的不是工具，而是：<br>
-          <span style="color: var(--text-primary); font-family: var(--serif);">
+          <span style="color: var(--color-text); font-family: var(--font-literary);">
             人在不確定狀態下，如何做出不傷害自己的選擇。
           </span>
           <br><br>

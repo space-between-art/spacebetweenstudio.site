@@ -13,18 +13,11 @@
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../css/tokens.css">
     
     <style>
-        :root {
-            --gold: #C9A962;
-            --gold-light: #D4BC7D;
-            --ink: #08090C;
-            --ink-light: #1a1b1f;
-            --teal: #1A3A3A;
-            --cream: #F5F2EB;
-            --cream-dark: #E8E4DB;
-        }
         
         * {
             margin: 0;
@@ -33,24 +26,23 @@
         }
         
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: var(--cream);
-            color: var(--ink);
+            font-family: var(--font-body);
+            background: var(--color-ivory);
+            color: var(--color-text);
             line-height: 1.8;
         }
         
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--ink) 0%, var(--teal) 100%);
+            background: linear-gradient(135deg, var(--on-light-text) 0%, var(--color-rainforest) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 60px 20px;
             position: relative;
-            overflow: hidden;
-        }
+            overflow: hidden; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .hero::before {
             content: '';
@@ -59,7 +51,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23C9A962" opacity="0.1"/></svg>') repeat;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23648C7D" opacity="0.1"/></svg>') repeat;
             background-size: 50px 50px;
         }
         
@@ -71,30 +63,30 @@
         
         .hero-badge {
             display: inline-block;
-            background: rgba(201, 169, 98, 0.2);
-            color: var(--gold);
+            background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
+            color: var(--color-accent);
             padding: 8px 20px;
             border-radius: 20px;
             font-size: 14px;
             margin-bottom: 30px;
-            border: 1px solid rgba(201, 169, 98, 0.3);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
         
         .hero h1 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: clamp(2.5rem, 6vw, 4rem);
-            color: var(--cream);
+            color: var(--color-ivory);
             margin-bottom: 20px;
             font-weight: 600;
         }
         
         .hero h1 span {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .hero-subtitle {
             font-size: 1.25rem;
-            color: rgba(245, 242, 235, 0.8);
+            color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
             margin-bottom: 40px;
             max-width: 600px;
             margin-left: auto;
@@ -103,27 +95,24 @@
         
         .hero-cta {
             display: inline-block;
-            background: var(--gold);
-            color: var(--ink);
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             padding: 18px 45px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
+            transition: all 0.3s ease; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .hero-cta:hover {
-            background: var(--gold-light);
+            background: var(--color-button-hover-bg);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
-        }
+            box-shadow: 0 10px 30px color-mix(in srgb, var(--color-river-stone) 30%, transparent); color: var(--color-button-text)}
         
         /* Philosophy Section */
         .philosophy {
             padding: 100px 20px;
-            background: var(--cream);
-        }
+            background: var(--color-ivory); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .container {
             max-width: 900px;
@@ -131,11 +120,11 @@
         }
         
         .section-title {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 2rem;
             text-align: center;
             margin-bottom: 50px;
-            color: var(--ink);
+            color: var(--color-text);
         }
         
         .philosophy-content {
@@ -145,7 +134,7 @@
         
         .philosophy-text {
             font-size: 1.1rem;
-            color: var(--ink-light);
+            color: var(--color-inverse-bg);
         }
         
         .philosophy-text p {
@@ -153,28 +142,26 @@
         }
         
         .highlight-box {
-            background: var(--teal);
-            color: var(--cream);
+            background: var(--color-rainforest);
+            color: var(--color-ivory);
             padding: 40px;
             border-radius: 16px;
-            text-align: center;
-        }
+            text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .highlight-box h3 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.5rem;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 15px;
         }
         
         /* What You Get */
         .features {
             padding: 100px 20px;
-            background: var(--ink);
-        }
+            background: var(--color-inverse-bg); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .features .section-title {
-            color: var(--cream);
+            color: var(--color-ivory);
         }
         
         .features-grid {
@@ -186,15 +173,14 @@
         }
         
         .feature-card {
-            background: var(--ink-light);
+            background: var(--color-inverse-bg);
             border-radius: 16px;
             padding: 35px;
-            border: 1px solid rgba(201, 169, 98, 0.2);
-            transition: all 0.3s ease;
-        }
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
+            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .feature-card:hover {
-            border-color: var(--gold);
+            border-color: var(--color-accent-soft);
             transform: translateY(-5px);
         }
         
@@ -205,20 +191,19 @@
         
         .feature-card h4 {
             font-size: 1.2rem;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 10px;
         }
         
         .feature-card p {
-            color: rgba(245, 242, 235, 0.7);
+            color: color-mix(in srgb, var(--color-ivory) 70%, transparent);
             font-size: 0.95rem;
         }
         
         /* Pricing */
         .pricing {
             padding: 100px 20px;
-            background: var(--cream);
-        }
+            background: var(--color-ivory); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .pricing-grid {
             display: grid;
@@ -229,31 +214,29 @@
         }
         
         .pricing-card {
-            background: white;
+            background: var(--color-white);
             border-radius: 20px;
             padding: 40px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 40px color-mix(in srgb, var(--on-light-text) 8%, transparent);
             position: relative;
-            transition: all 0.3s ease;
-        }
+            transition: all 0.3s ease; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .pricing-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 60px color-mix(in srgb, var(--on-light-text) 12%, transparent);
         }
         
         .pricing-card.featured {
-            background: var(--ink);
-            color: var(--cream);
-        }
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .pricing-card.featured .pricing-name {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .pricing-card.featured .pricing-price {
-            color: var(--cream);
+            color: var(--color-ivory);
         }
         
         .pricing-badge {
@@ -261,19 +244,18 @@
             top: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--gold);
-            color: var(--ink);
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             padding: 6px 20px;
             border-radius: 20px;
             font-size: 12px;
-            font-weight: 600;
-        }
+            font-weight: 600; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .pricing-name {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 1.5rem;
             margin-bottom: 10px;
-            color: var(--teal);
+            color: var(--color-rainforest);
         }
         
         .pricing-price {
@@ -301,17 +283,17 @@
         
         .pricing-features li {
             padding: 10px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid color-mix(in srgb, var(--on-light-text) 5%, transparent);
             font-size: 0.95rem;
         }
         
         .pricing-card.featured .pricing-features li {
-            border-color: rgba(255,255,255,0.1);
+            border-color: color-mix(in srgb, var(--color-white) 10%, transparent);
         }
         
         .pricing-features li::before {
             content: '✓';
-            color: var(--gold);
+            color: var(--color-accent);
             margin-right: 10px;
             font-weight: bold;
         }
@@ -330,51 +312,46 @@
         }
         
         .pricing-btn.primary {
-            background: var(--gold);
-            color: var(--ink);
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .pricing-btn.primary:hover {
-            background: var(--gold-light);
-        }
+            background: var(--color-button-hover-bg); color: var(--color-button-text)}
         
         .pricing-btn.secondary {
-            background: var(--teal);
-            color: var(--cream);
-        }
+            background: var(--color-rainforest);
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .pricing-btn.secondary:hover {
-            background: #245050;
+            background: var(--color-inverse-bg);
         }
         
         /* AI Section */
         .ai-section {
             padding: 100px 20px;
-            background: linear-gradient(135deg, var(--teal) 0%, var(--ink) 100%);
-            text-align: center;
-        }
+            background: linear-gradient(135deg, var(--color-rainforest) 0%, var(--on-light-text) 100%);
+            text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-avatar {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            background: linear-gradient(135deg, var(--on-light-accent) 0%, var(--color-accent) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            margin: 0 auto 30px;
-        }
+            margin: 0 auto 30px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-section h2 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 2rem;
-            color: var(--cream);
+            color: var(--color-ivory);
             margin-bottom: 20px;
         }
         
         .ai-section p {
-            color: rgba(245, 242, 235, 0.8);
+            color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
             max-width: 600px;
             margin: 0 auto 30px;
         }
@@ -383,30 +360,28 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #25D366;
-            color: white;
+            background: var(--color-rainforest);
+            color: var(--color-button-text);
             padding: 16px 35px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-        }
+            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .whatsapp-btn:hover {
-            background: #20bd5a;
+            background: var(--color-inverse-bg);
             transform: translateY(-2px);
         }
         
         /* Footer */
         footer {
-            background: var(--ink);
-            color: var(--cream);
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory);
             text-align: center;
-            padding: 40px 20px;
-        }
+            padding: 40px 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         footer a {
-            color: var(--gold);
+            color: var(--color-accent);
             text-decoration: none;
         }
         
@@ -534,7 +509,7 @@
                     <ul class="pricing-features">
                         <li>Complete 完整版所有內容</li>
                         <li>優先客戶支援</li>
-                        <li style="color: var(--gold); font-weight: 600;">💰 可抵設計服務費，詳情請查詢</li>
+                        <li style="color: var(--color-accent); font-weight: 600;">💰 可抵設計服務費，詳情請查詢</li>
                     </ul>
                     <span class="pricing-btn secondary" aria-disabled="true">即將推出</span>
                 </div>

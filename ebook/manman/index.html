@@ -6,30 +6,23 @@
     <meta name="robots" content="noindex, nofollow">
     <title>慢慢成為自己的品牌</title>
     <meta name="description" content="一個關於品牌療癒的都市寓言 - Space Between Studio">
-    <meta name="theme-color" content="#C9A962">
+    <meta name="theme-color" content="#004030">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;600&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/tokens.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        :root {
-            --cream: #FAF7F2;
-            --sand: #E8DFD4;
-            --tea: #8B7355;
-            --gold: #C9A962;
-            --char: #2C2C2C;
-            --muted: #6B6358;
-        }
         
         html { font-size: 16px; scroll-behavior: smooth; }
         
         body {
-            font-family: 'Noto Serif TC', Georgia, serif;
-            background: var(--cream);
-            color: var(--char);
+            font-family: var(--font-literary);
+            background: var(--color-bg);
+            color: var(--color-text);
             line-height: 2;
         }
         
@@ -37,7 +30,7 @@
         #loading {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: var(--cream);
+            background: var(--color-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,14 +39,14 @@
             transition: opacity 0.8s;
         }
         #loading.hide { opacity: 0; pointer-events: none; }
-        #loading p { margin-top: 20px; color: var(--tea); font-size: 14px; letter-spacing: 0.3em; }
+        #loading p { margin-top: 20px; color: var(--color-accent); font-size: 14px; letter-spacing: 0.3em; }
         
         /* Progress */
         #progress {
             position: fixed;
             top: 0; left: 0;
             height: 3px;
-            background: var(--gold);
+            background: var(--color-accent-soft);
             z-index: 1000;
             width: 0;
             transition: width 0.1s;
@@ -69,42 +62,42 @@
         }
         .nav button {
             padding: 10px 16px;
-            background: rgba(255,255,255,0.95);
+            background: color-mix(in srgb, var(--color-white) 95%, transparent);
             border: none;
             border-radius: 20px;
             font-family: inherit;
             font-size: 14px;
-            color: var(--tea);
+            color: var(--color-accent);
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px color-mix(in srgb, var(--color-text) 10%, transparent);
         }
-        .nav button:hover { background: var(--gold); color: white; }
+        .nav button:hover { background: var(--color-button-hover-bg); color: var(--color-button-text); }
         
         /* Settings */
         #settings {
             position: fixed;
             top: 70px; right: 20px;
             width: 260px;
-            background: white;
+            background: var(--color-white);
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px color-mix(in srgb, var(--color-text) 15%, transparent);
             z-index: 150;
             display: none;
         }
         #settings.show { display: block; }
         #settings h3 { font-size: 14px; margin-bottom: 15px; }
-        #settings label { display: block; font-size: 13px; color: var(--muted); margin: 15px 0 8px; }
+        #settings label { display: block; font-size: 13px; color: var(--color-text-muted); margin: 15px 0 8px; }
         .ctrl { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .ctrl button { width: 40px; height: 40px; border: 1px solid var(--sand); background: white; border-radius: 8px; cursor: pointer; font-size: 16px; }
-        .ctrl button:hover { background: var(--gold); color: white; border-color: var(--gold); }
+        .ctrl button { width: 40px; height: 40px; border: 1px solid var(--color-surface-strong); background: var(--color-white); border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .ctrl button:hover { background: var(--color-button-hover-bg); color: var(--color-button-text); border-color: var(--color-accent-soft); }
         .ctrl span { min-width: 50px; text-align: center; font-size: 14px; }
         
         /* TOC */
         #toc-overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.3);
+            background: color-mix(in srgb, var(--color-text) 30%, transparent);
             z-index: 150;
             display: none;
         }
@@ -114,20 +107,20 @@
             top: 0; left: -320px;
             width: 320px;
             height: 100vh;
-            background: white;
+            background: var(--color-white);
             z-index: 200;
             padding: 50px 30px;
             overflow-y: auto;
             transition: left 0.3s;
         }
         #toc.show { left: 0; }
-        #toc h2 { font-family: 'ZCOOL XiaoWei', serif; font-size: 20px; margin-bottom: 30px; }
+        #toc h2 { font-family: var(--font-literary); font-size: 20px; margin-bottom: 30px; }
         #toc ul { list-style: none; }
-        #toc li { padding: 12px 0; border-bottom: 1px solid var(--sand); }
-        #toc a { text-decoration: none; color: var(--char); display: flex; gap: 15px; }
-        #toc a:hover { color: var(--gold); }
-        #toc .num { color: var(--gold); min-width: 50px; font-size: 13px; }
-        #toc-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--muted); }
+        #toc li { padding: 12px 0; border-bottom: 1px solid var(--color-surface-strong); }
+        #toc a { text-decoration: none; color: var(--color-text); display: flex; gap: 15px; }
+        #toc a:hover { color: var(--color-accent); }
+        #toc .num { color: var(--color-accent); min-width: 50px; font-size: 13px; }
+        #toc-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-muted); }
         
         /* Hero */
         .hero {
@@ -144,14 +137,14 @@
             width: 280px;
             max-width: 60vw;
             border-radius: 10px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 60px color-mix(in srgb, var(--color-text) 15%, transparent);
             margin-bottom: 40px;
         }
-        .hero h1 { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 10px; }
-        .hero .sub { font-size: 14px; color: var(--muted); font-style: italic; margin-bottom: 30px; }
-        .hero .quote { max-width: 400px; font-size: 16px; color: var(--tea); line-height: 2; }
-        .hero .author { color: var(--gold); margin-top: 10px; }
-        .scroll-hint { position: absolute; bottom: 30px; color: var(--muted); font-size: 13px; animation: bounce 2s infinite; }
+        .hero h1 { font-family: var(--font-literary); font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 10px; }
+        .hero .sub { font-size: 14px; color: var(--color-text-muted); font-style: italic; margin-bottom: 30px; }
+        .hero .quote { max-width: 400px; font-size: 16px; color: var(--color-accent); line-height: 2; }
+        .hero .author { color: var(--color-accent); margin-top: 10px; }
+        .scroll-hint { position: absolute; bottom: 30px; color: var(--color-text-muted); font-size: 13px; animation: bounce 2s infinite; }
         @keyframes bounce { 50% { transform: translateY(8px); } }
         
         /* Chapter - 正確的 CSS 類名 */
@@ -176,45 +169,45 @@
         .chapter-cover-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(to bottom, rgba(250,247,242,0.2), rgba(0,0,0,0.3), rgba(250,247,242,0.9));
+            background: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 20%, transparent), color-mix(in srgb, var(--color-text) 30%, transparent), color-mix(in srgb, var(--color-ivory) 90%, transparent));
         }
         .chapter-cover-content {
             position: relative;
             z-index: 1;
             text-align: center;
-            color: white;
+            color: var(--color-white);
             padding: 30px;
         }
         .chapter-num { font-size: 13px; letter-spacing: 0.3em; opacity: 0.9; margin-bottom: 10px; }
-        .chapter-title { font-family: 'ZCOOL XiaoWei', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 0 2px 15px rgba(0,0,0,0.3); }
+        .chapter-title { font-family: var(--font-literary); font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 0 2px 15px color-mix(in srgb, var(--color-text) 30%, transparent); }
         .chapter-title-en { font-size: 14px; font-style: italic; opacity: 0.8; margin-top: 8px; }
         
         .chapter-content { max-width: 680px; margin: 0 auto; padding: 60px 25px; }
         
-        .chapter-epigraph { margin-bottom: 40px; padding: 25px; border-left: 3px solid var(--gold); background: rgba(201,169,98,0.05); }
-        .chapter-epigraph p { font-style: italic; color: var(--tea); font-size: 15px; }
-        .chapter-epigraph cite { display: block; margin-top: 12px; color: var(--gold); font-size: 13px; font-style: normal; }
+        .chapter-epigraph { margin-bottom: 40px; padding: 25px; border-left: 3px solid var(--color-accent-soft); background: color-mix(in srgb, var(--color-river-stone) 5%, transparent); }
+        .chapter-epigraph p { font-style: italic; color: var(--color-accent); font-size: 15px; }
+        .chapter-epigraph cite { display: block; margin-top: 12px; color: var(--color-accent); font-size: 13px; font-style: normal; }
         
         .chapter-text { font-size: 17px; line-height: 2.2; }
         .chapter-text p { margin-bottom: 1.8em; text-align: justify; }
-        .chapter-text .highlight { background: linear-gradient(transparent 60%, rgba(201,169,98,0.25) 60%); }
-        .chapter-text .dialogue { margin: 20px 0; padding: 18px 22px; background: rgba(255,255,255,0.8); border-radius: 6px; font-style: italic; color: var(--tea); }
-        .section-break { text-align: center; padding: 30px 0; color: var(--gold); font-size: 18px; }
+        .chapter-text .highlight { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--color-river-stone) 25%, transparent) 60%); }
+        .chapter-text .dialogue { margin: 20px 0; padding: 18px 22px; background: color-mix(in srgb, var(--color-white) 80%, transparent); border-radius: 6px; font-style: italic; color: var(--color-accent); }
+        .section-break { text-align: center; padding: 30px 0; color: var(--color-accent); font-size: 18px; }
         
         /* Workbook */
-        .workbook { margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--sand); }
-        .workbook-title { font-family: 'ZCOOL XiaoWei', serif; font-size: 20px; color: var(--tea); margin-bottom: 30px; text-align: center; }
-        .exercise { margin-bottom: 35px; padding: 25px; background: rgba(255,255,255,0.6); border-radius: 10px; border: 1px solid var(--sand); }
-        .exercise h4 { font-size: 16px; color: var(--char); margin-bottom: 15px; }
-        .exercise p { font-size: 15px; margin-bottom: 15px; color: var(--muted); }
+        .workbook { margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--color-surface-strong); }
+        .workbook-title { font-family: var(--font-literary); font-size: 20px; color: var(--color-accent); margin-bottom: 30px; text-align: center; }
+        .exercise { margin-bottom: 35px; padding: 25px; background: color-mix(in srgb, var(--color-white) 60%, transparent); border-radius: 10px; border: 1px solid var(--color-surface-strong); }
+        .exercise h4 { font-size: 16px; color: var(--color-text); margin-bottom: 15px; }
+        .exercise p { font-size: 15px; margin-bottom: 15px; color: var(--color-text-muted); }
         .exercise-list { margin-left: 20px; }
         .exercise-list li { margin-bottom: 12px; font-size: 15px; line-height: 1.8; }
-        .exercise-list strong { color: var(--tea); }
+        .exercise-list strong { color: var(--color-accent); }
         .golden-quotes { margin: 30px 0; }
-        .golden-quotes h4 { font-size: 16px; color: var(--gold); margin-bottom: 15px; }
-        .golden-quotes blockquote { margin: 15px 0; padding: 15px 20px; background: rgba(201,169,98,0.08); border-left: 3px solid var(--gold); font-style: italic; color: var(--tea); }
-        .golden-quotes cite { display: block; margin-top: 8px; color: var(--gold); font-size: 13px; font-style: normal; }
-        .next-step { margin-top: 30px; padding: 20px; background: var(--sand); border-radius: 8px; }
+        .golden-quotes h4 { font-size: 16px; color: var(--color-accent); margin-bottom: 15px; }
+        .golden-quotes blockquote { margin: 15px 0; padding: 15px 20px; background: color-mix(in srgb, var(--color-river-stone) 8%, transparent); border-left: 3px solid var(--color-accent); font-style: italic; color: var(--color-accent); }
+        .golden-quotes cite { display: block; margin-top: 8px; color: var(--color-accent); font-size: 13px; font-style: normal; }
+        .next-step { margin-top: 30px; padding: 20px; background: var(--color-surface-strong); border-radius: 8px; }
         .next-step h4 { margin-bottom: 10px; }
         .next-step p { font-size: 15px; }
         
@@ -226,24 +219,24 @@
             justify-content: center;
             text-align: center;
             padding: 60px 20px;
-            background: linear-gradient(135deg, #5D4E3D, var(--tea));
-            color: white;
+            background: linear-gradient(135deg, var(--color-text), var(--color-inverse-bg));
+            color: var(--color-inverse-text);
         }
         .quote-section .big { font-size: clamp(1.2rem, 3vw, 1.6rem); line-height: 2; max-width: 500px; }
-        .quote-section .auth { margin-top: 20px; color: var(--gold); }
+        .quote-section .auth { margin-top: 20px; color: var(--color-inverse-muted); }
         
         /* CTA */
-        .cta { padding: 80px 20px; text-align: center; background: white; }
+        .cta { padding: 80px 20px; text-align: center; background: var(--color-white); }
         .cta h3 { font-size: 20px; margin-bottom: 15px; }
-        .cta p { color: var(--muted); margin-bottom: 25px; }
-        .cta a { display: inline-block; padding: 15px 35px; background: var(--gold); color: white; text-decoration: none; border-radius: 25px; }
-        .cta a:hover { box-shadow: 0 10px 30px rgba(201,169,98,0.3); }
+        .cta p { color: var(--color-text-muted); margin-bottom: 25px; }
+        .cta a { display: inline-block; padding: 15px 35px; background: var(--color-button-bg); color: var(--color-button-text); text-decoration: none; border-radius: 25px; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
+        .cta a:hover { box-shadow: 0 10px 30px color-mix(in srgb, var(--color-river-stone) 30%, transparent); }
         
         /* Footer */
-        footer { padding: 60px 20px; text-align: center; background: var(--char); color: white; }
-        footer .fq { color: var(--gold); line-height: 2.2; margin-bottom: 30px; }
-        footer a { color: var(--gold); }
-        footer .copy { margin-top: 20px; font-size: 12px; color: var(--muted); }
+        footer { padding: 60px 20px; text-align: center; background: var(--color-inverse-bg); color: var(--color-inverse-text); }
+        footer .fq { color: var(--color-inverse-muted); line-height: 2.2; margin-bottom: 30px; }
+        footer a { color: var(--color-inverse-text); }
+        footer .copy { margin-top: 20px; font-size: 12px; color: var(--color-inverse-muted); }
         
         /* Responsive */
         @media (max-width: 600px) {
@@ -259,8 +252,8 @@
 <body>
     <div id="loading">
         <svg width="80" height="80" viewBox="0 0 100 100">
-            <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" stroke="#C9A962" stroke-width="2"></ellipse>
-            <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" stroke="#C9A962" stroke-width="2"></path>
+            <ellipse cx="50" cy="70" rx="35" ry="15" fill="none" style="stroke: var(--color-accent)" stroke-width="2"></ellipse>
+            <path d="M15 70 Q15 40, 50 35 Q85 40, 85 70" fill="none" style="stroke: var(--color-accent)" stroke-width="2"></path>
         </svg>
         <p>SPACE BETWEEN STUDIO</p>
     </div>

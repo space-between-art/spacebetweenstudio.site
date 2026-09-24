@@ -9,35 +9,28 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌧️</text></svg>">
     
+    <link rel="stylesheet" href="../../css/tokens.css">
+    
     <style>
-        :root {
-            --ink-black: #08090c;
-            --deep-charcoal: #181c24;
-            --gold: #C9A962;
-            --light-gold: #d4b896;
-            --cream: #f5f2eb;
-            --soft-gray: #6b6b6b;
-            --teal: #1a3a3a;
-        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
         body {
-            font-family: 'Noto Serif TC', serif;
-            background: var(--ink-black);
-            color: var(--cream);
+            font-family: var(--font-literary);
+            background: var(--color-bg);
+            color: var(--color-text);
             line-height: 2;
             overflow-x: hidden;
         }
         
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--deep-charcoal); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: var(--color-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--color-accent-soft); border-radius: 3px; }
         
         /* Loading Screen */
         .loading-screen {
@@ -46,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--ink-black);
+            background: var(--color-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -73,7 +66,7 @@
         
         .crack-path {
             fill: none;
-            stroke: var(--gold);
+            stroke: var(--color-accent);
             stroke-width: 2;
             stroke-linecap: round;
             stroke-dasharray: 200;
@@ -88,7 +81,7 @@
         .loading-text {
             margin-top: 30px;
             font-size: 14px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             letter-spacing: 3px;
         }
         
@@ -108,7 +101,7 @@
             position: absolute;
             width: 1px;
             height: 15px;
-            background: linear-gradient(to bottom, transparent, var(--gold));
+            background: linear-gradient(to bottom, transparent, var(--color-accent));
             animation: fall linear infinite;
         }
         
@@ -128,14 +121,14 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(8,9,12,0.95), transparent);
+            background: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 95%, transparent), transparent);
         }
         
         .logo {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display);
             font-size: 13px;
             letter-spacing: 3px;
-            color: var(--light-gold);
+            color: var(--color-accent);
             text-decoration: none;
         }
         
@@ -147,8 +140,8 @@
         
         .toc-toggle {
             background: none;
-            border: 1px solid rgba(201, 169, 98, 0.3);
-            color: var(--cream);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
+            color: var(--color-text);
             padding: 8px 15px;
             font-size: 12px;
             cursor: pointer;
@@ -157,8 +150,8 @@
         }
         
         .toc-toggle:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
         }
         
         /* Progress Bar */
@@ -168,7 +161,7 @@
             left: 0;
             width: 0%;
             height: 2px;
-            background: var(--gold);
+            background: var(--color-accent-soft);
             z-index: 101;
             transition: width 0.3s ease;
         }
@@ -180,7 +173,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 9, 12, 0.95);
+            background: color-mix(in srgb, var(--color-ivory) 95%, transparent);
             z-index: 200;
             display: flex;
             align-items: center;
@@ -209,7 +202,7 @@
         }
         
         .toc-content::-webkit-scrollbar-thumb {
-            background: var(--gold);
+            background: var(--color-accent-soft);
             border-radius: 2px;
         }
         
@@ -219,7 +212,7 @@
             right: 30px;
             background: none;
             border: none;
-            color: var(--cream);
+            color: var(--color-text);
             font-size: 24px;
             cursor: pointer;
         }
@@ -228,30 +221,30 @@
             font-size: 24px;
             font-weight: 300;
             margin-bottom: 40px;
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .toc-item {
             display: block;
             padding: 15px 0;
             text-decoration: none;
-            color: var(--cream);
-            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+            color: var(--color-text);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
             transition: all 0.3s ease;
         }
         
         .toc-item:hover {
-            color: var(--gold);
+            color: var(--color-accent);
             padding-left: 10px;
         }
         
         .toc-item.current {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .toc-number {
             font-size: 12px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             display: block;
             margin-bottom: 5px;
         }
@@ -294,10 +287,10 @@
         .chapter-label {
             display: inline-block;
             padding: 8px 20px;
-            border: 1px solid var(--gold);
+            border: 1px solid var(--color-accent);
             font-size: 11px;
             letter-spacing: 4px;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 20px;
         }
         
@@ -309,10 +302,10 @@
         }
         
         .chapter-english {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: var(--font-display);
             font-size: 14px;
             font-style: italic;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             letter-spacing: 2px;
         }
         
@@ -337,10 +330,10 @@
         .chapter-content blockquote {
             margin: 40px 0;
             padding: 30px 40px;
-            background: var(--deep-charcoal);
-            border-left: 2px solid var(--gold);
+            background: var(--color-surface);
+            border-left: 2px solid var(--color-accent);
             font-style: italic;
-            color: var(--light-gold);
+            color: var(--color-accent);
         }
         
         .chapter-content blockquote p {
@@ -354,12 +347,12 @@
         .chapter-divider {
             width: 60px;
             height: 1px;
-            background: var(--gold);
+            background: var(--color-accent-soft);
             margin: 50px auto;
         }
         
         .chapter-content strong {
-            color: var(--light-gold);
+            color: var(--color-accent);
         }
         
         /* Chapter Navigation */
@@ -369,13 +362,13 @@
             max-width: 680px;
             margin: 0 auto;
             padding: 40px 30px 80px;
-            border-top: 1px solid rgba(201, 169, 98, 0.1);
+            border-top: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
         
         .nav-btn {
             background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
             padding: 12px 25px;
             font-size: 13px;
             cursor: pointer;
@@ -384,8 +377,8 @@
         }
         
         .nav-btn:hover {
-            background: var(--gold);
-            color: var(--ink-black);
+            background: var(--color-button-hover-bg);
+            color: var(--color-button-text);
         }
         
         /* Ending Screen */
@@ -395,7 +388,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--ink-black);
+            background: var(--color-bg);
             display: none;
             align-items: center;
             justify-content: center;
@@ -422,12 +415,12 @@
             font-size: 28px;
             font-weight: 300;
             margin-bottom: 20px;
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .ending-text {
             font-size: 15px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             line-height: 2;
             margin-bottom: 40px;
         }
@@ -441,8 +434,8 @@
         
         .ending-btn {
             padding: 14px 30px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
             text-decoration: none;
             font-size: 13px;
             letter-spacing: 1px;
@@ -450,18 +443,16 @@
         }
         
         .ending-btn:hover {
-            background: var(--gold);
-            color: var(--ink-black);
+            background: var(--color-button-hover-bg);
+            color: var(--color-button-text);
         }
         
         .ending-btn.primary {
-            background: var(--gold);
-            color: var(--ink-black);
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .ending-btn.primary:hover {
-            background: var(--light-gold);
-        }
+            background: var(--color-button-hover-bg); color: var(--color-button-text)}
         
         /* Keyboard Hints */
         .keyboard-hint {
@@ -469,7 +460,7 @@
             bottom: 20px;
             right: 20px;
             font-size: 11px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             opacity: 0.5;
         }
         
@@ -580,7 +571,7 @@
     <main id="chaptersContainer">
         
     <section class="chapter" id="chapter-0" data-chapter="0">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/prologue.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/prologue.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">序章</span>
                 <h2 class="chapter-title">雨的味道</h2>
@@ -609,7 +600,7 @@
     </section>
 
     <section class="chapter" id="chapter-1" data-chapter="1">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/ch1.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/ch1.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第一章</span>
                 <h2 class="chapter-title">氣味的顏色</h2>
@@ -735,7 +726,7 @@
     </section>
 
     <section class="chapter" id="chapter-2" data-chapter="2">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/ch2.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/ch2.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第二章</span>
                 <h2 class="chapter-title">這不是一瓶香水</h2>
@@ -817,7 +808,7 @@
     </section>
 
     <section class="chapter" id="chapter-3" data-chapter="3">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/ch3.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/ch3.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第三章</span>
                 <h2 class="chapter-title">陰影工作坊</h2>
@@ -862,7 +853,7 @@
     </section>
 
     <section class="chapter" id="chapter-4" data-chapter="4">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/divider.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/divider.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第四章</span>
                 <h2 class="chapter-title">感官的戰爭</h2>
@@ -897,7 +888,7 @@
     </section>
 
     <section class="chapter" id="chapter-5" data-chapter="5">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/divider.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/divider.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第五章</span>
                 <h2 class="chapter-title">無知的樂觀與知情的悲觀</h2>
@@ -940,7 +931,7 @@
     </section>
 
     <section class="chapter" id="chapter-6" data-chapter="6">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/divider.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/divider.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第六章</span>
                 <h2 class="chapter-title">深夜的品牌治療</h2>
@@ -1020,7 +1011,7 @@
     </section>
 
     <section class="chapter" id="chapter-7" data-chapter="7">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/divider.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/divider.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第七章</span>
                 <h2 class="chapter-title">重塑敘事</h2>
@@ -1090,7 +1081,7 @@
     </section>
 
     <section class="chapter" id="chapter-8" data-chapter="8">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/divider.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/divider.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第八章</span>
                 <h2 class="chapter-title">與黑暗共舞</h2>
@@ -1132,7 +1123,7 @@
     </section>
 
     <section class="chapter" id="chapter-9" data-chapter="9">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/ch9.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/ch9.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">第九章</span>
                 <h2 class="chapter-title">賣雨的人</h2>
@@ -1302,7 +1293,7 @@
     </section>
 
     <section class="chapter" id="chapter-10" data-chapter="10">
-        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, rgba(8,9,12,0.3), rgba(8,9,12,0.95)), url('images/ending.jpg');">
+        <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/ending.jpg');">
             <div class="chapter-hero-content">
                 <span class="chapter-label">後記</span>
                 <h2 class="chapter-title">致讀者的一封信</h2>

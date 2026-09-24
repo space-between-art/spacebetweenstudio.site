@@ -1,8 +1,4 @@
+# 付費／閘門頁面不在這裡封鎖：它們各自有 <meta name="robots" content="noindex, nofollow">。
+# 若在這裡 Disallow，搜尋引擎就讀不到頁面上的 noindex，已收錄的頁面反而不會被移除。
 User-agent: *
-Disallow: /ebook/
-Disallow: /audiobook/
-Disallow: /resource-hub/
-Disallow: /workshop-v2.html
-Disallow: /workshop-full.html
-Disallow: /golden-thread-website-package/resource-hub.html
-Disallow: /notion/
+Disallow:

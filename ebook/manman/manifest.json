@@ -4,8 +4,8 @@
   "description": "一個關於品牌療癒的都市寓言",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#FAF7F2",
-  "theme_color": "#C9A962",
+  "background_color": "#F5EFE6",
+  "theme_color": "#004030",
   "icons": [
     {"src": "images/ch00-cover.png", "sizes": "192x192", "type": "image/png"},
     {"src": "images/ch00-cover.png", "sizes": "512x512", "type": "image/png"}

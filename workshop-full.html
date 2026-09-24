@@ -5,41 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>互動式工作坊 | 找到你的品牌金線</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
     <style>
-        :root {
-            --gold: #C9A962;
-            --gold-light: #D4BC7D;
-            --gold-dark: #A68942;
-            --ink: #08090C;
-            --ink-light: #1a1b1f;
-            --teal: #1A3A3A;
-            --cream: #F5F2EB;
-            --gray: #6B6B6B;
-            --success: #4A7C59;
-            --whatsapp: #25D366;
-            --canva: #7B68EE;
-        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background: var(--ink);
-            color: var(--cream);
-            line-height: 1.6;
-        }
+            font-family: var(--font-body);
+            background: var(--color-inverse-bg);
+            color: var(--color-ivory);
+            line-height: 1.6; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         /* Header */
         .header {
-            background: linear-gradient(135deg, var(--ink) 0%, var(--ink-light) 100%);
+            background: linear-gradient(135deg, var(--on-light-text) 0%, var(--color-inverse-bg) 100%);
             padding: 25px 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(201,169,98,0.2);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             position: sticky;
             top: 0;
-            z-index: 100;
-        }
+            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .header-top {
             display: flex;
@@ -52,8 +38,8 @@
         }
         
         .logo {
-            font-family: 'Noto Serif TC', serif;
-            color: var(--gold);
+            font-family: var(--font-body);
+            color: var(--color-accent);
             font-size: 1.3rem;
         }
         
@@ -68,25 +54,23 @@
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid color-mix(in srgb, var(--color-white) 20%, transparent);
             background: transparent;
-            color: var(--cream);
+            color: var(--color-ivory);
         }
         
         .btn-sm:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
         }
         
         .btn-sm.primary {
-            background: var(--gold);
-            color: var(--ink);
-            border: none;
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
+            border: none; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .btn-sm.primary:hover {
-            background: var(--gold-light);
-        }
+            background: var(--color-button-hover-bg); color: var(--color-button-text)}
         
         /* Progress */
         .progress-section {
@@ -95,14 +79,14 @@
         }
         
         .progress-bar {
-            background: rgba(255,255,255,0.1);
+            background: color-mix(in srgb, var(--color-white) 10%, transparent);
             border-radius: 10px;
             height: 10px;
             overflow: hidden;
         }
         
         .progress-fill {
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent));
             height: 100%;
             width: 0%;
             transition: width 0.5s ease;
@@ -114,22 +98,21 @@
             justify-content: space-between;
             margin-top: 8px;
             font-size: 0.85rem;
-            color: rgba(255,255,255,0.7);
+            color: color-mix(in srgb, var(--color-white) 70%, transparent);
         }
         
         .progress-info span {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         /* Navigation */
         .nav-container {
-            background: var(--ink-light);
+            background: var(--color-inverse-bg);
             padding: 15px 20px;
             overflow-x: auto;
             position: sticky;
             top: 110px;
-            z-index: 99;
-        }
+            z-index: 99; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .nav-sections {
             display: flex;
@@ -149,7 +132,7 @@
         
         .nav-section-title {
             font-size: 0.75rem;
-            color: var(--gold);
+            color: var(--color-accent);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -163,9 +146,9 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            border: 2px solid rgba(201,169,98,0.3);
+            border: 2px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
             background: transparent;
-            color: var(--cream);
+            color: var(--color-ivory);
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
@@ -176,20 +159,19 @@
         }
         
         .nav-tab:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
         }
         
         .nav-tab.active {
-            background: var(--gold);
-            color: var(--ink);
-            border-color: var(--gold);
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
+            border-color: var(--color-accent-soft); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .nav-tab.completed {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
+            background: var(--color-button-bg);
+            border-color: var(--color-river-stone);
+            color: var(--color-button-text);
         }
         
         .nav-tab.completed::after {
@@ -232,8 +214,8 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(201,169,98,0.1);
-            border: 1px solid rgba(201,169,98,0.3);
+            background: color-mix(in srgb, var(--color-river-stone) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
             padding: 8px 20px;
             border-radius: 30px;
             margin-bottom: 15px;
@@ -242,38 +224,37 @@
         .exercise-badge .num {
             width: 28px;
             height: 28px;
-            background: var(--gold);
+            background: var(--color-button-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            color: var(--ink);
-            font-size: 0.9rem;
-        }
+            color: var(--color-button-text);
+            font-size: 0.9rem; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .exercise-badge .phase {
             font-size: 0.85rem;
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .exercise-title {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 2rem;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 10px;
         }
         
         .exercise-desc {
-            color: rgba(255,255,255,0.7);
+            color: color-mix(in srgb, var(--color-white) 70%, transparent);
             max-width: 600px;
             margin: 0 auto;
         }
         
         /* Cards */
         .card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: color-mix(in srgb, var(--color-white) 3%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-white) 8%, transparent);
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
@@ -285,13 +266,13 @@
             gap: 15px;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
         }
         
         .card-icon {
             width: 45px;
             height: 45px;
-            background: rgba(201,169,98,0.2);
+            background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -301,12 +282,12 @@
         
         .card-title {
             font-size: 1.1rem;
-            color: var(--cream);
+            color: var(--color-ivory);
         }
         
         .card-subtitle {
             font-size: 0.85rem;
-            color: var(--gray);
+            color: var(--color-text-muted);
         }
         
         /* Sticky Notes */
@@ -330,19 +311,19 @@
         .sticky-note:focus {
             outline: none;
             transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px color-mix(in srgb, var(--on-light-text) 30%, transparent);
         }
         
         .sticky-note::placeholder {
-            color: rgba(0,0,0,0.4);
+            color: color-mix(in srgb, var(--color-text) 40%, transparent);
         }
         
-        .sticky-note.yellow { background: #FFF59D; color: #333; }
-        .sticky-note.pink { background: #F48FB1; color: #333; }
-        .sticky-note.green { background: #A5D6A7; color: #333; }
-        .sticky-note.orange { background: #FFCC80; color: #333; }
-        .sticky-note.blue { background: #81D4FA; color: #333; }
-        .sticky-note.purple { background: #CE93D8; color: #333; }
+        .sticky-note.yellow { background: color-mix(in srgb, var(--color-river-stone) 12%, var(--color-white)); color: var(--color-text); }
+        .sticky-note.pink { background: color-mix(in srgb, var(--color-river-stone) 26%, var(--color-white)); color: var(--color-text); }
+        .sticky-note.green { background: color-mix(in srgb, var(--color-river-stone) 40%, var(--color-white)); color: var(--color-text); }
+        .sticky-note.orange { background: var(--color-ivory); color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
+        .sticky-note.blue { background: color-mix(in srgb, var(--color-rainforest) 16%, var(--color-white)); color: var(--color-text); }
+        .sticky-note.purple { background: color-mix(in srgb, var(--color-rainforest) 28%, var(--color-white)); color: var(--color-text); }
         
         /* Form Elements */
         .form-group {
@@ -352,13 +333,13 @@
         .form-label {
             display: block;
             margin-bottom: 8px;
-            color: var(--cream);
+            color: var(--color-ivory);
             font-weight: 500;
         }
         
         .form-hint {
             font-size: 0.85rem;
-            color: var(--gray);
+            color: var(--color-text-muted);
             margin-bottom: 10px;
         }
         
@@ -366,10 +347,10 @@
         .form-textarea {
             width: 100%;
             padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: color-mix(in srgb, var(--color-white) 5%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-white) 15%, transparent);
             border-radius: 10px;
-            color: var(--cream);
+            color: var(--color-ivory);
             font-size: 1rem;
             font-family: inherit;
             transition: all 0.3s ease;
@@ -378,8 +359,8 @@
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
-            border-color: var(--gold);
-            background: rgba(255,255,255,0.08);
+            border-color: var(--color-accent-soft);
+            background: color-mix(in srgb, var(--color-white) 8%, transparent);
         }
         
         .form-textarea {
@@ -389,8 +370,8 @@
         
         /* Golden Result Box */
         .golden-box {
-            background: linear-gradient(135deg, rgba(201,169,98,0.15), rgba(201,169,98,0.05));
-            border: 2px solid var(--gold);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--color-river-stone) 15%, transparent), color-mix(in srgb, var(--color-river-stone) 5%, transparent));
+            border: 2px solid var(--color-accent-soft);
             border-radius: 16px;
             padding: 30px;
             text-align: center;
@@ -398,7 +379,7 @@
         }
         
         .golden-box h4 {
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
@@ -407,31 +388,30 @@
             width: 100%;
             max-width: 400px;
             padding: 15px 20px;
-            background: var(--gold);
+            background: var(--color-button-bg);
             border: none;
             border-radius: 10px;
             font-size: 1.1rem;
             font-weight: 600;
-            color: var(--ink);
-            text-align: center;
-        }
+            color: var(--color-button-text);
+            text-align: center; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .golden-input::placeholder {
-            color: rgba(0,0,0,0.4);
+            color: color-mix(in srgb, var(--color-text) 40%, transparent);
         }
         
         .golden-input:focus {
             outline: none;
-            box-shadow: 0 0 0 4px rgba(201,169,98,0.3);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
         
         .golden-textarea {
             width: 100%;
             padding: 20px;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid rgba(201,169,98,0.5);
+            background: color-mix(in srgb, var(--on-light-text) 20%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 50%, transparent);
             border-radius: 12px;
-            color: var(--cream);
+            color: var(--color-ivory);
             font-size: 1.15rem;
             line-height: 1.8;
             text-align: center;
@@ -441,13 +421,13 @@
         
         .golden-textarea:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: var(--color-accent-soft);
         }
         
         /* Canva Tutorial Section */
         .canva-section {
-            background: linear-gradient(135deg, rgba(123,104,238,0.1), rgba(123,104,238,0.05));
-            border: 1px solid rgba(123,104,238,0.3);
+            background: linear-gradient(135deg, color-mix(in srgb, var(--color-river-stone) 10%, transparent), color-mix(in srgb, var(--color-river-stone) 5%, transparent));
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
@@ -463,7 +443,7 @@
         .canva-icon {
             width: 50px;
             height: 50px;
-            background: var(--canva);
+            background: var(--color-river-stone);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -472,17 +452,17 @@
         }
         
         .canva-header h4 {
-            color: #B39DDB;
+            color: var(--color-inverse-muted);
             font-size: 1.1rem;
         }
         
         .canva-header p {
-            color: var(--gray);
+            color: var(--color-text-muted);
             font-size: 0.85rem;
         }
         
         .video-placeholder {
-            background: rgba(0,0,0,0.3);
+            background: color-mix(in srgb, var(--on-light-text) 30%, transparent);
             border-radius: 12px;
             aspect-ratio: 16/9;
             display: flex;
@@ -490,13 +470,13 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            border: 2px dashed rgba(123,104,238,0.3);
+            border: 2px dashed color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
         
         .video-placeholder .play-icon {
             width: 70px;
             height: 70px;
-            background: var(--canva);
+            background: var(--color-river-stone);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -509,11 +489,11 @@
         
         .video-placeholder .play-icon:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(123,104,238,0.5);
+            box-shadow: 0 0 30px color-mix(in srgb, var(--color-river-stone) 50%, transparent);
         }
         
         .video-placeholder p {
-            color: var(--gray);
+            color: var(--color-text-muted);
             font-size: 0.9rem;
         }
         
@@ -526,7 +506,7 @@
             display: flex;
             gap: 15px;
             padding: 15px;
-            background: rgba(255,255,255,0.03);
+            background: color-mix(in srgb, var(--color-white) 3%, transparent);
             border-radius: 10px;
             align-items: flex-start;
         }
@@ -534,7 +514,7 @@
         .step-num {
             width: 30px;
             height: 30px;
-            background: var(--canva);
+            background: var(--color-button-bg); color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -545,12 +525,12 @@
         }
         
         .step-content h5 {
-            color: var(--cream);
+            color: var(--color-ivory);
             margin-bottom: 5px;
         }
         
         .step-content p {
-            color: var(--gray);
+            color: var(--color-text-muted);
             font-size: 0.85rem;
             line-height: 1.5;
         }
@@ -560,8 +540,8 @@
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: var(--canva);
-            color: white;
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             text-decoration: none;
             border-radius: 8px;
             font-weight: 500;
@@ -570,9 +550,8 @@
         }
         
         .canva-link:hover {
-            background: #6B5ACD;
-            transform: translateY(-2px);
-        }
+            background: var(--color-button-bg);
+            transform: translateY(-2px); color: var(--color-button-text)}
         
         /* Checklist */
         .checklist {
@@ -588,7 +567,7 @@
             align-items: center;
             gap: 8px;
             padding: 10px 18px;
-            background: rgba(255,255,255,0.05);
+            background: color-mix(in srgb, var(--color-white) 5%, transparent);
             border-radius: 25px;
             font-size: 0.9rem;
             cursor: pointer;
@@ -597,18 +576,18 @@
         }
         
         .check-item:hover {
-            border-color: rgba(201,169,98,0.3);
+            border-color: color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
         
         .check-item.checked {
-            background: rgba(74,124,89,0.2);
-            border-color: var(--success);
+            background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
+            border-color: var(--color-river-stone);
         }
         
         .check-box {
             width: 20px;
             height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid color-mix(in srgb, var(--color-white) 30%, transparent);
             border-radius: 5px;
             display: flex;
             align-items: center;
@@ -617,19 +596,19 @@
         }
         
         .check-item.checked .check-box {
-            background: var(--success);
-            border-color: var(--success);
+            background: var(--color-river-stone);
+            border-color: var(--color-river-stone);
         }
         
         .check-item.checked .check-box::after {
             content: '✓';
-            color: white;
+            color: var(--color-white);
             font-size: 0.8rem;
         }
         
         /* AI Helper */
         .ai-helper {
-            background: linear-gradient(135deg, var(--teal), var(--ink-light));
+            background: linear-gradient(135deg, var(--color-rainforest), var(--color-inverse-bg));
             border-radius: 16px;
             padding: 25px;
             display: flex;
@@ -642,7 +621,7 @@
         .ai-avatar {
             width: 55px;
             height: 55px;
-            background: var(--gold);
+            background: var(--color-accent-soft);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -657,12 +636,12 @@
         }
         
         .ai-content h4 {
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 5px;
         }
         
         .ai-content p {
-            color: rgba(255,255,255,0.7);
+            color: color-mix(in srgb, var(--color-white) 70%, transparent);
             font-size: 0.9rem;
         }
         
@@ -671,19 +650,18 @@
             align-items: center;
             gap: 10px;
             padding: 14px 28px;
-            background: var(--whatsapp);
-            color: white;
+            background: var(--color-rainforest);
+            color: var(--color-button-text);
             border: none;
             border-radius: 30px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
-        }
+            transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .btn-whatsapp:hover {
-            background: #20bd5a;
+            background: var(--color-inverse-bg);
             transform: translateY(-2px);
         }
         
@@ -694,7 +672,7 @@
             align-items: center;
             margin-top: 40px;
             padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -713,25 +691,23 @@
         }
         
         .action-btn.primary {
-            background: var(--gold);
-            color: var(--ink);
-            border: none;
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
+            border: none; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .action-btn.primary:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-        }
+            background: var(--color-button-hover-bg);
+            transform: translateY(-2px); color: var(--color-button-text)}
         
         .action-btn.secondary {
             background: transparent;
-            color: var(--cream);
-            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--color-ivory);
+            border: 1px solid var(--color-ivory);
         }
         
         .action-btn.secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--color-accent);
+            color: var(--color-accent);
         }
         
         /* Summary Page */
@@ -741,19 +717,19 @@
         }
         
         .summary-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: color-mix(in srgb, var(--color-white) 3%, transparent);
+            border: 1px solid color-mix(in srgb, var(--color-white) 8%, transparent);
             border-radius: 12px;
             padding: 25px;
         }
         
         .summary-card.highlight {
-            border-color: var(--gold);
-            background: rgba(201,169,98,0.05);
+            border-color: var(--color-accent-soft);
+            background: color-mix(in srgb, var(--color-river-stone) 5%, transparent);
         }
         
         .summary-card h4 {
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -762,7 +738,7 @@
         
         .summary-item {
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-white) 5%, transparent);
         }
         
         .summary-item:last-child {
@@ -771,12 +747,12 @@
         
         .summary-label {
             font-size: 0.8rem;
-            color: var(--gray);
+            color: var(--color-text-muted);
             margin-bottom: 5px;
         }
         
         .summary-value {
-            color: var(--cream);
+            color: var(--color-ivory);
         }
         
         /* Celebration */
@@ -786,7 +762,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.95);
+            background: color-mix(in srgb, var(--on-light-text) 95%, transparent);
             display: none;
             align-items: center;
             justify-content: center;
@@ -821,14 +797,14 @@
         }
         
         .celebration h2 {
-            font-family: 'Noto Serif TC', serif;
+            font-family: var(--font-body);
             font-size: 2.5rem;
-            color: var(--gold);
+            color: var(--color-accent);
             margin-bottom: 15px;
         }
         
         .celebration p {
-            color: rgba(255,255,255,0.8);
+            color: color-mix(in srgb, var(--color-white) 80%, transparent);
             font-size: 1.2rem;
             margin-bottom: 30px;
         }
@@ -838,8 +814,8 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: var(--success);
-            color: white;
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             padding: 12px 24px;
             border-radius: 30px;
             font-size: 0.9rem;
@@ -857,8 +833,8 @@
         /* Print Styles */
         @media print {
             body {
-                background: white;
-                color: #333;
+                background: var(--color-white);
+                color: var(--color-text);
             }
             
             .header, .nav-container, .ai-helper, .action-bar, .canva-section, .autosave {
@@ -876,44 +852,43 @@
             }
             
             .card {
-                background: #f9f9f9;
-                border: 1px solid #ddd;
-            }
+                background: var(--color-surface-alt);
+                border: 1px solid var(--color-surface-strong); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
             
             .sticky-note {
-                border: 1px solid #ccc;
+                border: 1px solid var(--color-surface-strong);
             }
             
             .golden-box {
-                border: 2px solid var(--gold);
+                border: 2px solid var(--color-accent-soft);
             }
             
             .pdf-header {
                 display: block !important;
                 text-align: center;
                 padding: 40px 0;
-                border-bottom: 3px solid var(--gold);
+                border-bottom: 3px solid var(--color-accent-soft);
                 margin-bottom: 30px;
             }
             
             .pdf-header h1 {
-                font-family: 'Noto Serif TC', serif;
-                color: var(--teal);
+                font-family: var(--font-body);
+                color: var(--color-rainforest);
                 font-size: 2rem;
                 margin-bottom: 10px;
             }
             
             .pdf-header p {
-                color: #666;
+                color: var(--color-text-muted);
             }
             
             .pdf-footer {
                 display: block !important;
                 text-align: center;
                 padding-top: 30px;
-                border-top: 1px solid #ddd;
+                border-top: 1px solid var(--color-surface-strong);
                 margin-top: 30px;
-                color: #999;
+                color: var(--color-text-muted);
                 font-size: 0.85rem;
             }
         }
@@ -1142,7 +1117,7 @@
             
             <div class="golden-box">
                 <h4>✨ 金色交集</h4>
-                <p style="color: var(--gray); margin-bottom: 15px; font-size: 0.9rem;">你的價值 + 客戶需要 = 你能獨特提供的價值</p>
+                <p style="color: var(--color-text-muted); margin-bottom: 15px; font-size: 0.9rem;">你的價值 + 客戶需要 = 你能獨特提供的價值</p>
                 <input type="text" class="golden-input" data-key="ex2-intersection" placeholder="你的獨特價值是..." style="max-width: 500px;">
             </div>
             
@@ -1312,20 +1287,20 @@
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
                     <div class="card" style="cursor: pointer; margin: 0;" onclick="selectFormula(this, 'A')">
-                        <h4 style="color: var(--gold); margin-bottom: 10px;">【公式 A】問題導向型</h4>
-                        <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.8;">當 <span style="color: var(--gold);">[客戶]</span> 遇到 <span style="color: var(--gold);">[問題]</span>，我用 <span style="color: var(--gold);">[方法]</span>，幫助他們 <span style="color: var(--gold);">[結果]</span></p>
+                        <h4 style="color: var(--color-accent); margin-bottom: 10px;">【公式 A】問題導向型</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">當 <span style="color: var(--color-accent);">[客戶]</span> 遇到 <span style="color: var(--color-accent);">[問題]</span>，我用 <span style="color: var(--color-accent);">[方法]</span>，幫助他們 <span style="color: var(--color-accent);">[結果]</span></p>
                     </div>
                     <div class="card" style="cursor: pointer; margin: 0;" onclick="selectFormula(this, 'B')">
-                        <h4 style="color: var(--gold); margin-bottom: 10px;">【公式 B】身份轉變型</h4>
-                        <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.8;">我幫助 <span style="color: var(--gold);">[客戶]</span> 從 <span style="color: var(--gold);">[現狀]</span> 變成 <span style="color: var(--gold);">[理想]</span>，透過 <span style="color: var(--gold);">[方法]</span></p>
+                        <h4 style="color: var(--color-accent); margin-bottom: 10px;">【公式 B】身份轉變型</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">我幫助 <span style="color: var(--color-accent);">[客戶]</span> 從 <span style="color: var(--color-accent);">[現狀]</span> 變成 <span style="color: var(--color-accent);">[理想]</span>，透過 <span style="color: var(--color-accent);">[方法]</span></p>
                     </div>
                     <div class="card" style="cursor: pointer; margin: 0;" onclick="selectFormula(this, 'C')">
-                        <h4 style="color: var(--gold); margin-bottom: 10px;">【公式 C】信念宣言型</h4>
-                        <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.8;">我相信 <span style="color: var(--gold);">[信念]</span>，所以我 <span style="color: var(--gold);">[行動]</span>，讓 <span style="color: var(--gold);">[客戶]</span> 可以 <span style="color: var(--gold);">[結果]</span></p>
+                        <h4 style="color: var(--color-accent); margin-bottom: 10px;">【公式 C】信念宣言型</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">我相信 <span style="color: var(--color-accent);">[信念]</span>，所以我 <span style="color: var(--color-accent);">[行動]</span>，讓 <span style="color: var(--color-accent);">[客戶]</span> 可以 <span style="color: var(--color-accent);">[結果]</span></p>
                     </div>
                     <div class="card" style="cursor: pointer; margin: 0;" onclick="selectFormula(this, 'D')">
-                        <h4 style="color: var(--gold); margin-bottom: 10px;">【公式 D】故事簡述型</h4>
-                        <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.8;">因為 <span style="color: var(--gold);">[經歷/裂痕]</span>，我現在 <span style="color: var(--gold);">[做的事]</span>，專門幫 <span style="color: var(--gold);">[客戶]</span> <span style="color: var(--gold);">[結果]</span></p>
+                        <h4 style="color: var(--color-accent); margin-bottom: 10px;">【公式 D】故事簡述型</h4>
+                        <p style="color: var(--color-text-muted); font-size: 0.9rem; line-height: 1.8;">因為 <span style="color: var(--color-accent);">[經歷/裂痕]</span>，我現在 <span style="color: var(--color-accent);">[做的事]</span>，專門幫 <span style="color: var(--color-accent);">[客戶]</span> <span style="color: var(--color-accent);">[結果]</span></p>
                     </div>
                 </div>
             </div>
@@ -2298,7 +2273,7 @@
         // Formula selection
         function selectFormula(el, formula) {
             el.parentElement.querySelectorAll('.card').forEach(c => c.style.borderColor = 'transparent');
-            el.style.borderColor = 'var(--gold)';
+            el.style.borderColor = 'var(--color-accent)';
             data['selected-formula'] = formula;
             save();
         }
