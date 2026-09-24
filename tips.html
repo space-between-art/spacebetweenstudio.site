@@ -9,35 +9,28 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
     
+    <link rel="stylesheet" href="css/tokens.css">
+    
     <style>
-        :root {
-            --ink-black: #08090c;
-            --deep-charcoal: #181c24;
-            --gold: #C9A962;
-            --light-gold: #d4b896;
-            --cream: #f5f2eb;
-            --soft-gray: #6b6b6b;
-            --teal: #1a3a3a;
-        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         
         body {
-            font-family: 'Noto Serif TC', serif;
-            background: var(--ink-black);
-            color: var(--cream);
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
             line-height: 1.8;
             min-height: 100vh;
         }
         
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--deep-charcoal); }
-        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: var(--color-surface); }
+        ::-webkit-scrollbar-thumb { background: var(--color-accent); border-radius: 3px; }
         
         /* Navigation */
         nav {
@@ -50,13 +43,13 @@
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(8, 9, 12, 0.95), transparent);
+            background: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 95%, transparent), transparent);
         }
         
         .nav-logo {
             text-decoration: none;
-            color: var(--light-gold);
-            font-family: 'Cormorant Garamond', serif;
+            color: var(--color-button-hover-bg);
+            font-family: var(--font-display);
             font-size: 14px;
             letter-spacing: 3px;
         }
@@ -67,7 +60,7 @@
         }
         
         .nav-links a {
-            color: var(--cream);
+            color: var(--color-text);
             text-decoration: none;
             font-size: 13px;
             letter-spacing: 1px;
@@ -75,7 +68,7 @@
         }
         
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         /* Main */
@@ -107,7 +100,7 @@
         
         .description {
             font-size: 15px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             line-height: 2.2;
             margin-bottom: 40px;
         }
@@ -115,21 +108,21 @@
         .gold-line {
             width: 60px;
             height: 1px;
-            background: var(--gold);
+            background: var(--color-accent);
             margin: 30px auto;
         }
         
         /* Form */
         .form-container {
-            background: var(--deep-charcoal);
+            background: var(--color-surface);
             padding: 35px 30px;
             border-radius: 12px;
-            border: 1px solid rgba(201, 169, 98, 0.1);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
         
         .form-title {
             font-size: 14px;
-            color: var(--light-gold);
+            color: var(--color-button-hover-bg);
             margin-bottom: 25px;
             letter-spacing: 1px;
         }
@@ -141,30 +134,30 @@
         input[type="email"] {
             width: 100%;
             padding: 14px 18px;
-            background: var(--ink-black);
-            border: 1px solid rgba(201, 169, 98, 0.2);
+            background: var(--color-bg);
+            border: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             border-radius: 6px;
-            color: var(--cream);
+            color: var(--color-text);
             font-family: inherit;
             font-size: 14px;
             transition: border-color 0.3s ease;
         }
         
         input[type="email"]::placeholder {
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         input[type="email"]:focus {
             outline: none;
-            border-color: var(--gold);
+            border-color: var(--color-accent);
         }
         
         .btn {
             width: 100%;
             padding: 14px 30px;
             background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
             font-family: inherit;
             font-size: 13px;
             letter-spacing: 2px;
@@ -174,8 +167,8 @@
         }
         
         .btn:hover {
-            background: var(--gold);
-            color: var(--ink-black);
+            background: var(--color-accent);
+            color: var(--color-bg);
         }
         
         .btn:disabled {
@@ -185,7 +178,7 @@
         
         .privacy {
             font-size: 11px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             margin-top: 20px;
             line-height: 1.6;
         }
@@ -208,20 +201,20 @@
         
         .success-text {
             font-size: 16px;
-            color: var(--light-gold);
+            color: var(--color-button-hover-bg);
             margin-bottom: 10px;
         }
         
         .success-subtext {
             font-size: 14px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         /* Footer */
         footer {
             padding: 40px 20px 30px;
             text-align: center;
-            border-top: 1px solid rgba(201, 169, 98, 0.1);
+            border-top: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
         
         .footer-links {
@@ -232,14 +225,14 @@
         }
         
         .footer-links a {
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             text-decoration: none;
             font-size: 12px;
             transition: color 0.3s ease;
         }
         
         .footer-links a:hover {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         @media (max-width: 768px) {

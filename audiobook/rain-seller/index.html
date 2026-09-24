@@ -7,24 +7,18 @@
     <meta name="robots" content="noindex, nofollow">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/tokens.css">
     
     <style>
-        :root {
-            --ink-black: #08090c;
-            --deep-charcoal: #181c24;
-            --gold: #C9A962;
-            --light-gold: #d4b896;
-            --cream: #f5f2eb;
-            --soft-gray: #6b6b6b;
-        }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Noto Serif TC', serif;
-            background: var(--ink-black);
-            color: var(--cream);
+            font-family: var(--font-literary);
+            background: var(--color-bg);
+            color: var(--color-text);
             min-height: 100vh;
         }
         
@@ -32,11 +26,11 @@
         .header {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid rgba(201, 169, 98, 0.1);
+            border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
         
         .header a {
-            color: var(--gold);
+            color: var(--color-accent);
             text-decoration: none;
             font-size: 12px;
             letter-spacing: 2px;
@@ -54,7 +48,7 @@
             margin: 0 auto 30px;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px color-mix(in srgb, var(--color-text) 50%, transparent);
         }
         
         .album-art img {
@@ -71,7 +65,7 @@
         
         .book-subtitle {
             font-size: 14px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         /* Player Controls */
@@ -89,7 +83,7 @@
         .progress-bar {
             width: 100%;
             height: 4px;
-            background: var(--deep-charcoal);
+            background: var(--color-surface);
             border-radius: 2px;
             cursor: pointer;
             position: relative;
@@ -97,7 +91,7 @@
         
         .progress-fill {
             height: 100%;
-            background: var(--gold);
+            background: var(--color-accent);
             border-radius: 2px;
             width: 0%;
             transition: width 0.1s linear;
@@ -108,7 +102,7 @@
             justify-content: space-between;
             margin-top: 8px;
             font-size: 12px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         /* Controls */
@@ -123,22 +117,22 @@
         .control-btn {
             background: none;
             border: none;
-            color: var(--cream);
+            color: var(--color-text);
             cursor: pointer;
             transition: color 0.3s ease;
             font-size: 20px;
         }
         
         .control-btn:hover {
-            color: var(--gold);
+            color: var(--color-accent);
         }
         
         .play-btn {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--gold);
-            color: var(--ink-black);
+            background: var(--color-accent);
+            color: var(--color-bg);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -146,7 +140,7 @@
         }
         
         .play-btn:hover {
-            background: var(--light-gold);
+            background: var(--color-button-hover-bg);
         }
         
         /* Playlist */
@@ -158,7 +152,7 @@
         
         .playlist-title {
             font-size: 14px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
             margin-bottom: 15px;
             letter-spacing: 2px;
         }
@@ -167,7 +161,7 @@
             display: flex;
             align-items: center;
             padding: 15px;
-            background: var(--deep-charcoal);
+            background: var(--color-surface);
             border-radius: 8px;
             margin-bottom: 10px;
             cursor: pointer;
@@ -175,17 +169,17 @@
         }
         
         .track:hover {
-            background: rgba(201, 169, 98, 0.1);
+            background: color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
         
         .track.active {
-            border-left: 3px solid var(--gold);
+            border-left: 3px solid var(--color-accent);
         }
         
         .track-number {
             width: 30px;
             font-size: 14px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         .track-info {
@@ -199,7 +193,7 @@
         
         .track-duration {
             font-size: 12px;
-            color: var(--soft-gray);
+            color: var(--color-text-muted);
         }
         
         /* Loading */
@@ -209,7 +203,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: var(--ink-black);
+            background: var(--color-bg);
             display: flex;
             align-items: center;
             justify-content: center;
