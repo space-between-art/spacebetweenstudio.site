@@ -10,7 +10,10 @@
     <!-- Open Graph -->
     <meta property="og:title" content="隙光・選物店 | Space Between Selection">
     <meta property="og:description" content="品牌療癒系列數位產品 - 《賣雨的人》《慢慢成為自己的品牌》《AI 給我的第一桶金》">
-    <meta property="og:image" content="images/rain-seller-cover-new.jpg">
+    <meta property="og:image" content="https://spacebetweenstudio.site/assets/og/mai-yu-de-ren-og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="《賣雨的人》— 隙光">
     <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
@@ -242,6 +245,13 @@
         
         .product-card:hover .product-image img {
             transform: scale(1.05);
+        }
+        
+        /* 2:3 書封：完整顯示，不裁切（框是 4:5） */
+        .product-image img.book-cover {
+            object-fit: contain;
+            padding: var(--space-md);
+            background: var(--color-surface-alt);
         }
         
         /* Logo 不跟隨產品圖放大／裁切 */
@@ -666,7 +676,11 @@
             <!-- Product 1: 賣雨的人 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="images/rain-seller-cover-new.jpg" alt="賣雨的人">
+                    <img class="book-cover" src="assets/covers/mai-yu-de-ren-800.webp"
+                         srcset="assets/covers/mai-yu-de-ren-400.webp 400w, assets/covers/mai-yu-de-ren-800.webp 800w"
+                         sizes="(max-width: 768px) 100vw, 380px"
+                         width="800" height="1200" decoding="async"
+                         alt="小說《賣雨的人》封面：女子手持裝著一場雨的玻璃瓶，窗外是雨中城市">
                     <span class="product-badge">互動式電子書</span>
                 </div>
                 <div class="product-info">
