@@ -9,10 +9,15 @@
 
 ## 0. 先知道的三個前提（影響整個方案）
 
-1. **這個 repo 是公開的**（`space-between-art/spacebetweenstudio.site`，visibility: public），網站由 GitHub Pages 發佈（`CNAME` = `spacebetweenstudio.site`，`README.md` 也寫明是「GitHub Pages repo」）。
+1. **這個 repo 是公開的**（`space-between-art/spacebetweenstudio.site`，visibility: public）。
    → 放在 repo 裡的東西，**任何人都可以在 github.com 直接讀原始碼或下載整個 repo**。所以前端閘門、`noindex`、`robots.txt` 都只能擋搜尋引擎和一般瀏覽者，**擋不住任何有心人**。
+   - 發佈方式有兩條線索，**正式網域實際由哪一條服務，需要你確認**（§5 第 10 項）：
+     - `CNAME` = `spacebetweenstudio.site`，`README.md` 寫明是「GitHub Pages repo」→ GitHub Pages；
+     - 這個 PR 觸發了 **Cloudflare Pages** 專案 `spacebetweenstudio-site` 的部署（成功），每個分支都會產生 `*.spacebetweenstudio-site.pages.dev` 預覽網址。
+   - 如果正式站是 Cloudflare Pages，每個分支的預覽網址**同樣公開整個 repo（包括付費內容）**，保護方案要一併覆蓋 `*.pages.dev`。
 2. **git 歷史無法「收回」**。就算之後把付費檔案刪走，舊 commit 仍然可以讀到。現有電子書全文、密語都應該當作**已經外洩**處理：密語要作廢，內容能改版就改版。
 3. 現有唯一的 Cloudflare 設定在 `cloudflare/workers-autoconfig` 分支的 `wrangler.jsonc`：Worker 名稱是 `nfc-card`（看起來是另一個專案的名稱），而且 `assets.directory` 是 `"."`，即**把整個 repo（包括付費內容）當成公開靜態檔發佈**。這個分支不應該照原樣合併。
+   - 另外，Cloudflare 上有一個 **Workers Builds「nfc-card」連接了這個 repo**，每次 push 都會觸發並**失敗**（PR #3、#4 都是），因為 `main` 沒有 `wrangler` 設定。這不影響網站，但會令每個 PR 顯示紅色，建議在 Cloudflare 後台斷開或刪除這個連接（§5 第 14 項）。
 
 ---
 
@@ -105,7 +110,7 @@
 ```
 讀者 ──► spacebetweenstudio.site（Cloudflare 代理）
             │
-            ├─ 公開頁（index、selection、golden-thread…）──► 照舊（GitHub Pages 或 Workers Static Assets）
+            ├─ 公開頁（index、selection、golden-thread…）──► 照舊（GitHub Pages 或 Cloudflare Pages）
             │
             └─ 付費路徑 /ebook/* /audiobook/* /workshop* /resource-hub/*
                   ──► Worker「paywall」
@@ -127,6 +132,7 @@ Airwallex 付款成功 ──webhook──► n8n（或 Worker 的 /api/airwalle
 
 | 項目 | 建議 |
 |---|---|
+| 若正式站已是 Cloudflare Pages | paywall 可以直接寫成 **Pages Functions**（`functions/_middleware.js`，綁定同一個 KV），不用另開 Worker 路由；但內容仍然必須搬出公開 repo，否則 GitHub 上照樣讀得到 |
 | 付費內容放在哪 | **搬出這個公開 repo**。選項：(1) 私有 repo，用 Workers Static Assets 部署成獨立 Worker，只由 paywall Worker 經 Service Binding 讀取；或 (2) Cloudflare R2 bucket（不開公開存取）。電子書 HTML、圖片、之後的 mp3 都放這裡 |
 | KV 結構 | `ent:<email小寫>` → `{ "skus": ["rain-seller","manman",…], "orders": [...], "credit": 498 }`；`tok:<隨機值>` → email（TTL 例如 7 日，用過即刪）；`sku:<airwallex連結ID>` → SKU（對照表） |
 | Session | Cookie `HttpOnly; Secure; SameSite=Lax`，內容為 `email＋到期時間＋HMAC`；密鑰放 Worker secret。不存在 `localStorage` |
@@ -185,11 +191,11 @@ Airwallex 付款成功 ──webhook──► n8n（或 Worker 的 /api/airwalle
 9. 登入有效期（建議 180 日）與同時登入裝置上限（建議不設，或 3 部）？
 
 **技術與基建**
-10. `spacebetweenstudio.site` 的 DNS 是否已在 Cloudflare 並開啟代理（橙色雲）？（Worker 路由必須經 Cloudflare 代理；否則要把整站改由 Workers Static Assets 發佈）
+10. 正式網域現在由 **GitHub Pages** 還是 **Cloudflare Pages**（專案 `spacebetweenstudio-site`）服務？DNS 是否已在 Cloudflare 並開啟代理（橙色雲）？（Worker 路由必須經 Cloudflare 代理；如果已是 Cloudflare Pages，可以改用 Pages Functions）
 11. 付費內容搬去哪裡：**私有 GitHub repo＋Workers Static Assets**，還是 **R2**？
 12. Worker 程式放在哪個 repo？（CLAUDE.md 規定本 repo 只處理前端；`space-between.art` 是私有 repo 但目前只有一個 README，可以考慮放在那裡，或開新的私有 repo）
 13. Airwallex webhook 由 **n8n** 接收（沿用現有流程），還是由 Worker 直接接收？寄信用甚麼（n8n 現有郵件設定／HubSpot／其他）？
-14. `cloudflare/workers-autoconfig` 分支（Worker 名 `nfc-card`、把整個 repo 公開）是否可以棄用？
+14. `cloudflare/workers-autoconfig` 分支（Worker 名 `nfc-card`、把整個 repo 公開）是否可以棄用？Cloudflare 上連接這個 repo、每次 push 都失敗的 Workers Builds「nfc-card」是否可以斷開？
 15. 是否要改寫 git 歷史，徹底刪除舊版付費內容和密語？（會影響所有 clone／fork；不改寫的話，舊版內容永遠可以在 GitHub 歷史中讀到）
 16. 是否同意過渡期（例如 60 日）接受「email＋舊密語」登入工作坊／Resource Hub？
 
