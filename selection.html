@@ -284,6 +284,13 @@
             letter-spacing: 1px;
             border-radius: 4px; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
+        /* 標籤放在卡片文字區，唔遮封面書名 */
+        .product-info .product-badge {
+            position: static;
+            display: inline-block;
+            margin-bottom: var(--space-sm);
+        }
+        
         .product-info {
             padding: 30px;
         }
@@ -431,9 +438,29 @@
             padding: 30px;
         }
         
+        /* 單線 icon：1.5px、Rainforest、28px（inline SVG） */
         .feature-icon {
-            font-size: 32px;
+            display: flex;
+            justify-content: center;
             margin-bottom: 20px;
+            color: var(--color-rainforest);
+        }
+        
+        .line-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        
+        .line-icon path, .line-icon rect, .line-icon circle, .line-icon polyline, .line-icon line {
+            vector-effect: non-scaling-stroke;
+        }
+        
+        .line-icon--inline {
+            width: 24px;
+            height: 24px;
+            vertical-align: -6px;
+            margin-right: var(--space-2xs);
         }
         
         .feature-item h3 {
@@ -681,9 +708,9 @@
                          sizes="(max-width: 768px) 100vw, 380px"
                          width="800" height="1200" decoding="async"
                          alt="小說《賣雨的人》封面：女子手持裝著一場雨的玻璃瓶，窗外是雨中城市">
-                    <span class="product-badge">互動式電子書</span>
                 </div>
                 <div class="product-info">
+                    <span class="product-badge">互動式電子書</span>
                     <p class="product-category">Digital Novel</p>
                     <h3 class="product-title">賣雨的人</h3>
                     <p class="product-subtitle">The Rain Seller</p>
@@ -709,10 +736,14 @@
             <!-- Product 2: 慢慢成為自己的品牌 -->
             <div class="product-card">
                 <div class="product-image">
-                    <img src="images/manman-cover.jpg" alt="慢慢成為自己的品牌">
-                    <span class="product-badge">可填寫工作手冊</span>
+                    <img class="book-cover" src="assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp"
+                         srcset="assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp 400w, assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp 800w"
+                         sizes="(max-width: 768px) 100vw, 380px"
+                         width="800" height="1200" decoding="async"
+                         alt="《慢慢成為自己的品牌》封面：以金繼手法修補一只陶罐，裂縫化為金線">
                 </div>
                 <div class="product-info">
+                    <span class="product-badge">可填寫工作手冊</span>
                     <p class="product-category">Brand Workbook</p>
                     <h3 class="product-title">慢慢成為自己的品牌</h3>
                     <p class="product-subtitle">Slowly Becoming Your Own Brand</p>
@@ -787,7 +818,7 @@
                     </div>
                     
                     <div class="bundle-bonus">
-                        <h4>🎁 組合專屬</h4>
+                        <h4><svg class="line-icon line-icon--inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="8.5" width="17" height="4" rx="0.5"/><path d="M5 12.5v8h14v-8"/><line x1="12" y1="8.5" x2="12" y2="20.5"/><path d="M12 8.5c-1.5-3-5-3.5-5-1.5s3 1.5 5 1.5z"/><path d="M12 8.5c1.5-3 5-3.5 5-1.5s-3 1.5-5 1.5z"/></svg>組合專屬</h4>
                         <p>購買組合即獲得「學費即訂金」代碼，詳情請查詢。</p>
                     </div>
                     
@@ -803,17 +834,17 @@
     <section class="features">
         <div class="features-grid">
             <div class="feature-item">
-                <div class="feature-icon">📱</div>
+                <div class="feature-icon"><svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5.5" width="18" height="13" rx="1.5"/><polyline points="3.5 6.5 12 13 20.5 6.5"/></svg></div>
                 <h3>即時交付</h3>
                 <p>付款完成後，自動發送下載連結至你的信箱，隨時隨地開始閱讀。</p>
             </div>
             <div class="feature-item">
-                <div class="feature-icon">🔐</div>
+                <div class="feature-icon"><svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><line x1="12" y1="14.5" x2="12" y2="16.5"/></svg></div>
                 <h3>安全支付</h3>
                 <p>支援 PayMe、FPS、Alipay、WeChat Pay、Visa/Master 信用卡。</p>
             </div>
             <div class="feature-item">
-                <div class="feature-icon">💬</div>
+                <div class="feature-icon"><svg class="line-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5.5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-9l-4.5 3.5v-3.5H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1z"/><line x1="7.5" y1="9.5" x2="16.5" y2="9.5"/><line x1="7.5" y1="12.5" x2="13.5" y2="12.5"/></svg></div>
                 <h3>持續支援</h3>
                 <p>購買後可加入讀者社群，與蘇牧 AI 教練對話，持續你的品牌療癒之旅。</p>
             </div>
