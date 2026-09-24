@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-region="tw-hk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 建議 4：全站只用淺色，避免瀏覽器／系統深色模式自動反色 -->
+  <meta name="color-scheme" content="only light">
+
+  <!-- 預覽頁：不收錄。正式上線時換回 index.html 的 SEO meta -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>首頁改版預覽 v2 | Space Between Studio</title>
+  <meta name="description" content="Space Between Studio 首頁改版預覽（DESIGN_PROPOSAL.md）。">
+
+  <!-- 與 index.html 相同的 Organization JSON-LD；sameAs 加入社交連結（建議 5）。
+       Facebook 網址待提供，提供後加入。 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Space Between Studio",
+    "alternateName": "隙光",
+    "url": "https://spacebetweenstudio.site",
+    "logo": "https://spacebetweenstudio.site/assets/logo/COMBO/SBS_COMBO_GREEN.png",
+    "description": "品牌療癒顧問工作室，提供品牌金線工作坊、自我教練工具與數位產品，服務台灣與香港。",
+    "founder": {
+      "@type": "Person",
+      "name": "曾詠詩",
+      "alternateName": "Wins Tsang",
+      "jobTitle": "品牌療癒師"
+    },
+    "areaServed": ["TW", "HK"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "hello@spacebetweenstudio.site",
+      "availableLanguage": ["zh-TW", "zh-HK"]
+    },
+    "sameAs": [
+      "https://spacebetweenhealing.com",
+      "https://www.instagram.com/spacebetweenstudiohk/",
+      "https://www.threads.com/@spacebetweenstudiohk"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/brand-logo.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+
+  <style>
+    /* ── 提案 token（未寫入 css/tokens.css；批准後才搬過去） ── */
+    :root {
+      color-scheme: only light;
+
+      /* 金線：只用於 ivory／white 底上的細線（見 DESIGN_PROPOSAL.md §2）
+         #86672A 對 Ivory 4.61:1、對 White 5.27:1、對 surface-alt 4.17:1
+         對 Rainforest 只有 2.24:1 → 深綠區塊內不用 */
+      --color-gold-thread: #86672A;
+      --gold-thread-width: 1.5px;
+
+      /* 版面節奏 */
+      --section-pad-y: var(--space-4xl);
+      --section-pad-x: var(--space-xl);
+      --content-max: 1100px;
+      --measure: 34em;
+      --nav-height: 72px;
+      --tap-target: 48px;
+    }
+    @media (max-width: 768px) {
+      :root {
+        --section-pad-y: var(--space-2xl);
+        --section-pad-x: var(--space-md);
+        --nav-height: 64px;
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); }
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-weight: var(--font-weight-light);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute; left: var(--space-sm); top: -100px; z-index: 200;
+      padding: var(--space-2xs) var(--space-sm);
+      background: var(--color-button-bg); color: var(--color-button-text);
+      text-decoration: none;
+    }
+    .skip-link:focus { top: var(--space-sm); }
+
+    /* 預覽提示條 */
+    .preview-bar {
+      background: var(--color-surface-strong);
+      color: var(--color-text);
+      font-size: 0.8rem; text-align: center;
+      padding: var(--space-2xs) var(--space-md);
+      margin-top: var(--nav-height);
+    }
+
+    /* ── NAV（統一版：桌面橫排／手機選單按鈕） ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-height);
+      padding: 0 var(--section-pad-x);
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--color-overlay);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-line-soft);
+    }
+    .nav-links { display: flex; align-items: center; gap: var(--space-lg); list-style: none; }
+    .nav-links a {
+      font-size: 0.85rem; letter-spacing: 0.08em;
+      color: var(--color-text-muted); text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--color-accent); }
+    .nav-cta {
+      display: inline-block;
+      padding: var(--space-2xs) var(--space-md);
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent) !important;
+      transition: background 0.25s, color 0.25s;
+    }
+    .nav-cta:hover { background: var(--color-button-bg); color: var(--color-button-text) !important; }
+
+    .nav-toggle {
+      display: none;
+      align-items: center; gap: var(--space-2xs);
+      min-width: var(--tap-target); min-height: var(--tap-target);
+      padding: 0 var(--space-2xs);
+      background: none; border: 0; cursor: pointer;
+      color: var(--color-accent);
+      font: inherit; font-size: 0.85rem; letter-spacing: 0.08em;
+    }
+    .nav-toggle-icon { position: relative; width: 20px; height: 12px; }
+    .nav-toggle-icon::before, .nav-toggle-icon::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1px;
+      background: currentColor; transition: transform 0.25s, top 0.25s;
+    }
+    .nav-toggle-icon::before { top: 2px; }
+    .nav-toggle-icon::after { top: 9px; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon::before { top: 6px; transform: rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle-icon::after { top: 6px; transform: rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* 沒有 JS 時：選單照常顯示在 nav 下方（不會像現在一樣整組消失） */
+      .site-nav { flex-wrap: wrap; height: auto; min-height: var(--nav-height); }
+      .nav-links {
+        flex-basis: 100%;
+        flex-direction: column; align-items: stretch; gap: 0;
+        padding: var(--space-2xs) 0 var(--space-md);
+      }
+      .nav-links a {
+        display: flex; align-items: center;
+        min-height: var(--tap-target);
+        font-size: 1rem;
+        border-bottom: 1px solid var(--color-line-soft);
+      }
+      .nav-links li:nth-last-child(2) a { border-bottom: 0; }
+      .nav-links .nav-cta { justify-content: center; margin-top: var(--space-sm); border: 1px solid var(--color-accent); }
+
+      /* 有 JS 時：收合成「選單」按鈕，展開為 nav 下方的全寬面板 */
+      .js .nav-toggle { display: inline-flex; }
+      .js .site-nav { flex-wrap: nowrap; height: var(--nav-height); }
+      .js .nav-links {
+        position: fixed; left: 0; right: 0; top: var(--nav-height);
+        max-height: calc(100svh - var(--nav-height)); overflow-y: auto;
+        padding: var(--space-2xs) var(--section-pad-x) var(--space-lg);
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-line);
+        box-shadow: 0 12px 24px var(--color-shadow);
+        visibility: hidden; opacity: 0; transform: translateY(-8px);
+        transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s;
+      }
+      .js .site-nav.is-open .nav-links {
+        visibility: visible; opacity: 1; transform: none;
+        transition: opacity 0.2s, transform 0.2s;
+      }
+    }
+
+    /* ── 共用 ── */
+    .section { padding: var(--section-pad-y) var(--section-pad-x); }
+    .inner { max-width: var(--content-max); margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.22em;
+      color: var(--color-accent); margin-bottom: var(--space-sm);
+    }
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: var(--font-weight-light); line-height: 1.3;
+      color: var(--color-heading);
+      margin-bottom: var(--space-md);
+    }
+    .section-heading em { font-style: normal; font-weight: var(--font-weight-regular); }
+    .section-sub {
+      font-size: 1rem; line-height: 2;
+      color: var(--color-text-muted); max-width: var(--measure);
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: var(--tap-target);
+      padding: 0 var(--space-lg);
+      font-size: 0.85rem; letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s, transform 0.2s;
+    }
+    .btn-primary {
+      background: var(--color-button-bg); color: var(--color-button-text);
+      box-shadow: inset 0 0 0 1px var(--color-button-ring);
+    }
+    .btn-primary:hover { background: var(--color-button-hover-bg); transform: translateY(-2px); }
+    .btn-secondary { border: 1px solid var(--color-accent); color: var(--color-accent); }
+    .btn-secondary:hover { background: var(--color-button-bg); color: var(--color-button-text); transform: translateY(-2px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: min(88svh, 760px);
+      display: flex; align-items: center;
+      padding: var(--space-3xl) var(--section-pad-x) var(--space-2xl);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 72% 50%, var(--color-accent-wash) 0%, transparent 65%);
+    }
+    .hero-glyph {
+      position: absolute; right: -4vw; top: 50%; transform: translateY(-50%);
+      font-size: min(40vw, 520px); font-weight: var(--font-weight-light); line-height: 1;
+      color: var(--color-accent-wash);
+      pointer-events: none; user-select: none;
+    }
+    .hero-inner { max-width: var(--content-max); width: 100%; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: var(--space-sm);
+      font-size: 0.75rem; letter-spacing: 0.22em;
+      color: var(--color-accent); margin-bottom: var(--space-lg);
+    }
+    .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--color-accent-soft); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: var(--font-weight-light); line-height: 1.2;
+      color: var(--color-heading);
+      margin-bottom: var(--space-lg);
+    }
+    .hero h1 em { font-style: normal; font-weight: var(--font-weight-regular); position: relative; display: inline-block; }
+    /* 金線位置 ①：「品牌金線」下的一條手繪細線 */
+    .gold-underline {
+      position: absolute; left: 0; right: 0; bottom: -0.12em;
+      width: 100%; height: 0.28em; overflow: visible;
+    }
+    .gold-underline path {
+      fill: none; stroke: var(--color-gold-thread);
+      stroke-width: var(--gold-thread-width);
+      stroke-linecap: round; vector-effect: non-scaling-stroke;
+    }
+    .hero-sub {
+      font-size: 1.05rem; line-height: 2;
+      color: var(--color-text-muted); max-width: var(--measure);
+      margin-bottom: var(--space-xl);
+    }
+    .hero-actions { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+
+    /* ── 關鍵詞（原跑馬燈 → 靜態，一行內容只出現一次） ── */
+    .keywords {
+      border-top: 1px solid var(--color-line-soft);
+      border-bottom: 1px solid var(--color-line-soft);
+      background: var(--color-surface-alt);
+      padding: var(--space-sm) var(--section-pad-x);
+    }
+    .keywords ul {
+      max-width: var(--content-max); margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: var(--space-2xs) var(--space-md);
+      list-style: none;
+    }
+    .keywords li {
+      font-family: var(--font-display);
+      font-size: 0.8rem; letter-spacing: 0.14em;
+      color: var(--color-text-muted); white-space: nowrap;
+    }
+    .keywords li + li::before { content: '✦'; color: var(--color-accent); margin-right: var(--space-md); font-size: 0.6rem; vertical-align: 0.15em; }
+
+    /* ── PRODUCTS ── */
+    .products-header { margin-bottom: var(--space-2xl); }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: var(--space-lg);
+    }
+    .product-card {
+      display: flex; flex-direction: column;
+      background: var(--color-surface);
+      border: 1px solid var(--color-line-soft);
+      color: inherit; text-decoration: none;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    a.product-card:hover {
+      border-color: var(--color-line);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px var(--color-shadow);
+    }
+    .product-cover {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-surface-alt);
+      padding: var(--space-md);
+    }
+    .product-cover img {
+      height: 100%; width: auto;
+      object-fit: contain;
+      box-shadow: 0 8px 24px var(--color-shadow-strong);
+    }
+    .product-badge {
+      position: absolute; top: var(--space-sm); right: var(--space-sm);
+      padding: var(--space-3xs) var(--space-xs);
+      background: var(--color-surface);
+      border: 1px solid var(--color-line);
+      color: var(--color-accent);
+      font-size: 0.75rem; letter-spacing: 0.1em;
+    }
+    .product-body { padding: var(--space-lg); flex: 1; display: flex; flex-direction: column; }
+    .product-tag { font-size: 0.75rem; letter-spacing: 0.18em; color: var(--color-accent); margin-bottom: var(--space-2xs); }
+    .product-name { font-size: 1.2rem; font-weight: var(--font-weight-regular); color: var(--color-heading); margin-bottom: var(--space-xs); }
+    .product-desc { font-size: 0.92rem; line-height: 1.9; color: var(--color-text-muted); flex: 1; margin-bottom: var(--space-md); }
+    .product-footer {
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-sm); flex-wrap: wrap;
+      border-top: 1px solid var(--color-line-soft); padding-top: var(--space-sm);
+    }
+    .product-price { font-family: var(--font-display); font-size: 1.3rem; font-weight: var(--font-weight-light); color: var(--color-text); }
+    .product-price span { font-size: 0.8rem; color: var(--color-text-muted); }
+    .product-cta { font-size: 0.8rem; letter-spacing: 0.1em; color: var(--color-accent); }
+    .is-muted { color: var(--color-text-muted); }
+
+    /* ── WORKSHOP（全頁唯一深綠區塊，金線不入） ── */
+    .workshop {
+      background: var(--color-inverse-bg); color: var(--color-inverse-text);
+      --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted);
+      --color-accent: var(--color-ivory); --color-heading: var(--color-ivory);
+      --color-button-ring: var(--color-ivory);
+    }
+    .workshop-inner {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-3xl); align-items: center;
+    }
+    .workshop .section-sub { margin-bottom: var(--space-lg); }
+    .workshop-features { list-style: none; margin-bottom: var(--space-xl); }
+    .workshop-features li {
+      display: flex; gap: var(--space-sm);
+      padding: var(--space-xs) 0;
+      border-bottom: 1px solid var(--color-inverse-line);
+      font-size: 0.95rem;
+    }
+    .workshop-features li::before { content: '—'; font-family: var(--font-display); }
+    .workshop-stats { display: grid; gap: var(--space-sm); }
+    .workshop-stat { padding: var(--space-md) var(--space-lg); border: 1px solid var(--color-inverse-line); }
+    .workshop-stat-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: var(--font-weight-light); line-height: 1.1; }
+    .workshop-stat-label { font-size: 0.85rem; color: var(--color-inverse-muted); letter-spacing: 0.06em; margin-top: var(--space-3xs); }
+
+    /* ── MARKET ── */
+    .market-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-top: var(--space-xl); }
+    .market-card { padding: var(--space-xl); background: var(--color-surface); border: 1px solid var(--color-line-soft); }
+    .market-code {
+      display: inline-block; margin-bottom: var(--space-sm);
+      font-family: var(--font-display); font-size: 0.8rem; font-weight: var(--font-weight-medium); letter-spacing: 0.2em;
+      color: var(--color-accent);
+      padding: var(--space-3xs) var(--space-xs); border: 1px solid var(--color-line);
+    }
+    .market-name { font-size: 1.4rem; font-weight: var(--font-weight-light); color: var(--color-heading); margin-bottom: var(--space-xs); }
+    .market-desc { font-size: 0.95rem; line-height: 1.95; color: var(--color-text-muted); margin-bottom: var(--space-md); }
+    .market-channels { display: flex; flex-wrap: wrap; gap: var(--space-2xs); list-style: none; }
+    .market-channels li {
+      padding: var(--space-3xs) var(--space-xs);
+      background: var(--color-surface-alt);
+      font-size: 0.8rem; letter-spacing: 0.06em; color: var(--color-text-muted);
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy { text-align: center; position: relative; overflow: hidden; padding-top: calc(var(--section-pad-y) * 1.25); padding-bottom: calc(var(--section-pad-y) * 1.25); }
+    .philosophy-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+    .philosophy blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: var(--font-weight-light); line-height: 1.6;
+      color: var(--color-heading);
+      margin-bottom: var(--space-md);
+    }
+    .philosophy cite { display: block; font-size: 0.8rem; letter-spacing: 0.15em; color: var(--color-accent); font-style: normal; }
+    /* 金線位置 ②：金句下的裂縫線（取代原本 50px 直線） */
+    .gold-crack { display: block; width: 120px; height: 16px; margin: var(--space-xl) auto; overflow: visible; }
+    .gold-crack path {
+      fill: none; stroke: var(--color-gold-thread); stroke-width: var(--gold-thread-width);
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .philosophy-sub { font-size: 1rem; line-height: 2.1; color: var(--color-text-muted); max-width: var(--measure); margin: 0 auto var(--space-xl); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--color-inverse-bg); color: var(--color-inverse-muted);
+      --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted);
+      --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory);
+      padding: var(--space-2xl) var(--section-pad-x) var(--space-lg);
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: var(--space-xl);
+      margin-bottom: var(--space-xl);
+    }
+    .footer-brand { margin-bottom: var(--space-sm); }
+    .footer-tagline { font-size: 0.85rem; line-height: 1.9; max-width: 280px; }
+    .footer-col h2 {
+      font-size: 0.75rem; font-weight: var(--font-weight-regular); letter-spacing: 0.18em;
+      color: var(--color-accent); margin-bottom: var(--space-sm);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: var(--space-3xs); }
+    .footer-col a, .footer-col .pending {
+      display: inline-flex; align-items: center; gap: var(--space-2xs);
+      min-height: 36px;
+      font-size: 0.88rem; color: var(--color-inverse-muted);
+      text-decoration: none; transition: color 0.25s;
+    }
+    .footer-col a:hover { color: var(--color-accent); }
+    .social-icon { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .footer-col .pending { flex-wrap: wrap; }
+    .pending small { font-size: 0.75rem; white-space: nowrap; }
+    .footer-bottom {
+      max-width: var(--content-max); margin: 0 auto;
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--color-inverse-line);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm);
+    }
+    .footer-bottom p { font-size: 0.8rem; }
+    .footer-bottom a { color: var(--color-accent); text-decoration: none; }
+
+    /* ── 進場動畫（尊重減少動態設定） ── */
+    .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .js .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+
+    @media (max-width: 1024px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero { min-height: auto; padding-top: var(--space-2xl); }
+      .hero-glyph { font-size: 70vw; right: -18vw; }
+      .hero-actions .btn { flex: 1 1 auto; }
+      .workshop-inner { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .workshop-stats { grid-template-columns: repeat(3, 1fr); gap: var(--space-2xs); }
+      .workshop-stat { padding: var(--space-sm); }
+      .workshop-stat-num { font-size: 1.4rem; }
+      .market-grid { grid-template-columns: 1fr; }
+      .market-card { padding: var(--space-lg); }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+      .footer-inner > :first-child { grid-column: 1 / -1; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 400px) {
+      .workshop-stats { grid-template-columns: 1fr; }
+      .workshop-stat { display: flex; align-items: baseline; gap: var(--space-sm); }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">跳至主要內容</a>
+
+  <nav class="site-nav" aria-label="主選單">
+    <a href="../" class="sbs-logo-link"><img class="sbs-logo sbs-logo--nav" src="../assets/logo/COMBO/SBS_COMBO_GREEN.svg" alt="Space Between Studio" width="180" height="32"></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav-toggle-icon" aria-hidden="true"></span>
+      <span class="nav-toggle-label">選單</span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../" aria-current="page">首頁</a></li>
+      <li><a href="../about.html">關於</a></li>
+      <li><a href="../writing/">寫作</a></li>
+      <li><a href="../shop/">商店</a></li>
+      <li><a href="../workshop/">光光工作坊</a></li>
+      <li><a href="https://spacebetweenhealing.com" class="nav-cta">預約諮詢</a></li>
+    </ul>
+  </nav>
+
+  <p class="preview-bar">首頁改版預覽 v2 · 只作提案，詳見 DESIGN_PROPOSAL.md</p>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-glyph" aria-hidden="true">隙</div>
+      <div class="hero-inner">
+        <p class="hero-eyebrow">品牌療癒生態系 · 台灣 × 香港</p>
+        <h1 id="hero-title">找到你的<br><em>品牌金線<svg class="gold-underline" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M1 6 C 30 3, 52 8, 78 5 S 118 2, 132 6 L 140 4 C 160 7, 182 3, 199 5"/></svg></em></h1>
+        <p class="hero-sub">那條連結你的故事、你的專業與你的受眾的核心敘事。<br>從一本書開始，慢慢成為你自己的品牌。</p>
+        <div class="hero-actions">
+          <a href="../shop/" class="btn btn-primary">探索產品 →</a>
+          <a href="../workshop/" class="btn btn-secondary">光光工作坊</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 關鍵詞（原跑馬燈） -->
+    <div class="keywords">
+      <ul aria-label="關鍵詞">
+        <li>品牌療癒</li>
+        <li>自我教練</li>
+        <li>品牌金線</li>
+        <li>台灣 × 香港</li>
+        <li>裂縫是金線進來的地方</li>
+        <li lang="en">Brand Healing</li>
+        <li lang="en">Self-Coaching</li>
+        <li lang="en">Golden Thread</li>
+      </ul>
+    </div>
+
+    <!-- PRODUCTS -->
+    <section class="section reveal" aria-labelledby="products-title">
+      <div class="inner">
+        <div class="products-header">
+          <p class="section-label">數位產品</p>
+          <h2 class="section-heading" id="products-title">從閱讀到<em>行動</em></h2>
+          <p class="section-sub">每一本書、每一個工具，都是幫你找到品牌金線的一步。</p>
+        </div>
+        <div class="product-grid">
+
+          <a href="../shop/rain.html" class="product-card">
+            <div class="product-cover">
+              <img src="../images/rain-seller-cover-new.jpg" alt="《賣雨的人》封面" width="1600" height="2400" loading="lazy" decoding="async">
+            </div>
+            <div class="product-body">
+              <p class="product-tag">互動式電子書</p>
+              <h3 class="product-name">賣雨的人</h3>
+              <p class="product-desc">一個調香師的品牌覺醒之旅。當你把自己最深的感受，變成品牌最有力量的語言。</p>
+              <div class="product-footer">
+                <p class="product-price">HKD 68 <span>/ TWD ~280</span></p>
+                <span class="product-cta">立即閱讀 →</span>
+              </div>
+            </div>
+          </a>
+
+          <a href="../shop/brand.html" class="product-card">
+            <div class="product-cover">
+              <img src="../images/manman-cover.jpg" alt="《慢慢成為自己的品牌》封面" width="1250" height="2000" loading="lazy" decoding="async">
+            </div>
+            <div class="product-body">
+              <p class="product-tag">品牌療癒工具書</p>
+              <h3 class="product-name">慢慢成為自己的品牌</h3>
+              <p class="product-desc">9章療癒旅程，63個反思練習。不是告訴你怎樣做，而是陪你找到自己的答案。</p>
+              <div class="product-footer">
+                <p class="product-price">HKD 168 <span>/ TWD ~680</span></p>
+                <span class="product-cta">開始練習 →</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="product-card">
+            <div class="product-cover">
+              <span class="product-badge">即將推出</span>
+            </div>
+            <div class="product-body">
+              <p class="product-tag">自我教練工具</p>
+              <h3 class="product-name">品牌金線自我教練卡</h3>
+              <p class="product-desc">結合 ACF Self-Coaching Cards® 方法論，為品牌主設計的數位自我教練工具。</p>
+              <div class="product-footer">
+                <p class="product-price is-muted">敬請期待</p>
+                <span class="product-cta is-muted">訂閱通知</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKSHOP -->
+    <section class="section workshop" aria-labelledby="workshop-title">
+      <div class="inner workshop-inner">
+        <div>
+          <p class="section-label">光光工作坊</p>
+          <h2 class="section-heading" id="workshop-title">AI 時代的<br><em>自我領導力</em></h2>
+          <p class="section-sub">不是學 AI，是用 AI 重新認識自己。光光工作坊透過 AI 工具與教練引導，幫助你在變動中找到方向。</p>
+          <ul class="workshop-features">
+            <li>AI 與自我領導力工作坊</li>
+            <li>網站設計 AI 應用課程（12週）</li>
+            <li>企業客製化工作坊</li>
+          </ul>
+          <a href="../workshop/" class="btn btn-secondary">了解工作坊 →</a>
+        </div>
+        <div class="workshop-stats">
+          <div class="workshop-stat">
+            <p class="workshop-stat-num">12</p>
+            <p class="workshop-stat-label">週完整課程模組</p>
+          </div>
+          <div class="workshop-stat">
+            <p class="workshop-stat-num">ACF</p>
+            <p class="workshop-stat-label">認可教練技術融入</p>
+          </div>
+          <div class="workshop-stat">
+            <p class="workshop-stat-num">TW × HK</p>
+            <p class="workshop-stat-label">台灣 · 香港同步服務</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARKET -->
+    <section class="section reveal" aria-labelledby="market-title">
+      <div class="inner">
+        <p class="section-label">服務地區</p>
+        <h2 class="section-heading" id="market-title">台灣 × 香港<br><em>雙市場</em>服務</h2>
+        <div class="market-grid">
+          <div class="market-card">
+            <p class="market-code" lang="en">TW</p>
+            <h3 class="market-name">台灣市場</h3>
+            <p class="market-desc">台灣有豐富的獨立品牌、療癒工作者與創業文化。我們以台灣為長期發展重點，提供繁體中文全面支援與在地服務。</p>
+            <ul class="market-channels">
+              <li>LINE 官方帳號</li>
+              <li>Zoom 線上服務</li>
+              <li>繁體中文</li>
+              <li>台幣計價</li>
+            </ul>
+          </div>
+          <div class="market-card">
+            <p class="market-code" lang="en">HK</p>
+            <h3 class="market-name">香港市場</h3>
+            <p class="market-desc">Space Between Studio 根植香港，深度服務本地助人工作者、社福機構從業員與品牌主，是我們的起點與根。</p>
+            <ul class="market-channels">
+              <li>WhatsApp 94568231</li>
+              <li>Zoom 線上服務</li>
+              <li>廣東話 / 繁中</li>
+              <li>港幣計價</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section class="section philosophy reveal" aria-label="核心信念">
+      <div class="philosophy-inner">
+        <blockquote>「裂縫，是金線進來的地方。」</blockquote>
+        <cite>— 金繼哲學 · Space Between Studio 核心信念</cite>
+        <svg class="gold-crack" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M2 9 L28 7 L36 11 L52 5 L63 9 L71 8 L84 12 L96 6 L118 8"/></svg>
+        <p class="philosophy-sub">我們不修補裂縫，我們讓它發光。你的故事、你的掙扎、你走過的路——這些不是你品牌的弱點，而是你最獨特的聲音。</p>
+        <a href="../about.html" class="btn btn-primary">認識我們 →</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner footer-inner">
+      <div>
+        <p class="footer-brand"><img class="sbs-logo sbs-logo--footer" src="../assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></p>
+        <p class="footer-tagline">品牌療癒・自我教練・數位產品<br>台灣 × 香港</p>
+      </div>
+      <div class="footer-col">
+        <h2>產品與服務</h2>
+        <ul>
+          <li><a href="../shop/">數位商店</a></li>
+          <li><a href="../workshop/">光光工作坊</a></li>
+          <li><a href="https://spacebetweenhealing.com">品牌設計服務</a></li>
+          <li><a href="https://spacebetweenhealing.com">一對一諮詢</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h2>聯絡我們</h2>
+        <ul>
+          <li><a href="../about.html">關於 Studio</a></li>
+          <li><a href="mailto:hello@spacebetweenstudio.site">電郵</a></li>
+          <li><a href="https://wa.me/85294568231">WhatsApp（香港）</a></li>
+          <li><a href="#">LINE（台灣）</a></li>
+        </ul>
+      </div>
+      <!-- 建議 5：社交連結 -->
+      <div class="footer-col">
+        <h2>追蹤我們</h2>
+        <ul>
+          <li>
+            <a href="https://www.instagram.com/spacebetweenstudiohk/" target="_blank" rel="noopener" aria-label="Instagram @spacebetweenstudiohk（新視窗）">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6"/></svg>
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="https://www.threads.com/@spacebetweenstudiohk" target="_blank" rel="noopener" aria-label="Threads @spacebetweenstudiohk（新視窗）">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 11.2c-.4-2.6-2.1-3.9-4.4-3.9-2.6 0-4.3 1.9-4.3 4.7s1.7 4.8 4.3 4.8c1.9 0 3.2-.9 3.6-2.4.5-1.8-.6-3.2-3-3.2-1.6 0-2.6.8-2.6 1.8 0 1.1 1 1.7 2.1 1.6 1.9-.1 2.9-1.8 2.9-4.4"/><path d="M19.5 7.5C18.3 4.8 15.7 3 12.2 3 7.1 3 4 6.6 4 12s3.1 9 8.2 9c3.3 0 5.8-1.5 7-4.1"/></svg>
+              Threads
+            </a>
+          </li>
+          <li>
+            <!-- Facebook 網址待提供：提供前不放 href，避免再出現 href="#" -->
+            <span class="pending" title="網址待提供">
+              <svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8h2.5V4.5H14c-2.2 0-4 1.8-4 4V11H7.5v3.5H10V21h3.5v-6.5H16l.5-3.5h-3V8.8c0-.4.3-.8.5-.8z"/></svg>
+              Facebook <small>（網址待提供）</small>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Space Between Studio · 品牌療癒生態系 · 台灣 × 香港</p>
+      <p><a href="https://spacebetweenhealing.com">spacebetweenhealing.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    // 統一手機選單：按鈕切換、Esc 關閉、點連結後關閉
+    (function () {
+      var nav = document.querySelector('.site-nav');
+      var toggle = nav.querySelector('.nav-toggle');
+      var label = toggle.querySelector('.nav-toggle-label');
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        label.textContent = open ? '關閉' : '選單';
+      }
+      toggle.addEventListener('click', function () { setOpen(toggle.getAttribute('aria-expanded') !== 'true'); });
+      nav.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+      });
+      window.matchMedia('(min-width: 769px)').addEventListener('change', function (e) { if (e.matches) setOpen(false); });
+    })();
+
+    // 進場動畫
+    (function () {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { reveals.forEach(function (el) { el.classList.add('visible'); }); return; }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+      }, { threshold: 0.08 });
+      reveals.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+</body>
+</html>
