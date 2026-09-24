@@ -15,7 +15,7 @@
 | # | 項目 | 現況 | 建議 |
 |---|---|---|---|
 | 1 | 各頁版面 | 見 §1 | 每頁 2–3 項，共 15 項 |
-| 2 | 金線 `--color-gold-thread` | tokens.css 已預留，暫時等於 River Stone | **#86672A**（對 Ivory 4.61:1），全站只用 5 個位置 |
+| 2 | 金線 | tokens.css 已預留 `--color-gold-thread`，暫時等於 River Stone | ✅ 已定：兩個深淺——`--color-gold-thread-on-light: #86672A`、`--color-gold-thread-on-dark: #D4B872`，只用於線條同細小點綴 |
 | 3 | 手機導航 | 3 頁手機版**完全無選單**；book.html 換成兩行；selection footer 擠爆 | 統一「選單」按鈕 + nav 下方全寬面板 |
 | 4 | `color-scheme` | PR #8 已加入（tokens.css + 16 頁 meta）；**`writing/index.html` 仍欠 meta** | 補上 `writing/index.html` 的 meta |
 | 5 | Footer 社交連結 | 沒有 | 新增「追蹤我們」欄：Instagram、Threads、Facebook（網址待提供） |
@@ -100,20 +100,29 @@
 
 ### 2.1 顏色
 
-建議 `--color-gold-thread: #86672A`（沉金／古金）。已避開禁用的 `#C9A84C`、`#C9A962`、`#C67D4A`。
+✅ 已確認用兩個深淺（已避開禁用的 `#C9A84C`、`#C9A962`、`#C67D4A`）：
+
+| Token | 值 | 用在 | 對比度 |
+|---|---|---|---|
+| `--color-gold-thread-on-light` | `#86672A` 沉金 | Ivory／White 底 | Ivory 4.61:1、White 5.27:1 |
+| `--color-gold-thread-on-dark` | `#D4B872` 淺金 | Rainforest 深綠底 | Rainforest 6.14:1 |
+
+兩者**只用於線條同細小點綴**，不用於文字。`css/tokens.css` 現有的 `--color-gold-thread`（預留，暫等於 River Stone）正式套用時建議改為這兩個 token（刪除舊名，避免混用）。
+
+`on-light`（`#86672A`）對各種淺色底：
 
 | 背景 | 對比度 | 可用於 |
 |---|---|---|
 | Ivory `#F5EFE6` | **4.61:1** | 細線、圖形、必要時小字（≥ 4.5:1） |
 | White `#FFFFFF` | **5.27:1** | 同上 |
 | surface-alt（River Stone 10%） | 4.17:1 | 只可用於線條／圖形（≥ 3:1） |
-| Rainforest `#004030` | 2.24:1 ✗ | **不可用**（深綠區塊內不放金線） |
+| Rainforest `#004030` | 2.24:1 ✗ | 不用——深綠底改用 `on-dark` |
 
 候選比較：`#8A6A1F` 4.41:1（小字不過）、`#7E6224` 5.02:1（較暗、偏啡）、`#A0803A` 3.26:1（只可做線）。`#86672A` 是仍保持「金」的感覺、同時過 4.5:1 的最亮一個。
 
-如果日後需要深綠底上的金線，另需淺金（例如 `#D4B872`，對 Rainforest 6.14:1），但它對 Ivory 只有 1.69:1，兩個值不可以共用同一 token——**這是另一個決定，本提案不建議加**。
+`on-dark`（`#D4B872`）對 Ivory 只有 1.69:1，所以兩個值**不可以互換**：淺底一定用 `on-light`，深綠底一定用 `on-dark`。
 
-### 2.2 使用位置（全站 5 處，其餘地方一律不用）
+### 2.2 使用位置（全站 6 處，其餘地方一律不用）
 
 | # | 頁面 | 位置 | 形式 | 預覽 |
 |---|---|---|---|---|
@@ -122,23 +131,17 @@
 | ③ | 關於 | 「隙光」分隔線（`.divider-line` 兩條） | 1px 直線 | — |
 | ④ | 關於 | 創辦人金句卡「裂縫不需要被修好……」左邊 | 2px 左邊框 | — |
 | ⑤ | 金線頁 | 「什麼是金繼哲學？」標題下（該區需保持 ivory 底） | 48px 短線 | — |
+| ⑥ | 首頁 | 「品牌金線自我教練卡」文字封面，書名下（深綠底，用 `on-dark`） | 1.5px 短線 | ✅ 已套用 |
 
 使用規則：
 - 只用於**線條／圖形**，線寬 1–2px；不用於內文、標題文字、按鈕、背景色塊、卡片底色。
-- 只放在 Ivory／White 底上；深綠區塊（workshop、footer 等）不放。
+- ①–⑤ 用 `on-light`，⑥ 用 `on-dark`；workshop、footer 等深綠區塊不放金線。
 - 不加漸層、光暈、閃爍動畫；不用於 Logo（Logo 只可 Rainforest／黑／白）。
 - 批准後才把值寫入 `css/tokens.css`（現時預覽在頁內覆寫 token）。
 
-### 2.3 例外：文字封面上的金線（第 6 處，按你的指示加入）
+### 2.3 文字封面上的金線（位置 ⑥）
 
-「品牌金線自我教練卡」的文字封面是 Rainforest 底，上面有一條細金線（§8.1）。`#86672A` 對 Rainforest 只有 2.24:1——作為**純裝飾線**，WCAG 不要求對比度，但肉眼偏暗。
-
-預覽用獨立 token `--color-gold-thread-on-dark`，現時**等於** `--color-gold-thread`（沒有加新顏色）。兩個選擇，待你決定：
-
-| 選項 | 值 | 對 Rainforest | 備註 |
-|---|---|---|---|
-| A（現狀） | `#86672A` | 2.24:1 | 全站只有一個金色；線偏暗 |
-| B | `#D4B872`（淺金） | 6.14:1 | 線清楚；但係新顏色，只准用於深綠底 |
+「品牌金線自我教練卡」的文字封面是 Rainforest 底，書名下一條細金線（§8.1），用 `--color-gold-thread-on-dark`（`#D4B872`，對 Rainforest 6.14:1）。
 
 ---
 
@@ -201,16 +204,19 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 
 ## 6. 需要你決定的事項
 
-1. **金線顏色**：是否接受 `#86672A`？以及 §2.2 的 5 個位置（可刪減）。
+1. ~~金線顏色~~ ✅ 已定（兩個深淺）。§2.2 的 6 個位置是否全部保留？
 2. **導航項目統一**：兩套 nav（首頁／關於／寫作／商店／光光工作坊 vs 首頁／選物／電台／課程／寫作）要合併成哪一套？
 3. **404 連結**：`shop/`、`shop/rain.html`、`shop/brand.html`、`workshop/` 應指向哪裡（例如 `selection.html`？`workshop-v2.html`？）
 4. **Facebook 網址**。
 5. **圓角**：全站統一直角，還是統一 `--radius-sm`（4px）？（selection／golden-thread 現在 8–20px）
 6. **golden-thread 保留哪一個深色區塊**：featured 價錢卡，還是「認識光光」AI 區？
-7. **文字封面上的金線**：選項 A（沿用 #86672A，偏暗）或 B（淺金 #D4B872，新顏色）？（§2.3）
+7. ~~文字封面上的金線~~ ✅ 已定：`#D4B872`。
 8. **跑馬燈改靜態**：是否同意？
-9. **是否有紙本／電子書格式**：決定 JSON-LD 的 `bookFormat`（§8.2）。
-10. **`site-covers.zip`**：未見於 repo（本機、所有遠端分支、main 都沒有），請再上傳或告訴我放在哪個分支。
+9. **各書版本（紙本／電子書）**：確認後補 JSON-LD `bookFormat`；現時一律不寫（§8.2）。
+10. ~~`site-covers.zip`~~ ✅ 已解壓並刪除。
+11. **「已出版長篇（五部）」包括哪五部？** zip 有《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》三本小說封面；第四、五部是否包括《賣雨的人》？另一部是哪本、有冇封面？（§8.2）
+12. **`publisher`**：zip 的 JSON-LD 把 Space Between Studio 標為各書出版者。小說是否由工作室出版？如否，預覽的 `publisher` 要刪（§8.2）。
+13. **《慢慢成為自己的品牌》放入 /writing 書架？** 現時 /writing 沒有這本書；zip 的書架片段有。預覽已放入（只有書名，沒有新文案、沒有連結）。
 
 ## 7. 改了甚麼／沒改甚麼
 
@@ -223,6 +229,12 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - `preview/home-v2.html`：產品卡封面（§8.1）、文字封面、價錢格式、手機左圖右文
 - 本文件：§2.3、§4 更新、§8
 - 將 main 合併入本分支（帶入 PR #8）
+
+**第三輪（site-covers）新增／更改**
+- 解壓 `site-covers.zip`：`assets/covers/`（12 個 WebP）、`assets/og/`（6 個 JPG）、`docs/site-covers/`（snippet 及 JSON-LD 原檔）；刪除 `site-covers.zip`
+- `preview/home-v2.html`：封面換 WebP + srcset；金線 token 改為 `on-light`／`on-dark`
+- 新增 `preview/writing-v2.html`（書架＋合併 JSON-LD）
+- 本文件：§2、§6、§8 更新
 
 **沒有改**
 - 任何現有頁面、`css/tokens.css`、`css/brand-logo.css`、`llms.txt`、`robots.txt`、JSON-LD。
@@ -241,35 +253,43 @@ nav 的**項目本身**（兩套 nav 合一、`shop/`／`workshop/` 404 的去�
 - 「賣雨的人」「慢慢成為自己的品牌」用真實封面，封面比例 2:3 直身。
 - **桌面／平板**：卡片上半是淺色封面框，封面置中、約 60% 闊，有淡陰影。
 - **手機（≤ 560px）**：改為**左圖右文**。封面欄佔 40%，文字在右；簡介最多 3 行（`line-clamp`），價錢與「立即閱讀」上下排。每張卡約 250px 高；如果改為封面置中 60%，每張卡會超過 600px，三張就要捲兩屏多，所以不建議。
-- 「品牌金線自我教練卡」未有封面，改用**文字封面**：同樣 2:3、Rainforest 底、Ivory 書名（對比 10.3:1）、書名下一條細金線（§2.3）、右下角白色門・隙符號（32×32px，即最小尺寸；Logo 只可用白／黑／Rainforest，所以用白色版，冇用 Ivory）。「即將推出」標籤放在封面框上，手機版移到封面下方。
+- 「品牌金線自我教練卡」未有封面，改用**文字封面**：同樣 2:3、Rainforest 底、Ivory 書名（對比 10.3:1）、書名下一條細金線（`--color-gold-thread-on-dark` #D4B872，§2.3）、右下角白色門・隙符號（32×32px，即最小尺寸；Logo 只可用白／黑／Rainforest，所以用白色版，冇用 Ivory）。「即將推出」標籤放在封面框上，手機版移到封面下方。
 - 價錢改為「HKD 68｜約 TWD 280」「HKD 168｜約 TWD 680」。
-- 現時預覽暫用 `images/` 內的原圖（`rain-seller-cover-new.jpg` 1600×2400、560KB；`manman-cover.jpg` 1250×2000，實際上係 WebP 格式，比例 5:8，所以放入 2:3 框時會裁走少少）。`site-covers.zip` 放入 repo 後，會換成 `assets/covers/` 的 WebP 400／800，並用 `srcset`。
+- 封面用 `assets/covers/` 的 WebP（400×600／800×1200，`srcset` + `sizes`），alt 沿用 `writing-snippet.html` 的描述。首頁兩張封面合共約 97KB（400w），比之前用的 `images/` 原圖（560KB + 190KB）輕得多。
+- 注意：zip 的《賣雨的人》封面（女子手持雨瓶）與 `images/rain-seller-cover-new.jpg`（金繼碗）不是同一張圖。`selection.html` 等頁面仍用舊圖——正式套用時要決定是否全站換成新封面。
 
-### 8.2 /writing 改成書架形式
+### 8.2 /writing 改成書架形式（預覽：`preview/writing-v2.html`）
 
-> ⏳ 待 `site-covers.zip`（`writing-snippet.html`、JSON-LD 片段）放入 repo 後補完。以下是原則，拿到檔案後按此處理。
+`site-covers.zip` 已解壓：封面 → `assets/covers/`（6 本 × 400／800 WebP），og 圖 → `assets/og/`（6 張 1200×630 JPG），`writing-snippet.html` 及 `writing-jsonld.json` 原檔存於 `docs/site-covers/` 作參考；repo 內的 zip 已刪除。
 
-- 版面：用 `writing-snippet.html` 的書架結構取代現有五張純文字卡片；每本書 = 2:3 封面＋書名＋一行狀態，手機兩欄、平板三欄、桌面四至五欄。
-- 「已出版長篇（五部）」、《賣雨的人》：正常封面＋連結。
-- **《拾味小館》只可標示「寫作中」**：用文字封面或淡化處理，連結維持「登記出版通知」，不可放入「已出版」行列，亦不可在 JSON-LD 用出版相關屬性（見下）。
-- 《還是要走》維持「即將連載」。
-- 文案不改；如 snippet 內有與現有頁面不同的文字，會先列出給你確認。
+**版面**
+- 上方維持「關於隙光」＋引言（引言放大一級）。
+- **「已出版長篇（五部）」**：書架一排——《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》，標題旁保留「前往 space-between.art 閱讀」。⚠️ 這三本歸入「已出版」是根據 zip 內容推斷，五部的完整名單待你確認（§6 第 11 項）。
+- **「作品」**：《賣雨的人》（品牌療癒電子書・立即閱讀 →）、《慢慢成為自己的品牌》、《拾味小館》。
+- **《拾味小館》只標「寫作中」**：封面左下角有「寫作中」標籤，下方狀態「寫作中」＋「登記出版通知」；不放在「已出版」書架，JSON-LD 亦標為 Draft。
+- 未有封面的《渡口區生活誌》《還是要走》改為兩張細卡片；「作者手記」「追蹤」兩欄並排，去掉段與段之間的分隔線。
+- 書架：封面 2:3、淡陰影，每排底部一條 1px 線當「書架底板」；桌面 4 欄、平板 3 欄、手機 2 欄。
+- 文案全部沿用現有 /writing；新增的只有 zip 提供的書名、英文副題及封面 alt。
+- 片段內的路徑是 `/assets/...`（根目錄絕對路徑）；預覽改用 `../assets/...` 以便本機開啟，正式頁面兩種都可以。
 
-**JSON-LD 合併規則**（不直接覆蓋 `writing/index.html` 現有 `@graph`）：
-1. 以現有 `@graph` 為準，保留 `Person`（`#xiguang`）及其 `sameAs`、各 `Book`／`Periodical` 的現有欄位。
-2. 只**加入**現有資料沒有的欄位（例如 `image` 指向封面、`isbn`、`datePublished`、`publisher`），以書名對應同一個節點，不產生重複節點。
-3. **移除 `bookFormat: Paperback`**——除非你確認有紙本；電子書可用 `https://schema.org/EBook`，同樣要你確認。
-4. 《拾味小館》保留 `creativeWorkStatus: "Draft"`，**不加** `datePublished`、`isbn`、`offers`、`bookFormat`。
-5. 合併後用 JSON parser 及 Schema.org validator 檢查。
+**JSON-LD 合併**（預覽頁 `<head>` 內，已用 JSON parser 驗證）
+- 以 `writing/index.html` 現有 `@graph` 為基礎：Person 保留原 `@id`（`/writing/#xiguang`）、`description`、`url`、`sameAs`；只加 zip 的 `alternateName: Xiguang`、`jobTitle`、`worksFor`。zip 用的是另一個 `@id`（`/about#xiguang`），沒有採用，避免同一人出現兩個節點。
+- 《賣雨的人》保留原 `description`、`url`（selection.html），加 `alternateName`、`image`、`publisher`。
+- 新增《逐光的藥師》《違章靈魂改建事務所》《心宅：禁室》《慢慢成為自己的品牌》四個 Book 節點（`image`、`alternateName`、`publisher`）。
+- 《拾味小館》保留 `creativeWorkStatus: Draft`、`description: 寫作中`；只加 `alternateName`、`image`；**不加 `publisher`**。
+- 《還是要走》《渡口區生活誌》原樣保留（zip 沒有這兩項）。
+- 新增 zip 的 Organization（`/#studio`）及 CollectionPage + ItemList，但 ItemList 只用 `@id` 引用上面的節點，不重複寫書目資料；`url` 用現有 canonical `/writing/`（有斜線）。
+- **所有 `bookFormat` 已移除**（zip 原本把 5 本標為 Paperback、1 本標為 EBook）；待你確認版本後再補。
 
 ### 8.3 og:image 套用
 
 | 頁面 | 現時 og:image | 建議 |
 |---|---|---|
-| `selection.html` | `images/rain-seller-cover-new.jpg`（**相對路徑**，社交平台讀不到） | 改為絕對網址；選物店總覽頁建議用品牌 og（`assets/og/sbs-og-1200x630.png`），或 zip 內的書架／合集 og 圖 |
+| `selection.html` | `images/rain-seller-cover-new.jpg`（**相對路徑**，社交平台讀不到） | 選物店總覽：品牌 og `assets/og/sbs-og-1200x630.png`（絕對網址）；如想突出主打書，可用 `assets/og/mai-yu-de-ren-og.jpg` |
 | `ebook/rain-seller/`、`audiobook/rain-seller/`、`ebook/manman/` | 無 og；有 `noindex`（付費閱讀頁） | **不加**——付費頁不應被分享預覽；分享入口應是公開介紹頁 |
-| `book.html`（《AI 給我的第一桶金》） | 品牌 og（絕對網址 ✓） | zip 如有此書 og 就換；否則維持 |
-| 將來的公開書頁（例如 `shop/rain.html`、`shop/brand.html`，現時 404） | — | 每本書用自己的 1200×630 og 圖 |
-| `writing/` | 品牌 og（絕對網址 ✓） | 可改為書架 og 圖（如 zip 有） |
+| `book.html`（《AI 給我的第一桶金》） | 品牌 og（絕對網址 ✓） | zip 沒有此書 og，維持 |
+| 將來的公開書頁（例如 `shop/rain.html`、`shop/brand.html`，現時 404） | — | `mai-yu-de-ren-og.jpg`、`man-man-cheng-wei-zi-ji-de-pin-pai-og.jpg` |
+| 將來每本小說的介紹頁（或 `/writing/#slug` 分享） | — | `zhu-guang-de-yao-shi-og.jpg`、`wei-zhang-ling-hun-gai-jian-shi-wu-suo-og.jpg`、`xin-zhai-jin-shi-og.jpg`、`shi-wei-xiao-guan-og.jpg`（《拾味小館》og 圖的文案亦只可寫「寫作中」） |
+| `writing/` | 品牌 og（絕對網址 ✓） | zip 片段示範用 `zhu-guang-de-yao-shi-og.jpg`（alt「小說《逐光的藥師》— 隙光」）；預覽已套用。另一做法是維持品牌 og，由你決定 |
 
 規則：一律用 `https://spacebetweenstudio.site/...` 絕對網址；同時加 `og:image:width`／`og:image:height`／`og:image:alt`，`twitter:card` 用 `summary_large_image`。付費／閘門頁（有 `noindex`）不需要 og 圖。

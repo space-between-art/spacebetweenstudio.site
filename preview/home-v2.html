@@ -57,14 +57,12 @@
     :root {
       color-scheme: only light;
 
-      /* 金線：只用於 ivory／white 底上的細線（見 DESIGN_PROPOSAL.md §2）
-         #86672A 對 Ivory 4.61:1、對 White 5.27:1、對 surface-alt 4.17:1
-         對 Rainforest 只有 2.24:1 → 深綠區塊內不用 */
-      --color-gold-thread: #86672A;
+      /* 金線（兩個深淺）：只用於線條同細小點綴，不用於文字、按鈕、色塊
+         on-light  #86672A：對 Ivory 4.61:1、White 5.27:1、surface-alt 4.17:1
+         on-dark   #D4B872：對 Rainforest 6.14:1（只可放深綠底） */
+      --color-gold-thread-on-light: #86672A;
+      --color-gold-thread-on-dark: #D4B872;
       --gold-thread-width: 1.5px;
-      /* 深綠底上的金線（只用於文字封面）：#86672A 對 Rainforest 只有 2.24:1，屬裝飾線，
-         可見度偏弱；如要更清楚，可改為淺金（見 DESIGN_PROPOSAL.md §2.3，待決定） */
-      --color-gold-thread-on-dark: var(--color-gold-thread);
 
       /* 版面節奏 */
       --section-pad-y: var(--space-4xl);
@@ -270,7 +268,7 @@
       width: 100%; height: 0.28em; overflow: visible;
     }
     .gold-underline path {
-      fill: none; stroke: var(--color-gold-thread);
+      fill: none; stroke: var(--color-gold-thread-on-light);
       stroke-width: var(--gold-thread-width);
       stroke-linecap: round; vector-effect: non-scaling-stroke;
     }
@@ -436,7 +434,7 @@
     /* 金線位置 ②：金句下的裂縫線（取代原本 50px 直線） */
     .gold-crack { display: block; width: 120px; height: 16px; margin: var(--space-xl) auto; overflow: visible; }
     .gold-crack path {
-      fill: none; stroke: var(--color-gold-thread); stroke-width: var(--gold-thread-width);
+      fill: none; stroke: var(--color-gold-thread-on-light); stroke-width: var(--gold-thread-width);
       stroke-linecap: round; stroke-linejoin: round;
     }
     .philosophy-sub { font-size: 1rem; line-height: 2.1; color: var(--color-text-muted); max-width: var(--measure); margin: 0 auto var(--space-xl); }
@@ -592,7 +590,11 @@
 
           <a href="../shop/rain.html" class="product-card">
             <div class="product-cover">
-              <img class="cover" src="../images/rain-seller-cover-new.jpg" alt="《賣雨的人》封面" width="1600" height="2400" loading="lazy" decoding="async">
+              <img class="cover" src="../assets/covers/mai-yu-de-ren-400.webp"
+                srcset="../assets/covers/mai-yu-de-ren-400.webp 400w, ../assets/covers/mai-yu-de-ren-800.webp 800w"
+                sizes="(max-width: 560px) 36vw, 220px"
+                width="400" height="600" loading="lazy" decoding="async"
+                alt="小說《賣雨的人》封面：女子手持裝著一場雨的玻璃瓶，窗外是雨中城市">
             </div>
             <div class="product-body">
               <p class="product-tag">互動式電子書</p>
@@ -607,7 +609,11 @@
 
           <a href="../shop/brand.html" class="product-card">
             <div class="product-cover">
-              <img class="cover" src="../images/manman-cover.jpg" alt="《慢慢成為自己的品牌》封面" width="1250" height="2000" loading="lazy" decoding="async">
+              <img class="cover" src="../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp"
+                srcset="../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp 400w, ../assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp 800w"
+                sizes="(max-width: 560px) 36vw, 220px"
+                width="400" height="600" loading="lazy" decoding="async"
+                alt="《慢慢成為自己的品牌》封面：以金繼手法修補一只陶罐，裂縫化為金線">
             </div>
             <div class="product-body">
               <p class="product-tag">品牌療癒工具書</p>
