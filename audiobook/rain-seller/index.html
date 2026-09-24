@@ -91,7 +91,7 @@
         
         .progress-fill {
             height: 100%;
-            background: var(--color-accent);
+            background: var(--color-accent-soft);
             border-radius: 2px;
             width: 0%;
             transition: width 0.1s linear;
@@ -131,17 +131,15 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--color-accent);
-            color: var(--color-bg);
+            background: var(--color-button-bg);
+            color: var(--color-button-text);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-        }
+            font-size: 24px; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .play-btn:hover {
-            background: var(--color-accent);
-        }
+            background: var(--color-button-hover-bg); color: var(--color-button-text)}
         
         /* Playlist */
         .playlist {
@@ -173,7 +171,7 @@
         }
         
         .track.active {
-            border-left: 3px solid var(--color-accent);
+            border-left: 3px solid var(--color-accent-soft);
         }
         
         .track-number {

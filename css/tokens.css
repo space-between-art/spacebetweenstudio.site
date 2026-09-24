@@ -16,6 +16,20 @@
   --color-text: #1F2A26;         /* 內文（對 ivory 12.96:1） */
   --color-white: #FFFFFF;
 
+  /* ── 用色規則（v1.1 對比度規則，所有文字對比 ≥ 4.5:1） ──
+     1. River Stone 只用於：線條、圖形、邊框、分隔線，以及 24px 以上
+        （或 18.66px 以上粗體）的大字。River Stone 對 Ivory 只有 3.3:1，
+        不可用於小字。
+     2. 淺色背景上的小字（nav active、標籤、badge、footer 品牌名等）
+        用 Rainforest（對 Ivory 10.3:1）。
+     3. 深綠背景上的小字用 Ivory（對 Rainforest 10.3:1）。
+     4. 按鈕統一：主要按鈕 = Rainforest 底 + Ivory 字；
+        次要按鈕 = Rainforest 邊框 + Rainforest 字。
+        深綠區塊內的按鈕加 Ivory 1px 內框（--color-button-ring）以保持可見；
+        次要按鈕在深綠區塊內改為 Ivory 邊框 + Ivory 字（規則 3）。
+     5. 舊金色（#C9A962 等）作文字用時一律改為 --color-accent（Rainforest），
+        作線條／邊框用時改為 --color-accent-soft（River Stone）。 */
+
   /* ── 語意色（全部由品牌色衍生） ── */
   --color-bg: var(--color-ivory);
   --color-surface: var(--color-white);
@@ -23,8 +37,8 @@
   --color-surface-strong: color-mix(in srgb, var(--color-river-stone) 22%, var(--color-ivory));
   --color-heading: var(--color-rainforest);
   --color-text-muted: color-mix(in srgb, var(--color-text) 75%, var(--color-ivory)); /* 6.1:1 on ivory */
-  --color-accent: var(--color-river-stone);         /* 舊金色（#C9A962 等）一律暫代為 River Stone */
-  --color-accent-soft: var(--color-river-stone);    /* 只用於線條／圖形／大字，不用於內文（3.3:1） */
+  --color-accent: var(--color-rainforest);          /* 強調小字、標籤、badge（規則 2） */
+  --color-accent-soft: var(--color-river-stone);    /* 線條、邊框、圖形、大字（規則 1） */
   --color-accent-tint: color-mix(in srgb, var(--color-river-stone) 14%, transparent);
   --color-accent-wash: color-mix(in srgb, var(--color-river-stone) 6%, transparent);
   --color-line: color-mix(in srgb, var(--color-river-stone) 35%, transparent);
@@ -35,16 +49,17 @@
      位置與顏色留待版面改善（Session B）時決定；值暫設為 River Stone。 */
   --color-gold-thread: var(--color-river-stone);
 
-  /* 深色區塊（footer、強調段落）：Rainforest 底 + Ivory 字 */
+  /* 深色區塊（footer、強調段落）：Rainforest 底 + Ivory 字（規則 3） */
   --color-inverse-bg: var(--color-rainforest);
   --color-inverse-text: var(--color-ivory);
   --color-inverse-muted: color-mix(in srgb, var(--color-ivory) 75%, var(--color-rainforest)); /* 6.5:1 */
   --color-inverse-line: color-mix(in srgb, var(--color-ivory) 20%, transparent);
 
-  /* 按鈕 */
+  /* 按鈕（規則 4） */
   --color-button-bg: var(--color-rainforest);
-  --color-button-text: var(--color-white);
+  --color-button-text: var(--color-ivory);
   --color-button-hover-bg: var(--color-text);
+  --color-button-ring: transparent;                 /* 深綠區塊內設為 Ivory */
 
   /* 覆蓋層、陰影 */
   --color-overlay: color-mix(in srgb, var(--color-ivory) 94%, transparent);
@@ -54,8 +69,8 @@
   --color-shadow-strong: color-mix(in srgb, var(--color-text) 18%, transparent);
   --color-error: var(--color-text);
 
-  /* 區塊作用域：深色區塊內把文字／強調色切換成淺色，
-     淺色卡片再切回來（頁面 CSS 以 var(--on-dark-*) / var(--on-light-*) 取用） */
+  /* 區塊作用域：深色區塊在頁面 CSS 內把 --color-text / --color-accent 等
+     重新指向淺色；淺色卡片以 --on-light-* 切回（這些值在 :root 解析，固定不變） */
   --on-light-text: var(--color-text);
   --on-light-text-muted: var(--color-text-muted);
   --on-light-accent: var(--color-accent);

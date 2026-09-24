@@ -24,7 +24,7 @@
             padding: 20px 40px;
             position: sticky;
             top: 0;
-            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .header-content {
             max-width: 1200px;
@@ -62,7 +62,7 @@
             background: linear-gradient(135deg, var(--color-rainforest) 0%, var(--on-light-text) 100%);
             padding: 80px 40px;
             text-align: center;
-            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .hero h1 {
             font-family: var(--font-body);
@@ -83,7 +83,7 @@
         
         .passphrase-box {
             background: color-mix(in srgb, var(--color-white) 10%, transparent);
-            border: 1px solid var(--color-accent);
+            border: 1px solid var(--color-accent-soft);
             border-radius: 12px;
             padding: 25px;
             max-width: 400px;
@@ -99,7 +99,7 @@
         .passphrase-input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid var(--color-accent);
+            border: 2px solid var(--color-accent-soft);
             border-radius: 8px;
             background: transparent;
             color: var(--color-ivory);
@@ -115,7 +115,7 @@
             width: 100%;
             padding: 12px;
             margin-top: 15px;
-            background: var(--color-accent);
+            background: var(--color-button-bg);
             color: var(--color-button-text);
             border: none;
             border-radius: 8px;
@@ -153,13 +153,13 @@
             gap: 15px;
             margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid var(--color-accent);
+            border-bottom: 2px solid var(--color-accent-soft);
         }
         
         .section-icon {
             width: 50px;
             height: 50px;
-            background: var(--color-accent);
+            background: var(--color-accent-soft);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -189,7 +189,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 20px color-mix(in srgb, var(--on-light-text) 5%, transparent);
-            transition: transform 0.3s, box-shadow 0.3s; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
+            transition: transform 0.3s, box-shadow 0.3s; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .resource-card:hover {
             transform: translateY(-5px);
@@ -202,7 +202,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            font-size: 3rem; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-content {
             padding: 20px;
@@ -238,18 +238,17 @@
             text-decoration: none;
             border-radius: 8px;
             font-size: 0.85rem;
-            transition: background 0.3s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            transition: background 0.3s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-btn:hover {
-            background: var(--color-rainforest);
-        }
+            background: var(--color-button-bg); color: var(--color-button-text)}
         
         .resource-btn.notion {
-            background: var(--color-rainforest); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            background: var(--color-rainforest); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .resource-btn.miro {
             background: var(--color-surface-strong);
-            color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
+            color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .resource-btn.canva {
             background: var(--color-river-stone);
@@ -272,12 +271,12 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 2px 10px color-mix(in srgb, var(--on-light-text) 5%, transparent); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); }
+            box-shadow: 0 2px 10px color-mix(in srgb, var(--on-light-text) 5%, transparent); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         
         .exercise-number {
             width: 45px;
             height: 45px;
-            background: var(--color-accent);
+            background: var(--color-button-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -286,8 +285,7 @@
             font-size: 1.3rem;
             font-weight: 600;
             color: var(--color-button-text);
-            flex-shrink: 0;
-        }
+            flex-shrink: 0; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .exercise-info {
             flex: 1;
@@ -304,7 +302,7 @@
         }
         
         .exercise-tools span {
-            background: var(--color-accent);
+            background: var(--color-accent-soft);
             padding: 3px 10px;
             border-radius: 20px;
             margin-right: 8px;
@@ -328,13 +326,12 @@
         }
         
         .exercise-btn.primary {
-            background: var(--color-accent);
-            color: var(--color-button-text);
-        }
+            background: var(--color-button-bg);
+            color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         
         .exercise-btn.secondary {
             background: var(--color-inverse-bg);
-            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         /* AI Section */
         .ai-section {
@@ -344,7 +341,7 @@
             color: var(--color-ivory);
             display: flex;
             gap: 40px;
-            align-items: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            align-items: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-avatar {
             width: 150px;
@@ -355,7 +352,7 @@
             align-items: center;
             justify-content: center;
             font-size: 4rem;
-            flex-shrink: 0}
+            flex-shrink: 0; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .ai-content h3 {
             font-family: var(--font-body);
@@ -392,12 +389,12 @@
             gap: 10px;
             padding: 15px 30px;
             background: var(--color-rainforest);
-            color: var(--color-white);
+            color: var(--color-button-text);
             text-decoration: none;
             border-radius: 50px;
             font-size: 1rem;
             font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.2s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            transition: transform 0.2s, box-shadow 0.2s; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .whatsapp-btn:hover {
             transform: translateY(-3px);
@@ -409,7 +406,7 @@
             background: var(--color-inverse-bg);
             color: var(--color-ivory);
             padding: 40px;
-            text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-river-stone); --color-button-text: var(--color-white); --color-button-hover-bg: var(--color-inverse-muted); }
+            text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
         
         .footer-logo {
             font-family: var(--font-display);
@@ -626,7 +623,7 @@
             
             <div class="resource-grid">
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); ">🔍</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🔍</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">品牌考古畫布</h3>
@@ -636,7 +633,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); ">✨</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">✨</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">金繼價值畫布</h3>
@@ -646,7 +643,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); ">🗺️</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🗺️</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">競品定位地圖</h3>
@@ -656,7 +653,7 @@
                 </div>
                 
                 <div class="resource-card">
-                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-text: var(--on-light-button-text); --color-button-hover-bg: var(--on-light-accent); ">🧭</div>
+                    <div class="resource-thumbnail" style="background: linear-gradient(135deg, var(--color-surface-strong) 0%, var(--color-river-stone) 100%); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; ">🧭</div>
                     <div class="resource-content">
                         <div class="resource-type">Miro Board</div>
                         <h3 class="resource-title">品牌旅程畫布</h3>

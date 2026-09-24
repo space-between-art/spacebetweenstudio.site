@@ -132,7 +132,7 @@
       color: var(--color-accent) !important;
       transition: all 0.25s !important;
     }
-    .nav-cta:hover { background: var(--color-accent); color: var(--color-ivory) !important; }
+    .nav-cta:hover { background: var(--color-button-hover-bg); color: var(--color-button-text) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -162,7 +162,7 @@
       display: flex; align-items: center; gap: 1rem;
     }
     .hero-eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--color-accent);
+      content: ''; width: 28px; height: 1px; background: var(--color-accent-soft);
     }
     h1 {
       font-family: var(--font-display);
@@ -181,11 +181,10 @@
     .btn-dark {
       padding: 0.9rem 2rem; background: var(--color-button-bg); color: var(--color-button-text);
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
-      text-decoration: none; transition: background 0.25s, transform 0.2s;
-    }
-    .btn-dark:hover { background: var(--color-accent); transform: translateY(-2px); }
+      text-decoration: none; transition: background 0.25s, transform 0.2s; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
+    .btn-dark:hover { background: var(--color-button-hover-bg); transform: translateY(-2px); color: var(--color-button-text)}
     .btn-outline {
-      padding: 0.9rem 2rem; border: 1px solid var(--color-text-muted); color: var(--color-text-muted);
+      padding: 0.9rem 2rem; border: 1px solid var(--color-accent); color: var(--color-accent);
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
       text-decoration: none; transition: all 0.25s;
     }
@@ -297,7 +296,7 @@
 
     /* ── WORKSHOP STRIP ── */
     .workshop {
-      background: var(--color-inverse-bg); color: var(--color-inverse-text);
+      background: var(--color-inverse-bg); color: var(--color-inverse-text); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory);
       padding: 7rem 3rem;
     }
     .workshop-inner {
@@ -305,7 +304,7 @@
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
       align-items: center;
     }
-    .workshop .section-label { color: color-mix(in srgb, var(--color-accent) 60%, transparent); }
+    .workshop .section-label { color: var(--color-accent); }
     .workshop .section-heading { color: var(--color-inverse-text); margin-bottom: 1.2rem; }
     .workshop .section-sub { color: var(--color-inverse-muted); margin-bottom: 2.5rem; }
     .workshop-features { list-style: none; margin-bottom: 2.5rem; }
@@ -325,7 +324,7 @@
       font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
       text-decoration: none; transition: all 0.25s;
     }
-    .btn-gold:hover { background: var(--color-accent); color: var(--color-text); transform: translateY(-2px); }
+    .btn-gold:hover { background: var(--color-button-hover-bg); color: var(--color-button-text); transform: translateY(-2px); }
     .workshop-visual {
       display: flex; flex-direction: column; gap: 1.2rem;
     }
@@ -406,7 +405,7 @@
       color: var(--color-accent); font-style: normal;
     }
     .philosophy-line {
-      width: 50px; height: 1px; background: var(--color-accent);
+      width: 50px; height: 1px; background: var(--color-accent-soft);
       margin: 2.5rem auto;
     }
     .philosophy-sub {
@@ -417,7 +416,7 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--color-inverse-bg); color: var(--color-inverse-muted);
+      background: var(--color-inverse-bg); color: var(--color-inverse-muted);  --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory);
       padding: 4rem 3rem 2.5rem;
     }
     .footer-inner {
@@ -454,7 +453,7 @@
       flex-wrap: wrap; gap: 1rem;
     }
     .footer-bottom p { font-size: 0.75rem; color: var(--color-inverse-muted); }
-    .footer-bottom a { color: color-mix(in srgb, var(--color-accent) 60%, transparent); text-decoration: none; }
+    .footer-bottom a { color: var(--color-accent); text-decoration: none; }
 
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -562,7 +561,7 @@
           </div>
         </a>
 
-        <div class="product-card" style="opacity:0.75; cursor:default;">
+        <div class="product-card" style="cursor:default;">
           <div class="product-cover" style="position:relative;">
             🧭
             <span class="product-badge badge-coming" style="position:absolute;">即將推出</span>
