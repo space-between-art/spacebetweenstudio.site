@@ -4,6 +4,7 @@
 > 範圍：AUDIT.md §7.1（Airwallex 連結與價格不一致）、§7.2（付費內容保護）、§4.2（付費頁被搜尋引擎收錄）
 > 性質：**只是計劃**。這個 PR 只新增本檔案，沒有改動任何頁面、價格或付款連結。
 > 安全說明：本文件**不會寫出任何通關密語**，只標示它們在哪個檔案。
+> 更新（2026-09-24）：加入 Airwallex 後台截圖的資料（§1.2、§2.1）；確認**目前沒有真正付款的客人**（唯一一筆《賣雨的人》付款是站長自己的測試），所以刪除了「已付款讀者遷移」的步驟，舊密語和 token 直接作廢（§4）。
 
 ---
 
@@ -43,16 +44,20 @@
 
 ### 1.2 以 Airwallex 連結反查
 
-| Airwallex 連結 | 出現位置 | 代表的產品／價格 |
-|---|---|---|
-| `hkhexbb35cle` | `selection.html` | 賣雨的人 **HKD 68** |
-| | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Seed **HKD 98** |
-| `hkhexbdv6fvp` | `selection.html` | 慢慢成為自己的品牌 **HKD 168** |
-| | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Complete **HKD 198** |
-| `hkhexbevtwaa` | `selection.html` | 療癒雙書組合 **HKD 198**（折抵額 198） |
-| | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Kintsugi **HKD 498**（折抵額 498） |
+| Airwallex 連結 | Airwallex 後台設定（截圖） | 出現位置 | 網站上代表的產品／價格 | 一致？ |
+|---|---|---|---|---|
+| `hkhexbb35cle` | 《賣雨的人》**68.00 HKD** | `selection.html` | 賣雨的人 HKD 68 | ✅ |
+| | | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Seed **HKD 98** | ❌ 結帳收 68，產品也不同 |
+| `hkhexbdv6fvp` | 《慢慢成為自己的品牌》**168.00 HKD** | `selection.html` | 慢慢成為自己的品牌 HKD 168 | ✅ |
+| | | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Complete **HKD 198** | ❌ 結帳收 168，產品也不同 |
+| `hkhexbevtwaa` | 療癒雙書組合 **198.00 HKD** | `selection.html` | 療癒雙書組合 HKD 198 | ✅ |
+| | | `golden-thread/index.html`、兩份 `golden-thread-landing.html` | 品牌金線 Kintsugi **HKD 498** | ❌ 結帳收 198，產品也不同 |
 
-> 我看不到 Airwallex 後台，所以**不知道每條連結實際設定的金額和產品名稱**。三條連結之中，每條都**至少有一頁**的標價跟結帳金額不符。
+Airwallex 後台（「收款链接」頁）的其他資料：
+- 只有上面三條連結，全部是「多次收款」；**品牌金線三個版本在後台根本沒有自己的收款連結**。
+- 三條連結都顯示 **「停用日期 2026-04-17」**。如果這是連結的到期日，**全站三條付款連結現在可能都無法付款**（待你用手機實際開一次確認，§5 第 1 項）。
+- 付款狀態：《賣雨的人》「已支付」（唯一一筆，是站長自己的測試）；其餘兩條「未支付」。**目前沒有真正付款的客人。**
+- 截圖只顯示產品名稱和金額，沒有顯示連結 ID；上表是按產品名稱與 `selection.html` 對應推斷。
 
 ### 1.3 付費／購買者專屬頁面：保護方式與收錄狀態
 
@@ -77,20 +82,21 @@
 ## 2. 不一致之處
 
 ### 2.1 付款連結與價格
-1. **三條 Airwallex 連結各被兩個不同產品共用**（見 §1.2），價格相差 HKD 30 至 HKD 300。最嚴重的是 `hkhexbevtwaa`：同一條連結在一頁是 HKD 198，在另一頁是 HKD 498。
-2. 就算金額碰巧對，**付款記錄也分不出買家買的是哪個產品**，之後無法自動開通對應內容（這一點直接影響 §3 的方案）。
-3. 「學費即訂金」折抵額不一致：雙書組合寫可折抵 **HKD 198**，Kintsugi 版寫 **HKD 498 全額**，兩者卻是同一條付款連結。
-4. `index.html` 的產品卡連到 `shop/rain.html`、`shop/brand.html`，兩頁都**不存在**；首頁完全沒有付款入口。
-5. 《AI 給我的第一桶金》HKD 99：`selection.html` 有標價，但 `book.html` 的購買按鈕是 `href="#"`，**沒有任何付款連結**。
-6. 工作坊閘門的「還沒有書？立即購買」（`workshop-v2.html` L1200）連去 `/book`（即《AI 給我的第一桶金》），但工作坊屬於《找到你的品牌金線》。
-7. 同一產品頁（品牌金線）有三份：`golden-thread/index.html`、`golden-thread-landing.html`、`golden-thread-website-package/golden-thread-landing.html`，改價時要同步三處，很容易再次出錯。
-8. 各版本權益寫法不一：`golden-thread/index.html` 的 Complete 列出「Resource Hub 完整存取」，`golden-thread-landing.html` 沒有提；兩頁都**沒有提到互動工作坊**屬於哪個版本，但工作坊閘門要求「書中的通關密語」。
-9. `index.html` 寫「9 章、63 個反思練習」；`selection.html` 寫「5 大工具、56 道練習題」（AUDIT §3.3，屬文案，不在本計劃處理）。
+1. **`selection.html` 的三個價格與 Airwallex 後台一致；品牌金線三頁全部錯誤**（見 §1.2）。品牌金線在後台沒有任何收款連結，三頁借用了療癒系列的連結：揀 Seed（98）會付 68 買到《賣雨的人》，揀 Complete（198）會付 168 買到《慢慢成為自己的品牌》，揀 Kintsugi（498）會付 198 買到療癒雙書組合。
+2. **三條連結都有「停用日期 2026-04-17」**，已經過了五個多月；如果是到期停用，網站上所有「購買」按鈕現在都付不到錢。
+3. 就算金額正確，連結共用令**付款記錄分不出買家以為自己買的是哪個產品**，之後無法自動開通對應內容（這一點直接影響 §3 的方案）。
+4. 「學費即訂金」折抵額不一致：雙書組合寫可折抵 **HKD 198**，Kintsugi 版寫 **HKD 498 全額**，兩者卻是同一條付款連結（後台實際收 198）。
+5. `index.html` 的產品卡連到 `shop/rain.html`、`shop/brand.html`，兩頁都**不存在**；首頁完全沒有付款入口。
+6. 《AI 給我的第一桶金》HKD 99：`selection.html` 有標價，但 `book.html` 的購買按鈕是 `href="#"`，**沒有任何付款連結**。
+7. 工作坊閘門的「還沒有書？立即購買」（`workshop-v2.html` L1200）連去 `/book`（即《AI 給我的第一桶金》），但工作坊屬於《找到你的品牌金線》。
+8. 同一產品頁（品牌金線）有三份：`golden-thread/index.html`、`golden-thread-landing.html`、`golden-thread-website-package/golden-thread-landing.html`，改價時要同步三處，很容易再次出錯。
+9. 各版本權益寫法不一：`golden-thread/index.html` 的 Complete 列出「Resource Hub 完整存取」，`golden-thread-landing.html` 沒有提；兩頁都**沒有提到互動工作坊**屬於哪個版本，但工作坊閘門要求「書中的通關密語」。
+10. `index.html` 寫「9 章、63 個反思練習」；`selection.html` 寫「5 大工具、56 道練習題」（AUDIT §3.3，屬文案，不在本計劃處理）。
 
 ### 2.2 保護方式
-10. 同一類「購買者專屬」內容，有的完全無保護、有的用前端密語、有的用假 token，**沒有一致的做法**，而且**沒有一種是真正有效的**（見 §0 第 1 點）。
-11. 最貴的內容（慢慢成為自己的品牌 HKD 168、工作坊）保護最弱，而且可以被 Google 收錄。
-12. 閘門通過狀態存在 `localStorage`：讀者換裝置或清瀏覽器資料就要重新輸入；反過來，任何人都可以手動寫入同一個值。
+11. 同一類「購買者專屬」內容，有的完全無保護、有的用前端密語、有的用假 token，**沒有一致的做法**，而且**沒有一種是真正有效的**（見 §0 第 1 點）。
+12. 最貴的內容（慢慢成為自己的品牌 HKD 168、工作坊）保護最弱，而且可以被 Google 收錄。
+13. 閘門通過狀態存在 `localStorage`：讀者換裝置或清瀏覽器資料就要重新輸入；反過來，任何人都可以手動寫入同一個值。
 
 ---
 
@@ -147,39 +153,33 @@ Airwallex 付款成功 ──webhook──► n8n（或 Worker 的 /api/airwalle
 
 | 階段 | 內容 | 改動範圍 | 效果 |
 |---|---|---|---|
-| **1. 止血（可即日做）** | (a) `ebook/manman`、`workshop-v2`、`workshop-full`、`golden-thread-website-package/*`、`notion/workbook.html` 加 `noindex`；(b) 新增 `robots.txt`；(c) Search Console 移除已收錄的付費頁；(d) 從 `README.md` 刪除密語 | 前端 | 減少被搜尋到；**不保護內容** |
-| **2. 修正付款連結** | 在 Airwallex 為每個 SKU 開**獨立**付款連結（至少 7 條），在 metadata／reference 帶 SKU；更新各頁連結；`book.html` 補上付款連結；刪除重複的 landing 頁（或 301 到一個正本） | 需要你在 Airwallex 後台操作＋前端改連結 | 價格與結帳一致；付款記錄可分辨產品（階段 3 的前提） |
+| **1. 止血（可即日做）** | (a) `ebook/manman`、`workshop-v2`、`workshop-full`、`golden-thread-website-package/*`、`notion/workbook.html` 加 `noindex`；(b) 新增 `robots.txt`；(c) Search Console 移除已收錄的付費頁；(d) 從 `README.md` 刪除密語；(e) 品牌金線三頁的購買按鈕暫時停用或改為「即將推出」，直到有自己的收款連結（避免客人付錯錢） | 前端 | 減少被搜尋到；避免付錯款；**不保護內容** |
+| **2. 修正付款連結** | 確認三條現有連結是否已停用，需要的話延長或重建；在 Airwallex 為每個 SKU 開**獨立**付款連結（至少 7 條：現有 3 條＋品牌金線 3 條＋《AI 給我的第一桶金》1 條），在 metadata／reference 帶 SKU；更新各頁連結；`book.html` 補上付款連結；刪除重複的 landing 頁（或 301 到一個正本） | 需要你在 Airwallex 後台操作＋前端改連結 | 價格與結帳一致；付款記錄可分辨產品（階段 3 的前提） |
 | **3. 建立 Worker＋KV** | paywall Worker、`/login`、`/auth/verify`、webhook 接收、KV namespace、secrets；先在 `*.workers.dev` 或預覽網域測試 | 新 Worker（另一個 repo 或本 repo 的 `worker/` 目錄，待決定） | 真正的伺服器端驗證 |
-| **4. 搬內容＋切換** | 付費內容搬到私有來源；在本 repo 刪除付費檔案；Cloudflare 路由指向 Worker；匯入現有買家（§4） | 刪檔＋DNS／路由 | 公開 repo 不再包含新版付費內容 |
-| **5. 收尾** | 作廢舊密語；監察 404／登入失敗；更新 llms.txt／JSON-LD 的價格（如有改動） | — | — |
+| **4. 搬內容＋切換** | 付費內容搬到私有來源；在本 repo 刪除付費檔案；Cloudflare 路由指向 Worker；舊密語、token 在切換時同步作廢 | 刪檔＋DNS／路由 | 公開 repo 不再包含新版付費內容 |
+| **5. 收尾** | 監察 404／登入失敗；更新 llms.txt／JSON-LD 的價格（如有改動） | — | — |
 
 > 注意：階段 4 之後，**舊 commit 仍然含有舊版全文**。如要徹底清除，需要改寫 git 歷史（`git filter-repo`）並強制推送，這會影響所有 fork／clone，屬於需要你決定的事（見 §5）。
 
 ---
 
-## 4. 對現有已付款讀者的影響
+## 4. 對現有讀者的影響
 
-| 讀者類型 | 現在怎樣進入 | 切換後會怎樣 | 如何減少影響 |
-|---|---|---|---|
-| 賣雨的人（電子書） | 直接開網址，無需登入 | 第一次要輸入 email 收魔法連結；之後同一裝置 180 日內免登入 | 切換前，從 Airwallex 匯出付款記錄，批量寫入 KV，並**主動寄出**「新的閱讀連結」email，讀者點一下即登入 |
-| 賣雨的人（有聲書） | 任何 `?token=` 都可以 | 舊 token 全部失效（因為從未真正驗證，**無法分辨誰是真買家**） | 同上，按付款記錄重新寄連結；音檔目前未上載，影響應該很小 |
-| 慢慢成為自己的品牌 | 直接開網址；可能已「安裝」成 PWA 並離線快取 | 線上版要登入；**已離線快取在手機上的舊版仍可閱讀**（無法遠端刪除，也不必刪） | 新版 `sw.js` 更新後會要求登入一次；email 通知先說明 |
-| 品牌金線工作坊 | Email＋書中密語；狀態存 `localStorage` | 舊密語停用；**工作坊進度存在 `localStorage`（`goldenThreadFull`）**，只要網址和網域不變，進度仍然保留 | 保持同一網域和路徑；過渡期（例如 60 日）登入頁可接受「email＋舊密語」→ 伺服器端核對 email 是否在買家名單，是就開通 |
-| Resource Hub | 密語 | 改為登入後依版本（Complete／Kintsugi）開放 | 同上 |
-| 用了雙書組合／Kintsugi 的「學費即訂金」 | 代碼（未知如何發出） | 不受保護方案影響 | 在 KV 記錄每人折抵額；因 §2.1 第 3 點，要先確認已售出的組合實際承諾了多少折抵額 |
-| 已經付款但付款連結與產品混淆的人 | — | — | 從 Airwallex 付款金額反推產品：HKD 68／98、168／198、198／498 可分辨；但 **同一條連結若兩頁價格都曾被收取**，要逐筆看金額。金額不符的訂單（例如付了 198 卻以為買 Kintsugi）需要個別聯絡 |
+**目前沒有真正付款的客人**（Airwallex 後台唯一一筆《賣雨的人》付款是站長自己的測試），所以：
 
-**已知風險：**
-- 讀者用來付款的 email 不等於他想用來登入的 email → 登入頁要有「找不到記錄？」的聯絡入口（WhatsApp／email），由你人手在 KV 加入。
-- 如果 Airwallex 付款記錄**沒有收集 email**，就無法自動匯入，需要其他買家名單（例如 n8n／HubSpot 已記錄的工作坊 email）。
+- **不需要遷移任何買家**：不用匯出付款記錄、不用批量寫入 KV、不用主動寄新的閱讀連結。
+- **舊密語和 token 直接作廢**：工作坊、Resource Hub 的前端密語，以及有聲書的 `?token=`，在切換時一併移除，不設過渡期。
+- `localStorage` 裡的舊狀態（`workshopUnlocked`、`resourceHubUnlocked`、`audiobook_token`、工作坊進度 `goldenThreadFull`）不用保留或轉移。
+- 你自己的測試付款：切換後在 KV 手動加一筆測試權益即可，用來驗證整個流程。
+- 如果在切換前有人真的付款（例如三條連結其實仍然有效），就在 KV 手動為那位客人加入權益，再寄登入連結。
 
 ---
 
 ## 5. 需要你決定的事項
 
 **付款與價格**
-1. 在 Airwallex 後台，三條現有連結（`hkhexbb35cle`、`hkhexbdv6fvp`、`hkhexbevtwaa`）**實際收取的金額和產品名稱是甚麼**？哪一頁的價格才是正確的？
-2. 是否同意每個產品／版本開**獨立**的付款連結（建議 7–8 條）？舊連結要停用還是保留給某一個產品？
+1. 三條連結的「停用日期 2026-04-17」是甚麼意思？是否已經停用、客人現在付不到錢？（用手機開一次 `https://pay.airwallex.com/hkhexbb35cle` 即可確認）
+2. 是否同意為品牌金線 Seed／Complete／Kintsugi 另開三條收款連結，並在開好之前先停用品牌金線三頁的購買按鈕？現有三條連結保留給賣雨的人、慢慢成為自己的品牌、療癒雙書組合？
 3. 《AI 給我的第一桶金》HKD 99 是否已開賣？需要付款連結嗎？
 4. 「學費即訂金」：雙書組合折抵 HKD 198、Kintsugi 折抵 HKD 498，是否正確？折抵額要記錄在系統裡，還是你人手處理？
 5. 品牌金線三個 landing 頁，保留哪一個作正本？其餘刪除還是 301 轉址？
@@ -196,17 +196,13 @@ Airwallex 付款成功 ──webhook──► n8n（或 Worker 的 /api/airwalle
 12. Worker 程式放在哪個 repo？（CLAUDE.md 規定本 repo 只處理前端；`space-between.art` 是私有 repo 但目前只有一個 README，可以考慮放在那裡，或開新的私有 repo）
 13. Airwallex webhook 由 **n8n** 接收（沿用現有流程），還是由 Worker 直接接收？寄信用甚麼（n8n 現有郵件設定／HubSpot／其他）？
 14. `cloudflare/workers-autoconfig` 分支（Worker 名 `nfc-card`、把整個 repo 公開）是否可以棄用？Cloudflare 上連接這個 repo、每次 push 都失敗的 Workers Builds「nfc-card」是否可以斷開？
-15. 是否要改寫 git 歷史，徹底刪除舊版付費內容和密語？（會影響所有 clone／fork；不改寫的話，舊版內容永遠可以在 GitHub 歷史中讀到）
-16. 是否同意過渡期（例如 60 日）接受「email＋舊密語」登入工作坊／Resource Hub？
-
-**現有讀者**
-17. 你手上有沒有完整的買家名單（Airwallex 匯出、n8n、HubSpot）？付款時有沒有收集 email？
-18. 切換前是否主動 email 通知所有買家？通知文案要由你提供（按 CLAUDE.md，我不會自行撰寫對外文案）。
+15. 是否要改寫 git 歷史，徹底刪除舊版付費內容和密語？（會影響所有 clone／fork；不改寫的話，舊版內容永遠可以在 GitHub 歷史中讀到。因為目前沒有付款客人，現在做影響最小）
+16. 新的 Airwallex 收款連結需要收集客人 email（用來開通權益和寄登入連結），請確認後台建立連結時已開啟收集 email。
 
 ---
 
 ## 6. 這個 PR 改了甚麼、沒改甚麼
 
-- **改了**：新增 `PAYMENT_PLAN.md`。
+- **改了**：新增 `PAYMENT_PLAN.md`；之後按 Airwallex 後台截圖更新 §1.2、§2.1、§5，並因沒有付款客人刪除已付款讀者遷移步驟（§3.3、§4、§5）。
 - **沒改**：任何 HTML／CSS／JS、價格、Airwallex 連結、`robots` 設定、`README.md` 中的密語、`space-between.art` repo。
 - 上面所有行號以 `main` 的 `639cb0f` 為準。
