@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
+    <link rel="canonical" href="https://space-between-studio.com/selection.html">
+    <meta property="og:url" content="https://space-between-studio.com/selection.html">
     <title>隙光・選物店 | Space Between Selection</title>
     <meta name="description" content="Space Between Studio 數位選物店 - 品牌療癒系列數位產品">
     
     <!-- Open Graph -->
     <meta property="og:title" content="隙光・選物店 | Space Between Selection">
     <meta property="og:description" content="品牌療癒系列數位產品 - 《賣雨的人》《慢慢成為自己的品牌》《AI 給我的第一桶金》">
-    <meta property="og:image" content="https://spacebetweenstudio.site/assets/og/mai-yu-de-ren-og.jpg">
+    <meta property="og:image" content="https://space-between-studio.com/assets/og/mai-yu-de-ren-og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="《賣雨的人》— 隙光">
@@ -28,6 +30,8 @@
     
     <style>
         
+        :root { --product-anchor-offset: 120px; }
+        #rain, #brand { scroll-margin-top: var(--product-anchor-offset); }
         * {
             margin: 0;
             padding: 0;
@@ -683,7 +687,7 @@
         
         <div class="products-grid">
             <!-- Product 1: 賣雨的人 -->
-            <div class="product-card">
+            <div class="product-card" id="rain">
                 <div class="product-image">
                     <img class="book-cover" src="assets/covers/mai-yu-de-ren-800.webp"
                          srcset="assets/covers/mai-yu-de-ren-400.webp 400w, assets/covers/mai-yu-de-ren-800.webp 800w"
@@ -716,7 +720,7 @@
             </div>
             
             <!-- Product 2: 慢慢成為自己的品牌 -->
-            <div class="product-card">
+            <div class="product-card" id="brand">
                 <div class="product-image">
                     <img class="book-cover" src="assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp"
                          srcset="assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-400.webp 400w, assets/covers/man-man-cheng-wei-zi-ji-de-pin-pai-800.webp 800w"
@@ -770,7 +774,7 @@
                         <span class="price-currency">HKD</span>
                         <span class="price-current">99</span>
                     </div>
-                    <a href="book.html" class="product-btn">
+                    <a href="/book.html" class="product-btn">
                         了解更多
                     </a>
                 </div>

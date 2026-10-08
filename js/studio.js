@@ -1,0 +1,4 @@
+document.documentElement.classList.add('js');
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.nav');
+if(toggle&&nav){toggle.hidden=false;toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.dataset.open=String(open)});document.addEventListener('keydown',e=>{if(e.key==='Escape'){toggle.setAttribute('aria-expanded','false');nav.dataset.open='false'}})}
+document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.querySelectorAll('[data-category]').forEach(card=>card.hidden=btn.dataset.filter!=='all'&&card.dataset.category!==btn.dataset.filter);const count=document.querySelector('[data-count]');if(count)count.textContent='顯示 '+document.querySelectorAll('[data-category]:not([hidden])').length+' 件作品';}));
