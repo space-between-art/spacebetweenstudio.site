@@ -34,3 +34,18 @@
 
 /golden-thread/*
   X-Robots-Tag: noindex
+
+/
+  Cache-Control: no-store
+
+/index.html
+  Cache-Control: no-store
+
+/shop/
+  Cache-Control: no-store
+
+/shop/rain/
+  Cache-Control: no-store
+
+/shop/brand/
+  Cache-Control: no-store
