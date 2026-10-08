@@ -1,0 +1,12 @@
+{
+  "pre_release_main_sha": "926c146a20e83c799b75e30a4505e0e84351ef74",
+  "known_successful_baseline_deployment_id": "1e5488c9-5a61-4fcb-aa44-97829cd31784",
+  "baseline_evidence": "GitHub Cloudflare Pages check for old main SHA; homepage content compared with live domain. Active production deployment ID is not exposed by GitHub.",
+  "pre_release_home_sha256": "c27f7bb482d6d9836ba37db5d99556c1b876111822ad7c4420b9d7e0a445974e",
+  "domains": [
+    "space-between-studio.com",
+    "www.space-between-studio.com"
+  ],
+  "delivery_test_result": "Wins indicated tests completed; result field was blank. No pass/fail recorded.",
+  "scope_exclusion": "nfc-card Worker"
+}
