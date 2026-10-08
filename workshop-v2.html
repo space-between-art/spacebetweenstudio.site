@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-<head>
+<head><meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
-    <meta name="robots" content="noindex, nofollow">
+
     <title>互動式工作坊 | 找到你的品牌金線</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
             font-family: var(--font-body);
             background: var(--color-inverse-bg);
             color: var(--color-ivory);
             line-height: 1.6; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         /* ==================== GATE OVERLAY ==================== */
         .gate-overlay {
             position: fixed;
@@ -33,11 +33,11 @@
             align-items: center;
             justify-content: center;
             padding: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .gate-overlay.hidden {
             display: none;
         }
-        
+
         .gate-card {
             background: linear-gradient(135deg, var(--color-inverse-bg), var(--on-light-text));
             border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
@@ -48,31 +48,31 @@
             text-align: center;
             box-shadow: 0 20px 60px color-mix(in srgb, var(--on-light-text) 50%, transparent);
         }
-        
+
         .gate-logo {
             font-size: 4rem;
             margin-bottom: 20px;
         }
-        
+
         .gate-title {
             font-family: var(--font-body);
             font-size: 1.8rem;
             color: var(--color-accent);
             margin-bottom: 10px;
         }
-        
+
         .gate-subtitle {
             color: var(--color-text-muted);
             margin-bottom: 30px;
             font-size: 0.95rem;
         }
-        
+
         .gate-form {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        
+
         .gate-input {
             padding: 16px 20px;
             background: color-mix(in srgb, var(--color-white) 5%, transparent);
@@ -83,28 +83,28 @@
             font-family: inherit;
             transition: all 0.3s ease;
         }
-        
+
         .gate-input:focus {
             outline: none;
             border-color: var(--color-accent-soft);
             background: color-mix(in srgb, var(--color-white) 8%, transparent);
         }
-        
+
         .gate-input::placeholder {
             color: color-mix(in srgb, var(--color-white) 40%, transparent);
         }
-        
+
         .gate-input.error {
             border-color: var(--color-error);
             animation: shake 0.5s ease;
         }
-        
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-8px); }
             75% { transform: translateX(8px); }
         }
-        
+
         .gate-error {
             color: var(--color-error);
             background: var(--color-error-bg); padding: var(--space-2xs) var(--space-xs); border-radius: var(--radius-sm);
@@ -112,11 +112,11 @@
             text-align: left;
             display: none;
         }
-        
+
         .gate-error.show {
             display: block;
         }
-        
+
         .gate-btn {
             padding: 16px 32px;
             background: var(--color-button-bg);
@@ -128,28 +128,28 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 10px; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .gate-btn:hover {
             background: var(--color-button-hover-bg);
             transform: translateY(-2px); color: var(--color-button-text)}
-        
+
         .gate-hint {
             margin-top: 20px;
             font-size: 0.85rem;
             color: var(--color-text-muted);
         }
-        
+
         .gate-hint a {
             color: var(--color-accent);
             text-decoration: none;
         }
-        
+
         .gate-demo {
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
         }
-        
+
         .gate-demo-btn {
             padding: 12px 24px;
             background: transparent;
@@ -160,12 +160,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .gate-demo-btn:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
-        
+
         .demo-case-btn {
             display: flex;
             align-items: center;
@@ -179,12 +179,12 @@
             transition: all 0.3s ease;
             text-align: left;
         }
-        
+
         .demo-case-btn:hover {
             border-color: var(--color-accent-soft);
             background: color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
-        
+
         /* ==================== HEADER ==================== */
         .header {
             background: var(--color-inverse-bg);
@@ -194,7 +194,7 @@
             position: sticky;
             top: 0;
             z-index: 100; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .header-top {
             display: flex;
             justify-content: space-between;
@@ -204,19 +204,19 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .logo {
             font-family: var(--font-body);
             color: var(--color-accent);
             font-size: 1.3rem;
         }
-        
+
         .header-actions {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
-        
+
         .btn-sm {
             padding: 8px 16px;
             border-radius: 20px;
@@ -227,31 +227,31 @@
             background: transparent;
             color: var(--color-ivory);
         }
-        
+
         .btn-sm:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
-        
+
         .btn-sm.primary {
             background: var(--color-button-bg);
             color: var(--color-button-text);
             border: none; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .btn-sm.primary:hover {
             background: var(--color-button-hover-bg); color: var(--color-button-text)}
-        
+
         .btn-sm.demo {
             background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             border-color: var(--color-river-stone);
             color: var(--color-text);
         }
-        
+
         .btn-sm.demo:hover {
             background: var(--color-button-hover-bg);
             color: var(--color-button-text);
         }
-        
+
         /* Demo Mode Banner */
         .demo-banner {
             background: var(--color-inverse-bg);
@@ -261,15 +261,15 @@
             font-size: 0.9rem;
             display: none;
         }
-        
+
         .demo-banner.show {
             display: block;
         }
-        
+
         .demo-banner strong {
             margin-right: 10px;
         }
-        
+
         .demo-banner button {
             background: var(--color-white);
             color: var(--color-accent);
@@ -279,20 +279,20 @@
             font-size: 0.8rem;
             cursor: pointer;
             margin-left: 10px; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
-        
+
         /* Progress */
         .progress-section {
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         .progress-bar {
             background: color-mix(in srgb, var(--color-white) 10%, transparent);
             border-radius: 10px;
             height: 10px;
             overflow: hidden;
         }
-        
+
         .progress-fill {
             background: linear-gradient(90deg, var(--color-accent), var(--color-accent));
             height: 100%;
@@ -300,7 +300,7 @@
             transition: width 0.5s ease;
             border-radius: 10px;
         }
-        
+
         .progress-info {
             display: flex;
             justify-content: space-between;
@@ -308,11 +308,11 @@
             font-size: 0.85rem;
             color: color-mix(in srgb, var(--color-white) 70%, transparent);
         }
-        
+
         .progress-info span {
             color: var(--color-accent);
         }
-        
+
         /* Navigation */
         .nav-container {
             background: var(--color-inverse-bg);
@@ -321,7 +321,7 @@
             position: sticky;
             top: 110px;
             z-index: 99; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .nav-sections {
             display: flex;
             gap: 30px;
@@ -330,26 +330,26 @@
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         .nav-section {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 8px;
         }
-        
+
         .nav-section-title {
             font-size: 0.75rem;
             color: var(--color-accent);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
+
         .nav-tabs {
             display: flex;
             gap: 5px;
         }
-        
+
         .nav-tab {
             width: 36px;
             height: 36px;
@@ -365,59 +365,59 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .nav-tab:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
-        
+
         .nav-tab.active {
             background: var(--color-button-bg);
             color: var(--color-button-text);
             border-color: var(--color-accent-soft); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .nav-tab.completed {
             background: var(--color-button-bg);
             border-color: var(--color-river-stone);
             color: var(--color-button-text);
         }
-        
+
         .nav-tab.completed::after {
             content: '✓';
             font-size: 0.7rem;
         }
-        
+
         .nav-tab.completed span {
             display: none;
         }
-        
+
         /* Main */
         .main {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
-        
+
         /* Exercise */
         .exercise {
             display: none;
             animation: fadeIn 0.4s ease;
         }
-        
+
         .exercise.active {
             display: block;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .exercise-header {
             text-align: center;
             margin-bottom: 35px;
         }
-        
+
         .exercise-badge {
             display: inline-flex;
             align-items: center;
@@ -428,7 +428,7 @@
             border-radius: 30px;
             margin-bottom: 15px;
         }
-        
+
         .exercise-badge .num {
             width: 28px;
             height: 28px;
@@ -440,25 +440,25 @@
             font-weight: 700;
             color: var(--color-button-text);
             font-size: 0.9rem; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .exercise-badge .phase {
             font-size: 0.85rem;
             color: var(--color-accent);
         }
-        
+
         .exercise-title {
             font-family: var(--font-body);
             font-size: 2rem;
             color: var(--color-accent);
             margin-bottom: 10px;
         }
-        
+
         .exercise-desc {
             color: color-mix(in srgb, var(--color-white) 70%, transparent);
             max-width: 600px;
             margin: 0 auto;
         }
-        
+
         /* Cards */
         .card {
             background: color-mix(in srgb, var(--color-white) 3%, transparent);
@@ -467,7 +467,7 @@
             padding: 30px;
             margin-bottom: 25px;
         }
-        
+
         .card-header {
             display: flex;
             align-items: center;
@@ -476,7 +476,7 @@
             padding-bottom: 15px;
             border-bottom: 1px solid color-mix(in srgb, var(--color-white) 10%, transparent);
         }
-        
+
         .card-icon {
             width: 45px;
             height: 45px;
@@ -487,24 +487,24 @@
             justify-content: center;
             font-size: 1.3rem;
         }
-        
+
         .card-title {
             font-size: 1.1rem;
             color: var(--color-ivory);
         }
-        
+
         .card-subtitle {
             font-size: 0.85rem;
             color: var(--color-text-muted);
         }
-        
+
         /* Sticky Notes */
         .sticky-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
         }
-        
+
         .sticky-note {
             padding: 18px;
             border-radius: 8px;
@@ -515,42 +515,42 @@
             min-height: 100px;
             transition: all 0.3s ease;
         }
-        
+
         .sticky-note:focus {
             outline: none;
             transform: scale(1.02);
             box-shadow: 0 8px 25px color-mix(in srgb, var(--on-light-text) 30%, transparent);
         }
-        
+
         .sticky-note::placeholder {
             color: color-mix(in srgb, var(--color-text) 40%, transparent);
         }
-        
+
         .sticky-note.yellow { background: color-mix(in srgb, var(--color-river-stone) 12%, var(--color-white)); color: var(--color-text); }
         .sticky-note.pink { background: color-mix(in srgb, var(--color-river-stone) 26%, var(--color-white)); color: var(--color-text); }
         .sticky-note.green { background: color-mix(in srgb, var(--color-river-stone) 40%, var(--color-white)); color: var(--color-text); }
         .sticky-note.orange { background: var(--color-ivory); color: var(--color-text); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
         .sticky-note.blue { background: color-mix(in srgb, var(--color-rainforest) 16%, var(--color-white)); color: var(--color-text); }
         .sticky-note.purple { background: color-mix(in srgb, var(--color-rainforest) 28%, var(--color-white)); color: var(--color-text); }
-        
+
         /* Form Elements */
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .form-label {
             display: block;
             margin-bottom: 8px;
             color: var(--color-ivory);
             font-weight: 500;
         }
-        
+
         .form-hint {
             font-size: 0.85rem;
             color: var(--color-text-muted);
             margin-bottom: 10px;
         }
-        
+
         .form-input,
         .form-textarea {
             width: 100%;
@@ -563,19 +563,19 @@
             font-family: inherit;
             transition: all 0.3s ease;
         }
-        
+
         .form-input:focus,
         .form-textarea:focus {
             outline: none;
             border-color: var(--color-accent-soft);
             background: color-mix(in srgb, var(--color-white) 8%, transparent);
         }
-        
+
         .form-textarea {
             min-height: 120px;
             resize: vertical;
         }
-        
+
         /* Golden Result Box */
         .golden-box {
             background: linear-gradient(135deg, color-mix(in srgb, var(--color-river-stone) 15%, transparent), color-mix(in srgb, var(--color-river-stone) 5%, transparent));
@@ -585,13 +585,13 @@
             text-align: center;
             margin-top: 25px;
         }
-        
+
         .golden-box h4 {
             color: var(--color-accent);
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
-        
+
         .golden-input {
             width: 100%;
             max-width: 400px;
@@ -603,16 +603,16 @@
             font-weight: 600;
             color: var(--color-button-text);
             text-align: center; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .golden-input::placeholder {
             color: color-mix(in srgb, var(--color-text) 40%, transparent);
         }
-        
+
         .golden-input:focus {
             outline: none;
             box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
-        
+
         .golden-textarea {
             width: 100%;
             padding: 20px;
@@ -626,12 +626,12 @@
             resize: none;
             min-height: 120px;
         }
-        
+
         .golden-textarea:focus {
             outline: none;
             border-color: var(--color-accent-soft);
         }
-        
+
         /* Canva Tutorial Section */
         .canva-section {
             background: linear-gradient(135deg, color-mix(in srgb, var(--color-river-stone) 10%, transparent), color-mix(in srgb, var(--color-river-stone) 5%, transparent));
@@ -640,14 +640,14 @@
             padding: 30px;
             margin-bottom: 25px;
         }
-        
+
         .canva-header {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 20px;
         }
-        
+
         .canva-icon {
             width: 50px;
             height: 50px;
@@ -658,22 +658,22 @@
             justify-content: center;
             font-size: 1.5rem;
         }
-        
+
         .canva-header h4 {
             color: var(--color-inverse-muted);
             font-size: 1.1rem;
         }
-        
+
         .canva-header p {
             color: var(--color-text-muted);
             font-size: 0.85rem;
         }
-        
+
         .tutorial-steps {
             display: grid;
             gap: 15px;
         }
-        
+
         .tutorial-step {
             display: flex;
             gap: 15px;
@@ -682,7 +682,7 @@
             border-radius: 10px;
             align-items: flex-start;
         }
-        
+
         .step-num {
             width: 30px;
             height: 30px;
@@ -695,18 +695,18 @@
             font-size: 0.85rem;
             flex-shrink: 0;
         }
-        
+
         .step-content h5 {
             color: var(--color-ivory);
             margin-bottom: 5px;
         }
-        
+
         .step-content p {
             color: var(--color-text-muted);
             font-size: 0.85rem;
             line-height: 1.5;
         }
-        
+
         .canva-link {
             display: inline-flex;
             align-items: center;
@@ -720,11 +720,11 @@
             transition: all 0.3s ease;
             margin-top: 15px;
         }
-        
+
         .canva-link:hover {
             background: var(--color-button-bg);
             transform: translateY(-2px); color: var(--color-button-text)}
-        
+
         /* Checklist */
         .checklist {
             display: flex;
@@ -733,7 +733,7 @@
             margin-top: 20px;
             justify-content: center;
         }
-        
+
         .check-item {
             display: flex;
             align-items: center;
@@ -746,16 +746,16 @@
             transition: all 0.3s ease;
             border: 1px solid transparent;
         }
-        
+
         .check-item:hover {
             border-color: color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
-        
+
         .check-item.checked {
             background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             border-color: var(--color-river-stone);
         }
-        
+
         .check-box {
             width: 20px;
             height: 20px;
@@ -766,18 +766,18 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-        
+
         .check-item.checked .check-box {
             background: var(--color-river-stone);
             border-color: var(--color-river-stone);
         }
-        
+
         .check-item.checked .check-box::after {
             content: '✓';
             color: var(--color-white);
             font-size: 0.8rem;
         }
-        
+
         /* AI Helper */
         .ai-helper {
             background: linear-gradient(135deg, var(--color-rainforest), var(--color-inverse-bg));
@@ -789,7 +789,7 @@
             margin-top: 30px;
             flex-wrap: wrap;
         }
-        
+
         .ai-avatar {
             width: 55px;
             height: 55px;
@@ -801,22 +801,22 @@
             font-size: 1.8rem;
             flex-shrink: 0;
         }
-        
+
         .ai-content {
             flex: 1;
             min-width: 200px;
         }
-        
+
         .ai-content h4 {
             color: var(--color-accent);
             margin-bottom: 5px;
         }
-        
+
         .ai-content p {
             color: color-mix(in srgb, var(--color-white) 70%, transparent);
             font-size: 0.9rem;
         }
-        
+
         .btn-whatsapp {
             display: inline-flex;
             align-items: center;
@@ -831,12 +831,12 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .btn-whatsapp:hover {
             background: var(--color-inverse-bg);
             transform: translateY(-2px);
         }
-        
+
         /* Action Bar */
         .action-bar {
             display: flex;
@@ -848,7 +848,7 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        
+
         .action-btn {
             padding: 14px 28px;
             border-radius: 30px;
@@ -861,45 +861,45 @@
             gap: 10px;
             text-decoration: none;
         }
-        
+
         .action-btn.primary {
             background: var(--color-button-bg);
             color: var(--color-button-text);
             border: none; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .action-btn.primary:hover {
             background: var(--color-button-hover-bg);
             transform: translateY(-2px); color: var(--color-button-text)}
-        
+
         .action-btn.secondary {
             background: transparent;
             color: var(--color-ivory);
             border: 1px solid var(--color-ivory);
         }
-        
+
         .action-btn.secondary:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
-        
+
         /* Summary Page */
         .summary-grid {
             display: grid;
             gap: 20px;
         }
-        
+
         .summary-card {
             background: color-mix(in srgb, var(--color-white) 3%, transparent);
             border: 1px solid color-mix(in srgb, var(--color-white) 8%, transparent);
             border-radius: 12px;
             padding: 25px;
         }
-        
+
         .summary-card.highlight {
             border-color: var(--color-accent-soft);
             background: color-mix(in srgb, var(--color-river-stone) 5%, transparent);
         }
-        
+
         .summary-card h4 {
             color: var(--color-accent);
             margin-bottom: 15px;
@@ -907,26 +907,26 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .summary-item {
             padding: 12px 0;
             border-bottom: 1px solid color-mix(in srgb, var(--color-white) 5%, transparent);
         }
-        
+
         .summary-item:last-child {
             border-bottom: none;
         }
-        
+
         .summary-label {
             font-size: 0.8rem;
             color: var(--color-text-muted);
             margin-bottom: 5px;
         }
-        
+
         .summary-value {
             color: var(--color-ivory);
         }
-        
+
         /* ==================== CTA BOX (B2B UPSELL) ==================== */
         .cta-box {
             background: linear-gradient(135deg, var(--color-accent), var(--color-accent));
@@ -935,19 +935,19 @@
             text-align: center;
             margin-top: 30px;
         }
-        
+
         .cta-box h3 {
             font-family: var(--font-body);
             font-size: 1.5rem;
             color: var(--color-text);
             margin-bottom: 10px;
         }
-        
+
         .cta-box p {
             color: color-mix(in srgb, var(--color-text) 70%, transparent);
             margin-bottom: 20px;
         }
-        
+
         .cta-box .highlight-text {
             background: var(--color-inverse-bg);
             color: var(--color-accent);
@@ -956,7 +956,7 @@
             font-size: 0.85rem;
             display: inline-block;
             margin-bottom: 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -971,13 +971,13 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .cta-btn:hover {
             background: var(--color-inverse-bg);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px color-mix(in srgb, var(--on-light-text) 30%, transparent);
         }
-        
+
         /* Celebration */
         .celebration {
             position: fixed;
@@ -991,47 +991,47 @@
             justify-content: center;
             z-index: 2000;
         }
-        
+
         .celebration.show {
             display: flex;
         }
-        
+
         .celebration-content {
             text-align: center;
             padding: 50px;
             animation: popIn 0.5s ease;
         }
-        
+
         @keyframes popIn {
             0% { transform: scale(0.5); opacity: 0; }
             70% { transform: scale(1.1); }
             100% { transform: scale(1); opacity: 1; }
         }
-        
+
         .celebration-emoji {
             font-size: 6rem;
             margin-bottom: 30px;
             animation: bounce 1s ease infinite;
         }
-        
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-25px); }
         }
-        
+
         .celebration h2 {
             font-family: var(--font-body);
             font-size: 2.5rem;
             color: var(--color-accent);
             margin-bottom: 15px;
         }
-        
+
         .celebration p {
             color: color-mix(in srgb, var(--color-white) 80%, transparent);
             font-size: 1.2rem;
             margin-bottom: 30px;
         }
-        
+
         /* Auto-save */
         .autosave {
             position: fixed;
@@ -1047,46 +1047,46 @@
             transition: all 0.3s ease;
             z-index: 1000;
         }
-        
+
         .autosave.show {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         /* Print Styles */
         @media print {
-            .gate-overlay, .header, .nav-container, .ai-helper, .action-bar, 
+            .gate-overlay, .header, .nav-container, .ai-helper, .action-bar,
             .canva-section, .autosave, .cta-box, .demo-banner {
                 display: none !important;
             }
-            
+
             body {
                 background: var(--color-white);
                 color: var(--color-text);
             }
-            
+
             .main {
                 max-width: 100%;
                 padding: 0;
             }
-            
+
             .exercise {
                 display: block !important;
                 page-break-after: always;
             }
-            
+
             .card {
                 background: var(--color-surface-alt);
                 border: 1px solid var(--color-surface-strong); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
-            
+
             .sticky-note {
                 border: 1px solid var(--color-surface-strong);
             }
-            
+
             .golden-box {
                 border: 2px solid var(--color-accent-soft);
             }
-            
+
             .pdf-header {
                 display: block !important;
                 text-align: center;
@@ -1094,18 +1094,18 @@
                 border-bottom: 3px solid var(--color-accent-soft);
                 margin-bottom: 30px;
             }
-            
+
             .pdf-header h1 {
                 font-family: var(--font-body);
                 color: var(--color-rainforest);
                 font-size: 2rem;
                 margin-bottom: 10px;
             }
-            
+
             .pdf-header p {
                 color: var(--color-text-muted);
             }
-            
+
             .pdf-footer {
                 display: block !important;
                 text-align: center;
@@ -1116,35 +1116,35 @@
                 font-size: 0.85rem;
             }
         }
-        
+
         .pdf-header, .pdf-footer {
             display: none;
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             .header-top {
                 justify-content: center;
             }
-            
+
             .nav-sections {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .sticky-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .action-bar {
                 flex-direction: column;
             }
-            
+
             .action-btn {
                 width: 100%;
                 justify-content: center;
             }
-            
+
             .gate-card {
                 padding: 30px 20px;
             }
@@ -1158,36 +1158,36 @@
             <div class="gate-logo">🧵</div>
             <h2 class="gate-title">歡迎來到互動工作坊</h2>
             <p class="gate-subtitle">請輸入您的 Email 和書中的通關密語<br>開始您的品牌金線之旅</p>
-            
+
             <form class="gate-form" onsubmit="return validateGate(event)">
                 <input type="email" class="gate-input" id="gateEmail" placeholder="您的 Email" required>
                 <p class="gate-error" id="emailError">請輸入有效的 Email</p>
-                
+
                 <input type="text" class="gate-input" id="gatePassword" placeholder="通關密語（提示：書中 P.12）" required>
                 <p class="gate-error" id="passwordError">密語不正確，請查看書中第 12 頁</p>
-                
+
                 <button type="submit" class="gate-btn">✨ 開啟工作坊</button>
             </form>
-            
+
             <p class="gate-hint">
                 還沒有書？<a href="https://spacebetweenstudio.site/book" target="_blank">立即購買</a>
             </p>
-            
+
             <div class="gate-demo">
                 <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 10px;">或者</p>
                 <button class="gate-demo-btn" onclick="enterDemoMode()">🎬 進入演示模式</button>
             </div>
         </div>
     </div>
-    
+
     <!-- Demo Mode Banner -->
     <div class="demo-banner" id="demoBanner">
-        <strong>🎬 演示模式</strong> 
+        <strong>🎬 演示模式</strong>
         已載入「雨天咖啡」品牌案例數據
         <button onclick="clearDemo()">清除數據</button>
         <button onclick="exitDemo()">退出演示</button>
     </div>
-    
+
     <!-- Header -->
     <header class="header">
         <div class="header-top">
@@ -1208,7 +1208,7 @@
             </div>
         </div>
     </header>
-    
+
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav-sections">
@@ -1248,7 +1248,7 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Main Content -->
     <main class="main">
         <!-- PDF Header -->
@@ -1256,7 +1256,7 @@
             <h1>🧵 找到你的品牌金線</h1>
             <p>互動工作坊成果報告 | Space Between Studio</p>
         </div>
-        
+
         <!-- Exercise 1 -->
         <section class="exercise active" id="ex-1">
             <div class="exercise-header">
@@ -1267,7 +1267,7 @@
                 <h2 class="exercise-title">🏺 品牌考古</h2>
                 <p class="exercise-desc">挖掘你的品牌起點故事，找到 3 個品牌關鍵字</p>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📍</div>
@@ -1282,7 +1282,7 @@
                     <textarea class="sticky-note yellow" data-key="ex1-origin3" placeholder="你想解決什麼問題？"></textarea>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">💔</div>
@@ -1297,7 +1297,7 @@
                     <textarea class="sticky-note pink" data-key="ex1-crack3" placeholder="這裂痕如何變成你的優勢？"></textarea>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">⭐</div>
@@ -1312,7 +1312,7 @@
                     <textarea class="sticky-note green" data-key="ex1-praise3" placeholder="你的「超能力」是什麼？"></textarea>
                 </div>
             </div>
-            
+
             <div class="golden-box">
                 <h4>🔑 提煉 3 個品牌關鍵字</h4>
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
@@ -1321,7 +1321,7 @@
                     <input type="text" class="golden-input" data-key="ex1-kw3" placeholder="關鍵字 3">
                 </div>
             </div>
-            
+
             <div class="ai-helper">
                 <div class="ai-avatar">🌟</div>
                 <div class="ai-content">
@@ -1330,13 +1330,13 @@
                 </div>
                 <a class="btn-whatsapp" id="wa-1" href="#" target="_blank">💬 問光光</a>
             </div>
-            
+
             <div class="action-bar">
                 <div></div>
                 <button class="action-btn primary" onclick="complete(1); goTo(2);">完成，前往下一個 →</button>
             </div>
         </section>
-        
+
         <!-- Exercise 2 -->
         <section class="exercise" id="ex-2">
             <div class="exercise-header">
@@ -1347,7 +1347,7 @@
                 <h2 class="exercise-title">🎯 金繼價值畫布</h2>
                 <p class="exercise-desc">找到你能提供的價值與客戶需要的「金色交集」</p>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">🟡</div>
@@ -1362,7 +1362,7 @@
                     <textarea class="sticky-note yellow" data-key="ex2-value3" placeholder="你的裂痕優勢..."></textarea>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">🔵</div>
@@ -1377,13 +1377,13 @@
                     <textarea class="sticky-note blue" data-key="ex2-need3" placeholder="客戶的恐懼..."></textarea>
                 </div>
             </div>
-            
+
             <div class="golden-box">
                 <h4>✨ 金色交集</h4>
                 <p style="color: var(--color-text-muted); margin-bottom: 15px; font-size: 0.9rem;">你的價值 + 客戶需要 = 你能獨特提供的價值</p>
                 <input type="text" class="golden-input" data-key="ex2-intersection" placeholder="你的獨特價值是..." style="max-width: 500px;">
             </div>
-            
+
             <div class="card" style="margin-top: 25px;">
                 <div class="card-header">
                     <div class="card-icon">📝</div>
@@ -1397,7 +1397,7 @@
                     <textarea class="form-textarea" data-key="ex2-statement" placeholder="我幫助...解決...透過...讓他們..."></textarea>
                 </div>
             </div>
-            
+
             <div class="ai-helper">
                 <div class="ai-avatar">🌟</div>
                 <div class="ai-content">
@@ -1406,13 +1406,13 @@
                 </div>
                 <a class="btn-whatsapp" id="wa-2" href="#" target="_blank">💬 問光光</a>
             </div>
-            
+
             <div class="action-bar">
                 <button class="action-btn secondary" onclick="goTo(1);">← 上一個</button>
                 <button class="action-btn primary" onclick="complete(2); goTo(3);">完成，前往下一個 →</button>
             </div>
         </section>
-        
+
         <!-- Exercise 3 -->
         <section class="exercise" id="ex-3">
             <div class="exercise-header">
@@ -1423,7 +1423,7 @@
                 <h2 class="exercise-title">🔍 競品定位分析</h2>
                 <p class="exercise-desc">了解市場，找到你的差異化位置</p>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📊</div>
@@ -1445,12 +1445,12 @@
                     <input type="text" class="form-input" data-key="ex3-comp3" placeholder="名稱、定位、價格區間">
                 </div>
             </div>
-            
+
             <div class="golden-box">
                 <h4>🎯 我的差異化位置</h4>
                 <input type="text" class="golden-input" data-key="ex3-position" placeholder="我在市場中的獨特位置是..." style="max-width: 500px;">
             </div>
-            
+
             <div class="ai-helper">
                 <div class="ai-avatar">🌟</div>
                 <div class="ai-content">
@@ -1459,13 +1459,13 @@
                 </div>
                 <a class="btn-whatsapp" id="wa-3" href="#" target="_blank">💬 問光光</a>
             </div>
-            
+
             <div class="action-bar">
                 <button class="action-btn secondary" onclick="goTo(2);">← 上一個</button>
                 <button class="action-btn primary" onclick="complete(3); goTo(4);">完成，前往下一個 →</button>
             </div>
         </section>
-        
+
         <!-- Exercise 4 -->
         <section class="exercise" id="ex-4">
             <div class="exercise-header">
@@ -1476,7 +1476,7 @@
                 <h2 class="exercise-title">✨ 金線陳述句</h2>
                 <p class="exercise-desc">整合前面所有素材，寫出你的品牌核心敘事</p>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <div class="card-icon">📦</div>
@@ -1500,7 +1500,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="golden-box">
                 <h4>🧵 我的金線陳述句</h4>
                 <textarea class="golden-textarea" data-key="ex4-final" placeholder="在這裡寫下你的金線陳述句..."></textarea>
@@ -1527,7 +1527,7 @@
                     </label>
                 </div>
             </div>
-            
+
             <div class="ai-helper">
                 <div class="ai-avatar">🌟</div>
                 <div class="ai-content">
@@ -1536,13 +1536,13 @@
                 </div>
                 <a class="btn-whatsapp" id="wa-4" href="#" target="_blank">💬 問光光</a>
             </div>
-            
+
             <div class="action-bar">
                 <button class="action-btn secondary" onclick="goTo(3);">← 上一個</button>
                 <button class="action-btn primary" onclick="complete(4); goTo(5);">🎉 完成發現篇！→</button>
             </div>
         </section>
-        
+
         <!-- Exercises 5-13 (simplified for space) -->
         <section class="exercise" id="ex-5">
             <div class="exercise-header">
@@ -1571,7 +1571,7 @@
                 <button class="action-btn primary" onclick="complete(5); goTo(6);">完成 →</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-6">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">6</span><span class="phase">視覺篇</span></div>
@@ -1597,7 +1597,7 @@
                 <button class="action-btn primary" onclick="complete(6); goTo(7);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-7">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">7</span><span class="phase">視覺篇</span></div>
@@ -1623,7 +1623,7 @@
                 <button class="action-btn primary" onclick="complete(7); goTo(8);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-8">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">8</span><span class="phase">視覺篇</span></div>
@@ -1645,7 +1645,7 @@
                 <button class="action-btn primary" onclick="complete(8); goTo(9);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-9">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">9</span><span class="phase">視覺篇</span></div>
@@ -1667,7 +1667,7 @@
                 <button class="action-btn primary" onclick="complete(9); goTo(10);">🎉 完成視覺篇！→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-10">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">10</span><span class="phase">行動篇</span></div>
@@ -1689,7 +1689,7 @@
                 <button class="action-btn primary" onclick="complete(10); goTo(11);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-11">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">11</span><span class="phase">行動篇</span></div>
@@ -1711,7 +1711,7 @@
                 <button class="action-btn primary" onclick="complete(11); goTo(12);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-12">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">12</span><span class="phase">行動篇</span></div>
@@ -1745,7 +1745,7 @@
                 <button class="action-btn primary" onclick="complete(12); goTo(13);">→</button>
             </div>
         </section>
-        
+
         <section class="exercise" id="ex-13">
             <div class="exercise-header">
                 <div class="exercise-badge"><span class="num">13</span><span class="phase">行動篇</span></div>
@@ -1773,14 +1773,14 @@
                 <button class="action-btn primary" onclick="complete(13); goTo(14); showCelebration();">🎉 完成工作坊！→</button>
             </div>
         </section>
-        
+
         <!-- Summary Page -->
         <section class="exercise" id="ex-14">
             <div class="exercise-header">
                 <h2 class="exercise-title">📋 工作坊成果總結</h2>
                 <p class="exercise-desc">恭喜你完成《找到你的品牌金線》！以下是你的成果</p>
             </div>
-            
+
             <div class="summary-grid">
                 <div class="summary-card">
                     <h4>🏺 發現篇成果</h4>
@@ -1797,12 +1797,12 @@
                         <div class="summary-value" id="sum-pos">-</div>
                     </div>
                 </div>
-                
+
                 <div class="summary-card highlight">
                     <h4>✨ 金線陳述句</h4>
                     <div class="summary-value" id="sum-statement" style="font-size: 1.2rem; text-align: center; padding: 20px 0;">-</div>
                 </div>
-                
+
                 <div class="summary-card">
                     <h4>🎨 視覺篇成果</h4>
                     <div class="summary-item">
@@ -1814,18 +1814,18 @@
                         <div class="summary-value" id="sum-font">-</div>
                     </div>
                 </div>
-                
+
                 <div class="summary-card">
                     <h4>📖 品牌故事</h4>
                     <div class="summary-value" id="sum-story" style="white-space: pre-wrap;">-</div>
                 </div>
-                
+
                 <div class="summary-card">
                     <h4>📅 90 天目標</h4>
                     <div class="summary-value" id="sum-goal">-</div>
                 </div>
             </div>
-            
+
             <!-- ==================== B2B UPSELL CTA ==================== -->
             <div class="cta-box">
                 <span class="highlight-text">🎁 書費全額折抵</span>
@@ -1835,20 +1835,20 @@
                     📅 立即預約（免費）
                 </a>
             </div>
-            
+
             <div class="action-bar" style="justify-content: center;">
                 <button class="action-btn secondary" onclick="exportPDF();">📥 匯出 PDF</button>
                 <a class="btn-whatsapp" id="wa-final" href="#" target="_blank">💬 與光光討論下一步</a>
             </div>
         </section>
-        
+
         <!-- PDF Footer -->
         <div class="pdf-footer">
             <p>《找到你的品牌金線》互動工作坊成果 | Space Between Studio</p>
             <p>spacebetweenstudio.site</p>
         </div>
     </main>
-    
+
     <!-- Celebration Modal -->
     <div class="celebration" id="celebration">
         <div class="celebration-content">
@@ -1858,15 +1858,15 @@
             <button class="action-btn primary" onclick="closeCelebration();">查看成果總結 →</button>
         </div>
     </div>
-    
+
     <!-- Autosave Indicator -->
     <div class="autosave" id="autosave">✓ 已自動儲存</div>
-    
+
     <script>
         // ==================== CONSTANTS ====================
         const PASSPHRASE = null; // 舊密語已停用（見 PAYMENT_PLAN.md）
         const phone = '85252872126';
-        
+
         // Demo Data: 兩個案例供選擇
         const DEMO_CASES = {
             'rainy': {
@@ -1960,26 +1960,26 @@
                 }
             }
         };
-        
+
         // Current demo case
         let currentDemoCase = 'rainy';
-        
+
         // ==================== DATA ====================
         let data = {};
         let completed = new Set();
         let isDemo = false;
-        
+
         // ==================== GATE FUNCTIONS ====================
         function validateGate(e) {
             e.preventDefault();
-            
+
             const email = document.getElementById('gateEmail').value.trim();
             const password = document.getElementById('gatePassword').value.trim();
-            
+
             // Reset errors
             document.querySelectorAll('.gate-input').forEach(i => i.classList.remove('error'));
             document.querySelectorAll('.gate-error').forEach(e => e.classList.remove('show'));
-            
+
             // Validate email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
@@ -1987,29 +1987,29 @@
                 document.getElementById('emailError').classList.add('show');
                 return false;
             }
-            
+
             // Validate passphrase
             if (password !== PASSPHRASE) {
                 document.getElementById('gatePassword').classList.add('error');
                 document.getElementById('passwordError').classList.add('show');
                 return false;
             }
-            
+
             // Success - save and unlock
             localStorage.setItem('workshopEmail', email);
             localStorage.setItem('workshopUnlocked', 'true');
             document.getElementById('gateOverlay').classList.add('hidden');
-            
+
             // Track in HubSpot (via n8n webhook)
             trackToHubSpot(email);
-            
+
             return false;
         }
-        
+
         // HubSpot tracking via n8n webhook
         function trackToHubSpot(email) {
             const webhookUrl = 'https://spacebetween.app.n8n.cloud/webhook/workshop-gate';
-            
+
             fetch(webhookUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -2021,26 +2021,26 @@
                 })
             }).catch(err => console.log('Tracking skipped:', err));
         }
-        
+
         function checkGate() {
             const unlocked = localStorage.getItem('workshopUnlocked');
             if (unlocked === 'true') {
                 document.getElementById('gateOverlay').classList.add('hidden');
             }
         }
-        
+
         // ==================== DEMO MODE ====================
         function enterDemoMode() {
             showDemoSelector();
         }
-        
+
         function showDemoSelector() {
             document.getElementById('gateOverlay').innerHTML = `
                 <div class="gate-card">
                     <div class="gate-logo">🎬</div>
                     <h2 class="gate-title">選擇演示案例</h2>
                     <p class="gate-subtitle">選擇一個品牌案例進行演示</p>
-                    
+
                     <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
                         <button class="demo-case-btn" onclick="selectDemoCase('rainy')">
                             <span style="font-size: 2rem;">☕</span>
@@ -2057,12 +2057,12 @@
                             </div>
                         </button>
                     </div>
-                    
+
                     <button class="gate-demo-btn" style="margin-top: 25px;" onclick="location.reload()">← 返回登入</button>
                 </div>
             `;
         }
-        
+
         function selectDemoCase(caseId) {
             currentDemoCase = caseId;
             isDemo = true;
@@ -2070,54 +2070,54 @@
             document.getElementById('gateOverlay').classList.add('hidden');
             loadDemoData(caseId);
         }
-        
+
         function loadDemoData(caseId = null) {
             const useCase = caseId || currentDemoCase || 'rainy';
             const demoCase = DEMO_CASES[useCase];
-            
+
             if (!demoCase) return;
-            
+
             isDemo = true;
             currentDemoCase = useCase;
             data = { ...demoCase.data };
-            
+
             // Fill all inputs
             document.querySelectorAll('[data-key]').forEach(el => {
                 if (data[el.dataset.key]) {
                     el.value = data[el.dataset.key];
                 }
             });
-            
+
             // Update demo banner
             const banner = document.getElementById('demoBanner');
             banner.innerHTML = `
-                <strong>🎬 演示模式</strong> 
+                <strong>🎬 演示模式</strong>
                 已載入「${demoCase.icon} ${demoCase.name}」品牌案例數據
                 <button onclick="switchDemo()">切換案例</button>
                 <button onclick="clearDemo()">清除數據</button>
                 <button onclick="exitDemo()">退出演示</button>
             `;
             banner.classList.add('show');
-            
+
             // Mark all as completed
             for (let i = 1; i <= 13; i++) {
                 completed.add(i);
             }
-            
+
             updateProgress();
             updateNav();
             updateReview();
             updateSummary();
             updateWhatsApp();
-            
+
             save();
         }
-        
+
         function switchDemo() {
             const nextCase = currentDemoCase === 'rainy' ? 'metz' : 'rainy';
             selectDemoCase(nextCase);
         }
-        
+
         function showDemoSelectorModal() {
             // Create modal for demo case selection
             const modal = document.createElement('div');
@@ -2148,24 +2148,24 @@
             `;
             document.body.appendChild(modal);
         }
-        
+
         function selectDemoCaseFromModal(caseId) {
             closeDemoModal();
             selectDemoCase(caseId);
         }
-        
+
         function closeDemoModal() {
             const modal = document.getElementById('demoModal');
             if (modal) modal.remove();
         }
-        
+
         function clearDemo() {
             data = {};
             document.querySelectorAll('[data-key]').forEach(el => el.value = '');
             save();
             showAutosave();
         }
-        
+
         function exitDemo() {
             isDemo = false;
             localStorage.removeItem('workshopDemo');
@@ -2173,7 +2173,7 @@
             localStorage.removeItem('workshopUnlocked');
             location.reload();
         }
-        
+
         // ==================== DATA FUNCTIONS ====================
         function load() {
             const saved = localStorage.getItem('goldenThreadFull');
@@ -2189,7 +2189,7 @@
                 updateProgress();
                 updateNav();
             }
-            
+
             // Check demo mode
             const demoCase = localStorage.getItem('workshopDemo');
             if (demoCase && DEMO_CASES[demoCase]) {
@@ -2198,7 +2198,7 @@
                 const caseData = DEMO_CASES[demoCase];
                 const banner = document.getElementById('demoBanner');
                 banner.innerHTML = `
-                    <strong>🎬 演示模式</strong> 
+                    <strong>🎬 演示模式</strong>
                     已載入「${caseData.icon} ${caseData.name}」品牌案例數據
                     <button onclick="switchDemo()">切換案例</button>
                     <button onclick="clearDemo()">清除數據</button>
@@ -2207,7 +2207,7 @@
                 banner.classList.add('show');
             }
         }
-        
+
         function save() {
             document.querySelectorAll('[data-key]').forEach(el => {
                 data[el.dataset.key] = el.value;
@@ -2215,36 +2215,36 @@
             localStorage.setItem('goldenThreadFull', JSON.stringify(data));
             showAutosave();
         }
-        
+
         function showAutosave() {
             const el = document.getElementById('autosave');
             el.classList.add('show');
             setTimeout(() => el.classList.remove('show'), 2000);
         }
-        
+
         // ==================== NAVIGATION ====================
         function goTo(n) {
             document.querySelectorAll('.exercise').forEach(ex => ex.classList.remove('active'));
             document.getElementById('ex-' + n).classList.add('active');
-            
+
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 tab.classList.toggle('active', parseInt(tab.dataset.ex) === n);
             });
-            
+
             if (n === 4) updateReview();
             if (n === 14) updateSummary();
             updateWhatsApp();
-            
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        
+
         function complete(n) {
             completed.add(n);
             localStorage.setItem('goldenThreadCompleted', JSON.stringify([...completed]));
             updateProgress();
             updateNav();
         }
-        
+
         function updateProgress() {
             const count = completed.size;
             const percent = Math.round((count / 13) * 100);
@@ -2252,21 +2252,21 @@
             document.getElementById('completedCount').textContent = count;
             document.getElementById('progressPercent').textContent = percent + '%';
         }
-        
+
         function updateNav() {
             document.querySelectorAll('.nav-tab').forEach(tab => {
                 const n = parseInt(tab.dataset.ex);
                 if (completed.has(n)) tab.classList.add('completed');
             });
         }
-        
+
         function updateReview() {
             const kw = [data['ex1-kw1'], data['ex1-kw2'], data['ex1-kw3']].filter(Boolean).join('、') || '-';
             document.getElementById('review-kw-text').textContent = kw;
             document.getElementById('review-int-text').textContent = data['ex2-intersection'] || '-';
             document.getElementById('review-pos-text').textContent = data['ex3-position'] || '-';
         }
-        
+
         function updateSummary() {
             const kw = [data['ex1-kw1'], data['ex1-kw2'], data['ex1-kw3']].filter(Boolean).join('、') || '-';
             document.getElementById('sum-kw').textContent = kw;
@@ -2278,11 +2278,11 @@
             document.getElementById('sum-story').textContent = data['ex11-full'] || '-';
             document.getElementById('sum-goal').textContent = data['ex12-goal'] || '-';
         }
-        
+
         // ==================== WHATSAPP ====================
         function updateWhatsApp() {
             const kw = [data['ex1-kw1'], data['ex1-kw2'], data['ex1-kw3']].filter(Boolean).join('、');
-            
+
             const msgs = {
                 1: `你好光光！我在做品牌考古練習。\n\n我的起點故事：${data['ex1-origin1'] || '(還在思考)'}\n我的裂痕經歷：${data['ex1-crack1'] || '(還在思考)'}\n客戶讚美：${data['ex1-praise1'] || '(還在思考)'}\n\n請幫我分析這些素材，找出品牌關鍵字。`,
                 2: `你好光光！我在做金繼價值畫布。\n\n我的價值：${data['ex2-value1'] || '-'}\n客戶需要：${data['ex2-need1'] || '-'}\n金色交集：${data['ex2-intersection'] || '(還在找)'}\n\n這個定位準確嗎？`,
@@ -2299,33 +2299,33 @@
                 13: `你好光光！我完成了品牌金線工作坊！🎉\n\n我的金線陳述句：「${data['ex4-final'] || '-'}」\n\n請給我下一步建議！`,
                 'final': `你好光光！我完成了完整的品牌金線工作坊！\n\n✨ 金線陳述句：「${data['ex4-final'] || '-'}」\n🔑 品牌關鍵字：${kw || '-'}\n🎯 差異化位置：${data['ex3-position'] || '-'}\n📖 品牌故事：${(data['ex11-full'] || '-').substring(0, 100)}...\n\n請幫我整體評價，並給我品牌發展建議！`
             };
-            
+
             for (let i = 1; i <= 13; i++) {
                 const el = document.getElementById('wa-' + i);
                 if (el) el.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgs[i])}`;
             }
-            
+
             const finalEl = document.getElementById('wa-final');
             if (finalEl) finalEl.href = `https://wa.me/${phone}?text=${encodeURIComponent(msgs['final'])}`;
         }
-        
+
         // ==================== UTILITIES ====================
         function toggleCheck(el) {
             el.classList.toggle('checked');
         }
-        
+
         function showCelebration() {
             document.getElementById('celebration').classList.add('show');
         }
-        
+
         function closeCelebration() {
             document.getElementById('celebration').classList.remove('show');
         }
-        
+
         function exportPDF() {
             window.print();
         }
-        
+
         function resetWorkshop() {
             if (confirm('確定要重置所有內容嗎？這個動作無法復原。')) {
                 localStorage.removeItem('goldenThreadFull');
@@ -2334,16 +2334,16 @@
                 location.reload();
             }
         }
-        
+
         // ==================== INIT ====================
         document.addEventListener('DOMContentLoaded', function() {
             checkGate();
             load();
-            
+
             document.querySelectorAll('[data-key]').forEach(el => {
                 el.addEventListener('input', save);
             });
-            
+
             updateWhatsApp();
         });
     </script>

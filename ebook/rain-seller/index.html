@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
+<head><meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
-    <meta name="robots" content="noindex, nofollow">
+
     <title>賣雨的人 | The Rain Seller</title>
     <meta name="description" content="一個關於品牌療癒的都市寓言">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    
+
+
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/brand-logo.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    
+
     <style>
-        
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        
+
         body {
             font-family: var(--font-literary);
             background: var(--color-bg);
@@ -30,11 +30,11 @@
             line-height: 2;
             overflow-x: hidden;
         }
-        
+
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--color-surface); }
         ::-webkit-scrollbar-thumb { background: var(--color-accent-soft); border-radius: 3px; }
-        
+
         /* Loading Screen */
         .loading-screen {
             position: fixed;
@@ -50,23 +50,23 @@
             z-index: 1000;
             transition: opacity 1s ease, visibility 1s ease;
         }
-        
+
         .loading-screen.hidden {
             opacity: 0;
             visibility: hidden;
         }
-        
+
         .kintsugi-loader {
             width: 120px;
             height: 120px;
             position: relative;
         }
-        
+
         .kintsugi-loader svg {
             width: 100%;
             height: 100%;
         }
-        
+
         .crack-path {
             fill: none;
             stroke: var(--color-accent);
@@ -76,18 +76,18 @@
             stroke-dashoffset: 200;
             animation: drawCrack 2s ease forwards;
         }
-        
+
         @keyframes drawCrack {
             to { stroke-dashoffset: 0; }
         }
-        
+
         .loading-text {
             margin-top: 30px;
             font-size: 14px;
             color: var(--color-text-muted);
             letter-spacing: 3px;
         }
-        
+
         /* Rain Effect */
         .rain-container {
             position: fixed;
@@ -99,7 +99,7 @@
             z-index: 50;
             opacity: 0.3;
         }
-        
+
         .raindrop {
             position: absolute;
             width: 1px;
@@ -107,12 +107,12 @@
             background: linear-gradient(to bottom, transparent, var(--color-accent));
             animation: fall linear infinite;
         }
-        
+
         @keyframes fall {
             0% { transform: translateY(-100vh); }
             100% { transform: translateY(100vh); }
         }
-        
+
         /* Header */
         header {
             position: fixed;
@@ -126,7 +126,7 @@
             z-index: 100;
             background: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 95%, transparent), transparent);
         }
-        
+
         .logo {
             font-family: var(--font-display);
             font-size: 13px;
@@ -134,13 +134,13 @@
             color: var(--color-accent);
             text-decoration: none;
         }
-        
+
         .header-actions {
             display: flex;
             gap: 20px;
             align-items: center;
         }
-        
+
         .toc-toggle {
             background: none;
             border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
@@ -151,12 +151,12 @@
             transition: all 0.3s ease;
             font-family: inherit;
         }
-        
+
         .toc-toggle:hover {
             border-color: var(--color-accent);
             color: var(--color-accent);
         }
-        
+
         /* Progress Bar */
         .progress-bar {
             position: fixed;
@@ -168,7 +168,7 @@
             z-index: 101;
             transition: width 0.3s ease;
         }
-        
+
         /* Table of Contents */
         .toc-overlay {
             position: fixed;
@@ -185,12 +185,12 @@
             visibility: hidden;
             transition: all 0.4s ease;
         }
-        
+
         .toc-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .toc-content {
             max-width: 500px;
             width: 90%;
@@ -199,16 +199,16 @@
             text-align: center;
             padding: 20px;
         }
-        
+
         .toc-content::-webkit-scrollbar {
             width: 4px;
         }
-        
+
         .toc-content::-webkit-scrollbar-thumb {
             background: var(--color-accent-soft);
             border-radius: 2px;
         }
-        
+
         .toc-close {
             position: absolute;
             top: 30px;
@@ -219,14 +219,14 @@
             font-size: 24px;
             cursor: pointer;
         }
-        
+
         .toc-title {
             font-size: 24px;
             font-weight: 300;
             margin-bottom: 40px;
             color: var(--color-accent);
         }
-        
+
         .toc-item {
             display: block;
             padding: 15px 0;
@@ -235,43 +235,43 @@
             border-bottom: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
             transition: all 0.3s ease;
         }
-        
+
         .toc-item:hover {
             color: var(--color-accent);
             padding-left: 10px;
         }
-        
+
         .toc-item.current {
             color: var(--color-accent);
         }
-        
+
         .toc-number {
             font-size: 12px;
             color: var(--color-text-muted);
             display: block;
             margin-bottom: 5px;
         }
-        
+
         .toc-title-text {
             font-size: 16px;
         }
-        
+
         /* Chapters */
         .chapter {
             min-height: 100vh;
             display: none;
         }
-        
+
         .chapter.active {
             display: block;
             animation: fadeIn 0.8s ease;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .chapter-hero {
             min-height: 60vh;
             display: flex;
@@ -282,11 +282,11 @@
             background-position: center;
             padding: 100px 20px;
         }
-        
+
         .chapter-hero-content {
             max-width: 600px;
         }
-        
+
         .chapter-label {
             display: inline-block;
             padding: 8px 20px;
@@ -296,14 +296,14 @@
             color: var(--color-accent);
             margin-bottom: 20px;
         }
-        
+
         .chapter-title {
             font-size: clamp(28px, 6vw, 42px);
             font-weight: 300;
             letter-spacing: 4px;
             margin-bottom: 15px;
         }
-        
+
         .chapter-english {
             font-family: var(--font-display);
             font-size: 14px;
@@ -311,25 +311,25 @@
             color: var(--color-text-muted);
             letter-spacing: 2px;
         }
-        
+
         .chapter-content {
             max-width: 680px;
             margin: 0 auto;
             padding: 60px 30px 80px;
         }
-        
+
         .chapter-content p {
             margin-bottom: 1.8em;
             font-size: 17px;
             text-align: justify;
         }
-        
+
         .chapter-content .dialogue {
             text-indent: 0;
             padding-left: 2em;
             position: relative;
         }
-        
+
         .chapter-content blockquote {
             margin: 40px 0;
             padding: 30px 40px;
@@ -338,26 +338,26 @@
             font-style: italic;
             color: var(--color-accent);
         }
-        
+
         .chapter-content blockquote p {
             margin-bottom: 0.8em;
         }
-        
+
         .chapter-content blockquote p:last-child {
             margin-bottom: 0;
         }
-        
+
         .chapter-divider {
             width: 60px;
             height: 1px;
             background: var(--color-accent-soft);
             margin: 50px auto;
         }
-        
+
         .chapter-content strong {
             color: var(--color-accent);
         }
-        
+
         /* Chapter Navigation */
         .chapter-nav {
             display: flex;
@@ -367,7 +367,7 @@
             padding: 40px 30px 80px;
             border-top: 1px solid color-mix(in srgb, var(--color-river-stone) 10%, transparent);
         }
-        
+
         .nav-btn {
             background: transparent;
             border: 1px solid var(--color-accent);
@@ -378,12 +378,12 @@
             transition: all 0.3s ease;
             font-family: inherit;
         }
-        
+
         .nav-btn:hover {
             background: var(--color-button-hover-bg);
             color: var(--color-button-text);
         }
-        
+
         /* Ending Screen */
         .ending-screen {
             position: fixed;
@@ -399,42 +399,42 @@
             z-index: 300;
             padding: 40px;
         }
-        
+
         .ending-screen.active {
             display: flex;
             animation: fadeIn 1s ease;
         }
-        
+
         .ending-content {
             max-width: 500px;
         }
-        
+
         .ending-icon {
             font-size: 60px;
             margin-bottom: 30px;
         }
-        
+
         .ending-title {
             font-size: 28px;
             font-weight: 300;
             margin-bottom: 20px;
             color: var(--color-accent);
         }
-        
+
         .ending-text {
             font-size: 15px;
             color: var(--color-text-muted);
             line-height: 2;
             margin-bottom: 40px;
         }
-        
+
         .ending-actions {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         .ending-btn {
             padding: 14px 30px;
             border: 1px solid var(--color-accent);
@@ -444,19 +444,19 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
         }
-        
+
         .ending-btn:hover {
             background: var(--color-button-hover-bg);
             color: var(--color-button-text);
         }
-        
+
         .ending-btn.primary {
             background: var(--color-button-bg);
             color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .ending-btn.primary:hover {
             background: var(--color-button-hover-bg); color: var(--color-button-text)}
-        
+
         /* Keyboard Hints */
         .keyboard-hint {
             position: fixed;
@@ -466,7 +466,7 @@
             color: var(--color-text-muted);
             opacity: 0.5;
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
@@ -490,13 +490,13 @@
         </div>
         <p class="loading-text">在裂縫中尋找光...</p>
     </div>
-    
+
     <!-- Rain Effect -->
     <div class="rain-container" id="rainContainer"></div>
-    
+
     <!-- Progress Bar -->
     <div class="progress-bar" id="progressBar"></div>
-    
+
     <!-- Header -->
     <header>
         <a href="/selection.html" class="logo sbs-logo-link"><img class="sbs-logo sbs-logo--nav" src="/assets/logo/COMBO/SBS_COMBO_GREEN.svg" alt="Space Between Studio" width="180" height="32"></a>
@@ -504,14 +504,14 @@
             <button class="toc-toggle" onclick="toggleToc()">目錄</button>
         </div>
     </header>
-    
+
     <!-- Table of Contents -->
     <div class="toc-overlay" id="tocOverlay">
         <button class="toc-close" onclick="toggleToc()">✕</button>
         <div class="toc-content">
             <h2 class="toc-title">《賣雨的人》</h2>
             <nav class="toc-nav">
-                
+
         <a href="#" class="toc-item" data-chapter="0">
             <span class="toc-number">序章</span>
             <span class="toc-title">雨的味道</span>
@@ -569,10 +569,10 @@
             </nav>
         </div>
     </div>
-    
+
     <!-- Chapters -->
     <main id="chaptersContainer">
-        
+
     <section class="chapter" id="chapter-0" data-chapter="0">
         <div class="chapter-hero" style="background-image: linear-gradient(to bottom, color-mix(in srgb, var(--color-ivory) 70%, transparent), color-mix(in srgb, var(--color-ivory) 95%, transparent)), url('images/prologue.jpg');">
             <div class="chapter-hero-content">
@@ -1178,57 +1178,57 @@
 <blockquote>
 <p>若晴，</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>你不認識我，但我聽蘇牧說了你的故事。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>歡迎來到這個小小的部落——那些相信裂痕可以發光的人。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>三年前，我也像你一樣，在一座玻璃大樓裡窒息。我是一個調香師，每天調配「快樂」的味道，但我自己已經很久沒有聞到真正的東西了。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>後來我離開了。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>現在我在老城區的一棟唐樓裡，賣雨的味道。不是香水，是一種記憶。一種被允許不完美的記憶。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>蘇牧說你的品牌叫「隙光」。我很喜歡這個名字。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>我的品牌叫 Kintsugi——金繼。就是那種用金漆修補碎裂陶器的方式。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>隙光和金繼，好像在說同一件事：</p>
 <p>裂縫不是缺陷，是光進來的地方。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>如果你有一天來這座城市的這一區，來找我吧。我請你聞一種味道，叫做「暴雨過後」。那是我外婆教我的味道。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>我們都是碎過的人。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>但碎過的人，才懂得怎麼發光。</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>予安</p>
 <p>Kintsugi 創辦人</p>
 </blockquote>
-> 
+>
 <blockquote>
 <p>P.S. 蘇牧說你花了很長的時間才走到這裡。</p>
 <p>這不是慢，這是紮實。</p>
@@ -1335,7 +1335,7 @@
         </div>
     </section>
     </main>
-    
+
     <!-- Ending Screen -->
     <div class="ending-screen" id="endingScreen">
         <div class="ending-content">
@@ -1351,35 +1351,35 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Keyboard Hints -->
     <div class="keyboard-hint">
         ← → 切換章節 | ESC 目錄
     </div>
-    
+
     <script>
         // Config
         const totalChapters = 11;
         let currentChapter = 0;
-        
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             // Create rain
             createRain();
-            
+
             // Hide loading after animation
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hidden');
                 showChapter(0);
             }, 2500);
-            
+
             // Restore progress
             const saved = localStorage.getItem('rainSellerProgress');
             if (saved) {
                 currentChapter = parseInt(saved);
             }
         });
-        
+
         // Rain effect
         function createRain() {
             const container = document.getElementById('rainContainer');
@@ -1393,48 +1393,48 @@
                 container.appendChild(drop);
             }
         }
-        
+
         // Chapter navigation
         function showChapter(index) {
             if (index < 0 || index >= totalChapters) return;
-            
+
             // Hide all chapters
             document.querySelectorAll('.chapter').forEach(ch => {
                 ch.classList.remove('active');
             });
-            
+
             // Show target chapter
             const chapter = document.getElementById('chapter-' + index);
             if (chapter) {
                 chapter.classList.add('active');
                 currentChapter = index;
-                
+
                 // Update progress
                 const progress = ((index + 1) / totalChapters) * 100;
                 document.getElementById('progressBar').style.width = progress + '%';
-                
+
                 // Save progress
                 localStorage.setItem('rainSellerProgress', index);
-                
+
                 // Update TOC
                 document.querySelectorAll('.toc-item').forEach((item, i) => {
                     item.classList.toggle('current', i === index);
                 });
-                
+
                 // Scroll to top
                 window.scrollTo(0, 0);
             }
         }
-        
+
         function goToChapter(index) {
             showChapter(index);
         }
-        
+
         // TOC
         function toggleToc() {
             document.getElementById('tocOverlay').classList.toggle('active');
         }
-        
+
         // TOC item click
         document.querySelectorAll('.toc-item').forEach((item, index) => {
             item.addEventListener('click', (e) => {
@@ -1443,18 +1443,18 @@
                 toggleToc();
             });
         });
-        
+
         // Ending
         function showEnding() {
             document.getElementById('endingScreen').classList.add('active');
         }
-        
+
         function restartReading() {
             document.getElementById('endingScreen').classList.remove('active');
             localStorage.removeItem('rainSellerProgress');
             showChapter(0);
         }
-        
+
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') {

@@ -29,4 +29,4 @@
 | `workshop-v2.html` | 改寫 | 保留可存取以免破壞既有服務，正式站切換前逐頁核定內容及入口；不預設轉到 workshop。 |
 | `writing/index.html` | 轉址 | 切換時分別轉到 /works/shiwei/、/reading/；本次預覽先保留來源以便核對。 |
 
-about.html 和 selection.html 已移除並以 302 分別轉到 /about/、/shop/。舊商品 .html 轉到兩個新版商品頁。第 5–8 項未修改，新商店只列兩個已批准產品。退款細則尚未批准，新頁明示購前查詢，不承諾即時交付。
+about.html 和 selection.html 已移除並以 302 分別轉到 /about/、/shop/。舊商品 .html 轉到兩個新版商品頁。第 5–8 項未修改，新商店只列兩個已批准產品。退款細則已由 Wins 確認並套用。舊服務頁及交付資源已加入 noindex；交付資源維持原有入口，不作試讀。

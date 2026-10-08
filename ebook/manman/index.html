@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
+<head><meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
-    <meta name="robots" content="noindex, nofollow">
+
     <title>慢慢成為自己的品牌</title>
     <meta name="description" content="一個關於品牌療癒的都市寓言 - Space Between Studio">
     <meta name="theme-color" content="#004030">
@@ -19,17 +19,17 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        
+
+
         html { font-size: 16px; scroll-behavior: smooth; }
-        
+
         body {
             font-family: var(--font-literary);
             background: var(--color-bg);
             color: var(--color-text);
             line-height: 2;
         }
-        
+
         /* Loading */
         #loading {
             position: fixed;
@@ -44,7 +44,7 @@
         }
         #loading.hide { opacity: 0; pointer-events: none; }
         #loading p { margin-top: 20px; color: var(--color-accent); font-size: 14px; letter-spacing: 0.3em; }
-        
+
         /* Progress */
         #progress {
             position: fixed;
@@ -55,7 +55,7 @@
             width: 0;
             transition: width 0.1s;
         }
-        
+
         /* Nav */
         .nav {
             position: fixed;
@@ -76,7 +76,7 @@
             box-shadow: 0 2px 10px color-mix(in srgb, var(--color-text) 10%, transparent);
         }
         .nav button:hover { background: var(--color-button-hover-bg); color: var(--color-button-text); }
-        
+
         /* Settings */
         #settings {
             position: fixed;
@@ -96,7 +96,7 @@
         .ctrl button { width: 40px; height: 40px; border: 1px solid var(--color-surface-strong); background: var(--color-white); border-radius: 8px; cursor: pointer; font-size: 16px; }
         .ctrl button:hover { background: var(--color-button-hover-bg); color: var(--color-button-text); border-color: var(--color-accent-soft); }
         .ctrl span { min-width: 50px; text-align: center; font-size: 14px; }
-        
+
         /* TOC */
         #toc-overlay {
             position: fixed;
@@ -125,7 +125,7 @@
         #toc a:hover { color: var(--color-accent); }
         #toc .num { color: var(--color-accent); min-width: 50px; font-size: 13px; }
         #toc-close { position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--color-text-muted); }
-        
+
         /* Hero */
         .hero {
             min-height: 100vh;
@@ -150,10 +150,10 @@
         .hero .author { color: var(--color-accent); margin-top: 10px; }
         .scroll-hint { position: absolute; bottom: 30px; color: var(--color-text-muted); font-size: 13px; animation: bounce 2s infinite; }
         @keyframes bounce { 50% { transform: translateY(8px); } }
-        
+
         /* Chapter - 正確的 CSS 類名 */
         .chapter { min-height: 100vh; }
-        
+
         .chapter-cover {
             min-height: 60vh;
             display: flex;
@@ -185,19 +185,19 @@
         .chapter-num { font-size: 13px; letter-spacing: 0.3em; opacity: 0.9; margin-bottom: 10px; }
         .chapter-title { font-family: var(--font-literary); font-size: clamp(1.8rem, 4vw, 2.5rem); text-shadow: 0 2px 15px color-mix(in srgb, var(--color-text) 30%, transparent); }
         .chapter-title-en { font-size: 14px; font-style: italic; opacity: 0.8; margin-top: 8px; }
-        
+
         .chapter-content { max-width: 680px; margin: 0 auto; padding: 60px 25px; }
-        
+
         .chapter-epigraph { margin-bottom: 40px; padding: 25px; border-left: 3px solid var(--color-accent-soft); background: color-mix(in srgb, var(--color-river-stone) 5%, transparent); }
         .chapter-epigraph p { font-style: italic; color: var(--color-accent); font-size: 15px; }
         .chapter-epigraph cite { display: block; margin-top: 12px; color: var(--color-accent); font-size: 13px; font-style: normal; }
-        
+
         .chapter-text { font-size: 17px; line-height: 2.2; }
         .chapter-text p { margin-bottom: 1.8em; text-align: justify; }
         .chapter-text .highlight { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--color-river-stone) 25%, transparent) 60%); }
         .chapter-text .dialogue { margin: 20px 0; padding: 18px 22px; background: color-mix(in srgb, var(--color-white) 80%, transparent); border-radius: 6px; font-style: italic; color: var(--color-accent); }
         .section-break { text-align: center; padding: 30px 0; color: var(--color-accent); font-size: 18px; }
-        
+
         /* Workbook */
         .workbook { margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--color-surface-strong); }
         .workbook-title { font-family: var(--font-literary); font-size: 20px; color: var(--color-accent); margin-bottom: 30px; text-align: center; }
@@ -214,7 +214,7 @@
         .next-step { margin-top: 30px; padding: 20px; background: var(--color-surface-strong); border-radius: 8px; }
         .next-step h4 { margin-bottom: 10px; }
         .next-step p { font-size: 15px; }
-        
+
         /* Quote Section */
         .quote-section {
             min-height: 40vh;
@@ -228,20 +228,20 @@
         }
         .quote-section .big { font-size: clamp(1.2rem, 3vw, 1.6rem); line-height: 2; max-width: 500px; }
         .quote-section .auth { margin-top: 20px; color: var(--color-inverse-muted); }
-        
+
         /* CTA */
         .cta { padding: 80px 20px; text-align: center; background: var(--color-white); }
         .cta h3 { font-size: 20px; margin-bottom: 15px; }
         .cta p { color: var(--color-text-muted); margin-bottom: 25px; }
         .cta a { display: inline-block; padding: 15px 35px; background: var(--color-button-bg); color: var(--color-button-text); text-decoration: none; border-radius: 25px; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
         .cta a:hover { box-shadow: 0 10px 30px color-mix(in srgb, var(--color-river-stone) 30%, transparent); }
-        
+
         /* Footer */
         footer { padding: 60px 20px; text-align: center; background: var(--color-inverse-bg); color: var(--color-inverse-text); }
         footer .fq { color: var(--color-inverse-muted); line-height: 2.2; margin-bottom: 30px; }
         footer a { color: var(--color-inverse-text); }
         footer .copy { margin-top: 20px; font-size: 12px; color: var(--color-inverse-muted); }
-        
+
         /* Responsive */
         @media (max-width: 600px) {
             .nav { top: 10px; right: 10px; }
@@ -261,14 +261,14 @@
         </svg>
         <p><img class="sbs-logo sbs-logo--nav" src="/assets/logo/COMBO/SBS_COMBO_GREEN.svg" alt="Space Between Studio" width="180" height="32"></p>
     </div>
-    
+
     <div id="progress"></div>
-    
+
     <nav class="nav">
         <button onclick="toggleToc()">☰ 目錄</button>
         <button onclick="toggleSettings()">Aa</button>
     </nav>
-    
+
     <div id="settings">
         <h3>閱讀設定</h3>
         <label>文字大小</label>
@@ -284,9 +284,9 @@
             <button onclick="changeLine(0.1)">鬆</button>
         </div>
     </div>
-    
+
     <div id="toc-overlay" onclick="toggleToc()"></div>
-    
+
     <aside id="toc">
         <button id="toc-close" onclick="toggleToc()">×</button>
         <h2>目錄</h2>
@@ -304,7 +304,7 @@
 <li class="toc-item"><a href="#ch10"><span class="toc-num">第十章</span><span class="toc-name">金繕</span></a></li>
 <li class="toc-item"><a href="#afterword"><span class="toc-num">後記</span><span class="toc-name">程慢山的最後一課</span></a></li>        </ul>
     </aside>
-    
+
     <section class="hero">
         <img src="/ebook/manman/images/ch00-cover.png" alt="慢慢成為自己的品牌">
         <h1>慢慢成為自己的品牌</h1>
@@ -328,7 +328,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-text">
                 <p>在我開始這個故事之前，我想先說說我自己。</p>
 <p>我叫蘇牧，今年三十五歲。在過去十年裡，我做過 in-house 設計師、freelancer、也在別人的工作室工作過。我幫過很多品牌做設計——從 logo 到整套視覺識別，從名片到網站，從社群貼文到產品包裝。</p>
@@ -354,7 +354,7 @@
 <p>——蘇牧</p>
 <p>寫於緩坡工作室</p>
             </div>
-            
+
         </div>
     </section>
 
@@ -370,7 +370,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「人們不會買你做的東西，他們買的是你為什麼做。」</p>
                 <cite>—— Simon Sinek《Start with Why》</cite>
@@ -630,7 +630,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「每一個為什麼都有一個怎麼做，每一個怎麼做都有一個做什麼。但只有極少數的人和組織能清楚說出自己的為什麼。」</p>
                 <cite>—— Simon Sinek《Start with Why》</cite>
@@ -853,7 +853,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「傾聽是一種愛的形式。在這種被傾聽的經驗中，我們能夠重新審視自己的想法和感受，獲得新的理解。」</p>
                 <cite>—— Carl Rogers</cite>
@@ -1073,7 +1073,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「人若不統整自己的陰影，陰影就會以命運的形式出現在他的生命中。」</p>
                 <cite>—— Carl Jung</cite>
@@ -1249,7 +1249,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「品牌識別就像一個棱鏡，它把品牌的內在本質折射成外在可見的面向，同時也把外界的目光折射回品牌的核心。」</p>
                 <cite>—— Jean-Noël Kapferer《Strategic Brand Management》</cite>
@@ -1460,7 +1460,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「完美是好的敵人。」</p>
                 <cite>—— Voltaire</cite>
@@ -1665,7 +1665,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「名字是最短的咒語。它召喚一個事物進入存在。」</p>
                 <cite>—— Ursula K. Le Guin</cite>
@@ -1838,7 +1838,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「故事是我們擁有的最古老的技術。它比輪子更早，比火更久。它是我們用來理解世界、連結彼此的工具。」</p>
                 <cite>—— Ursula K. Le Guin</cite>
@@ -2016,7 +2016,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「在呼與吸之間，有一個空間。在那個空間裡，選擇了你下一步要往哪裡去。」</p>
                 <cite>—— Viktor Frankl（改編）</cite>
@@ -2210,7 +2210,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-epigraph">
                 <p>「金繕不是修復破損，而是將破損轉化為美。那些裂痕不是缺陷，而是故事。」</p>
                 <cite>—— 日本金繕藝術的核心理念</cite>
@@ -2424,7 +2424,7 @@
             </div>
         </div>
         <div class="chapter-content">
-            
+
             <div class="chapter-text">
                 <p>若晴離開緩坡的那天，蘇牧送給她一本小冊子。</p>
 <p class="dialogue">「這是什麼？」若晴問。</p>
@@ -2524,7 +2524,7 @@
 <p><span class="highlight">蘇牧</span></p>
 <p><span class="highlight">緩坡品牌療癒工作室</span></p>
             </div>
-            
+
         </div>
     </section>
 
@@ -2534,13 +2534,13 @@
             <p class="auth">—— 程慢山</p>
         </div>
     </section>
-    
+
     <section class="cta">
         <h3>📋 開始你的品牌療癒之旅</h3>
         <p>複製 Notion 模版，把練習題帶入日常</p>
         <a href="#">複製 Notion 模版 →</a>
     </section>
-    
+
     <footer>
         <div class="fq">
             每個品牌都是一個人。<br>
@@ -2559,31 +2559,31 @@
             }, 1500);
             loadSettings();
         });
-        
+
         window.addEventListener('scroll', function() {
             var h = document.documentElement.scrollHeight - window.innerHeight;
             var p = h > 0 ? (window.scrollY / h) * 100 : 0;
             var bar = document.getElementById('progress');
             if (bar) bar.style.width = p + '%';
         });
-        
+
         function toggleToc() {
             var t = document.getElementById('toc');
             var o = document.getElementById('toc-overlay');
             if (t) t.classList.toggle('show');
             if (o) o.classList.toggle('show');
         }
-        
+
         var tocLinks = document.querySelectorAll('#toc a');
         for (var i = 0; i < tocLinks.length; i++) {
             tocLinks[i].addEventListener('click', toggleToc);
         }
-        
+
         function toggleSettings() {
             var s = document.getElementById('settings');
             if (s) s.classList.toggle('show');
         }
-        
+
         var fontSize = 100;
         function changeFont(d) {
             fontSize = Math.max(80, Math.min(140, fontSize + d * 10));
@@ -2598,7 +2598,7 @@
             var v = document.getElementById('fontVal');
             if (v) v.textContent = fontSize + '%';
         }
-        
+
         var lineH = 2.2;
         function changeLine(d) {
             lineH = Math.max(1.6, Math.min(3, lineH + d));
@@ -2614,7 +2614,7 @@
             var v = document.getElementById('lineVal');
             if (v) v.textContent = lineH.toFixed(1);
         }
-        
+
         function loadSettings() {
             try {
                 var f = localStorage.getItem('mm-font');
@@ -2623,7 +2623,7 @@
                 if (l) { lineH = parseFloat(l); applyLine(); }
             } catch(e) {}
         }
-        
+
         document.addEventListener('click', function(e) {
             var s = document.getElementById('settings');
             if (s && s.classList.contains('show')) {
@@ -2632,7 +2632,7 @@
                 }
             }
         });
-        
+
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('./sw.js').catch(function(){});
         }
