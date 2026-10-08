@@ -1,0 +1,36 @@
+
+/course
+  X-Robots-Tag: noindex
+
+/course.html
+  X-Robots-Tag: noindex
+
+/workshop-full
+  X-Robots-Tag: noindex
+
+/workshop-full.html
+  X-Robots-Tag: noindex
+
+/workshop-v2
+  X-Robots-Tag: noindex
+
+/workshop-v2.html
+  X-Robots-Tag: noindex
+
+/golden-thread-landing
+  X-Robots-Tag: noindex
+
+/golden-thread-landing.html
+  X-Robots-Tag: noindex
+
+/resource-hub/*
+  X-Robots-Tag: noindex
+
+/ebook/*
+  X-Robots-Tag: noindex
+
+/audiobook/*
+  X-Robots-Tag: noindex
+
+/golden-thread/*
+  X-Robots-Tag: noindex

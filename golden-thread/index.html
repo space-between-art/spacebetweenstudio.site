@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
+<head><meta name="robots" content="noindex">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="only light">
     <title>找到你的品牌金線 | Space Between Studio</title>
     <meta name="description" content="用金繼哲學，把品牌的裂痕變成金線。13個練習，找到你獨一無二的品牌敘事。">
-    
+
     <!-- Open Graph -->
     <meta property="og:title" content="找到你的品牌金線">
     <meta property="og:description" content="用金繼哲學，把品牌的裂痕變成金線">
     <meta property="og:image" content="https://spacebetweenstudio.site/assets/og/sbs-og-1200x630.png">
     <meta property="og:type" content="website">
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="../css/tokens.css">
-    <link rel="stylesheet" href="../css/brand-logo.css">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
-    
+
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/brand-logo.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
     <style>
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: var(--font-body);
             background: var(--color-ivory);
             color: var(--color-text);
             line-height: 1.8;
         }
-        
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -48,7 +48,7 @@
             padding: 60px 20px;
             position: relative;
             overflow: hidden; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .hero::before {
             content: '';
             position: absolute;
@@ -59,13 +59,13 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23648C7D" opacity="0.1"/></svg>') repeat;
             background-size: 50px 50px;
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 1;
             max-width: 800px;
         }
-        
+
         .hero-badge {
             display: inline-block;
             background: color-mix(in srgb, var(--color-river-stone) 20%, transparent);
@@ -76,7 +76,7 @@
             margin-bottom: 30px;
             border: 1px solid color-mix(in srgb, var(--color-river-stone) 30%, transparent);
         }
-        
+
         .hero h1 {
             font-family: var(--font-body);
             font-size: clamp(2.5rem, 6vw, 4rem);
@@ -84,11 +84,11 @@
             margin-bottom: 20px;
             font-weight: 600;
         }
-        
+
         .hero h1 span {
             color: var(--color-accent);
         }
-        
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
@@ -97,7 +97,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .hero-cta {
             display: inline-block;
             background: var(--color-button-bg);
@@ -108,22 +108,22 @@
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .hero-cta:hover {
             background: var(--color-button-hover-bg);
             transform: translateY(-2px);
             box-shadow: 0 10px 30px color-mix(in srgb, var(--color-river-stone) 30%, transparent); color: var(--color-button-text)}
-        
+
         /* Philosophy Section */
         .philosophy {
             padding: 100px 20px;
             background: var(--color-ivory); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
         }
-        
+
         .section-title {
             font-family: var(--font-body);
             font-size: 2rem;
@@ -131,44 +131,44 @@
             margin-bottom: 50px;
             color: var(--color-text);
         }
-        
+
         .philosophy-content {
             display: grid;
             gap: 40px;
         }
-        
+
         .philosophy-text {
             font-size: 1.1rem;
             color: var(--color-inverse-bg);
         }
-        
+
         .philosophy-text p {
             margin-bottom: 20px;
         }
-        
+
         .highlight-box {
             background: var(--color-rainforest);
             color: var(--color-ivory);
             padding: 40px;
             border-radius: 16px;
             text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .highlight-box h3 {
             font-family: var(--font-body);
             font-size: 1.5rem;
             color: var(--color-accent);
             margin-bottom: 15px;
         }
-        
+
         /* What You Get */
         .features {
             padding: 100px 20px;
             background: var(--color-inverse-bg); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .features .section-title {
             color: var(--color-ivory);
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -176,40 +176,40 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        
+
         .feature-card {
             background: var(--color-inverse-bg);
             border-radius: 16px;
             padding: 35px;
             border: 1px solid color-mix(in srgb, var(--color-river-stone) 20%, transparent);
             transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .feature-card:hover {
             border-color: var(--color-accent-soft);
             transform: translateY(-5px);
         }
-        
+
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-        
+
         .feature-card h4 {
             font-size: 1.2rem;
             color: var(--color-accent);
             margin-bottom: 10px;
         }
-        
+
         .feature-card p {
             color: color-mix(in srgb, var(--color-ivory) 70%, transparent);
             font-size: 0.95rem;
         }
-        
+
         /* Pricing */
         .pricing {
             padding: 100px 20px;
             background: var(--color-ivory); --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
-        
+
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -217,7 +217,7 @@
             max-width: 1100px;
             margin: 0 auto;
         }
-        
+
         .pricing-card {
             background: var(--color-white);
             border-radius: 20px;
@@ -226,24 +226,24 @@
             box-shadow: 0 10px 40px color-mix(in srgb, var(--on-light-text) 8%, transparent);
             position: relative;
             transition: all 0.3s ease; --color-text: var(--on-light-text); --color-text-muted: var(--on-light-text-muted); --color-accent: var(--on-light-accent); --color-button-ring: transparent; }
-        
+
         .pricing-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 60px color-mix(in srgb, var(--on-light-text) 12%, transparent);
         }
-        
+
         .pricing-card.featured {
             background: var(--color-inverse-bg);
             color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .pricing-card.featured .pricing-name {
             color: var(--color-accent);
         }
-        
+
         .pricing-card.featured .pricing-price {
             color: var(--color-ivory);
         }
-        
+
         .pricing-badge {
             position: absolute;
             top: -12px;
@@ -255,54 +255,54 @@
             border-radius: 20px;
             font-size: 12px;
             font-weight: 600; box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .pricing-name {
             font-family: var(--font-body);
             font-size: 1.5rem;
             margin-bottom: 10px;
             color: var(--color-rainforest);
         }
-        
+
         .pricing-price {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 5px;
         }
-        
+
         .pricing-price span {
             font-size: 1rem;
             font-weight: 400;
         }
-        
+
         .pricing-desc {
             font-size: 0.9rem;
             opacity: 0.7;
             margin-bottom: 30px;
         }
-        
+
         .pricing-features {
             list-style: none;
             text-align: left;
             margin-bottom: 30px;
         }
-        
+
         .pricing-features li {
             padding: 10px 0;
             border-bottom: 1px solid color-mix(in srgb, var(--on-light-text) 5%, transparent);
             font-size: 0.95rem;
         }
-        
+
         .pricing-card.featured .pricing-features li {
             border-color: color-mix(in srgb, var(--color-white) 10%, transparent);
         }
-        
+
         .pricing-features li::before {
             content: '✓';
             color: var(--color-accent);
             margin-right: 10px;
             font-weight: bold;
         }
-        
+
         .pricing-btn {
             display: block;
             width: 100%;
@@ -315,28 +315,28 @@
             text-decoration: none;
             transition: all 0.3s ease;
         }
-        
+
         .pricing-btn.primary {
             background: var(--color-button-bg);
             color: var(--color-button-text); box-shadow: inset 0 0 0 1px var(--color-button-ring)}
-        
+
         .pricing-btn.primary:hover {
             background: var(--color-button-hover-bg); color: var(--color-button-text)}
-        
+
         .pricing-btn.secondary {
             background: var(--color-rainforest);
             color: var(--color-ivory); --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .pricing-btn.secondary:hover {
             background: var(--color-inverse-bg);
         }
-        
+
         /* AI Section */
         .ai-section {
             padding: 100px 20px;
             background: linear-gradient(135deg, var(--color-rainforest) 0%, var(--on-light-text) 100%);
             text-align: center; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .ai-avatar {
             width: 120px;
             height: 120px;
@@ -347,20 +347,20 @@
             justify-content: center;
             font-size: 3rem;
             margin: 0 auto 30px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .ai-section h2 {
             font-family: var(--font-body);
             font-size: 2rem;
             color: var(--color-ivory);
             margin-bottom: 20px;
         }
-        
+
         .ai-section p {
             color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
             max-width: 600px;
             margin: 0 auto 30px;
         }
-        
+
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
@@ -372,31 +372,31 @@
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         .whatsapp-btn:hover {
             background: var(--color-inverse-bg);
             transform: translateY(-2px);
         }
-        
+
         /* Footer */
         footer {
             background: var(--color-inverse-bg);
             color: var(--color-ivory);
             text-align: center;
             padding: 40px 20px; --color-text: var(--color-ivory); --color-text-muted: var(--color-inverse-muted); --color-accent: var(--color-ivory); --color-button-ring: var(--color-ivory); }
-        
+
         footer a {
             color: var(--color-accent);
             text-decoration: none;
         }
-        
+
         /* Responsive */
         @media (max-width: 768px) {
             .pricing-grid {
                 grid-template-columns: 1fr;
                 max-width: 400px;
             }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -413,7 +413,7 @@
             <a href="#pricing" class="hero-cta">開始你的金繼之旅</a>
         </div>
     </section>
-    
+
     <!-- Philosophy -->
     <section class="philosophy">
         <div class="container">
@@ -430,7 +430,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Features -->
     <section class="features">
         <div class="container">
@@ -469,7 +469,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Pricing -->
     <section class="pricing" id="pricing">
         <div class="container">
@@ -487,7 +487,7 @@
                     </ul>
                     <span class="pricing-btn secondary" aria-disabled="true">即將推出</span>
                 </div>
-                
+
                 <!-- Complete -->
                 <div class="pricing-card featured">
                     <div class="pricing-badge">最受歡迎</div>
@@ -505,7 +505,7 @@
                     </ul>
                     <span class="pricing-btn primary" aria-disabled="true">即將推出</span>
                 </div>
-                
+
                 <!-- Kintsugi -->
                 <div class="pricing-card">
                     <div class="pricing-name">Kintsugi 金繼版</div>
@@ -521,7 +521,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- AI Section -->
     <section class="ai-section">
         <div class="ai-avatar">🌟</div>
@@ -531,10 +531,10 @@
             <span>💬</span> 與光光對話
         </a>
     </section>
-    
+
     <!-- Footer -->
     <footer>
-        <p class="sbs-footer-mark"><img class="sbs-logo sbs-logo--footer" src="../assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></p>
+        <p class="sbs-footer-mark"><img class="sbs-logo sbs-logo--footer" src="/assets/logo/WORDMARK/SBS_WORDMARK_WH.svg" alt="Space Between Studio" width="200" height="42"></p>
         <p>© 2026 <a href="/">Space Between Studio</a></p>
         <p style="margin-top: 10px; opacity: 0.6; font-size: 14px;">品牌療癒生態系 | 金繼哲學</p>
     </footer>
